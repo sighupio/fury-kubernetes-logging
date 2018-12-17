@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  labels:
+    app: fluentd
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd
+        image: sighup/fluentd-elasticsearch:1.2.8
+        env:
+          - name:  FLUENT_ELASTICSEARCH_HOST
+            value: "elasticsearch"
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            value: "9200"
+          - name: FLUENT_ELASTICSEARCH_SCHEME
+            value: "http"
+        ports:
+        - containerPort: 24231
+          name: metrics
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 400Mi
+          requests:
+            cpu: 300m
+            memory: 400Mi
+        volumeMounts:
+        - name: fluentd-conf
+          mountPath: /etc/tmp-conf
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: fluentd-conf
+        configMap:
+          name: fluentd-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: fluentd
+  name: fluentd
+spec:
+  ports:
+  - name: metrics
+    port: 24231
+    protocol: TCP
+  selector:
+    app: fluentd

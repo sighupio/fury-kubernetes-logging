@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curator
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: curator
+  template:
+    metadata:
+      labels:
+        app: curator
+    spec:
+      containers:
+      - name: curator
+        image: anjia0532/docker-curator
+        env:
+          - name: UNIT_COUNT
+            value: "30"
+          - name: UNIT
+            value: days
+          - name: ES_HOST
+            value: elasticsearch
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+          limits: 
+            cpu: 300m
+            memory: 800Mi

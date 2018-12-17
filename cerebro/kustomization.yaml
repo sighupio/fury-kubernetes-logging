@@ -1,0 +1,9 @@
+namespace: logging
+
+resources:
+  - cerebro.yml
+
+configMapGenerator:
+  - name: cerebro-config
+    files:
+      - application.conf

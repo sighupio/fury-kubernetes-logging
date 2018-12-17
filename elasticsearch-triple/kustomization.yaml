@@ -1,0 +1,7 @@
+namespace: logging
+
+bases:
+- ../elasticsearch-single
+
+patches:
+- triple.yml

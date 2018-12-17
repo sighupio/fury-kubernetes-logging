@@ -1,0 +1,4 @@
+namespace: logging
+
+resources:
+  - kibana.yml

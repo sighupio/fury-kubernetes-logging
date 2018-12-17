@@ -1,0 +1,135 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  ports:
+    - port: 9200
+      protocol: TCP
+      name: http
+    - port: 9300
+      name: node-to-node
+      protocol: TCP
+    - port: 9108
+      name: metrics
+      protocol: TCP
+  clusterIP: None
+  selector:
+    app: elasticsearch
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+spec:
+  serviceName: elasticsearch
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - elasticsearch
+              topologyKey: kubernetes.io/hostname
+      initContainers:
+        - name: sysctl
+          image: alpine:latest
+          command:
+            - sh
+            - -c
+            - "sysctl -w vm.max_map_count=262144 && chown -R 1000:1000 /usr/share/elasticsearch/data"
+          volumeMounts:
+            - name: es-data
+              mountPath: /usr/share/elasticsearch/data
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          securityContext:
+            privileged: true
+      containers:
+        - name: exporter
+          image: justwatch/elasticsearch_exporter:1.0.2
+          args:
+          - '-es.uri=http://localhost:9200'
+          ports:
+            - containerPort: 9108
+              name: metrics
+          resources:
+            limits:
+              cpu: 200m
+              memory: 400Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+          env:
+            - name: http.host
+              value: "0.0.0.0"
+            - name: ES_JAVA_OPTS
+              value: -Xms2G -Xmx2G
+            - name: bootstrap.memory_lock
+              value: "false"
+            - name: cluster.name
+              value: elasticsearch
+            - name: node.name
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: discovery.zen.ping.unicast.hosts
+              value: "elasticsearch-0.elasticsearch"
+          ports:
+            - containerPort: 9200
+              name: http
+            - containerPort: 9300
+              name: node-to-node
+          volumeMounts:
+            - name: es-data
+              mountPath: /usr/share/elasticsearch/data
+          readinessProbe:
+            httpGet:
+                path: /_cat/health
+                port: http
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          livenessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /_cat/health
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 3G
+            requests:
+              cpu: 1500m
+              memory: 2G
+  volumeClaimTemplates:
+    - metadata:
+        name: es-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 30Gi

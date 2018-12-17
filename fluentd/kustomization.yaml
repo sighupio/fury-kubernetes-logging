@@ -1,0 +1,14 @@
+namespace: logging
+
+resources:
+  - deploy.yml
+  - rbac.yml
+  - sm.yml
+  - ns.yml
+
+configMapGenerator:
+- name: fluentd-conf
+  files:
+    - fluent.conf
+    - systemd.conf
+    - kubernetes.conf

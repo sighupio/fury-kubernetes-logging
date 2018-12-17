@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+        - name: elasticsearch
+          env:
+            - name: discovery.zen.ping.unicast.hosts
+              value: "elasticsearch-0.elasticsearch,elasticsearch-1.elasticsearch,elasticsearch-2.elasticsearch"

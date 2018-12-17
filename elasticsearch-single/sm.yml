@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: elasticsearch
+  name: elasticsearch
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+    port: metrics
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+    - logging
+  selector:
+    matchLabels:
+      app: elasticsearch
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: logging
