@@ -21,7 +21,7 @@ To see examples on how to customize Fury distribution packages with kustomize pl
 
 Following packages are included in Fury Kubernetes Logging katalog. All resources in these packages are going to be deployed in `logging` namespace in your Kubernetes cluster.
 
-- [cerebro]() : Cerebro instance to manage Elasticsearch cluster via a graphical user interface
+- [cerebro](./tree/master/cerebro) : Cerebro instance to manage Elasticsearch cluster via a graphical user interface
 - [curator]() : Curator instance to manage Elasticsearch indices
 - [elasticsearch-single]() : Single node Elasticsearch deployment
 - [elasticsearch-triple]() : Three node Elasticsearch cluster deployment
