@@ -6,7 +6,6 @@ Kibana is an open source analytics and visualization platform for Elasticsearch.
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
-- [elasticsearch-single]() or [elasticsearch-triple]()
 
 
 ## Image repository and tag

@@ -20,7 +20,7 @@ Elasticsearch is an open source distributed search and analytics engine used for
 
 Fury distribution Elasticsearch Single is deployed with following configuration:
 
-- Elasticsearch cluster with `1` node
+- Single node 
 - Listens on port `9200` for client connections
 - Listens on port `9300` for node-to-node connections
 - Uses default unicast Zen Discovery module to discover Elasticsearch nodes 

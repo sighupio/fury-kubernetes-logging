@@ -6,6 +6,7 @@ Fluentd is an open source data collector for unified logging. It can store colle
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
@@ -17,9 +18,9 @@ Fluentd is an open source data collector for unified logging. It can store colle
 
 ## Configuration
 
-- Listens on port `
+- Listens on port `24231`
 - Resource limits are `1000m` for CPU and `400Mi` for memory
-- Configured to 
+- Configured to send log data to Elasticsearch 
 - Metrics are scraped every `30s` by Prometheus
 - Integrates with [elasticsearch-single]() and [elasticsearch-triple]()
 

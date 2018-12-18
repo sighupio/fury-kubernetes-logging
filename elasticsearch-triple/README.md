@@ -7,6 +7,7 @@ Elasticsearch is an open source distributed search and analytics engine used for
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
@@ -26,7 +27,7 @@ Fury distribution Elasticsearch Triple is deployed with following configuration:
 - Uses default unicast Zen Discovery module to discover Elasticsearch nodes 
 - Resource limits are `2000m` for CPU and `3G` for memory
 - Requires `30Gi` storage (with default storage type of Provider)
-- Only a single Elasticsearch node can be deployed on each node of cluster.
+- Only a single Elasticsearch node can be deployed on each node of cluster
 - Prometheus exporter integrated to expose Elasticsearch metrics
 - Metrics are scraped by Prometheus every `30s`
 

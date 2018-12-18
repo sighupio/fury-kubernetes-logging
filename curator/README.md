@@ -6,7 +6,6 @@ Curator helps you manage your Elasticsearch indices and snapshots via various op
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
-- [elasticsearch-single]() or [elasticsearch-triple]()
 
 
 ## Image repository and tag
