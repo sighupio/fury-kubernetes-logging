@@ -1,0 +1,11 @@
+namespace: logging
+
+resources:
+  - deploy.yml
+  - rbac.yml
+
+configMapGenerator:
+  - name: fluent-bit
+    files:
+      - fluent-bit.conf
+      - parsers.conf
