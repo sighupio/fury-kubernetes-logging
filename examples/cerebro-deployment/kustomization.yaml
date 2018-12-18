@@ -1,0 +1,10 @@
+namespace: logging
+
+bases:
+  - vendor/bases/logging/cerebro
+
+configMapGenerator:
+  - name: cerebro-config
+    behavior: replace
+    files:
+      - application.conf
