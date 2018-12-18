@@ -1,6 +1,8 @@
-rule OnlAllowedAPI ensure {
+rule OnlyAllowedAPI ensure {
     fetch("$.apiVersion").first == "v1" or
-    fetch("$.apiVersion").first == "apps/v1"
+    fetch("$.apiVersion").first == "apps/v1" or
+    fetch("$.apiVersion").first == "monitoring.coreos.com/v1" or
+    fetch("$.apiVersion").first == "rbac.authorization.k8s.io/v1"
 }
 
 rule NoLatestTag ensure {
