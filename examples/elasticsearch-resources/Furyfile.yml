@@ -1,0 +1,5 @@
+bases:
+  - name: logging/elasticsearch-double
+    version: master
+  - name: monitoring/prometheus-operator
+    version: master

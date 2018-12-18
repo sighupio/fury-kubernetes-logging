@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+spec:
+  template:
+    spec:
+      containers:
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+          resources:
+            limits:
+              cpu: 2500m
+              memory: 4G
+            requests:
+              cpu: 2000m
+              memory: 3G
+
