@@ -1,6 +1,9 @@
 # Kibana Katalog
 
-Kibana is an open source analytics and visualization platform for Elasticsearch. Kibana lets you perform advanced data analysis and visualize data in a variety of charts, tables, maps. You can use it to search, view, and interact with data stored in Elasticsearch indices. 
+Kibana is an open source analytics and visualization platform for Elasticsearch.
+Kibana lets you perform advanced data analysis and visualize data in a variety
+of charts, tables and maps. You can use it to search, view and interact with data
+stored in Elasticsearch indices.
 
 ## Requirements
 
@@ -27,7 +30,7 @@ You can deploy Kibana by running following command in the root of the project:
 
 `$ kustomize build | kubectl apply -f -`
 
-### Accessing Kibana UI 
+### Accessing Kibana UI
 
 You can access Kibana web UI by port-forwarding on port `5601`:
 
@@ -38,4 +41,4 @@ Kibana will be available on `http://127.0.0.1:5601` from your browser.
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license) 
+For license details please see [LICENSE](https://sighup.io/fury/license)
