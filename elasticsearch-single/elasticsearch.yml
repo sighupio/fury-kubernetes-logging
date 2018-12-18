@@ -46,7 +46,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       initContainers:
         - name: sysctl
-          image: alpine:latest
+          image: alpine:3.8
           command:
             - sh
             - -c
