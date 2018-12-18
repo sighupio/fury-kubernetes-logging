@@ -1,5 +1,5 @@
 bases:
-  - vendor/bases/logging/elasticsearch-double
+  - vendor/bases/logging/elasticsearch-single
   - vendor/bases/monitoring/prometheus-operator
 
 patches:
