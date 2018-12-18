@@ -30,6 +30,8 @@ You can deploy Kibana by running following command in the root of the project:
 
 `$ kustomize build | kubectl apply -f -`
 
+To learn how to customize Kibana to constrain deployment please see the [example](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/examples/kibana-node-selector)
+
 ### Accessing Kibana UI
 
 You can access Kibana web UI by port-forwarding on port `5601`:

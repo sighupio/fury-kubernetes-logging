@@ -39,6 +39,8 @@ You can access Cerebro web UI by port-forwarding on port `9000`:
 
 Cerebro will be available on `http://127.0.0.1:9000` from your browser.
 
+To learn how to add basic authentication for Cerebro please see the [example](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/examples/cerebro-deployment)
+
 
 ## License
 

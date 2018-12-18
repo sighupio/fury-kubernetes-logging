@@ -39,6 +39,7 @@ You can deploy Elasticsearch Triple by running following command in the root of 
 
 `$ kustomize build | kubectl apply -f -`
 
+To learn how to customize compute resources for Elasticsearch please follow the [example](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/examples/elasticsearch-resources)
 
 ## License
 
