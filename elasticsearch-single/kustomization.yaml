@@ -2,4 +2,5 @@ namespace: logging
 
 resources:
   - elasticsearch.yml
+  - ns.yml
   - sm.yml

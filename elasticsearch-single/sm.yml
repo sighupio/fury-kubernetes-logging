@@ -16,8 +16,3 @@ spec:
   selector:
     matchLabels:
       app: elasticsearch
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: logging

@@ -4,7 +4,6 @@ resources:
   - deploy.yml
   - rbac.yml
   - sm.yml
-  - ns.yml
 
 configMapGenerator:
 - name: fluentd-conf
