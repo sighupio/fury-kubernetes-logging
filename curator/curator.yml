@@ -1,31 +1,37 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1beta1
+kind: CronJob
 metadata:
   name: curator
 spec:
-  replicas: 1
-  selector: 
-    matchLabels: 
-      app: curator
-  template:
-    metadata:
-      labels:
-        app: curator
+  schedule: "15 0 * * *"
+  jobTemplate:
     spec:
-      containers:
-      - name: curator
-        image: anjia0532/docker-curator
-        env:
-          - name: UNIT_COUNT
-            value: "30"
-          - name: UNIT
-            value: days
-          - name: ES_HOST
-            value: elasticsearch
-        resources:
-          requests:
-            cpu: 100m
-            memory: 500Mi
-          limits: 
-            cpu: 300m
-            memory: 800Mi
+      template:
+        spec:
+          containers:
+            - name: curator
+              image: python:3.6-alpine
+              command: ["/bin/sh"]
+              args: ["-c", "pip install elasticsearch-curator==5.5.4 && curator --config /config/config.yml /config/action.yml"]
+              env:
+                - name: ES_HOST
+                  value: elasticsearch
+                - name: UNIT
+                  value: days
+                - name: UNIT_COUNT
+                  value: "30"
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 500Mi
+                limits:
+                  cpu: 300m
+                  memory: 800Mi
+              volumeMounts:
+                - name: curator-config
+                  mountPath: /config
+          restartPolicy: OnFailure
+          volumes:
+            - name: curator-config
+              configMap:
+                name: curator

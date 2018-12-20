@@ -2,3 +2,9 @@ namespace: logging
 
 resources:
   - curator.yml
+
+configMapGenerator:
+  - name: curator
+    files:
+      - action.yml
+      - config.yml
