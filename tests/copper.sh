@@ -9,6 +9,7 @@ find . -type d \
   -maxdepth 1 \
   -mindepth 1 \
   -not -path "./.git" \
+  -not -path "./.pytest_cache" \
   -not -path "./examples" \
   -not -path "./tests" | \
 while read dir; do
