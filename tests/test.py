@@ -1,16 +1,17 @@
 import fileinput
 import pytest
-import sys
 import yaml
 
 
 stdin = ""
+
 
 def read_stdin():
     global stdin
     with fileinput.input(files=("-")) as stream:
         for line in stream:
             stdin += line
+
 
 def spec():
     if not stdin:
