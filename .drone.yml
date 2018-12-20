@@ -34,7 +34,7 @@ steps:
       - pip install pipenv
       - pipenv install
       - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.10/kustomize_1.0.10_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
-      - PATH=$(pipenv --venv)/bin:$PATH bash tests/pytest.sh
+      - pipenv run bash tests/pytest.sh
     when:
       event:
       - push
