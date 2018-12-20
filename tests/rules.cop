@@ -1,8 +1,9 @@
-rule OnlyAllowedAPI ensure {
-    fetch("$.apiVersion").first == "v1" or
-    fetch("$.apiVersion").first == "apps/v1" or
-    fetch("$.apiVersion").first == "monitoring.coreos.com/v1" or
-    fetch("$.apiVersion").first == "rbac.authorization.k8s.io/v1"
+rule OnlyAllowedAPI warn {
+    fetch("$[?(@['apiVersion'])].apiVersion").first == "v1" or
+    fetch("$[?(@['apiVersion'])].apiVersion").first == "apps/v1" or
+    fetch("$[?(@['apiVersion'])].apiVersion").first == "batch/v1beta1" or
+    fetch("$[?(@['apiVersion'])].apiVersion").first == "monitoring.coreos.com/v1" or
+    fetch("$[?(@['apiVersion'])].apiVersion").first == "rbac.authorization.k8s.io/v1"
 }
 
 rule NoLatestTag ensure {

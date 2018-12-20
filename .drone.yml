@@ -13,7 +13,28 @@ steps:
       - gem install c66-copper && copper version
       - apt-get update && apt-get install curl -y
       - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.10/kustomize_1.0.10_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
-      - bash copper.sh
+      - bash tests/copper.sh
+    when:
+      event:
+      - push
+  - name: kubetest
+    image: ubuntu:trusty
+    commands:
+      - apt-get update && apt-get install curl -y
+      - curl -L https://github.com/garethr/kubetest/releases/download/0.1.1/kubetest-linux-amd64.tar.gz -o /tmp/kubetest.tar.gz && tar -xzf /tmp/kubetest.tar.gz -C /usr/local/bin && chmod +x /usr/local/bin/kubetest && chown root:root /usr/local/bin/kubetest
+      - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.10/kustomize_1.0.10_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
+      - bash tests/kubetest.sh
+    when:
+      event:
+      - push
+  - name: pytest
+    image: python:3
+    commands:
+      - apt-get update && apt-get install curl -y
+      - pip install pipenv
+      - pipenv install
+      - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.10/kustomize_1.0.10_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
+      - PATH=$(pipenv --venv)/bin:$PATH bash tests/pytest.sh
     when:
       event:
       - push
