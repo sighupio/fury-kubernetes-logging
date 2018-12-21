@@ -7,13 +7,14 @@ platform:
   arch: amd64
 
 steps:
-  - name: copper
-    image: ruby:2.5
+  - name: katalog
+    image: python:3
     commands:
-      - gem install c66-copper && copper version
-      - apt-get update && apt-get install curl -y
+      - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl
       - curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.10/kustomize_1.0.10_linux_amd64 -o /usr/local/bin/kustomize && chmod +x /usr/local/bin/kustomize && kustomize version
-      - bash copper.sh
+      - pip install -rtest-requirements.txt
+      - flake8 --ignore=E501 katalog/tests/test.py
+      - bash katalog/tests/test.sh
     when:
       event:
       - push
