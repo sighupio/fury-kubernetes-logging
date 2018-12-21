@@ -1,4 +1,4 @@
-# Fluentd Katalog
+# Fluentd
 
 Fluentd is an open source data collector for unified logging that can store
 collected data in various destinations. Fluentd deployment in Fury Kubernetes

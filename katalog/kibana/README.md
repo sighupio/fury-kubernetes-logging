@@ -1,4 +1,4 @@
-# Kibana Katalog
+# Kibana 
 
 Kibana is an open source analytics and visualization platform for Elasticsearch.
 Kibana lets you perform advanced data analysis and visualize data in a variety
@@ -9,7 +9,6 @@ stored in Elasticsearch indices.
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
-
 
 ## Image repository and tag
 
@@ -22,7 +21,6 @@ stored in Elasticsearch indices.
 - Replica number : `1`
 - Listens on port `5601`
 - Resource limits are `300m` for CPU and `800Mi` for memory
-
 
 ## Deployment
 
@@ -39,7 +37,6 @@ You can access Kibana web UI by port-forwarding on port `5601`:
 `kubectl port-forward svc/kibana 5601:5601 --namespace logging`
 
 Kibana will be available on `http://127.0.0.1:5601` from your browser.
-
 
 ## License
 

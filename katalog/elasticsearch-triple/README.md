@@ -1,4 +1,4 @@
-# Elasticsearch Triple Katalog
+# Elasticsearch Triple
 
 Elasticsearch is an open source distributed search and analytics engine used for
 log analytics. This package deploys a three node Elasticsearch cluster on

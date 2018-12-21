@@ -1,4 +1,4 @@
-# Elasticsearch Single Katalog
+# Elasticsearch Single
 
 Elasticsearch is an open source distributed search and analytics engine used for
 log analytics. This package deploys a single node Elasticsearch cluster on
