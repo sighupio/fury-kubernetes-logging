@@ -24,17 +24,17 @@ Logging is configured to write records into Elasticsearch.
 - Resource limits are `1000m` for CPU and `400Mi` for memory
 - Configured to send log data to Elasticsearch
 - Metrics are scraped every `30s` by Prometheus
-- Integrates with
-  [elasticsearch-single](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/elasticsearch-single)
-  and
-  [elasticsearch-triple](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/elasticsearch-triple)
+- Integrates with [elasticsearch-single](../elasticsearch-single) and
+  [elasticsearch-triple](../elasticsearch-triple)
 
 
 ## Deployment
 
 You can deploy fluentd by running following command in the root of the project:
 
-`$ kustomize build | kubectl apply -f -`
+```shell
+$ kustomize build | kubectl apply -f -
+```
 
 
 ## License

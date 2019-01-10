@@ -8,7 +8,7 @@ Kubernetes.
 
 - Kubernetes >= `1.10.0`
 - Kustomize >= `v1`
-- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
+- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator)
 
 
 ## Image repository and tag
@@ -37,9 +37,12 @@ Fury distribution Elasticsearch Triple is deployed with following configuration:
 
 You can deploy Elasticsearch Triple by running following command in the root of the project:
 
-`$ kustomize build | kubectl apply -f -`
+```shell
+$ kustomize build | kubectl apply -f -
+```
 
-To learn how to customize compute resources for Elasticsearch please follow the [example](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/examples/elasticsearch-resources)
+To learn how to customize compute resources for Elasticsearch please follow the
+[example](../../examples/elasticsearch-resources).
 
 ## License
 

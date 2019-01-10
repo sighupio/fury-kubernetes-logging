@@ -1,4 +1,4 @@
-# Kibana 
+# Kibana
 
 Kibana is an open source analytics and visualization platform for Elasticsearch.
 Kibana lets you perform advanced data analysis and visualize data in a variety
@@ -18,7 +18,7 @@ stored in Elasticsearch indices.
 
 ## Configuration
 
-- Replica number : `1`
+- Replica number: `1`
 - Listens on port `5601`
 - Resource limits are `300m` for CPU and `800Mi` for memory
 
@@ -26,17 +26,22 @@ stored in Elasticsearch indices.
 
 You can deploy Kibana by running following command in the root of the project:
 
-`$ kustomize build | kubectl apply -f -`
+```shell
+$ kustomize build | kubectl apply -f -
+```
 
-To learn how to customize Kibana to constrain deployment please see the [example](https://github.com/sighup-io/fury-kubernetes-logging/tree/master/examples/kibana-node-selector)
+To learn how to constrain Kibana deployment please see the
+[example](../../examples/kibana-node-selector).
 
 ### Accessing Kibana UI
 
 You can access Kibana web UI by port-forwarding on port `5601`:
 
-`kubectl port-forward svc/kibana 5601:5601 --namespace logging`
+```shell
+$ kubectl port-forward svc/kibana 5601:5601 --namespace logging
+```
 
-Kibana will be available on `http://127.0.0.1:5601` from your browser.
+Kibana will be available on http://127.0.0.1:5601 from your browser.
 
 ## License
 

@@ -7,9 +7,9 @@ requests, but is not allowed to use more than its limits. To learn more about
 assigning compute resources to pods and containers please follow the Kubernetes
 [documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/).
 
-0. Run furyctl to get packages: `$ furyctl install --dev`
+0. Run furyctl to get packages: `furyctl install --dev`
 
-1. You can modify `limit` and `request` values for CPU and memory resources in `set-resources.yml` based on your needs.
+1. You can modify `limits` and `requests` values for CPU and memory resources in `set-resources.yml` based on your needs.
 
 2. Run `make build` to see output of kustomize with your modifications.
 
