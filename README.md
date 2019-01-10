@@ -27,16 +27,16 @@ Following packages are included in Fury Kubernetes Logging katalog. All
 resources in these packages are going to be deployed in `logging` namespace in
 your Kubernetes cluster.
 
-- [cerebro](cerebro): Cerebro instance to manage Elasticsearch cluster via a
+- [cerebro](katalog/cerebro): Cerebro instance to manage Elasticsearch cluster via a
   graphical user interface
-- [curator](curator): Curator instance to manage Elasticsearch indices
-- [elasticsearch-single](elasticsearch-single): Single node Elasticsearch
+- [curator](katalog/curator): Curator instance to manage Elasticsearch indices
+- [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
   deployment
-- [elasticsearch-triple](elasticsearch-triple): Three node Elasticsearch cluster
+- [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
   deployment
-- [fluentd](fluentd): fluentd instance to collect logging data and store in
+- [fluentd](katalog/fluentd): fluentd instance to collect logging data and store in
   Elasticsearch
-- [kibana](kibana): Kibana instance to visualize and analyse Elasticsearch data.
+- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data.
 
 You can click on each package to see its documentation.
 
