@@ -43,7 +43,7 @@ apply (){
     max_retry=$[ $max_retry + 1 ]
   done
   kubectl get all --all-namespaces -o json > dump.json
-  head /dump.json >&3
+  head dump.json >&3
 }
 
 @test "check elasticsh-single" {
