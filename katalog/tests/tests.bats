@@ -7,10 +7,11 @@ apply (){
 @test "testing elasticsearch-single apply" {
   run apply katalog/elasticsearch-single
   kubectl get statefulsets -o json -n logging elasticsearch | jq 'del(.spec.template.spec.containers[].resources)' > /tmp/elasticsearch
+  cat /tmp/elasticsearch >&2
   kubectl delete statefulsets -n logging elasticsearch >&2
   run kubectl apply -f /tmp/elasticsearch >&2
-  sleep 20
   [ "$status" -eq 0 ]
+  sleep 20
 }
 
 @test "testing fluentd apply" {
