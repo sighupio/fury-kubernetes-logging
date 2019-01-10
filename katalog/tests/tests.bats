@@ -1,7 +1,11 @@
 #!/usr/bin/env bats
 
 apply (){
-  kustomize build $1 | kubectl apply -f - 2>&1 >&2
+  kustomize build $1 | kubectl apply -f -
+}
+
+@test "applying monitoring" {
+  kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/servicemonitor.crd.yaml
 }
 
 @test "testing elasticsearch-single apply" {
@@ -10,27 +14,22 @@ apply (){
   cat /tmp/elasticsearch >&2
   kubectl delete statefulsets -n logging elasticsearch >&2
   run kubectl apply -f /tmp/elasticsearch
-  [ "$status" -eq 0 ]
 }
 
 @test "testing fluentd apply" {
-  run apply katalog/fluentd
-  [ "$status" -eq 0 ]
+  apply katalog/fluentd
 }
 
 @test "testing curator apply" {
-  run apply katalog/curator
-  [ "$status" -eq 0 ]
+  apply katalog/curator
 }
 
 @test "testing cerebro apply" {
-  run apply katalog/cerebro
-  [ "$status" -eq 0 ]
+  apply katalog/cerebro
 }
 
 @test "testing kibana apply" {
-  run apply katalog/kibana
-  [ "$status" -eq 0 ]
+  apply katalog/kibana
 }
 
 @test "wait for apply to settle and dump state to /dump.json" {
