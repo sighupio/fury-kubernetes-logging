@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 apply (){
-  kustomize build $1 | kubectl apply -f - >&2
+  kustomize build $1 | kubectl apply -f - 2>&1 >&2
 }
 
 @test "testing elasticsearch-single apply" {
@@ -34,7 +34,7 @@ apply (){
   [ "$status" -eq 0 ]
 }
 
-@test "wait for apply to settle and dump state to dump.json" {
+@test "wait for apply to settle and dump state to /dump.json" {
   max_retry=0
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&3
@@ -43,13 +43,13 @@ apply (){
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$[ $max_retry + 1 ]
   done
-  kubectl get all --all-namespaces -o json > dump.json
-  head dump.json >&3
+  kubectl get all --all-namespaces -o json > /dump.json
+  head /dump.json >&3
 }
 
 @test "check elasticsh-single" {
   test(){
-    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) ' < dump.json
+    jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) ' < /dump.json
   }
   run test
   echo "$output" | jq '.' >&2
@@ -58,7 +58,7 @@ apply (){
 
 @test "check fluentd" {
   test(){
-    jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentd" and .status.desiredNumberScheduled != .status.numberReady ) ' < dump.json
+    jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentd" and .status.desiredNumberScheduled != .status.numberReady ) ' < /dump.json
   }
   run test
   echo "$output" | jq '.' >&2
@@ -67,7 +67,7 @@ apply (){
 
 @test "check cerebro" {
   test(){
-    jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) ' < dump.json
+    jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) ' < /dump.json
   }
   run test
   echo "$output" | jq '.' >&2
@@ -76,7 +76,7 @@ apply (){
 
 @test "check kibana" {
   test(){
-    jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) ' < dump.json
+    jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) ' < /dump.json
   }
   run test
   echo "$output" | jq '.' >&2
