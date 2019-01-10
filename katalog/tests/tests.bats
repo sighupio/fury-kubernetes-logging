@@ -1,14 +1,14 @@
 #!/usr/bin/env bats
 
 apply (){
-  kustomize build $1 | kubectl apply -f -
+  kustomize build $1 | kubectl apply -f - >&2
 }
 
 @test "testing elasticsearch-single apply" {
   run apply katalog/elasticsearch-single
   kubectl get statefulsets -o json -n logging elasticsearch | jq 'del(.spec.template.spec.containers[].resources)' > /tmp/elasticsearch
-  kubectl delete statefulsets -n logging elasticsearch
-  cat /tmp/elasticsearch | kubectl apply -f -
+  kubectl delete statefulsets -n logging elasticsearch >&2
+  run kubectl apply -f /tmp/elasticsearch >&2
   sleep 20
   [ "$status" -eq 0 ]
 }
