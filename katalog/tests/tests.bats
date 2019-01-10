@@ -5,13 +5,12 @@ apply (){
 }
 
 @test "testing elasticsearch-single apply" {
-  run apply katalog/elasticsearch-single
+  apply katalog/elasticsearch-single
   kubectl get statefulsets -o json -n logging elasticsearch | jq 'del(.spec.template.spec.containers[].resources)' > /tmp/elasticsearch
   cat /tmp/elasticsearch >&2
   kubectl delete statefulsets -n logging elasticsearch >&2
-  run kubectl apply -f /tmp/elasticsearch >&2
+  run kubectl apply -f /tmp/elasticsearch
   [ "$status" -eq 0 ]
-  sleep 20
 }
 
 @test "testing fluentd apply" {
@@ -47,7 +46,7 @@ apply (){
   head /dump.json >&3
 }
 
-@test "check elasticsh-single" {
+@test "check elasticsearch-single" {
   test(){
     jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) ' < /dump.json
   }
