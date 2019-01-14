@@ -1,7 +1,7 @@
 namespace: logging
 
 bases:
-  - vendor/bases/logging/cerebro
+  - vendor/katalog/logging/cerebro
 
 configMapGenerator:
   - name: cerebro-config

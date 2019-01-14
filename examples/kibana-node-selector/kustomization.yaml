@@ -1,5 +1,5 @@
 bases:
-  - vendor/bases/logging/kibana
+  - vendor/katalog/logging/kibana
 
 patches:
   - node-selector.yml
