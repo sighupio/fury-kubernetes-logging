@@ -50,7 +50,7 @@ spec:
           command:
             - sh
             - -c
-            - "sysctl -w vm.max_map_count=262144 && chown -R 1000:1000 /usr/share/elasticsearch/data"
+            - "sysctl -w vm.max_map_count=262144 && sysctl -w fs.file-max=65536 && sysctl -p && chown -R 1000:1000 /usr/share/elasticsearch/data"
           volumeMounts:
             - name: es-data
               mountPath: /usr/share/elasticsearch/data

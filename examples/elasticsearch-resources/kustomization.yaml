@@ -1,6 +1,6 @@
 bases:
-  - vendor/bases/logging/elasticsearch-single
-  - vendor/bases/monitoring/prometheus-operator
+  - vendor/katalog/logging/elasticsearch-single
+  - vendor/katalog/monitoring/prometheus-operator
 
 patches:
   - set-resources.yml
