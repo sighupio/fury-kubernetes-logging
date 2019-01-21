@@ -126,4 +126,3 @@ def test_resources_set(doc):
             assert "resources" in container and set(["limits", "requests"]).issubset(container["resources"])
     elif doc["kind"] in ["Prometheus", "Alertmanager"]:
         assert "resources" in doc["spec"] and set(["limits", "requests"]).issubset(doc["spec"]["resources"])
-ssert "resources" in doc["spec"] and set(["limits","requests"]).issubset(doc["spec"]["resources"])
