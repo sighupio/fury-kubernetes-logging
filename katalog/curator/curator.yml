@@ -10,9 +10,9 @@ spec:
         spec:
           containers:
             - name: curator
-              image: python:3.6-alpine
-              command: ["/bin/sh"]
-              args: ["-c", "pip install elasticsearch-curator==5.5.4 && curator --config /config/config.yml /config/action.yml"]
+              image: quay.io/sighup/curator:5.6.0_3.7-alpine_3.13
+              command: ["curator"]
+              args: ["--config", "/config/config.yml", "/config/action.yml"]
               env:
                 - name: ES_HOST
                   value: elasticsearch
