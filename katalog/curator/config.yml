@@ -13,7 +13,7 @@ client:
   ssl_no_validate: False
   http_auth: ${HTTP_AUTH:''}
   timeout: ${TIMEOUT:120}
-  master_only: ${MASTER_ONLY:True}
+  master_only: ${MASTER_ONLY:False}
 logging:
   loglevel: INFO
   logfile:
