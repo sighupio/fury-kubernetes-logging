@@ -3,7 +3,7 @@
 # not a Python "NoneType"
 client:
   hosts:
-    - ${ES_HOST:127.0.0.1}
+  - ${ES_HOST:127.0.0.1}
   port: 9200
   url_prefix:
   use_ssl: ${USE_SSL:False}

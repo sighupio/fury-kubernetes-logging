@@ -9,29 +9,29 @@ spec:
       template:
         spec:
           containers:
-            - name: curator
-              image: quay.io/sighup/curator:5.6.0_3.7-alpine_3.13
-              command: ["curator"]
-              args: ["--config", "/config/config.yml", "/config/action.yml"]
-              env:
-                - name: ES_HOST
-                  value: elasticsearch
-                - name: UNIT
-                  value: days
-                - name: UNIT_COUNT
-                  value: "30"
-              resources:
-                requests:
-                  cpu: 100m
-                  memory: 500Mi
-                limits:
-                  cpu: 300m
-                  memory: 800Mi
-              volumeMounts:
-                - name: curator-config
-                  mountPath: /config
+          - name: curator
+            image: quay.io/sighup/curator:5.6.0_3.7-alpine_3.13
+            command: ["curator"]
+            args: ["--config", "/config/config.yml", "/config/action.yml"]
+            env:
+            - name: ES_HOST
+              value: elasticsearch
+            - name: UNIT
+              value: days
+            - name: UNIT_COUNT
+              value: "30"
+            resources:
+              requests:
+                cpu: 100m
+                memory: 500Mi
+              limits:
+                cpu: 300m
+                memory: 800Mi
+            volumeMounts:
+            - name: curator-config
+              mountPath: /config
           restartPolicy: OnFailure
           volumes:
-            - name: curator-config
-              configMap:
-                name: curator
+          - name: curator-config
+            configMap:
+              name: curator
