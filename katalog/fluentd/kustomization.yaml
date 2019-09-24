@@ -11,3 +11,4 @@ configMapGenerator:
     - fluent.conf
     - systemd.conf
     - kubernetes.conf
+    - prometheus.conf
