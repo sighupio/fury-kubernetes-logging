@@ -13,7 +13,7 @@ Logging is configured to write records into Elasticsearch.
 
 ## Image repository and tag
 
-* Fluentd image: `sighup/fluentd-elasticsearch:1.2.8`
+* Fluentd image: `sighup/fluentd-elasticsearch:v1.7.2-debian-1.0`
 * Fluentd repo: https://github.com/fluent/fluentd
 * Fluentd documentation: https://docs.fluentd.org/v1.0/articles/quickstart
 

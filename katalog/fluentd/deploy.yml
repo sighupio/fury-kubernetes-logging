@@ -19,7 +19,7 @@ spec:
         effect: NoSchedule
       containers:
       - name: fluentd
-        image: sighup/fluentd-elasticsearch:1.7.2
+        image: sighup/fluentd-elasticsearch:v1.7.2-debian-1.0
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: "elasticsearch"
