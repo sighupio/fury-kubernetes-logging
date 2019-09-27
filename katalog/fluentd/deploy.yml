@@ -39,7 +39,7 @@ spec:
             memory: 400Mi
         volumeMounts:
         - name: fluentd-conf
-          mountPath: /etc/tmp-conf
+          mountPath: /fluentd/etc
         - name: varlog
           mountPath: /var/log
         - name: varlibdockercontainers
