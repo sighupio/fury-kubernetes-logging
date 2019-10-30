@@ -28,15 +28,15 @@ resources in these packages are going to be deployed in `logging` namespace in
 your Kubernetes cluster.
 
 - [cerebro](katalog/cerebro): Cerebro instance to manage Elasticsearch cluster via a
-  graphical user interface
-- [curator](katalog/curator): Curator instance to manage Elasticsearch indices
+  graphical user interface. Version: **0.8.1**
+- [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.6.0**
 - [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
-  deployment
+  deployment. Version: **6.4.1**
 - [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
-  deployment
+  deployment. Version: **6.4.1**
 - [fluentd](katalog/fluentd): fluentd instance to collect logging data and store in
-  Elasticsearch
-- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data.
+  Elasticsearch. Version: **1.7.2**
+- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data. Version: **6.4.1**
 
 You can click on each package to see its documentation.
 
