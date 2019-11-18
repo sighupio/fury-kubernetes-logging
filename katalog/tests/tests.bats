@@ -38,7 +38,7 @@ apply (){
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&2
   do
-    [ $max_retry -lt 24 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
+    [ $max_retry -lt 100 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$[ $max_retry + 1 ]
   done
