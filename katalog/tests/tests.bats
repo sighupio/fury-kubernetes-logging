@@ -44,41 +44,41 @@ apply (){
   done
 }
 
-#@test "check elasticsearch-single" {
-  #test(){
-    #jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) ' < /dump.json
-  #}
-  #run test
-  #echo "$output" | jq '.' >&2
-  #[ "$output" == "" ]
-#}
+@test "check elasticsearch-single" {
+  test(){
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) '
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" == "" ]
+}
 
-#@test "check fluentd" {
-  #test(){
-    #jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentd" and .status.desiredNumberScheduled != .status.numberReady ) ' < /dump.json
-  #}
-  #run test
-  #echo "$output" | jq '.' >&2
-  #[ "$output" == "" ]
-#}
+@test "check fluentd" {
+  test(){
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentd" and .status.desiredNumberScheduled != .status.numberReady ) '
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" == "" ]
+}
 
-#@test "check cerebro" {
-  #test(){
-    #jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) ' < /dump.json
-  #}
-  #run test
-  #echo "$output" | jq '.' >&2
-  #[ "$output" == "" ]
-#}
+@test "check cerebro" {
+  test(){
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) '
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" == "" ]
+}
 
-#@test "check kibana" {
-  #test(){
-    #jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) ' < /dump.json
-  #}
-  #run test
-  #echo "$output" | jq '.' >&2
-  #[ "$output" == "" ]
-#
+@test "check kibana" {
+  test(){
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) '
+  }
+  run test
+  echo "$output" | jq '.' >&2
+  [ "$output" == "" ]
+}
 
 @test "cleanup" {
   if [ -z "${LOCAL_DEV_ENV}" ];
