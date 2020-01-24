@@ -6,7 +6,7 @@ apply (){
 }
 
 @test "applying monitoring" {
-  kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/servicemonitor.crd.yaml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.3.0/katalog/prometheus-operator/crd-servicemonitor.yml
 }
 
 @test "testing elasticsearch-single apply" {
