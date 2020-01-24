@@ -62,7 +62,6 @@ steps:
       ref:
         include:
           - refs/heads/hotfix-*
-          - refs/heads/feature/refactor-e2e-testing
           - refs/tags/**
 
   - name: e2e
@@ -79,7 +78,6 @@ steps:
       ref:
         include:
           - refs/heads/hotfix-*
-          - refs/heads/feature/refactor-e2e-testing
           - refs/tags/**
 
   - name: destroy
