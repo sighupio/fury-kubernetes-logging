@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: curator
-            image: quay.io/sighup/curator:5.6.0_3.7-alpine_3.13
+            image: quay.io/sighup/curator
             command: ["curator"]
             args: ["--config", "/config/config.yml", "/config/action.yml"]
             env:
