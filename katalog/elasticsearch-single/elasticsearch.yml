@@ -68,11 +68,11 @@ spec:
         - name: exporter
           image: justwatch/elasticsearch_exporter
           args:
-          - '-es.uri=http://localhost:9200'
-          - 'es.cluster_settings=true'
-          - 'es.indices=true'
-          - 'es.snapshots=true'
-          - 'web.listen-address=:9108'
+          - '--es.uri=http://localhost:9200'
+          - '--es.cluster_settings'
+          - '--es.indices'
+          - '--es.snapshots'
+          - '--web.listen-address=:9108'
           ports:
             - containerPort: 9108
               name: metrics
