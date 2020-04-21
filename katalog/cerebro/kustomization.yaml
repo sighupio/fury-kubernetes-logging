@@ -3,6 +3,10 @@ namespace: logging
 resources:
   - cerebro.yml
 
+images:
+  - name: lmenezes/cerebro
+    newTag: 0.8.5
+
 configMapGenerator:
   - name: cerebro-config
     files:
