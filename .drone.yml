@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: katalog
-    image: quay.io/sighup/katalog:1.0.11_3
+    image: quay.io/sighup/katalog:3.2.2_3
     pull: always
     depends_on: [ clone ]
     commands:
@@ -20,11 +20,10 @@ steps:
       - push
 
   - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.1.0_1.0.11
+    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
     pull: always
     depends_on: [clone]
     commands:
-      - git config --global url."https://github.com/".insteadOf ssh://git@github.com
       - bats examples/tests.bats
     when:
       event:
