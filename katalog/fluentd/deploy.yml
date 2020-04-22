@@ -18,7 +18,8 @@ spec:
       - operator: Exists
       containers:
       - name: fluentd
-        image: sighup/fluentd-elasticsearch:1.2.8
+        image: quay.io/sighup/fluentd-elasticsearch:v1.10.2-debian-1.0
+        args: ["-c", "/etc/tmp-conf/fluent.conf"]
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: "elasticsearch"
