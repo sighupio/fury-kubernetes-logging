@@ -27,6 +27,12 @@ spec:
       containers:
       - name: kibana
         image: docker.elastic.co/kibana/kibana
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          runAsUser: 1000
         readinessProbe:
           exec:
             command:
