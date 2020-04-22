@@ -49,6 +49,7 @@ You can click on each package to see its documentation.
 | v1.1.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | v1.2.0                              |                    |                    |                    |
 | v1.2.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
