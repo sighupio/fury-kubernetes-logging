@@ -24,6 +24,8 @@ spec:
       labels:
         app: kibana
     spec:
+      securityContext:
+        fsGroup: 1000
       containers:
       - name: kibana
         image: docker.elastic.co/kibana/kibana
