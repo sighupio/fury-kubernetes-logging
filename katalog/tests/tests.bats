@@ -80,6 +80,15 @@ apply (){
   [ "$output" == "" ]
 }
 
+@test "run curator job" {
+  test(){
+    kubectl -n logging create job curator-test --from cronjob/curator
+    kubectl -n logging wait --for=condition=complete job/curator-test --timeout=60s
+  }
+  run test
+  [ "$status" -eq 0 ]
+}
+
 @test "cleanup" {
   if [ -z "${LOCAL_DEV_ENV}" ];
   then
