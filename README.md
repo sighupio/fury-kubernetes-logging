@@ -10,9 +10,9 @@ with Elasticsearch.
 All packages in this repository have following dependencies, for package
 specific dependencies please visit the single package's documentation:
 
-- [Kubernetes](https://kubernetes.io) >= `v1.10.0`
+- [Kubernetes](https://kubernetes.io) >= `v1.14.0`
 - [Furyctl](https://github.com/sighup-io/furyctl) package manager to install Fury packages
-- [Kustomize](https://github.com/kubernetes-sigs/kustomize) >= `v1`
+- [Kustomize](https://github.com/kubernetes-sigs/kustomize) >= `v3`
 
 
 ## Examples
@@ -28,15 +28,15 @@ resources in these packages are going to be deployed in `logging` namespace in
 your Kubernetes cluster.
 
 - [cerebro](katalog/cerebro): Cerebro instance to manage Elasticsearch cluster via a
-  graphical user interface. Version: **0.8.1**
-- [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.6.0**
+  graphical user interface. Version: **0.8.5**
+- [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.8.1**
 - [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
-  deployment. Version: **6.4.1**
+  deployment. Version: **6.8.8**
 - [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
-  deployment. Version: **6.4.1**
+  deployment. Version: **6.8.8**
 - [fluentd](katalog/fluentd): fluentd instance to collect logging data and store in
-  Elasticsearch. Version: **1.7.2**
-- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data. Version: **6.4.1**
+  Elasticsearch. Version: **1.10.2**
+- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data. Version: **6.8.8**
 
 You can click on each package to see its documentation.
 
@@ -57,4 +57,4 @@ You can click on each package to see its documentation.
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](LICENSE)

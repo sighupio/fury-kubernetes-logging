@@ -6,12 +6,12 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kubernetes >= `1.14.0`
+- Kustomize >= `v3`
 
 ## Image repository and tag
 
-* Curator image: `python:3.6-alpine`
+* Curator image: `python:3.7-alpine`
 * Curator repo: https://github.com/elastic/curator
 * Curator documentation: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
 
@@ -34,4 +34,4 @@ $ kustomize build | kubectl apply -f -
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)

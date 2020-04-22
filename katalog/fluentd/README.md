@@ -6,14 +6,14 @@ Logging is configured to write records into Elasticsearch.
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kubernetes >= `1.14.0`
+- Kustomize >= `v3`
 - [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
 
-* Fluentd image: `sighup/fluentd-elasticsearch:1.2.8`
+* Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.10.2-debian-1.0`
 * Fluentd repo: https://github.com/fluent/fluentd
 * Fluentd documentation: https://docs.fluentd.org/v1.0/articles/quickstart
 
@@ -39,4 +39,4 @@ $ kustomize build | kubectl apply -f -
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)

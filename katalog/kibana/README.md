@@ -7,20 +7,21 @@ stored in Elasticsearch indices.
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kubernetes >= `1.14.0`
+- Kustomize >= `v3`
 
 ## Image repository and tag
 
-* Kibana image: `docker.elastic.co/kibana/kibana:6.4.1`
+* Kibana image: `docker.elastic.co/kibana/kibana:6.8.8`
 * Kibana repo: https://github.com/elastic/kibana
-* Kibana documentation: https://www.elastic.co/guide/en/kibana/6.4/index.html
+* Kibana documentation: https://www.elastic.co/guide/en/kibana/6.8/index.html
 
 ## Configuration
 
 - Replica number: `1`
 - Listens on port `5601`
 - Resource limits are `300m` for CPU and `800Mi` for memory
+- Secured by `securiyContext` *(running as non root, removed all linux capabilities)*
 
 ## Deployment
 
@@ -45,4 +46,4 @@ Kibana will be available on http://127.0.0.1:5601 from your browser.
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)
