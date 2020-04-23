@@ -16,3 +16,6 @@ configMapGenerator:
     - systemd.conf
     - kubernetes.conf
     - prometheus.conf
+- name: fluentd-confd
+  files:
+    - nginx.conf=conf.d/nginx.conf

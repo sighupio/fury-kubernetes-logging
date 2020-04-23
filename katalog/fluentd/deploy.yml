@@ -40,6 +40,8 @@ spec:
         volumeMounts:
         - name: fluentd-conf
           mountPath: /etc/tmp-conf
+        - name: fluentd-confd
+          mountPath: /etc/tmp-conf/conf.d
         - name: varlog
           mountPath: /var/log
         - name: varlibdockercontainers
@@ -53,6 +55,9 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: fluentd-confd
+        configMap:
+          name: fluentd-confd
       - name: fluentd-conf
         configMap:
           name: fluentd-conf
