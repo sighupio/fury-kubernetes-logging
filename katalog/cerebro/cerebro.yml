@@ -40,6 +40,16 @@ spec:
             limits:
               cpu: 600m
               memory: 800Mi
+          readinessProbe:
+            initialDelaySeconds: 120
+            httpGet:
+              path: /
+              port: http
+          livenessProbe:
+            initialDelaySeconds: 120
+            httpGet:
+              path: /
+              port: http
           volumeMounts:
             - name: cerebro-config
               mountPath: /opt/cerebro/conf/application.conf
