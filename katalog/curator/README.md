@@ -11,7 +11,7 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Image repository and tag
 
-* Curator image: `python:3.7-alpine`
+* Curator image: `quay.io/sighup/curator:5.8.1_3.7-alpine_5.3.1`
 * Curator repo: https://github.com/elastic/curator
 * Curator documentation: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
 
