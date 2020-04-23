@@ -19,3 +19,4 @@ configMapGenerator:
 - name: fluentd-confd
   files:
     - nginx.conf=conf.d/nginx.conf
+    - general.conf=conf.d/general.conf

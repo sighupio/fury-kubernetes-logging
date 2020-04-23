@@ -30,6 +30,18 @@ spec:
         ports:
         - containerPort: 24231
           name: metrics
+        - containerPort: 9880
+          name: http-input
+        livenessProbe:
+          httpGet:
+            # Use percent encoding for query param.
+            # The value is {"log": "health check"}.
+            # the endpoint itself results in a new fluentd
+            # tag 'fluentd.pod-healthcheck'
+            path: /fluentd.pod.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D
+            port: 9880
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
         resources:
           limits:
             cpu: 1000m
