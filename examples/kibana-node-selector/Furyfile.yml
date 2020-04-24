@@ -1,3 +1,3 @@
 bases:
   - name: logging/kibana
-    version: v1.3.0-rc7
+    version: v1.3.0-rc8
