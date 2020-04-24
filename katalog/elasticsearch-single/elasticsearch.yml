@@ -46,7 +46,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       initContainers:
         - name: sysctl
-          image: alpine:3.8
+          image: alpine:3.11
           command:
             - sh
             - -c
@@ -66,9 +66,13 @@ spec:
             privileged: true
       containers:
         - name: exporter
-          image: justwatch/elasticsearch_exporter:1.0.2
+          image: justwatch/elasticsearch_exporter
           args:
-          - '-es.uri=http://localhost:9200'
+          - '--es.uri=http://localhost:9200'
+          - '--es.cluster_settings'
+          - '--es.indices'
+          - '--es.snapshots'
+          - '--web.listen-address=:9108'
           ports:
             - containerPort: 9108
               name: metrics
@@ -80,7 +84,7 @@ spec:
               cpu: 100m
               memory: 200Mi
         - name: elasticsearch
-          image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+          image: docker.elastic.co/elasticsearch/elasticsearch
           env:
             - name: http.host
               value: "0.0.0.0"

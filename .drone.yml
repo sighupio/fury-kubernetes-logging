@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: katalog
-    image: quay.io/sighup/katalog:1.0.11_3
+    image: quay.io/sighup/katalog:3.2.2_3
     pull: always
     depends_on: [ clone ]
     commands:
@@ -20,11 +20,10 @@ steps:
       - push
 
   - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.1.0_1.0.11
+    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
     pull: always
     depends_on: [clone]
     commands:
-      - git config --global url."https://github.com/".insteadOf ssh://git@github.com
       - bats examples/tests.bats
     when:
       event:
@@ -40,7 +39,7 @@ platform:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.3.0
     pull: always
     volumes:
     - name: shared
@@ -73,7 +72,7 @@ steps:
     depends_on: [ init ]
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-116
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -81,7 +80,7 @@ steps:
           - refs/tags/**
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.3.0
     pull: always
     depends_on: [ e2e ]
     settings:
@@ -114,7 +113,7 @@ platform:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.3.0
     pull: always
     volumes:
     - name: shared
@@ -147,7 +146,7 @@ steps:
     depends_on: [ init ]
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-115
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -155,7 +154,7 @@ steps:
           - refs/tags/**
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.3.0
     pull: always
     depends_on: [ e2e ]
     settings:
@@ -188,7 +187,7 @@ platform:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.3.0
     pull: always
     volumes:
     - name: shared
@@ -221,7 +220,7 @@ steps:
     depends_on: [ init ]
     commands:
       - export KUBECONFIG=/shared/kube/kubeconfig-114
-      - bats -t katalog/tests/tests.bats
+      - bats -t katalog/tests/tests.sh
     when:
       ref:
         include:
@@ -229,7 +228,7 @@ steps:
           - refs/tags/**
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.2.0-rc3
+    image: quay.io/sighup/e2e-testing-drone-plugin:v0.3.0
     pull: always
     depends_on: [ e2e ]
     settings:

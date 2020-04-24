@@ -5,12 +5,12 @@ common tasks on Elasticsearch cluster via Cerebro's web interface.
 
 ## Requirements
 
-- Kubernetes >= `1.10.0`
-- Kustomize >= `v1`
+- Kubernetes >= `1.14.0`
+- Kustomize >= `v3`
 
 ## Image repository and tag
 
-* Cerebro image: `lmenezes/cerebro:0.8.1`
+* Cerebro image: `lmenezes/cerebro:0.8.5`
 * Cerebro repo: https://github.com/lmenezes/cerebro
 
 ## Configuration
@@ -45,4 +45,4 @@ To learn how to add basic authentication for Cerebro please see the
 
 ## License
 
-For license details please see [LICENSE](https://sighup.io/fury/license)
+For license details please see [LICENSE](../../LICENSE)

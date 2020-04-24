@@ -3,6 +3,10 @@ namespace: logging
 resources:
 - curator.yml
 
+images:
+- name: quay.io/sighup/curator
+  newTag: 5.8.1_3.7-alpine_5.3.1
+
 configMapGenerator:
 - name: curator
   files:

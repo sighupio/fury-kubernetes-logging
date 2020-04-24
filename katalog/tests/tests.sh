@@ -1,15 +1,16 @@
 #!/usr/bin/env bats
 
-apply (){
-  kustomize build $1 >&2
-  kustomize build $1 | kubectl apply -f - 2>&3
-}
+load helper
+
+set -o pipefail
 
 @test "applying monitoring" {
+  info
   kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.3.0/katalog/prometheus-operator/crd-servicemonitor.yml
 }
 
 @test "testing elasticsearch-single apply" {
+  info
   apply katalog/elasticsearch-single
   kubectl get statefulsets -o json -n logging elasticsearch | jq 'del(.spec.template.spec.containers[].resources)' > /tmp/elasticsearch
   cat /tmp/elasticsearch >&2
@@ -18,22 +19,27 @@ apply (){
 }
 
 @test "testing fluentd apply" {
+  info
   apply katalog/fluentd
 }
 
 @test "testing curator apply" {
+  info
   apply katalog/curator
 }
 
 @test "testing cerebro apply" {
+  info
   apply katalog/cerebro
 }
 
 @test "testing kibana apply" {
+  info
   apply katalog/kibana
 }
 
 @test "wait for apply to settle and dump state to dump.json" {
+  info
   max_retry=0
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&2
@@ -45,39 +51,53 @@ apply (){
 }
 
 @test "check elasticsearch-single" {
+  info
   test(){
     kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) '
   }
-  run test
-  echo "$output" | jq '.' >&2
-  [ "$output" == "" ]
+  loop_it test 60 3
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
 }
 
 @test "check fluentd" {
+  info
   test(){
     kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentd" and .status.desiredNumberScheduled != .status.numberReady ) '
   }
-  run test
-  echo "$output" | jq '.' >&2
-  [ "$output" == "" ]
+  loop_it test 60 3
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
 }
 
 @test "check cerebro" {
+  info
   test(){
     kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) '
   }
-  run test
-  echo "$output" | jq '.' >&2
-  [ "$output" == "" ]
+  loop_it test 60 3
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
 }
 
 @test "check kibana" {
+  info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) '
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "kibana" and .status.replicas != .status.readyReplicas ) '
+  }
+  loop_it test 60 3
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "run curator job" {
+  info
+  test(){
+    kubectl -n logging create job curator-test --from cronjob/curator
+    kubectl -n logging wait --for=condition=complete job/curator-test --timeout=300s
   }
   run test
-  echo "$output" | jq '.' >&2
-  [ "$output" == "" ]
+  [ "$status" -eq 0 ]
 }
 
 @test "cleanup" {

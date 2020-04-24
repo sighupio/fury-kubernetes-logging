@@ -18,7 +18,8 @@ spec:
       - operator: Exists
       containers:
       - name: fluentd
-        image: sighup/fluentd-elasticsearch:1.2.8
+        image: quay.io/sighup/fluentd-elasticsearch
+        args: ["-c", "/etc/tmp-conf/fluent.conf"]
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: "elasticsearch"
@@ -29,6 +30,18 @@ spec:
         ports:
         - containerPort: 24231
           name: metrics
+        - containerPort: 9880
+          name: http-input
+        livenessProbe:
+          httpGet:
+            # Use percent encoding for query param.
+            # The value is {"log": "health check"}.
+            # the endpoint itself results in a new fluentd
+            # tag 'fluentd.pod-healthcheck'
+            path: /fluentd.pod.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D
+            port: 9880
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
         resources:
           limits:
             cpu: 1000m
@@ -39,6 +52,8 @@ spec:
         volumeMounts:
         - name: fluentd-conf
           mountPath: /etc/tmp-conf
+        - name: fluentd-confd
+          mountPath: /etc/tmp-conf/conf.d
         - name: varlog
           mountPath: /var/log
         - name: varlibdockercontainers
@@ -52,6 +67,9 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: fluentd-confd
+        configMap:
+          name: fluentd-confd
       - name: fluentd-conf
         configMap:
           name: fluentd-conf
