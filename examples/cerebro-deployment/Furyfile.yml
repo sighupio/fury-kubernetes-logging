@@ -1,3 +1,3 @@
 bases:
   - name: logging/cerebro
-    version: v1.3.0-rc8
+    version: v1.3.0
