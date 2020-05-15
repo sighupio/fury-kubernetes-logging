@@ -15,55 +15,47 @@ spec:
           expr: elasticsearch_cluster_health_status{color="red"} == 1
           for: 30m
           labels:
-            severity: warning
+            severity: critical
           annotations:
-            summary: 'Elastic Cluster Red (instance {{ $labels.instance }})'
-            description: "Elastic Cluster Red status\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            message: 'Elastic Cluster status is Red, cluster: {{ $labels.cluster }})'
+            doc: "Elastic Cluster status is Red in the last 30 minutes."
         - alert: ElasticClusterYellow
           expr: elasticsearch_cluster_health_status{color="yellow"} == 1
           for: 30m
           labels:
             severity: warning
           annotations:
-            summary: 'Elastic Cluster Yellow (instance {{ $labels.instance }})'
-            description: "Elastic Cluster Yellow status\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-        - alert: ElasticNumberOfElasticHealthyNodes
-          expr: elasticsearch_cluster_health_number_of_nodes < number_of_nodes
-          for: 30m
-          labels:
-            severity: warning
-          annotations:
-            summary: 'Number of Elastic Healthy Nodes (instance {{ $labels.instance }})'
-            description: "Number Healthy Nodes less then number_of_nodes\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            message: 'Elastic Cluster status is Yellow, cluster: {{ $labels.cluster }})'
+            doc: "Elastic Cluster status is Yellow in the last 30 minutes."
         - alert: ElasticNumberOfRelocationShards
           expr: elasticsearch_cluster_health_relocating_shards > 0
           for: 30m
           labels:
             severity: warning
           annotations:
-            summary: 'Number of relocation shards (instance {{ $labels.instance }})'
-            description: "Number of relocation shards for 20 min\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            message: 'Number of relocationg shards in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of relocation shards for 30 min"
         - alert: ElasticNumberOfInitializingShards
           expr: elasticsearch_cluster_health_initializing_shards > 0
           for: 30m
           labels:
             severity: warning
           annotations:
-            summary: 'Number of initializing shards (instance {{ $labels.instance }})'
-            description: "Number of initializing shards for 10 min\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            message: 'Number of initializing shards in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of initializing shards in the last 30 min."
         - alert: ElasticNumberOfUnassignedShards
           expr: elasticsearch_cluster_health_unassigned_shards > 0
           for: 30m
           labels:
             severity: warning
           annotations:
-            summary: 'Number of unassigned shards (instance {{ $labels.instance }})'
-            description: "Number of unassigned shards for 2 min\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            message: 'Number of unassigned shards in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of unassigned shards in the last 30 min."
         - alert: ElasticNumberOfPendingTasks
           expr: elasticsearch_cluster_health_number_of_pending_tasks > 0
           for: 30m
           labels:
             severity: warning
           annotations:
-            summary: 'Number of pending tasks (instance {{ $labels.instance }})'
-            description: "Number of pending tasks for 10 min. Cluster works slowly.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+            message: 'Number of pending tasks in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of pending tasks in the last 30 min."

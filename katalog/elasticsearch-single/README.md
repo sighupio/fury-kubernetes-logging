@@ -44,6 +44,20 @@ $ kustomize build | kubectl apply -f -
 To learn how to customize compute resources for Elasticsearch please follow the
 [example](../../examples/elasticsearch-resources).
 
+## Alerts
+
+Followings Prometheus [alerts](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) are already defined for this package.
+
+### es.rules
+| Parameter | Description | Severity | Interval |
+|------|-------------|----------|:-----:|
+| ElasticClusterRed | This alert fires when the health of the elasticsearch cluster is RED | critical | 30m |
+| ElasticClusterYellow | This alert fires when the health of the elasticsearch cluster is YELLOW | warning | 30m |
+| ElasticNumberOfRelocationShards | This alert fires when there are relocating shards for 30 minutes | warning | 30m |
+| ElasticNumberOfInitializingShards | This alert fires when there are initializing shards for 30 minutes | warning | 30m |
+| ElasticNumberOfUnassignedShards | This alert fires when there are unassigned shards for 30 minutes | warning | 30m |
+| ElasticNumberOfPendingTasks | This alert fires when there pending task for 30 minutes | warning | 30m |
+
 
 ## License
 
