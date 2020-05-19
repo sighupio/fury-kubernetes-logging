@@ -10,3 +10,4 @@ resources:
   - elasticsearch.yml
   - ns.yml
   - sm.yml
+  - rules.yml
