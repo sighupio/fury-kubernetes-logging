@@ -1,8 +1,10 @@
-# Fluentd
+# Fluentd & Fluent-bit
 
 Fluentd is an open source data collector for unified logging that can store
 collected data in various destinations. Fluentd deployment in Fury Kubernetes
 Logging is configured to write records into Elasticsearch.
+
+Fluent-bit is an open source log collector and forwarder. It sends all collected logs to fluentd. TODO
 
 ## Requirements
 
@@ -16,6 +18,9 @@ Logging is configured to write records into Elasticsearch.
 * Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.10.2-debian-1.0`
 * Fluentd repo: https://github.com/fluent/fluentd
 * Fluentd documentation: https://docs.fluentd.org/v1.0/articles/quickstart
+* Fluent-bit image: `fluent/fluent-bit:1.4.4`
+* Fluent-bit repo: https://github.com/fluent/fluent-bit
+* Fluent-bit documentation: https://docs.fluentbit.io/manual/
 
 
 ## Configuration
