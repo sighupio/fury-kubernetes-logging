@@ -14,6 +14,8 @@ spec:
       labels:
         app: fluentbit
     spec:
+      tolerations:
+        - operator: Exists
       containers:
       - image: fluent/fluent-bit:1.4.4
         imagePullPolicy: IfNotPresent
