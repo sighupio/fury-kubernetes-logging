@@ -1,8 +1,8 @@
 namespace: logging
 
 resources:
-  - deploy.yml
-  - deploy-fluentbit.yaml
+  - fluentd.yml
+  - fluentbit.yaml
   - rbac.yml
   - sm.yml
 

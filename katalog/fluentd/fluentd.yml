@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: fluentd
   labels:
     app: fluentd
 spec:
+  serviceName: ""
   replicas: 3
   selector:
     matchLabels:
@@ -65,11 +66,23 @@ spec:
         volumeMounts:
         - name: fluentd-conf
           mountPath: /etc/tmp-conf
+        - name: fluentd-buffers
+          mountPath: /buffers
       terminationGracePeriodSeconds: 30
       volumes:
       - name: fluentd-conf
         configMap:
           name: fluentd-conf
+  volumeClaimTemplates:
+    - metadata:
+        name: fluentd-buffers
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        volumeMode: Filesystem
 ---
 apiVersion: v1
 kind: Service
