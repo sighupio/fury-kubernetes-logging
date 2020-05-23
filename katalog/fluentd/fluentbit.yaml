@@ -30,6 +30,9 @@ spec:
           securityContext: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          ports:
+            - containerPort: 2020
+              name: metrics
           volumeMounts:
             - mountPath: /var/lib/docker/containers
               name: varlibcontainers
@@ -80,3 +83,17 @@ spec:
     rollingUpdate:
       maxUnavailable: 1
     type: RollingUpdate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: fluentbit
+  name: fluentbit
+spec:
+  ports:
+    - name: metrics
+      port: 2020
+      protocol: TCP
+  selector:
+    app: fluentbit

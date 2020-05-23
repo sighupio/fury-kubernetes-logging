@@ -15,3 +15,22 @@ spec:
   selector:
     matchLabels:
       app: fluentd
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: fluentbit
+  name: fluentbit
+spec:
+  endpoints:
+    - interval: 30s
+      port: metrics
+      path: /api/v1/metrics/prometheus
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+      - logging
+  selector:
+    matchLabels:
+      app: fluentbit
