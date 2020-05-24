@@ -59,7 +59,7 @@ actions:
     filters:
       - filtertype: pattern
         kind: prefix
-        value: containers-
+        value: kubernetes-
         exclude:
       - filtertype: age
         source: name
