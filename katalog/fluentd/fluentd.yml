@@ -66,6 +66,8 @@ spec:
         volumeMounts:
         - name: fluentd-conf
           mountPath: /etc/tmp-conf
+        - name: fluentd-confd
+          mountPath: /etc/tmp-conf/conf.d
         - name: fluentd-buffers
           mountPath: /buffers
       terminationGracePeriodSeconds: 30
@@ -73,6 +75,9 @@ spec:
       - name: fluentd-conf
         configMap:
           name: fluentd-conf
+      - name: fluentd-confd
+        configMap:
+          name: fluentd-confd
   volumeClaimTemplates:
     - metadata:
         name: fluentd-buffers
