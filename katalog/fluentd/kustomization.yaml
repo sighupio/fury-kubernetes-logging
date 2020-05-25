@@ -16,7 +16,11 @@ configMapGenerator:
 - name: fluentd-conf
   files:
     - fluent.conf
-
+- name: fluentd-confd
+  files:
+    - kubernetes-output.conf=conf.d/kubernetes-output.conf
+    - system-output.conf=conf.d/system-output.conf
+    - ingress-controller-output.conf=conf.d/ingress-controller-output.conf
 
 secretGenerator:
   - name: fluentbit
