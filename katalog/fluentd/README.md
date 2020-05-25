@@ -4,7 +4,8 @@ Fluentd is an open source data collector for unified logging that can store
 collected data in various destinations. Fluentd deployment in Fury Kubernetes
 Logging is configured to write records into Elasticsearch.
 
-Fluent-bit is an open source log collector and forwarder. It sends all collected logs to fluentd. TODO
+Fluent Bit is an open source and multi-platform Log Processor and Forwarder which allows you to collect data/logs from different sources,
+unify and send them to multiple destinations. In our case Fluent Bit sends logs to Fluentd instances.
 
 ## Requirements
 
