@@ -7,6 +7,8 @@ Logging is configured to write records into Elasticsearch.
 Fluent Bit is an open source and multi-platform Log Processor and Forwarder which allows you to collect data/logs from different sources,
 unify and send them to multiple destinations. In our case Fluent Bit sends logs to Fluentd instances.
 
+![Diagram](../../docs/images/fluentd-fluentbit.png)
+
 ## Requirements
 
 - Kubernetes >= `1.14.0`
