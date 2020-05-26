@@ -26,10 +26,10 @@ kubectl delete ds fluentd -n logging
 
 This index template is also automatically created/force updated:
 
-```
-PUT _template/fluentd-index-sighup
+`fluentd-index-sighup-template.json`:
+```json
 {
-  "index_patterns" : ["system-*","kubernetes-*","ingress-controller-*",audit-*],
+  "index_patterns" : ["system-*","kubernetes-*","ingress-controller-*","audit-*"],
   "settings": {
     "number_of_shards": 1,
     "number_of_replicas": 2
@@ -50,3 +50,29 @@ configMapGenerator:
 ```
 
 Then apply the new manifests.
+
+
+### Notes
+
+If you want to use `elasticsearch-single`, replace the default index template with:
+
+`fluentd-index-sighup-template.json`:
+```json
+{
+  "index_patterns" : ["system-*","kubernetes-*","ingress-controller-*","audit-*"],
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  }
+}
+```
+
+And replace it via kustomize 
+
+```yaml
+configMapGenerator:
+  - name: fluentd-index-template
+    behavior: replace
+    files:
+      - fluentd-index-sighup-template.json=fluentd-index-sighup-template.json
+```
