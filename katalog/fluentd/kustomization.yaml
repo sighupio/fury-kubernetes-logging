@@ -22,6 +22,9 @@ configMapGenerator:
     - system-output.conf=conf.d/system-output.conf
     - ingress-controller-output.conf=conf.d/ingress-controller-output.conf
     - audit-output.conf=conf.d/autit-output.conf
+- name: fluentd-index-template
+  files:
+    - fluentd-index-sighup-template.json
 
 secretGenerator:
   - name: fluentbit

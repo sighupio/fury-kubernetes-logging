@@ -39,6 +39,12 @@ spec:
             value: "9200"
           - name: FLUENT_ELASTICSEARCH_SCHEME
             value: "http"
+          - name: FLUENT_ELASTICSEARCH_TEMPLATE_NAME
+            value: "fluentd-index-sighup"
+          - name: FLUENT_ELASTICSEARCH_TEMPLATE_FILE
+            value: "/etc/tmp-conf/index-template/fluentd-index-sighup-template.json"
+          - name: FLUENT_ELASTICSEARCH_TEMPLATE_OVERWRITE
+            value: "true"
         ports:
         - containerPort: 24231
           name: metrics
@@ -68,6 +74,8 @@ spec:
           mountPath: /etc/tmp-conf
         - name: fluentd-confd
           mountPath: /etc/tmp-conf/conf.d
+        - name: fluentd-index-template
+          mountPath: /etc/tmp-conf/index-template
         - name: fluentd-buffers
           mountPath: /buffers
       terminationGracePeriodSeconds: 30
@@ -78,6 +86,9 @@ spec:
       - name: fluentd-confd
         configMap:
           name: fluentd-confd
+      - name: fluentd-index-template
+        configMap:
+          name: fluentd-index-template
   volumeClaimTemplates:
     - metadata:
         name: fluentd-buffers
