@@ -21,6 +21,7 @@ configMapGenerator:
     - kubernetes-output.conf=conf.d/kubernetes-output.conf
     - system-output.conf=conf.d/system-output.conf
     - ingress-controller-output.conf=conf.d/ingress-controller-output.conf
+    - audit-output.conf=conf.d/autit-output.conf
 
 secretGenerator:
   - name: fluentbit
