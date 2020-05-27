@@ -44,6 +44,7 @@ And do a kustomize replace:
 ```yaml
 configMapGenerator:
   - name: fluentd-index-template
+    namespace: logging
     behavior: replace
     files:
       - fluentd-index-sighup-template.json=fluentd-index-sighup-template.json
@@ -72,6 +73,7 @@ And replace it via kustomize
 ```yaml
 configMapGenerator:
   - name: fluentd-index-template
+    namespace: logging
     behavior: replace
     files:
       - fluentd-index-sighup-template.json=fluentd-index-sighup-template.json
