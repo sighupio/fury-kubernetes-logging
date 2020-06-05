@@ -6,7 +6,8 @@ set -o pipefail
 
 @test "applying monitoring" {
   info
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.3.0/katalog/prometheus-operator/crd-servicemonitor.yml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.7.1/katalog/prometheus-operator/crd-servicemonitor.yml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.7.1/katalog/prometheus-operator/crd-rule.yml
 }
 
 @test "testing elasticsearch-single apply" {
@@ -21,6 +22,7 @@ set -o pipefail
 @test "testing fluentd apply" {
   info
   apply katalog/fluentd
+  kubectl get sts fluentd -o json | jq -r .spec.replicas=2 | kubectl apply -f -
 }
 
 @test "testing curator apply" {
@@ -60,10 +62,20 @@ set -o pipefail
   [[ "$status" -eq 0 ]]
 }
 
+@test "check fluentbit" {
+  info
+  test(){
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentbit" and .status.desiredNumberScheduled != .status.numberReady ) '
+  }
+  loop_it test 60 3
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
 @test "check fluentd" {
   info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentd" and .status.desiredNumberScheduled != .status.numberReady ) '
+    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "fluentd" and .status.replicas != .status.readyReplicas ) '
   }
   loop_it test 60 3
   status=${loop_it_result}
