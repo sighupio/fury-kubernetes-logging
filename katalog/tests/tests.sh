@@ -22,7 +22,7 @@ set -o pipefail
 @test "testing fluentd apply" {
   info
   apply katalog/fluentd
-  kubectl get sts fluentd -o json | jq -r .spec.replicas=2 | kubectl apply -f -
+  kubectl -n logging get sts fluentd -o json | jq -r .spec.replicas=2 | kubectl apply -f -
 }
 
 @test "testing curator apply" {
