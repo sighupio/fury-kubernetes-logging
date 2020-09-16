@@ -10,7 +10,7 @@ find . -type f \
   -not -path './examples/*' | \
 sort | \
 xargs dirname | \
-while read dir; do
+while read -r dir; do
     echo "------------- RUNNING TESTS INTO $dir ---------"
     kustomize build "$dir" > /dev/null
     set +e

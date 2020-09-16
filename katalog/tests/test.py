@@ -1,5 +1,5 @@
 import fileinput
-import pytest
+import pytest # pylint: disable=E0401
 import yaml
 
 

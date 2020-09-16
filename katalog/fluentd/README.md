@@ -1,10 +1,10 @@
 # Fluentd & Fluent-bit
 
-Fluentd is an open source data collector for unified logging that can store
+Fluentd is an open-source data collector for unified logging that can store
 collected data in various destinations. Fluentd deployment in Fury Kubernetes
 Logging is configured to write records into Elasticsearch.
 
-Fluent Bit is an open source and multi-platform Log Processor and Forwarder which allows you to collect data/logs from different sources,
+Fluent Bit is an open-source and multi-platform Log Processor and Forwarder which allows you to collect data/logs from different sources,
 unify and send them to multiple destinations. In our case Fluent Bit sends logs to Fluentd instances.
 
 ![Diagram](../../docs/images/fluentd-fluentbit.png)
@@ -19,11 +19,12 @@ unify and send them to multiple destinations. In our case Fluent Bit sends logs 
 ## Image repository and tag
 
 * Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.10.2-debian-1.0`
-* Fluentd repo: https://github.com/fluent/fluentd
-* Fluentd documentation: https://docs.fluentd.org/v1.0/articles/quickstart
+* Fluentd repo: [https://github.com/fluent/fluentd](https://github.com/fluent/fluentd)
+* Fluentd documentation:
+[https://docs.fluentd.org/v1.0/articles/quickstart](https://docs.fluentd.org/v1.0/articles/quickstart)
 * Fluent-bit image: `fluent/fluent-bit:1.4.4`
-* Fluent-bit repo: https://github.com/fluent/fluent-bit
-* Fluent-bit documentation: https://docs.fluentbit.io/manual/
+* Fluent-bit repo: [https://github.com/fluent/fluent-bit](https://github.com/fluent/fluent-bit)
+* Fluent-bit documentation: [https://docs.fluentbit.io/manual/](https://docs.fluentbit.io/manual/)
 
 
 ## Configuration
@@ -38,10 +39,10 @@ unify and send them to multiple destinations. In our case Fluent Bit sends logs 
 
 ## Deployment
 
-You can deploy fluentd by running following command in the root of the project:
+You can deploy fluentd by running the following command in the root of the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 

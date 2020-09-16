@@ -1,7 +1,7 @@
 # Cerebro
 
-Cerebro is an open source web admin tool for Elasticsearch API, you can perform
-common tasks on Elasticsearch cluster via Cerebro's web interface.
+Cerebro is an open-source web admin tool for Elasticsearch API, you can perform
+common tasks on ElasticSearch cluster via Cerebro's web interface.
 
 ## Requirements
 
@@ -11,11 +11,11 @@ common tasks on Elasticsearch cluster via Cerebro's web interface.
 ## Image repository and tag
 
 * Cerebro image: `lmenezes/cerebro:0.8.5`
-* Cerebro repo: https://github.com/lmenezes/cerebro
+* Cerebro repo: [https://github.com/lmenezes/cerebro](https://github.com/lmenezes/cerebro)
 
 ## Configuration
 
-Fury distribution Cerebro is deployed with following configuration:
+Fury distribution Cerebro is deployed with the following configuration:
 
 - Replica number: `1`
 - Requires no authentication
@@ -24,10 +24,10 @@ Fury distribution Cerebro is deployed with following configuration:
 
 ## Deployment
 
-You can deploy Cerebro by running following command in the root of the project:
+You can deploy Cerebro by running the following command in the root of the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 ### Accessing Cerebro UI
@@ -35,10 +35,10 @@ $ kustomize build | kubectl apply -f -
 You can access Cerebro web UI by port-forwarding on port `9000`:
 
 ```shell
-$ kubectl port-forward svc/cerebro 9000:9000 --namespace logging
+kubectl port-forward svc/cerebro 9000:9000 --namespace logging
 ```
 
-Cerebro will be available on http://127.0.0.1:9000 from your browser.
+Cerebro will be available on `http://127.0.0.1:9000` from your browser.
 
 To learn how to add basic authentication for Cerebro please see the
 [example](../../examples/cerebro-deployment).
