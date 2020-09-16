@@ -103,7 +103,7 @@ set -o pipefail
     data=$(kubectl get deploy -n logging -l app=kibana -o json | jq '.items[] | select(.metadata.name == "kibana" and .status.replicas == .status.readyReplicas )')
     if [ "${data}" == "" ]; then return 1; fi
   }
-  loop_it test 60 5
+  loop_it test 100 6
   status=${loop_it_result}
   [[ "$status" -eq 0 ]]
 }
