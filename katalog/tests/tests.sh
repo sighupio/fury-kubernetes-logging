@@ -111,7 +111,7 @@ set -o pipefail
   info
   test(){
     kubectl -n logging create job curator-test --from cronjob/curator
-    kubectl -n logging wait --for=condition=complete job/curator-test --timeout=300s
+    kubectl -n logging wait --for=condition=complete job/curator-test --timeout=600s
   }
   run test
   [ "$status" -eq 0 ]
