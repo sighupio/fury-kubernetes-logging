@@ -89,6 +89,7 @@ steps:
       action: cluster-116
       pipeline_id: cluster-116
       instance_path: /shared
+      instance_size: extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -173,6 +174,7 @@ steps:
       action: cluster-117
       pipeline_id: cluster-117
       instance_path: /shared
+      instance_size: extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -257,6 +259,7 @@ steps:
       action: cluster-118
       pipeline_id: cluster-118
       instance_path: /shared
+      instance_size: extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -341,6 +344,7 @@ steps:
       action: cluster-119
       pipeline_id: cluster-119
       instance_path: /shared
+      instance_size: extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
