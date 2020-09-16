@@ -13,5 +13,5 @@ spec:
       containers:
         - name: elasticsearch
           env:
-            - name: discovery.zen.ping.unicast.hosts
-              value: "elasticsearch-0.elasticsearch,elasticsearch-1.elasticsearch,elasticsearch-2.elasticsearch"
+            - name: cluster.initial_master_nodes
+              value: "elasticsearch-0,elasticsearch-1,elasticsearch-2"

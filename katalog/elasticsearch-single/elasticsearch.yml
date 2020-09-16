@@ -50,7 +50,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       initContainers:
         - name: sysctl
-          image: alpine:3.11
+          image: alpine:3.12
           command:
             - sh
             - -c
@@ -58,7 +58,7 @@ spec:
           volumeMounts:
             - name: es-data
               mountPath: /usr/share/elasticsearch/data
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             limits:
               cpu: 100m
@@ -90,7 +90,7 @@ spec:
         - name: elasticsearch
           image: docker.elastic.co/elasticsearch/elasticsearch
           env:
-            - name: http.host
+            - name: network.host
               value: "0.0.0.0"
             - name: ES_JAVA_OPTS
               value: -Xms2G -Xmx2G
@@ -102,8 +102,16 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: discovery.zen.ping.unicast.hosts
-              value: "elasticsearch-0.elasticsearch"
+            - name: cluster.initial_master_nodes
+              value: "elasticsearch-0,"
+            - name: discovery.seed_hosts
+              value: "elasticsearch"
+            - name: node.data
+              value: "true"
+            - name: node.ingest
+              value: "true"
+            - name: node.master
+              value: "true"
           ports:
             - containerPort: 9200
               name: http
@@ -112,6 +120,12 @@ spec:
           volumeMounts:
             - name: es-data
               mountPath: /usr/share/elasticsearch/data
+          securityContext:
+            capabilities:
+              drop:
+              - ALL
+            runAsNonRoot: true
+            runAsUser: 1000
           readinessProbe:
             httpGet:
                 path: /_cat/health
