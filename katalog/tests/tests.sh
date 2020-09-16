@@ -11,8 +11,8 @@ set -o pipefail
 
 @test "applying monitoring" {
   info
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.7.1/katalog/prometheus-operator/crd-servicemonitor.yml
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.7.1/katalog/prometheus-operator/crd-rule.yml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.9.0/katalog/prometheus-operator/crd-servicemonitor.yml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.9.0/katalog/prometheus-operator/crd-rule.yml
 }
 
 @test "testing elasticsearch-single apply" {
