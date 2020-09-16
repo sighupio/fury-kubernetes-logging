@@ -1,3 +1,7 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
 ---
 # Remember, leave a key empty if there is no value.  None will be a string,
 # not a Python "NoneType"
