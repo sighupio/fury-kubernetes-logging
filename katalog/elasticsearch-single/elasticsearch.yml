@@ -27,6 +27,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: elasticsearch
+  labels:
+    app: elasticsearch
 spec:
   serviceName: elasticsearch
   replicas: 1

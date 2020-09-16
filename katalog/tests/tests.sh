@@ -18,10 +18,6 @@ set -o pipefail
 @test "testing elasticsearch-single apply" {
   info
   apply katalog/elasticsearch-single
-  kubectl get statefulsets -o json -n logging elasticsearch | jq 'del(.spec.template.spec.containers[].resources)' > /tmp/elasticsearch
-  cat /tmp/elasticsearch >&2
-  kubectl delete statefulsets -n logging elasticsearch >&2
-  run kubectl apply -f /tmp/elasticsearch
 }
 
 @test "testing fluentd apply" {
@@ -49,7 +45,7 @@ set -o pipefail
   info
   max_retry=0
   echo "=====" $max_retry "=====" >&2
-  while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\)" >&2
+  while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\|PodInitializing\)" >&2
   do
     [ $max_retry -lt 100 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
@@ -60,9 +56,10 @@ set -o pipefail
 @test "check elasticsearch-single" {
   info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "elasticsearch" and .status.replicas != .status.currentReplicas ) '
+    data=$(kubectl get sts -n logging -l app=elasticsearch -o json | jq '.items[] | select(.metadata.name == "elasticsearch" and .status.replicas == .status.readyReplicas)')
+    if [ "${data}" == "" ]; then return 1; fi
   }
-  loop_it test 60 3
+  loop_it test 60 5
   status=${loop_it_result}
   [[ "$status" -eq 0 ]]
 }
@@ -70,9 +67,10 @@ set -o pipefail
 @test "check fluentbit" {
   info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "DaemonSet" and .metadata.name == "fluentbit" and .status.desiredNumberScheduled != .status.numberReady ) '
+    data=$(kubectl get ds -n logging -l app=fluentbit -o json | jq '.items[] | select(.metadata.name == "fluentbit" and .status.desiredNumberScheduled == .status.numberReady)')
+    if [ "${data}" == "" ]; then return 1; fi
   }
-  loop_it test 60 3
+  loop_it test 60 5
   status=${loop_it_result}
   [[ "$status" -eq 0 ]]
 }
@@ -80,9 +78,10 @@ set -o pipefail
 @test "check fluentd" {
   info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "StatefulSet" and .metadata.name == "fluentd" and .status.replicas != .status.readyReplicas ) '
+    data=$(kubectl get sts -n logging -l app=fluentd -o json | jq '.items[] | select(.metadata.name == "fluentd" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
   }
-  loop_it test 60 3
+  loop_it test 60 5
   status=${loop_it_result}
   [[ "$status" -eq 0 ]]
 }
@@ -90,9 +89,10 @@ set -o pipefail
 @test "check cerebro" {
   info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "cerebro" and .status.replicas != .status.readyReplicas ) '
+    data=$(kubectl get deploy -n logging -l app=cerebro -o json | jq '.items[] | select(.metadata.name == "cerebro" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
   }
-  loop_it test 60 3
+  loop_it test 60 5
   status=${loop_it_result}
   [[ "$status" -eq 0 ]]
 }
@@ -100,9 +100,10 @@ set -o pipefail
 @test "check kibana" {
   info
   test(){
-    kubectl get sts,ds,deploy -n logging -o json | jq '.items[] | select( .kind == "Deployment" and .metadata.name == "kibana" and .status.replicas != .status.readyReplicas ) '
+    data=$(kubectl get deploy -n logging -l app=kibana -o json | jq '.items[] | select(.metadata.name == "kibana" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
   }
-  loop_it test 60 3
+  loop_it test 60 5
   status=${loop_it_result}
   [[ "$status" -eq 0 ]]
 }
