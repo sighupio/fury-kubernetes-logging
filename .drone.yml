@@ -1,5 +1,17 @@
 ---
 kind: pipeline
+name: policeman
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: lint
+    image: quay.io/sighup/policeman
+    pull: always
+---
+kind: pipeline
 name: unit-test
 
 platform:
