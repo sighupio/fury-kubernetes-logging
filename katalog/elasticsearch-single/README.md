@@ -1,6 +1,6 @@
 # Elasticsearch Single
 
-Elasticsearch is an open source distributed search and analytics engine used for
+Elasticsearch is an open-source distributed search and analytics engine used for
 log analytics. This package deploys a single node Elasticsearch cluster on
 Kubernetes.
 
@@ -14,8 +14,9 @@ Kubernetes.
 ## Image repository and tag
 
 * Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:6.8.8`
-* Elasticsearch repo: https://github.com/elastic/elasticsearch
-* Elasticsearch documentation: https://www.elastic.co/guide/en/elasticsearch/reference/6.8/index.html
+* Elasticsearch repo: [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
+* Elasticsearch documentation:
+[https://www.elastic.co/guide/en/elasticsearch/reference/6.8/index.html](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/index.html)
 
 
 ## Configuration
@@ -34,11 +35,11 @@ Fury distribution Elasticsearch Single is deployed with the following configurat
 
 ## Deployment
 
-You can deploy Elasticsearch Single by running following command in the root of
+You can deploy Elasticsearch Single by running the following command in the root of
 the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 To learn how to customize compute resources for Elasticsearch please follow the

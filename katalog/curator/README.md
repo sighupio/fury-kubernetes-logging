@@ -1,7 +1,7 @@
 # Curator
 
 Curator helps you manage your Elasticsearch indices and snapshots via various
-operations like delete, snapshot and shard allocation routing. It's mainly used
+operations like delete, snapshot, and shard allocation routing. It's mainly used
 to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
@@ -12,8 +12,9 @@ to managed retention of your infrastructure logs to a given value.
 ## Image repository and tag
 
 * Curator image: `quay.io/sighup/curator:5.8.1_3.7-alpine_5.3.1`
-* Curator repo: https://github.com/elastic/curator
-* Curator documentation: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
+* Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
+* Curator documentation:
+[https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
 
 ## Configuration
 
@@ -25,10 +26,10 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Deployment
 
-You can deploy Curator by running following command in the root of the project:
+You can deploy Curator by running the following command in the root of the project:
 
 ```shell
-$ kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f -
 ```
 
 
