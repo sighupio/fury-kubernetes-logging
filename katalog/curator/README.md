@@ -6,7 +6,7 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
 
-- Kubernetes >= `1.14.0`
+- Kubernetes >= `1.16.0`
 - Kustomize >= `v3`
 
 ## Image repository and tag

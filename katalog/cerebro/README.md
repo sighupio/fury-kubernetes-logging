@@ -1,7 +1,7 @@
 # Cerebro
 
 Cerebro is an open-source web admin tool for Elasticsearch API, you can perform
-common tasks on ElasticSearch cluster via Cerebro's web interface.
+common tasks on the ElasticSearch cluster via Cerebro's web interface.
 
 ## Requirements
 
