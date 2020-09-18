@@ -31,6 +31,7 @@ metadata:
     app: elasticsearch
 spec:
   serviceName: elasticsearch
+  podManagementPolicy: Parallel
   replicas: 1
   selector:
     matchLabels:
@@ -132,14 +133,14 @@ spec:
             httpGet:
                 path: /_cat/health
                 port: http
-            initialDelaySeconds: 20
+            initialDelaySeconds: 40
             periodSeconds: 5
           livenessProbe:
             failureThreshold: 5
             httpGet:
               path: /_cat/health
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 120
             periodSeconds: 10
             timeoutSeconds: 5
           resources:
