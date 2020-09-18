@@ -9,6 +9,7 @@ metadata:
   labels:
     app: elasticsearch
 spec:
+  publishNotReadyAddresses: true
   ports:
     - port: 9200
       protocol: TCP
