@@ -59,8 +59,6 @@ spec:
                     # ready if HTTP code 200, 503 is tolerable if ES version is 6.x
                     if [[ ${HTTP_CODE} == "200" ]]; then
                       exit 0
-                    elif [[ ${HTTP_CODE} == "503" && "7" == "6" ]]; then
-                      exit 0
                     else
                       echo "curl --output /dev/null -k -XGET -s -w '%{http_code}' \${BASIC_AUTH} http://127.0.0.1:9200/ failed with HTTP code ${HTTP_CODE}"
                       exit 1
