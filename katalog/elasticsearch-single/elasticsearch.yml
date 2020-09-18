@@ -147,10 +147,10 @@ spec:
           resources:
             limits:
               cpu: 2000m
-              memory: 3G
+              memory: 4G
             requests:
               cpu: 1500m
-              memory: 2G
+              memory: 3G
   volumeClaimTemplates:
     - metadata:
         name: es-data
