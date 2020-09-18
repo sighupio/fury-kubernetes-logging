@@ -4,4 +4,4 @@
 
 bases:
   - name: logging/kibana
-    version: v1.6.0-rc5
+    version: v1.6.0-rc6
