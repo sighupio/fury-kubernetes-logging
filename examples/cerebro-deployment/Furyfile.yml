@@ -4,4 +4,4 @@
 
 bases:
   - name: logging/cerebro
-    version: v1.6.0-rc6
+    version: v1.6.0
