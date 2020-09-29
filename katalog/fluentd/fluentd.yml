@@ -30,8 +30,6 @@ spec:
                       - fluentd
               topologyKey: kubernetes.io/hostname
       serviceAccountName: fluentd
-      tolerations:
-      - operator: Exists
       containers:
       - name: fluentd
         image: quay.io/sighup/fluentd-elasticsearch
