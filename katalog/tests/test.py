@@ -27,7 +27,7 @@ def spec():
     return data
 
 
-@pytest.mark.parametrize('doc', spec())
+@pytest.mark.parametrize("doc", spec())
 def test_api_version(doc):
     allowed_api_version = [
         "v1",
@@ -35,9 +35,9 @@ def test_api_version(doc):
         "batch/v1beta1",
         "monitoring.coreos.com/v1",
         "rbac.authorization.k8s.io/v1",
-        "apiextensions.k8s.io/v1beta1"
+        "apiextensions.k8s.io/v1beta1",
     ]
-    assert doc['apiVersion'] in allowed_api_version
+    assert doc["apiVersion"] in allowed_api_version
 
 
 def get_images():
@@ -45,30 +45,38 @@ def get_images():
 
     for doc in spec():
         if doc["kind"] in ["DaemonSet", "Deployment", "Job", "StatefulSet"]:
-            for init_container in doc["spec"]["template"]["spec"].get("initContainers", []):
+            for init_container in doc["spec"]["template"]["spec"].get(
+                "initContainers", []
+            ):
                 images.append(init_container["image"])
 
             for container in doc["spec"]["template"]["spec"]["containers"]:
                 images.append(container["image"])
 
         if doc["kind"] == "Pod":
-            for init_container in doc["spec"]["template"]["spec"].get("initContainers", []):
+            for init_container in doc["spec"]["template"]["spec"].get(
+                "initContainers", []
+            ):
                 images.append(init_container["image"])
 
             for container in doc["spec"]["containers"]:
                 images.append(container["image"])
 
         if doc["kind"] == "CronJob":
-            for init_container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"].get("initContainers", []):
+            for init_container in doc["spec"]["jobTemplate"]["spec"]["template"][
+                "spec"
+            ].get("initContainers", []):
                 images.append(init_container["image"])
 
-            for container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"]["containers"]:
+            for container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"][
+                "containers"
+            ]:
                 images.append(container["image"])
 
     return images
 
 
-@pytest.mark.parametrize('image', get_images())
+@pytest.mark.parametrize("image", get_images())
 def test_image_latest_tag(image):
     image_split = image.split(":")
     if len(image_split) < 2:
@@ -78,7 +86,7 @@ def test_image_latest_tag(image):
     assert tag != "latest"
 
 
-@pytest.mark.parametrize('doc', spec())
+@pytest.mark.parametrize("doc", spec())
 def test_default_namespace(doc):
     not_namespaced = [
         "ComponentStatus",
@@ -102,14 +110,14 @@ def test_default_namespace(doc):
         "ClusterRole",
         "PriorityClass",
         "StorageClass",
-        "VolumeAttachment"
+        "VolumeAttachment",
     ]
 
     if doc["kind"] not in not_namespaced:
         assert doc["metadata"].get("namespace", "default") != "default"
 
 
-@pytest.mark.parametrize('doc', spec())
+@pytest.mark.parametrize("doc", spec())
 def test_service_type(doc):
     allowed_service_type = ["ClusterIP", "NodePort"]
     if doc["kind"] == "Service":
@@ -117,16 +125,26 @@ def test_service_type(doc):
         assert service_type in allowed_service_type
 
 
-@pytest.mark.parametrize('doc', spec())
+@pytest.mark.parametrize("doc", spec())
 def test_resources_set(doc):
     if doc["kind"] in ["DaemonSet", "Deployment", "Job", "StatefulSet"]:
         for container in doc["spec"]["template"]["spec"]["containers"]:
-            assert "resources" in container and set(["limits", "requests"]).issubset(container["resources"])
+            assert "resources" in container and set(["limits", "requests"]).issubset(
+                container["resources"]
+            )
     elif doc["kind"] == "Pod":
         for container in doc["spec"]["containers"]:
-            assert "resources" in container and set(["limits", "requests"]).issubset(container["resources"])
+            assert "resources" in container and set(["limits", "requests"]).issubset(
+                container["resources"]
+            )
     elif doc["kind"] == "CronJob":
-        for container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"]["containers"]:
-            assert "resources" in container and set(["limits", "requests"]).issubset(container["resources"])
+        for container in doc["spec"]["jobTemplate"]["spec"]["template"]["spec"][
+            "containers"
+        ]:
+            assert "resources" in container and set(["limits", "requests"]).issubset(
+                container["resources"]
+            )
     elif doc["kind"] in ["Prometheus", "Alertmanager"]:
-        assert "resources" in doc["spec"] and set(["limits", "requests"]).issubset(doc["spec"]["resources"])
+        assert "resources" in doc["spec"] and set(["limits", "requests"]).issubset(
+            doc["spec"]["resources"]
+        )
