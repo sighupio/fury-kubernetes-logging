@@ -6,6 +6,7 @@ StatefulSet. This setting allows fluentd to run on master nodes.
 ## Changelog
 
 - Remove fluentd StatefulSet tolerations.
+- Reduced Cerebro requests
 
 ## Upgrade path
 
