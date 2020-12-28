@@ -5,12 +5,12 @@ common tasks on the ElasticSearch cluster via Cerebro's web interface.
 
 ## Requirements
 
-- Kubernetes >= `1.16.0`
+- Kubernetes >= `1.17.0`
 - Kustomize >= `v3`
 
 ## Image repository and tag
 
-* Cerebro image: `lmenezes/cerebro:0.9.2`
+* Cerebro image: `lmenezes/cerebro:0.9.3`
 * Cerebro repo: [https://github.com/lmenezes/cerebro](https://github.com/lmenezes/cerebro)
 
 ## Configuration
