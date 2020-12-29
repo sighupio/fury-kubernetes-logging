@@ -415,7 +415,7 @@ steps:
         from_secret: vsphere_user
 
   - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.20.0_3.2.2_2.4.1
+    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.4.0_1.20.0_3.3.0_2.4.1
     pull: always
     volumes:
     - name: shared
