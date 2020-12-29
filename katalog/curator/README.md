@@ -6,12 +6,12 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
 
-- Kubernetes >= `1.16.0`
+- Kubernetes >= `1.17.0`
 - Kustomize >= `v3`
 
 ## Image repository and tag
 
-* Curator image: `quay.io/sighup/curator:5.8.1_3.7-alpine_5.3.1`
+* Curator image: `quay.io/sighup/curator:5.8.3_3.8-alpine_3.13`
 * Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
 * Curator documentation:
 [https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
