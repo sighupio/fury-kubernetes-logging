@@ -6,7 +6,7 @@ namespace: logging
 
 images:
   - name: docker.elastic.co/kibana/kibana
-    newTag: 7.9.1
+    newTag: 7.10.1
 
 resources:
   - kibana.yml
