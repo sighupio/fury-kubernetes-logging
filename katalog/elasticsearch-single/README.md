@@ -16,7 +16,7 @@ Kubernetes.
 * Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:7.10.1`
 * Elasticsearch repo: [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
 * Elasticsearch documentation:
-[https://www.elastic.co/guide/en/elasticsearch/reference/7.9/index.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/index.html)
+[https://www.elastic.co/guide/en/elasticsearch/reference/7.10/index.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/index.html)
 
 
 ## Configuration
