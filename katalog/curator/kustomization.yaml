@@ -9,7 +9,7 @@ resources:
 
 images:
 - name: quay.io/sighup/curator
-  newTag: 5.8.1_3.7-alpine_5.3.1
+  newTag: 5.8.3_3.8-alpine_3.13
 
 configMapGenerator:
 - name: curator
