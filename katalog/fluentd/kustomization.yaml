@@ -12,8 +12,10 @@ resources:
 
 images:
   - name: quay.io/sighup/fluentd-elasticsearch
+    newName: reg.sighup.io/sighupio/fury/fluentd-elasticsearch
     newTag: v1.11.5-debian-1.0
   - name: fluent/fluent-bit
+    newName: reg.sighup.io/sighupio/fury/fluent/fluent-bit
     newTag: 1.6.9
 
 configMapGenerator:
