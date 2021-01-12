@@ -1,0 +1,11 @@
+---
+- op: add
+  path: /spec/template/spec/initContainers/-
+  value:
+    name: install-plugins
+    command:
+      - ciao
+      - sh
+      - -c
+      - |
+        bin/elasticsearch-plugin install --batch repository-s3 && echo -Des.allow_insecure_settings=true >> /usr/share/elasticsearch/config/jvm.options
