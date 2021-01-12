@@ -6,11 +6,13 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
 
+-   It requires elasticsearch with installed the plugin `repository-s3`
 -   Kubernetes >= `1.17.0`
 -   Kustomize >= `v3`
 
 ## Image repository and tag
 
+-   The Dockerfile of elasticsearch should be like [this](elasticsearch/Dockerfile)
 -   Curator image: `quay.io/sighup/curator:5.8.3_3.8-alpine_3.13`
 -   Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
 -   Curator documentation:
@@ -30,6 +32,20 @@ You can deploy Curator by running the following command in the root of the proje
 
 ```shell
 kustomize build | kubectl apply -f -
+```
+
+## List index stored in bucket
+
+```shell
+curl -XGET 'localhost:9200/_snapshot/s3-backup/_all?pretty'
+```
+
+## Restore index from the bucket into the elasticsearch
+
+```shell
+curator_id='curator-20190514223003'  #  the curator job id related with the task of the backup (you easily obtain this information from the list command above)
+
+curl -XPOST "http://localhost:9200/_snapshot/s3-backup/${curator_id}/_restore?pretty=true&wait_for_completion=true"
 ```
 
 ## License
