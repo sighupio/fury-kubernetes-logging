@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: snapshot-configurator
+spec:
+  schedule: '0 0 * * *'
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: curator
+              image: quay.io/sighup/curator
+              envFrom:
+                - secretRef:
+                    name: curator-aws
+              command:
+                - python
+              args:
+                - /scripts/add_task.py
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
+          restartPolicy: OnFailure
+          volumes:
+            - name: scripts
+              configMap:
+                name: task-scripts
