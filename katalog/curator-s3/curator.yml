@@ -15,7 +15,7 @@ spec:
           serviceAccountName: curator-add-task
           initContainers:
             - name: curator-add-task
-              image: quay.io/sighup/kubectl:v1.13.2
+              image: quay.io/sighup/kubectl
               command:
                 - /bin/sh
                 - -c

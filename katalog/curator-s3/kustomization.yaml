@@ -13,6 +13,9 @@ images:
   - name: quay.io/sighup/curator
     newName: reg.sighup.io/sighupio/fury/curator
     newTag: 5.8.3_3.8-alpine_3.13
+  - name: quay.io/sighup/kubectl
+    newName: quay.io/sighup/kubectl
+    newTag: v1.17.5
 
 configMapGenerator:
   - name: curator
