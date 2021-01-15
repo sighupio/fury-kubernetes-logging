@@ -13,7 +13,8 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Image repository and tag
 
-- The Dockerfile of elasticsearch should be like [this](elasticsearch/Dockerfile)
+- The Dockerfile of elasticsearch should be like [this](elasticsearch/Dockerfile) or
+  a manifest with an initcontainer that setup the same logic
 - Curator image: `quay.io/sighup/curator:5.8.3_3.8-alpine_3.13`
 - Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
 - Curator documentation:
