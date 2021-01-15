@@ -6,25 +6,25 @@ to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
 
--   It requires elasticsearch with installed the plugin `repository-s3`
--   Kubernetes >= `1.17.0`
--   Kustomize >= `v3`
+- It requires elasticsearch with installed the plugin `repository-s3`
+- Kubernetes >= `1.17.0`
+- Kustomize >= `v3`
 
 ## Image repository and tag
 
--   The Dockerfile of elasticsearch should be like [this](elasticsearch/Dockerfile)
--   Curator image: `quay.io/sighup/curator:5.8.3_3.8-alpine_3.13`
--   Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
--   Curator documentation:
-    [https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
+- The Dockerfile of elasticsearch should be like [this](elasticsearch/Dockerfile)
+- Curator image: `quay.io/sighup/curator:5.8.3_3.8-alpine_3.13`
+- Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
+- Curator documentation:
+  [https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
 
 ## Configuration
 
--   Replica number: `1`
--   Unit set as `30 days`
--   Curator will run every night at 00:15 to check if some indexes need deleting
--   Resource limits are `300m` for CPU and `800Mi` for memory
--   AWS bucket configuration secret file [curator-aws](../../examples/curator-s3-deployment/secret/curator-aws.env)
+- Replica number: `1`
+- Unit set as `30 days`
+- Curator will run every night at 00:15 to check if some indexes need deleting
+- Resource limits are `300m` for CPU and `800Mi` for memory
+- AWS bucket configuration secret file [curator-aws](../../examples/curator-s3-deployment/secret/curator-aws.env)
 
 ## Deployment
 
