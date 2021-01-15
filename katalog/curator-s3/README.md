@@ -7,6 +7,7 @@ to managed retention of your infrastructure logs to a given value.
 ## Requirements
 
 - It requires elasticsearch with installed the plugin `repository-s3`
+- an object storage bucket aws s3 compatible
 - Kubernetes >= `1.17.0`
 - Kustomize >= `v3`
 
