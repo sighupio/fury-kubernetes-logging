@@ -8,7 +8,6 @@
   value:
     name: install-plugins
     command:
-      - ciao
       - sh
       - -c
       - |
