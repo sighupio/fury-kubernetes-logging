@@ -9,7 +9,7 @@ resources:
 
 images:
 - name: quay.io/sighup/curator
-  newName: reg.sighup.io/sighupio/fury/curator
+  newName: registry.sighup.io/furycurator
   newTag: 5.8.3_3.8-alpine_3.13
 
 configMapGenerator:
