@@ -9,7 +9,7 @@ resources:
 
 images:
   - name: lmenezes/cerebro
-    newName: reg.sighup.io/sighupio/fury/lmenezes/cerebro
+    newName: registry.sighup.io/furylmenezes/cerebro
     newTag: 0.9.3
 
 configMapGenerator:

@@ -6,13 +6,13 @@ namespace: logging
 
 images:
   - name: justwatch/elasticsearch_exporter
-    newName: reg.sighup.io/sighupio/fury/justwatch/elasticsearch_exporter
+    newName: registry.sighup.io/furyjustwatch/elasticsearch_exporter
     newTag: "1.1.0"
   - name: docker.elastic.co/elasticsearch/elasticsearch
-    newName: reg.sighup.io/sighupio/fury/elasticsearch
+    newName: registry.sighup.io/furyelasticsearch
     newTag: "7.10.1"
   - name: alpine
-    newName: reg.sighup.io/sighupio/fury/alpine
+    newName: registry.sighup.io/furyalpine
     newTag: "3.12"
 
 resources:
