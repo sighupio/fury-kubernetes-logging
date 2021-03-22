@@ -25,3 +25,11 @@ configMapGenerator:
   - name: task-scripts
     files:
       - add_task.py
+  - name: es-backup-env
+    envs:
+      - configmap-es-backup.env
+
+secretGenerator:
+  - name: es-backup-env
+    envs:
+      - secret-es-backup.env

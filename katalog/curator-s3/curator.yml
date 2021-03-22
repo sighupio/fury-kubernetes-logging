@@ -19,34 +19,34 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - 'kubectl create job curator-add-task-$(date +%s) --from=cronjob/snapshot-configurator'
+                - "kubectl create job curator-add-task-$(date +%s) --from=cronjob/snapshot-configurator"
               envFrom:
+                - configMapRef:
+                    name: es-backup-env
                 - secretRef:
-                    name: curator-aws
+                    name: es-backup-env
           containers:
-          - name: curator
-            image: quay.io/sighup/curator
-            command: ["curator"]
-            args: ["--config", "/config/config.yml", "/config/action.yml"]
-            env:
-            - name: ES_HOST
-              value: elasticsearch
-            - name: UNIT
-              value: days
-            - name: UNIT_COUNT
-              value: "30"
-            resources:
-              requests:
-                cpu: 100m
-                memory: 500Mi
-              limits:
-                cpu: 300m
-                memory: 800Mi
-            volumeMounts:
-            - name: curator-config
-              mountPath: /config
+            - name: curator
+              image: quay.io/sighup/curator
+              command: ["curator"]
+              args: ["--config", "/config/config.yml", "/config/action.yml"]
+              envFrom:
+                - configMapRef:
+                    name: es-backup-env
+                - secretRef:
+                    name: es-backup-env
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 500Mi
+                limits:
+                  cpu: 300m
+                  memory: 800Mi
+              volumeMounts:
+                - name: curator-config
+                  mountPath: /config
           restartPolicy: OnFailure
           volumes:
-          - name: curator-config
-            configMap:
-              name: curator
+            - name: curator-config
+              configMap:
+                name: curator
