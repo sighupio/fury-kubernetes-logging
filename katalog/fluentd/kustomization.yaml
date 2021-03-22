@@ -35,6 +35,9 @@ configMapGenerator:
 - name: fluentd-index-template
   files:
     - fluentd-index-sighup-template.json
+- name: fluentbit-dedot-script
+  files:
+    - dedot.lua=scripts/dedot.lua
 
 secretGenerator:
   - name: fluentbit
