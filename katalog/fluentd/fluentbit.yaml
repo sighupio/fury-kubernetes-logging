@@ -48,6 +48,9 @@ spec:
             - mountPath: /fluent-bit/etc/fluent-bit.conf
               name: config
               subPath: fluent-bit.conf
+            - mountPath: /fluent-bit/etc/dedot.lua
+              name: fluentbit-dedot-script
+              subPath: dedot.lua
             - mountPath: /tail-db
               name: positiondb
             - mountPath: /buffers
@@ -78,6 +81,9 @@ spec:
               - key: fluent-bit.conf
                 path: fluent-bit.conf
             secretName: fluentbit
+        - name: fluentbit-dedot-script
+          configMap:
+            name: fluentbit-dedot-script
         - hostPath:
             path: /var/log/fluentbit-pos
             type: ""
