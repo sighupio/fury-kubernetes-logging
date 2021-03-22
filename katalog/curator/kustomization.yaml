@@ -2,18 +2,22 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: logging
 
 resources:
-- curator.yml
+  - curator.yml
 
 images:
-- name: quay.io/sighup/curator
-  newName: reg.sighup.io/sighupio/fury/curator
-  newTag: 5.8.3_3.8-alpine_3.13
+  - name: quay.io/sighup/curator
+    newName: registry.sighup.io/fury/curator
+    newTag: 5.8.3_3.8-alpine_3.13
 
 configMapGenerator:
-- name: curator
-  files:
-  - action.yml
-  - config.yml
+  - name: curator
+    files:
+      - action.yml
+      - config.yml

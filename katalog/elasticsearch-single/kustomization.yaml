@@ -2,17 +2,21 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: logging
 
 images:
   - name: justwatch/elasticsearch_exporter
-    newName: reg.sighup.io/sighupio/fury/justwatch/elasticsearch_exporter
+    newName: registry.sighup.io/fury/justwatch/elasticsearch_exporter
     newTag: "1.1.0"
   - name: docker.elastic.co/elasticsearch/elasticsearch
-    newName: reg.sighup.io/sighupio/fury/elasticsearch
+    newName: registry.sighup.io/fury/elasticsearch
     newTag: "7.10.1"
   - name: alpine
-    newName: reg.sighup.io/sighupio/fury/alpine
+    newName: registry.sighup.io/fury/alpine
     newTag: "3.12"
 
 resources:
