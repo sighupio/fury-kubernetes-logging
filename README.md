@@ -29,7 +29,7 @@ your Kubernetes cluster.
 
 - [cerebro](katalog/cerebro): Cerebro instance to manage Elasticsearch cluster via a
   graphical user interface. Version: **0.9.3**
-- [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.8.1**
+- [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.8.3**
 - [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
   deployment. Version: **7.10.1**
 - [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
