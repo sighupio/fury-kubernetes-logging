@@ -15,3 +15,9 @@ images:
 
 resources:
   - kibana.yml
+
+configMapGenerator:
+  - name: kibana-index-patterns-configmap
+    namespace: logging
+    files:
+      - file.ndjson=config/index-patterns.ndjson
