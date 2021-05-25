@@ -13,7 +13,7 @@ actions:
       the snapshot.
     options:
       # the repository name must match with the name of the s3 created task snapshot
-      repository: ${SNAPSHOT_S3_TASK:pippo-s3}
+      repository: ${SNAPSHOT_S3_TASK:to-be-configured-s3}
       # Leaving name blank will result in the default 'curator-%Y%m%d%H%M%S'
       name: "system-%Y.%m.%d"
       ignore_unavailable: False
