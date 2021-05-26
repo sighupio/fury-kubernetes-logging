@@ -1,0 +1,32 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+namespace: logging
+
+bases:
+  - vendor/katalog/logging/elasticsearch-single
+  - vendor/katalog/logging/curator-s3
+
+secretGenerator:
+  - name: curator-aws
+    files:
+      - secret/curator-aws.env
+
+patchesJson6902:
+  - target:
+      group: apps
+      version: v1
+      kind: StatefulSet
+      name: elasticsearch
+    path: patches/elasticsearch.yml
+
+configMapGenerator:
+  - name: curator
+    behavior: merge
+    files:
+      - action.yml
+  - name: es-backup-env
+    behavior: replace
+    envs:
+      - configmap-es-backup.env

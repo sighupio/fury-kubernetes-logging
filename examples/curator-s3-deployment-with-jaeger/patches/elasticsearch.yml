@@ -1,0 +1,42 @@
+# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+- op: add
+  path: /spec/template/spec/initContainers/-
+  value:
+    name: install-plugins
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    volumeMounts:
+      - name: es-data
+        mountPath: /usr/share/elasticsearch/data
+      - name: es-plugins
+        mountPath: /usr/share/elasticsearch/plugins
+      - name: es-config
+        mountPath: /usr/share/elasticsearch/config
+    command:
+      - sh
+      - -c
+      - |
+        bin/elasticsearch-plugin install --batch repository-s3 && echo -Des.allow_insecure_settings=true >> /usr/share/elasticsearch/config/jvm.options
+
+- op: add
+  path: /spec/template/spec/volumes
+  value:
+    - name: es-plugins
+      emptyDir: {}
+    - name: es-config
+      emptyDir: {}
+
+- op: add
+  path: /spec/template/spec/containers/1/volumeMounts/-
+  value:
+    name: es-plugins
+    mountPath: /usr/share/elasticsearch/plugins
+
+- op: add
+  path: /spec/template/spec/containers/1/volumeMounts/-
+  value:
+    name: es-config
+    mountPath: /usr/share/elasticsearch/config

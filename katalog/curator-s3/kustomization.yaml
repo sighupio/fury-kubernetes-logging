@@ -1,0 +1,35 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+namespace: logging
+
+resources:
+  - curator-add-task.yml
+  - curator.yml
+  - rbac.yml
+
+images:
+  - name: quay.io/sighup/curator
+    newName: reg.sighup.io/sighupio/fury/curator
+    newTag: 5.8.3_3.8-alpine_3.13
+  - name: quay.io/sighup/kubectl
+    newName: quay.io/sighup/kubectl
+    newTag: v1.17.5
+
+configMapGenerator:
+  - name: curator
+    files:
+      - action.yml
+      - config.yml
+  - name: task-scripts
+    files:
+      - add_task.py
+  - name: es-backup-env
+    envs:
+      - configmap-es-backup.env
+
+secretGenerator:
+  - name: es-backup-env
+    envs:
+      - secret-es-backup.env
