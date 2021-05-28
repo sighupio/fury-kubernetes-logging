@@ -4,4 +4,4 @@
 
 bases:
   - name: logging/cerebro
-    version: v1.8.0-rc1
+    version: v1.8.0-rc2
