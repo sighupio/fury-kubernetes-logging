@@ -35,7 +35,7 @@ your Kubernetes cluster.
 - [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
   deployment. Version: **7.13.0**
 - [fluentd](katalog/fluentd): fluentd instance to collect logging data and store in
-  Elasticsearch. Version: **1.11.5**
+  Elasticsearch. Version: **1.12.3**
 - [kibana](katalog/kibana): Kibana instance to visualize and analyze Elasticsearch data. Version: **7.13.0**
 
 You can click on each package to see its documentation.
