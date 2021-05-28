@@ -11,7 +11,7 @@ namespace: logging
 images:
   - name: docker.elastic.co/kibana/kibana
     newName: registry.sighup.io/fury/kibana
-    newTag: 7.10.1
+    newTag: 7.13.0
 
 resources:
   - kibana.yml
