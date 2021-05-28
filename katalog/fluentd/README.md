@@ -11,18 +11,18 @@ unify and send them to multiple destinations. In our case Fluent Bit sends logs 
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize >= `v3`
 - [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
 
 
 ## Image repository and tag
 
-* Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.11.5-debian-1.0`
+* Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.12.3-debian-1.0`
 * Fluentd repo: [https://github.com/fluent/fluentd](https://github.com/fluent/fluentd)
 * Fluentd documentation:
 [https://docs.fluentd.org/v1.11/articles/quickstart](https://docs.fluentd.org/v1.11/articles/quickstart)
-* Fluent-bit image: `fluent/fluent-bit:1.6.9`
+* Fluent-bit image: `fluent/fluent-bit:1.7.7`
 * Fluent-bit repo: [https://github.com/fluent/fluent-bit](https://github.com/fluent/fluent-bit)
 * Fluent-bit documentation: [https://docs.fluentbit.io/manual/](https://docs.fluentbit.io/manual/)
 

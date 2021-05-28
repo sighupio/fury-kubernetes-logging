@@ -12,10 +12,10 @@ resources:
 images:
   - name: quay.io/sighup/curator
     newName: reg.sighup.io/sighupio/fury/curator
-    newTag: 5.8.3_3.8-alpine_3.13
+    newTag: 5.8.4_3.8-alpine_3.13
   - name: quay.io/sighup/kubectl
     newName: quay.io/sighup/kubectl
-    newTag: v1.17.5
+    newTag: v1.18.19
 
 configMapGenerator:
   - name: curator

@@ -7,15 +7,15 @@ stored in Elasticsearch indices.
 
 ## Requirements
 
-- Kubernetes >= `1.17.0`
+- Kubernetes >= `1.18.0`
 - Kustomize >= `v3`
 
 ## Image repository and tag
 
-* Kibana image: `docker.elastic.co/kibana/kibana:7.10.1`
+* Kibana image: `docker.elastic.co/kibana/kibana:7.13.0`
 * Kibana repo: [https://github.com/elastic/kibana](https://github.com/elastic/kibana)
 * Kibana documentation:
-[https://www.elastic.co/guide/en/kibana/7.10/index.html](https://www.elastic.co/guide/en/kibana/7.10/index.html)
+[https://www.elastic.co/guide/en/kibana/7.13/index.html](https://www.elastic.co/guide/en/kibana/7.13/index.html)
 
 ## Configuration
 
