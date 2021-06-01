@@ -30,6 +30,8 @@ your Kubernetes cluster.
 - [cerebro](katalog/cerebro): Cerebro instance to manage Elasticsearch cluster via a
   graphical user interface. Version: **0.9.4**
 - [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.8.4**
+  - [curator-s3](katalog/curator-s3): Curator instance to manage Elasticsearch indices on an S3 compliant bucket. 
+  Version: **5.8.4**
 - [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
   deployment. Version: **7.13.0**
 - [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
@@ -43,18 +45,18 @@ You can click on each package to see its documentation.
 
 ## Compatibility
 
-| Module Version / Kubernetes Version | 1.14.X             | 1.15.X             | 1.16.X             | 1.17.X             | 1.18.X             | 1.19.X             | 1.20.X             | 1.21.X             |
-|-------------------------------------|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|
-| v1.0.0                              | :white_check_mark: |                    |                    |                    |                    |                    |                    |                    |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.2.0                              |                    |                    |                    |                    |                    |                    |                    |                    |
-| v1.2.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.5.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |
-| v1.6.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |                    |
-| v1.7.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |     :warning:      |
-| v1.8.0                              |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |
+| Module Version / Kubernetes Version |       1.14.X       |       1.15.X       |       1.16.X       |       1.17.X       |       1.18.X       |       1.19.X       |       1.20.X       |  1.21.X   |
+| ----------------------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :-------: |
+| v1.0.0                              | :white_check_mark: |                    |                    |                    |                    |                    |                    |           |
+| v1.1.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |           |
+| v1.2.0                              |                    |                    |                    |                    |                    |                    |                    |           |
+| v1.2.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |           |
+| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |           |
+| v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |           |
+| v1.5.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |           |
+| v1.6.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |                    |           |
+| v1.7.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: |     :warning:      |           |
+| v1.8.0                              |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 - :white_check_mark: Compatible
 - :warning: Has issues
