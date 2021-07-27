@@ -20,7 +20,7 @@ images:
     newTag: v1.12.3-debian-1.0
   - name: fluent/fluent-bit
     newName: registry.sighup.io/fury/fluent/fluent-bit
-    newTag: 1.7.7
+    newTag: 1.8.2
 
 configMapGenerator:
 - name: fluentd-conf
