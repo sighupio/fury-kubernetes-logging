@@ -14,10 +14,10 @@ images:
     newTag: "1.1.0"
   - name: docker.elastic.co/elasticsearch/elasticsearch
     newName: registry.sighup.io/fury/elasticsearch
-    newTag: "7.13.0"
+    newTag: "7.13.3"
   - name: alpine
     newName: registry.sighup.io/fury/alpine
-    newTag: "3.13"
+    newTag: "3.14"
 
 resources:
   - elasticsearch.yml
