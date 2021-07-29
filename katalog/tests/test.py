@@ -3,9 +3,9 @@
 # license that can be found in the LICENSE file.
 
 import fileinput
+
 import pytest  # pylint: disable=E0401
 import yaml
-
 
 stdin = ""
 
