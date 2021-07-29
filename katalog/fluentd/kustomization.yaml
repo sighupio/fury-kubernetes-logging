@@ -34,7 +34,10 @@ configMapGenerator:
     - audit-output.conf=conf.d/audit-output.conf
 - name: fluentd-index-template
   files:
-    - fluentd-index-sighup-template.json
+    - fluentd-index-sighup-template-kubernetes.json
+    - fluentd-index-sighup-template-audit.json
+    - fluentd-index-sighup-template-system.json
+    - fluentd-index-sighup-template-ingress-controller.json
 - name: fluentbit-dedot-script
   files:
     - dedot.lua=scripts/dedot.lua
