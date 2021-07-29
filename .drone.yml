@@ -27,6 +27,12 @@ steps:
   - name: lint
     image: quay.io/sighup/policeman
     pull: always
+    environment:
+      # Identifies false positives like missing 'selector'.
+      # Doing this is valid for Kustomize patches
+      VALIDATE_KUBERNETES_KUBEVAL: "false"
+      # Some duplicated code is intended.
+      VALIDATE_JSCPD: "false"
     depends_on:
       - clone
 
@@ -121,6 +127,7 @@ platform:
 trigger:
   ref:
     include:
+      - refs/heads/master
       - refs/tags/**
 
 steps:
@@ -216,6 +223,7 @@ platform:
 trigger:
   ref:
     include:
+      - refs/heads/master
       - refs/tags/**
 
 steps:
@@ -311,6 +319,7 @@ platform:
 trigger:
   ref:
     include:
+      - refs/heads/master
       - refs/tags/**
 
 steps:
@@ -406,6 +415,7 @@ platform:
 trigger:
   ref:
     include:
+      - refs/heads/master
       - refs/tags/**
 
 steps:
