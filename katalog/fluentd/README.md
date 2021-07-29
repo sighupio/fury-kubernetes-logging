@@ -18,7 +18,7 @@ unify and send them to multiple destinations. In our case Fluent Bit sends logs 
 
 ## Image repository and tag
 
-* Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.12.3-debian-1.0`
+* Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.13.3-debian-1.0`
 * Fluentd repo: [https://github.com/fluent/fluentd](https://github.com/fluent/fluentd)
 * Fluentd documentation:
 [https://docs.fluentd.org/quickstart](https://docs.fluentd.org/quickstart)
