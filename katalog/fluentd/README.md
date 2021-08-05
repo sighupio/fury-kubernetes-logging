@@ -22,7 +22,7 @@ unify and send them to multiple destinations. In our case Fluent Bit sends logs 
 * Fluentd repo: [https://github.com/fluent/fluentd](https://github.com/fluent/fluentd)
 * Fluentd documentation:
 [https://docs.fluentd.org/quickstart](https://docs.fluentd.org/quickstart)
-* Fluent-bit image: `fluent/fluent-bit:1.7.7`
+* Fluent-bit image: `fluent/fluent-bit:1.8.2`
 * Fluent-bit repo: [https://github.com/fluent/fluent-bit](https://github.com/fluent/fluent-bit)
 * Fluent-bit documentation: [https://docs.fluentbit.io/manual/](https://docs.fluentbit.io/manual/)
 
