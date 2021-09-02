@@ -46,7 +46,7 @@ spec:
                 - ALL
             runAsNonRoot: true
             runAsUser: 1000
-          readinessProbe:
+          startupProbe:
             exec:
               command:
                 - sh
@@ -62,6 +62,27 @@ spec:
                       STATUS=$(curl --output /dev/null --write-out "%{http_code}" -k "$@" "http://localhost:5601${path}")
                       if [[ "${STATUS}" -eq 200 ]]; then
                           curl -X POST "localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@file.ndjson
+                        exit 0
+                      fi
+                      echo "Error: Got HTTP code ${STATUS} but expected a 200"
+                      exit 1
+                  }
+                  http /app/kibana
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - |
+                  #!/usr/bin/env bash -e
+                  http () {
+                      local path="${1}"
+                      set -- -XGET -s --fail -L
+                      if [ -n "${ELASTICSEARCH_USERNAME}" ] && [ -n "${ELASTICSEARCH_PASSWORD}" ]; then
+                        set -- "$@" -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}"
+                      fi
+                      STATUS=$(curl --output /dev/null --write-out "%{http_code}" -k "$@" "http://localhost:5601${path}")
+                      if [[ "${STATUS}" -eq 200 ]]; then
                         exit 0
                       fi
                       echo "Error: Got HTTP code ${STATUS} but expected a 200"
