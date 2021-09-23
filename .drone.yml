@@ -528,6 +528,18 @@ steps:
         include:
           - refs/tags/**
 
+  - name: prepare-canonical-definition
+    image: python:3.9.7-alpine3.14
+    pull: always
+    depends_on: [ clone ]
+    commands:
+      - pip3 install -r requirements.txt
+      - python3 scripts/release_json_builder/json_builder.py fury-kubernetes-logging ${DRONE_TAG}
+    when:
+      ref:
+        include:
+          - refs/tags/**
+
   - name: prepare-release-notes
     image: quay.io/sighup/fury-release-notes-plugin:3.7_2.8.4
     pull: always
@@ -545,6 +557,7 @@ steps:
     depends_on:
       - prepare-tar-gz
       - prepare-release-notes
+      - prepare-canonical-definition
     settings:
       api_key:
         from_secret: github_token
