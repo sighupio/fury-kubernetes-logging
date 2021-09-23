@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
 
 import glob
 import json
@@ -8,15 +12,15 @@ import pathlib
 import re
 import subprocess
 import sys
-import yaml
-from typing import Union
+from typing import Any, Dict
 
+import yaml
 
 MODULE = "fury-kubernetes-module"
 VERSION = "v1.0.0"
 SIGHUP_REGISTRY = "registry.sighup.io/fury/"
 
-output_path = 'docs/releases/'
+output_path = "docs/releases/"
 ignorable_resources = [
     "Namespace",
     "ClusterRole",
@@ -24,11 +28,11 @@ ignorable_resources = [
     "Secret",
     "ConfigMap",
     "Role",
-    "RoleBinding"
+    "RoleBinding",
 ]
 
 
-def search(d: dict, key: str, default=None) -> Union[list, dict]:
+def search(d: dict, key: str, default=None) -> list:
     """Return a value corresponding to the specified key in the (possibly
     nested) dictionary d. If there is no item with that key, return
     default.
@@ -46,10 +50,8 @@ def search(d: dict, key: str, default=None) -> Union[list, dict]:
     return default
 
 
-def _get_versioned_filename(path: str, basename: str, ext: str ='yaml') -> str:
-    return os.path.join(path,
-                        '{}-{}-{}.{}'.format(basename, MODULE, VERSION,
-                                             ext))
+def _get_versioned_filename(path: str, basename: str, ext: str = "yaml") -> str:
+    return os.path.join(path, "{}-{}-{}.{}".format(basename, MODULE, VERSION, ext))
 
 
 def _get_json_file() -> str:
@@ -62,9 +64,9 @@ def _read_yaml(stream: str):
 
 def _get_kustomization_files() -> list:
     """
-     We look for the kustomization files in the immediate directory after
-     `katalog` directory. The recursive ones are assumed to be included in that
-     `kustomization` file
+    We look for the kustomization files in the immediate directory after
+    `katalog` directory. The recursive ones are assumed to be included in that
+    `kustomization` file
     """
     return glob.glob("katalog/**/kustomization.yaml")
 
@@ -85,12 +87,13 @@ def _get_specs(resource: str) -> dict:
     # doesn't (for eg: Service) will get an empty list
     containers = search(data, "containers", [])
     init_containers = search(data, "initContainers", [])
-    component_data["containers"] = [_get_image_and_name(container) for container
-                                    in containers + init_containers]
+    component_data["containers"] = [
+        _get_image_and_name(container) for container in containers + init_containers
+    ]
     return component_data
 
 
-def _kustomize_build(filepath: str) -> str:
+def _kustomize_build(filepath: str) -> bytes:
     return subprocess.check_output(["kustomize", "build", filepath])
 
 
@@ -109,7 +112,7 @@ def create_bundled_output(files: list) -> list:
     """
     resources = []
     for filename in files:
-        resource_dict = {}
+        resource_dict: Dict[str, Any] = {}
         filepath = _get_filepath(filename)
         resource_dict["name"] = _get_component_name(filepath)
         resource_dict["resources"] = []
@@ -124,7 +127,7 @@ def create_bundled_output(files: list) -> list:
     return resources
 
 
-def get_k8s_resources() -> str:
+def get_k8s_resources() -> list:
     kustomize_files = _get_kustomization_files()
     return create_bundled_output(kustomize_files)
 
@@ -134,21 +137,23 @@ def write_canonical_json(canonical_data: dict):
     filepath = _get_json_file()
     if os.path.exists(filepath):
         os.remove(filepath)
-    with open(filepath, 'w') as fp:
+    with open(filepath, "w") as fp:
         json.dump(canonical_data, fp, indent=4, sort_keys=False)
 
 
 def _get_image_and_name(container_spec: dict) -> dict:
     containers = {}
-    image, version = container_spec.get("image").split(":")
-    containers["image"] = image
-    containers["version"] = version
-    containers["name"] = container_spec.get("name")
-    # Assumption here is that the images we use are always from Harbor registry
-    # in the modules and that the naming convention we use is `SIGHUP_REGISTRY`
-    # value followed by the image name from community hub.
-    # #TODO make exception from images from GCR or Quay
-    containers["upstream_image"] = image.replace(SIGHUP_REGISTRY, "")
+    image = container_spec.get("image")
+    if image:
+        imageName, version = image.split(":")
+        containers["image"] = imageName
+        containers["version"] = version
+        containers["name"] = container_spec.get("name")
+        # Assumption here is that the images we use are always from Harbor registry
+        # in the modules and that the naming convention we use is `SIGHUP_REGISTRY`
+        # value followed by the image name from community hub.
+        # #TODO make exception from images from GCR or Quay
+        containers["upstream_image"] = image.replace(SIGHUP_REGISTRY, "")
     return containers
 
 
@@ -158,7 +163,7 @@ if __name__ == "__main__":
     except ValueError:
         logging.error("Missing required arguments")
         sys.exit("Usage: ./gen_canonical_def <Module_Name> <Module_Version>")
-    canonical_data = {"module": MODULE, "version": VERSION}
+    canonical_data: Dict[str, Any] = {"module": MODULE, "version": VERSION}
     canonical_data["components"] = get_k8s_resources()
     write_canonical_json(canonical_data)
     logging.info("Successfully wrote the Canonical defintion")

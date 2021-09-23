@@ -9,7 +9,8 @@ all the resource under that component can be deployed recursively using the
 `kustomization` there.
 
 The script is indented to be run when a new release is made, so a file of the
-name `canonical-definition-<module_name>-<version>` will be created.
+name `canonical-definition-<module_name>-<version>` will be created. It will be
+created in the `drone` pipeline and a PR will be created to the repo with the file.
 
 The script basically generates a rendered output by building all the
 `kustomization` base directories. This rendering is parsed through resource by
@@ -57,6 +58,56 @@ The format of the JSON file output would be:
 }
 ```
 
+Here is an stripped down version of the file generated:
+
+``` json
+{
+    "module": "fury-kubernetes-logging",
+    "version": "v1.9.0",
+    "components": [
+        {
+            "name": "elasticsearch-triple",
+            "resources": [
+                {
+                    "apiVersion": "v1",
+                    "kind": "Service",
+                    "name": "elasticsearch",
+                    "namespace": "logging",
+                    "containers": []
+                },
+                {
+                    "apiVersion": "apps/v1",
+                    "kind": "StatefulSet",
+                    "name": "elasticsearch",
+                    "namespace": "logging",
+                    "containers": [
+                        {
+                            "image": "registry.sighup.io/fury/elasticsearch",
+                            "version": "7.13.3",
+                            "name": "elasticsearch",
+                            "upstream_image": "elasticsearch"
+                        },
+                        {
+                            "image": "registry.sighup.io/fury/justwatch/elasticsearch_exporter",
+                            "version": "1.1.0",
+                            "name": "exporter",
+                            "upstream_image": "justwatch/elasticsearch_exporter"
+                        },
+                        {
+                            "image": "registry.sighup.io/fury/alpine",
+                            "version": "3.14",
+                            "name": "sysctl",
+                            "upstream_image": "alpine"
+                        }
+                    ]
+                },
+            ]
+        }
+    ]
+}
+```
+
+
 ## Requirements
 
 * Python >= 3.5,<= 3.9
@@ -79,6 +130,7 @@ python3 json_builder fury-kubernetes-logging v1.9.0
 
 ## Todo
 
+* [ ] Create pull request to add this JSON file to the repo
 * [ ] The changelog with clear structure of the kind of change being made is
       needed. We have to standardize the changelog creation procedure for it.
 * [ ] We could externalize the logic by directly pulling modules from github.
