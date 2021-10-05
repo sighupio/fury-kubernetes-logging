@@ -128,12 +128,26 @@ steps:
     pull: always
     depends_on: [ clone ]
     commands:
-      - build-json -m=fury-kubernetes-logging -r=False -v=test -o output.json
+      - ls /usr/local/bin/
+      - spock build-json -m=fury-kubernetes-logging -r=False -v=test -o output.json
       - cp output.json docs/releases/fury-kubernetes-logging-canonical-definition-test.json
       - ls docs/releases/
+      - echo "done"
+      - git add docs/releases
+      - git commit -m "Testing"
     when:
       event:
       - push
+
+  - name: push commit
+    image: appleboy/drone-git-push
+    depends_on: [ prepease-canonical-json ]
+    settings:
+      remote_name: origin2
+      branch: json_builder
+      remote:
+         from_secret: GH_REPO
+      local_ref: json_builder
 
 ---
 kind: pipeline
