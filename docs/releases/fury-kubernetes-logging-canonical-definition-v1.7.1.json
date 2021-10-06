@@ -1,0 +1,216 @@
+{
+ "components": [
+  {
+   "name": "cerebro",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "cerebro",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/lmenezes/cerebro",
+       "upstreamImage": "lmenezes/cerebro",
+       "version": "0.9.3"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "cerebro",
+     "namespace": "logging"
+    }
+   ]
+  },
+  {
+   "name": "curator",
+   "resources": [
+    {
+     "apiVersion": "batch/v1beta1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/curator",
+       "upstreamImage": "curator",
+       "version": "5.8.3_3.8-alpine_3.13"
+      }
+     ],
+     "kind": "CronJob",
+     "name": "curator",
+     "namespace": "logging"
+    }
+   ]
+  },
+  {
+   "name": "elasticsearch-single",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "elasticsearch",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/justwatch/elasticsearch_exporter",
+       "upstreamImage": "justwatch/elasticsearch_exporter",
+       "version": "1.1.0"
+      },
+      {
+       "image": "registry.sighup.io/fury/elasticsearch",
+       "upstreamImage": "elasticsearch",
+       "version": "7.10.1"
+      }
+     ],
+     "kind": "StatefulSet",
+     "name": "elasticsearch",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "monitoring.coreos.com/v1",
+     "containers": [],
+     "kind": "ServiceMonitor",
+     "name": "elasticsearch",
+     "namespace": "logging"
+    }
+   ]
+  },
+  {
+   "name": "elasticsearch-triple",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "elasticsearch",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/justwatch/elasticsearch_exporter",
+       "upstreamImage": "justwatch/elasticsearch_exporter",
+       "version": "1.1.0"
+      },
+      {
+       "image": "registry.sighup.io/fury/elasticsearch",
+       "upstreamImage": "elasticsearch",
+       "version": "7.10.1"
+      }
+     ],
+     "kind": "StatefulSet",
+     "name": "elasticsearch",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "monitoring.coreos.com/v1",
+     "containers": [],
+     "kind": "ServiceMonitor",
+     "name": "elasticsearch",
+     "namespace": "logging"
+    }
+   ]
+  },
+  {
+   "name": "fluentd",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "fluentbit",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "fluentd",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/fluentd-elasticsearch",
+       "upstreamImage": "fluentd-elasticsearch",
+       "version": "v1.11.5-debian-1.0"
+      }
+     ],
+     "kind": "StatefulSet",
+     "name": "fluentd",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/fluent/fluent-bit",
+       "upstreamImage": "fluent/fluent-bit",
+       "version": "1.6.9"
+      }
+     ],
+     "kind": "DaemonSet",
+     "name": "fluentbit",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "monitoring.coreos.com/v1",
+     "containers": [],
+     "kind": "ServiceMonitor",
+     "name": "fluentbit",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "monitoring.coreos.com/v1",
+     "containers": [],
+     "kind": "ServiceMonitor",
+     "name": "fluentd",
+     "namespace": "logging"
+    }
+   ]
+  },
+  {
+   "name": "kibana",
+   "resources": [
+    {
+     "apiVersion": "v1",
+     "containers": [],
+     "kind": "Service",
+     "name": "kibana",
+     "namespace": "logging"
+    },
+    {
+     "apiVersion": "apps/v1",
+     "containers": [
+      {
+       "image": "registry.sighup.io/fury/kibana",
+       "upstreamImage": "kibana",
+       "version": "7.10.1"
+      }
+     ],
+     "kind": "Deployment",
+     "name": "kibana",
+     "namespace": "logging"
+    }
+   ]
+  }
+ ],
+ "known_issues": [],
+ "module": "fury-kubernetes-logging",
+ "release_notes": {
+  "breaking_changes": [],
+  "bug_fixes": [],
+  "documentation_fixes": [],
+  "features": [],
+  "security_fixes": []
+ },
+ "upgrade_warnings": [],
+ "version": "v1.7.1"
+}

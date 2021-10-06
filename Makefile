@@ -74,3 +74,11 @@ deploy-elasticsearch-triple: check-kustomize check-kubectl
 ## clean-%: Clean the container image resulting from another target. make build clean-build
 clean-%:
 	@docker rmi -f ${PROJECTNAME}:local-${*}
+
+## build-canonical-json: Build a canonical JSON for the current state of module
+build-canonical-json: check-docker check-variable-VERSION
+	@docker run -ti --rm -v $(PWD):/module  registry.sighup.io/poc/fury-repo-automations:v0.0.1.md  build-json -m=$(PROJECTNAME) -p=/module -v=${VERSION} -o=/module/fury-kubernetes-logging-canonical-definition-${VERSION}.json
+
+## build-remote-canonical-json: Build a canonical JSON for any tag of the module
+build-remote-canonical-json: check-docker check-variable-VERSION
+	@docker run -ti --rm -v $(PWD):/module  registry.sighup.io/poc/fury-repo-automations:v0.0.1.md  build-json -r=True -m=$(PROJECTNAME) -v=${VERSION} -o=/module/fury-kubernetes-logging-canonical-definition-${VERSION}.json
