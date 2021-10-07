@@ -8,6 +8,12 @@ kind: Kustomization
 
 namespace: logging
 
+commonLabels:
+  module.kfd.sighup.io/name: "logging"
+  module.kfd.sighup.io/version: "v1.9.0"
+  module.kfd.sighup.io/component: "fluentd"
+  kfd.sighup.io/source: "kustomize"
+
 resources:
   - fluentd.yml
   - fluentbit.yaml
