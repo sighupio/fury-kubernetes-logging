@@ -10,7 +10,8 @@ RUN go get -u github.com/google/addlicense
 FROM quay.io/sighup/policeman:latest as linter
 
 ENV VALIDATE_KUBERNETES_KUBEVAL="false"
-ENV VALIDATE_JSCPD: "false"
+ENV VALIDATE_JSCPD="false"
+ENV VALIDATE_DOCKERFILE="false"
 
 RUN mkdir /app
 WORKDIR /app
