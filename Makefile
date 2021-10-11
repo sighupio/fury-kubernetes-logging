@@ -43,6 +43,10 @@ add-license: requirements
 	@docker run --rm -v ${ROOT_DIR}:/app -w /app ${PROJECTNAME}:local-requirements addlicense -c "SIGHUP s.r.l" -v -l bsd .
 	@$(MAKE) clean-requirements
 
+## check-label: Check if labels are present in all kustomization files
+check-label: check-docker
+	@docker build --no-cache --pull --target checklabel -f build/builder/Dockerfile -t ${PROJECTNAME}:checklabel .
+
 ## lint: Run the policeman over the repository
 lint: check-docker
 	@docker build --no-cache --pull --target linter -f build/builder/Dockerfile -t ${PROJECTNAME}:local-lint .
