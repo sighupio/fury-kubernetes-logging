@@ -17,7 +17,8 @@ steps:
     image: openpolicyagent/conftest:v0.28.1
     pull: always
     commands:
-      -  conftest test katalog/**/kustomization.yaml -p .rules/kustomization.rego
+      -  conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
+      -  conftest test katalog/**/kustomization.yaml
 ---
 kind: pipeline
 name: policeman

@@ -38,4 +38,5 @@ WORKDIR /app
 
 COPY . .
 
-RUN conftest test katalog/**/kustomization.yaml -p .rules/kustomization.rego
+RUN conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
+RUN conftest test katalog/**/kustomization.yaml
