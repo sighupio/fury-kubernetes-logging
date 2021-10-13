@@ -1,5 +1,6 @@
 .DEFAULT_GOAL: help
 SHELL := /bin/bash
+VERSION := $(shell (git for-each-ref refs/tags --sort=-taggerdate --format='%(refname)' --count=1 | sed -Ee 's/^refs\/tags\/v|-.*//'))
 
 PROJECTNAME := "fury-kubernetes-logging"
 
@@ -11,6 +12,20 @@ help: Makefile
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
+
+.PHONY: version
+version:
+	@echo v$(VERSION)
+
+SEMVER_TYPES := major minor patch
+BUMP_TARGETS := $(addprefix bump-,$(SEMVER_TYPES))
+.PHONY: $(BUMP_TARGETS)
+$(BUMP_TARGETS): check-bumpversion
+	$(eval bump_type := $(strip $(word 2,$(subst -, ,$@))))
+	$(eval f := $(words $(shell a="$(SEMVER_TYPES)";echo $${a/$(bump_type)*/$(bump_type)} )))
+	$(eval new_version := v$(shell (echo $(VERSION) | awk -F. -v OFS=. -v f=$(f) '{ $$f++ } 1')))
+	@echo "Bumping the version to $(new_version)"
+	@bumpversion $(bump_type)
 
 check-variable-%: # detection of undefined variables.
 	@[[ "${${*}}" ]] || (echo '*** Please define variable `${*}` ***' && exit 1)
