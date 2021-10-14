@@ -28,6 +28,7 @@ $ make list
   deploy-elasticsearch-single   Deploys the `elasticsearch-single` component in the cluster
   deploy-elasticsearch-triple   Deploys the `elasticsearch-triple` component in the cluster
   clean-%                       Clean the container image resulting from another target.
+  build-canonical-json          Build a canonical JSON for any tag of module, only to be run inside a clean working directory
 ```
 
 ## bump-version (Release process)
@@ -107,3 +108,17 @@ command, which in turn triggers other make targets for individual components:
 $ make deploy-all
 # This deploys curator-s3, elasticsearch-triple, fluentd, kibana and cerebro
 ```
+
+## build-canonical-json
+
+> Warning: run this command only inside a clean working directory.
+
+These two targets can be used to create the canonical definition for the
+module or an existing TAG. The following are the usages:
+
+```bash
+$ TAG=v1.9.1 make build-canonical-json
+INFO[0000] Building JSON for: module fury-kubernetes-logging, version v1.9.1
+```
+
+The above command builds a canonical JSON parsing the version `v1.9.1`.

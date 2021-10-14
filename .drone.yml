@@ -527,6 +527,19 @@ trigger:
       - refs/tags/**
 
 steps:
+  - name: prepare-canonical-json
+    image: registry.sighup.io/poc/fury-repo-automations:v0.0.1
+    pull: always
+    depends_on: [ clone ]
+    commands:
+      - spock build-json -m=fury-kubernetes-logging -r=False -v=${DRONE_TAG}
+    when:
+      event:
+        include:
+          - refs/tags/**
+        exclude:
+          - refs/tags/v**-rc**
+
   - name: prepare-tar-gz
     image: alpine:latest
     pull: always
@@ -574,26 +587,13 @@ steps:
         include:
           - refs/tags/v**-rc**
 
-  - name: prepare-canonical-json
-    image: registry.sighup.io/poc/fury-repo-automations:unstable
-    pull: always
-    depends_on: [ clone ]
-    commands:
-      - spock build-json -m=fury-kubernetes-logging -r=False -v=${DRONE_TAG}
-    when:
-      event:
-        include:
-          - refs/tags/**
-        exclude:
-          - refs/tags/v**-rc**
-
   - name: publish-stable
     image: plugins/github-release
     pull: always
     depends_on:
+      - prepare-canonical-json
       - prepare-tar-gz
       - prepare-release-notes
-      - prepare-canonical-json
     settings:
       api_key:
         from_secret: github_token

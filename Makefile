@@ -75,10 +75,9 @@ deploy-elasticsearch-triple: check-kustomize check-kubectl
 clean-%:
 	@docker rmi -f ${PROJECTNAME}:local-${*}
 
-## build-canonical-json: Build a canonical JSON for the current state of module
-build-canonical-json: check-docker check-variable-VERSION
-	@docker run -ti --rm -v $(PWD):/module  registry.sighup.io/poc/fury-repo-automations:v0.0.1.md  build-json -m=$(PROJECTNAME) -p=/module -v=${VERSION} -o=/module/fury-kubernetes-logging-canonical-definition-${VERSION}.json
+jsonbuilder:
+	@docker build --no-cache --pull --target jsonbuilder -f build/builder/Dockerfile -t ${PROJECTNAME}:jsonbuilder .
 
-## build-remote-canonical-json: Build a canonical JSON for any tag of the module
-build-remote-canonical-json: check-docker check-variable-VERSION
-	@docker run -ti --rm -v $(PWD):/module  registry.sighup.io/poc/fury-repo-automations:v0.0.1.md  build-json -r=True -m=$(PROJECTNAME) -v=${VERSION} -o=/module/fury-kubernetes-logging-canonical-definition-${VERSION}.json
+## build-canonical-json: Build a canonical JSON for any tag of module, only to be run inside a clean working directory
+build-canonical-json: check-docker check-variable-TAG jsonbuilder
+	@docker run -ti --rm -v $(PWD):/app -w /app ${PROJECTNAME}:jsonbuilder build-json -m=$(PROJECTNAME) -v=${TAG} .

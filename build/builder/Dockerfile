@@ -40,3 +40,10 @@ COPY . .
 
 RUN conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
 RUN conftest test katalog/**/kustomization.yaml
+
+FROM registry.sighup.io/poc/fury-repo-automations:v0.0.1 as jsonbuilder
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY . .
