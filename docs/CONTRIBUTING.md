@@ -19,6 +19,7 @@ $ make list
   bump-major                    Bumps the module up by a major version
   bump-minor                    Bumps the module up by a minor version
   bump-patch                    Bumps the module up by a patch version
+  check-label                   Check if labels are present in all kustomization files
   add-license                   Add license headers in all files in the project
   lint                          Run the policeman over the repository
   deploy-all                    Deploys all the components in the logging module (with curator-s3 and elasticsearch-triple)
@@ -80,13 +81,20 @@ $ make add-license
 # This will use a dockerised `addlicense` library to run linting
 ```
 
-### clean-%v
+## clean-%v
 
 The `clean-%v` target has been designed to remove the local built image
 resulting from the different targets in the [`Makefile`](Makefile).
 
 The main reason to implement this target is to save disk space. `clean-%v`
 target is automatically called in the targets `lint` and `add-license`.
+
+## Check-label
+
+This targets verifies that required labels for KFD modules exist in each
+kustomization file in the repo. The list of required labels and this
+check can be found
+[here](https://github.com/sighupio/ci-commons/blob/main/conftest/kustomization/kfd-labels.md).
 
 ## Deploy
 
