@@ -18,19 +18,35 @@ help: Makefile
 version:
 	@echo v$(VERSION)
 
+check-variable-%: # detection of undefined variables.
+	@[[ "${${*}}" ]] || (echo '*** Please define variable `${*}` ***' && exit 1)
+
+check-release-file-%: # checks if a release doc exists
+	$(eval tag := `echo "${*}" | sed -e "s/-rc.//"`)
+	$(eval release_file := "docs/releases/${tag}.md")
+	@test -f ${release_file} || (echo '*** Please define file `$(release_file)` ***' && exit 1)
+
+bumpversion-requirements: check-docker
+	@docker build --no-cache --pull --target bumpversion-requirement -f build/builder/Dockerfile -t ${PROJECTNAME}:local-bumpversion-requirements .
+
 SEMVER_TYPES := major minor patch
 BUMP_TARGETS := $(addprefix bump-,$(SEMVER_TYPES))
 .PHONY: $(BUMP_TARGETS)
 ## bump-major: Bumps the module up by a major version
 ## bump-minor: Bumps the module up by a minor version
 ## bump-patch: Bumps the module up by a patch version
-$(BUMP_TARGETS): check-bump2version
+$(BUMP_TARGETS): bumpversion-requirements
 	$(eval bump_type := $(strip $(word 2,$(subst -, ,$@))))
-	@echo "Making a $(bump_type) tag"
-	@bump2version --current-version $(VERSION) $(bump_type)
+	check-release-file-${bump-type}
+	@echo "Making a $(bump_type) tag" # @bump2version --current-version $(VERSION) $(bump_type)
+	@docker run --rm -v ~/.gitconfig:/etc/gitconfig -v ${PWD}:/src -w /src ${PROJECTNAME}:local-bumpversion-requirements --current-version $(VERSION) $(bump_type)
+	@$(MAKE) clean-bumpversion-requirements
 
-check-variable-%: # detection of undefined variables.
-	@[[ "${${*}}" ]] || (echo '*** Please define variable `${*}` ***' && exit 1)
+## bump-rc: Bumps the module up by a release candidate (this only adds a tag, and not bump the version in labels)
+.PHONY:
+bump-release-candidate: check-variable-TAG check-release-file-$(TAG)
+	@git tag ${TAG}
+
 
 check-%: # detection of required software.
 	@which ${*} > /dev/null || (echo '*** Please install `${*}` ***' && exit 1)
