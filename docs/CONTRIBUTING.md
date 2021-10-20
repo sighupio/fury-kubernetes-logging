@@ -11,7 +11,7 @@ familiar with all the targets. To know what targets are available in the project
 just run:
 
 ```bash
-$ make list
+$ make help
 
  Choose a command to run in fury-kubernetes-logging:
 
@@ -21,13 +21,14 @@ $ make list
   bump-patch                    Bumps the module up by a patch version
   check-label                   Check if labels are present in all kustomization files
   add-license                   Add license headers in all files in the project
+  check-license                 Check license headers are in-place in all files in the project
   lint                          Run the policeman over the repository
   deploy-all                    Deploys all the components in the logging module (with curator-s3 and elasticsearch-triple)
   deploy-curator                Deploys the `curator` component in the cluster
   deploy-curator-s3             Deploys the `curator-s3` component in the cluster
   deploy-elasticsearch-single   Deploys the `elasticsearch-single` component in the cluster
   deploy-elasticsearch-triple   Deploys the `elasticsearch-triple` component in the cluster
-  clean-%                       Clean the container image resulting from another target.
+  clean-%                       Clean the container image resulting from another target. make build clean-build
   build-canonical-json          Build a canonical JSON for any tag of module, only to be run inside a clean working directory
 ```
 
@@ -71,7 +72,20 @@ $ make lint
 # This will use a dockerised super-linter library to run linting
 ```
 
-## add-license
+## add-license and check-license
+
+### check-license
+
+This target ensures that a BSD license clause-3 copyrighted to `SIGHUP
+s.r.l` is added to all the code files in the repository. To run the
+check, run the command:
+
+```bash
+$ make check-license
+# This will use a dockerised `addlicense` library to run check for labels
+```
+
+### add-license
 
 We ensure all of our files are LICENSED respecting the community standards. The
 automated drone pipelines fail, if some files are left without license. To add
@@ -79,7 +93,8 @@ our preferred license(BSD clause-3), one could locally run:
 
 ```bash
 $ make add-license
-# This will use a dockerised `addlicense` library to run linting
+# This will use a dockerised `addlicense` library to add license to the
+# missing files
 ```
 
 ## clean-%v

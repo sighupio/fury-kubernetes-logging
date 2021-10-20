@@ -35,13 +35,18 @@ check-variable-%: # detection of undefined variables.
 check-%: # detection of required software.
 	@which ${*} > /dev/null || (echo '*** Please install `${*}` ***' && exit 1)
 
-requirements: check-docker
-	@docker build --no-cache --pull --target requirements -f build/builder/Dockerfile -t ${PROJECTNAME}:local-requirements .
+license-requirements: check-docker
+	@docker build --no-cache --pull --target add-license-requirement -f build/builder/Dockerfile -t ${PROJECTNAME}:local-license-requirements .
 
 ## add-license: Add license headers in all files in the project
-add-license: requirements
-	@docker run --rm -v ${ROOT_DIR}:/app -w /app ${PROJECTNAME}:local-requirements addlicense -c "SIGHUP s.r.l" -v -l bsd .
-	@$(MAKE) clean-requirements
+add-license: license-requirements
+	@docker run --rm -v ${PWD}:/src -w /src ${PROJECTNAME}:local-license-requirements addlicense -c "SIGHUP s.r.l" -v -l bsd .
+	@$(MAKE) clean-license-requirements
+
+## check-license: Check license headers are in-place in all files in the project
+check-license: check-docker
+	@docker build --no-cache --pull --target check-license -f build/builder/Dockerfile -t ${PROJECTNAME}:local-license .
+	@$(MAKE) clean-license
 
 ## check-label: Check if labels are present in all kustomization files
 check-label: check-docker
