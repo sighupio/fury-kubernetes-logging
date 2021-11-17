@@ -18,15 +18,12 @@ RUN npm install -g embedme@1.22.0 && /entrypoint.sh && embedme --verify "**/*.md
 
 FROM golang:1.16 as add-license-requirement
 
-RUN go get -u github.com/google/addlicense
-
-RUN addlicense -c "SIGHUP s.r.l" -v -l bsd .
+RUN go get -u github.com/google/addlicense && addlicense -c "SIGHUP s.r.l" -v -l bsd .
 
 FROM golang:1.16 as check-license
 
-RUN go get -u github.com/google/addlicense
+RUN go get -u github.com/google/addlicense && mkdir /app
 
-RUN mkdir /app
 WORKDIR /app
 
 COPY . .
@@ -40,8 +37,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
-RUN conftest test katalog/**/kustomization.yaml
+RUN conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego && \
+        conftest test katalog/**/kustomization.yaml
 
 FROM registry.sighup.io/poc/fury-repo-automations:v0.0.2 as jsonbuilder
 
@@ -52,9 +49,7 @@ COPY . .
 
 FROM python:3.9-alpine as bumpversion-requirement
 
-RUN apk add git --no-cache
-
-# Releases: https://pypi.org/project/bump2version/#history
-RUN pip --no-cache-dir install bump2version==1.0.1
+# hadolint ignore=DL3018
+RUN apk add git --no-cache && pip --no-cache-dir install bump2version==1.0.1
 
 ENTRYPOINT ["/usr/local/bin/bumpversion"]
