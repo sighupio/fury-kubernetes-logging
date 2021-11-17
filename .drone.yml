@@ -12,6 +12,13 @@ steps:
     commands:
       - go get -u github.com/google/addlicense
       - addlicense -c "SIGHUP s.r.l" -v -l bsd --check .
+
+  - name: checklabels
+    image: openpolicyagent/conftest:v0.28.1
+    pull: always
+    commands:
+      -  conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
+      -  conftest test katalog/**/kustomization.yaml
 ---
 kind: pipeline
 name: policeman
