@@ -6,17 +6,17 @@ Kubernetes.
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
+- Kubernetes >= `1.19.0`
 - Kustomize >= `v3`
 - [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator)
 
 
 ## Image repository and tag
 
-* Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:7.13.0`
+* Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:7.15.2`
 * Elasticsearch repo: [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
 * Elasticsearch documentation:
-[https://www.elastic.co/guide/en/elasticsearch/reference/7.13/index.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/index.html)
+[https://www.elastic.co/guide/en/elasticsearch/reference/7.15/index.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/index.html)
 
 
 ## Configuration

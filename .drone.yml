@@ -142,6 +142,7 @@ trigger:
     include:
       - refs/heads/master
       - refs/tags/**
+      - refs/heads/upgrade_1.8
 
 steps:
   - name: init
@@ -240,6 +241,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
+      - refs/heads/upgrade_1.8
       - refs/tags/**
 
 steps:
@@ -340,6 +342,7 @@ trigger:
     include:
       - refs/heads/master
       - refs/tags/**
+      - refs/heads/upgrade_1.8
 
 steps:
   - name: init
@@ -439,6 +442,7 @@ trigger:
     include:
       - refs/heads/master
       - refs/tags/**
+      - refs/heads/upgrade_1.8
 
 steps:
   - name: init
