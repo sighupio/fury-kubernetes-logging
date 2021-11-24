@@ -11,7 +11,7 @@ familiar with all the targets. To know what targets are available in the project
 just run:
 
 ```bash
-$ make list
+$ make help
 
  Choose a command to run in fury-kubernetes-logging:
 
@@ -19,15 +19,18 @@ $ make list
   bump-major                    Bumps the module up by a major version
   bump-minor                    Bumps the module up by a minor version
   bump-patch                    Bumps the module up by a patch version
+  bump-rc                       Bumps the module up by a release candidate (this only adds a tag, and not bump the version in labels)
   check-label                   Check if labels are present in all kustomization files
   add-license                   Add license headers in all files in the project
+  check-license                 Check license headers are in-place in all files in the project
   lint                          Run the policeman over the repository
   deploy-all                    Deploys all the components in the logging module (with curator-s3 and elasticsearch-triple)
   deploy-curator                Deploys the `curator` component in the cluster
   deploy-curator-s3             Deploys the `curator-s3` component in the cluster
   deploy-elasticsearch-single   Deploys the `elasticsearch-single` component in the cluster
   deploy-elasticsearch-triple   Deploys the `elasticsearch-triple` component in the cluster
-  clean-%                       Clean the container image resulting from another target.
+  clean-%                       Clean the container image resulting from another target. make build clean-build
+  build-canonical-json          Build a canonical JSON for any tag of module, only to be run inside a clean working directory
 ```
 
 ## bump-version (Release process)
@@ -42,12 +45,31 @@ semantic versioning and following is the criteria for versions:
 - `bump-major`: Bumps up a major version, i.e. from 1.x.y -> 2.0.0
 - `bump-major`: Bumps up a major version, i.e. from x.2.y -> x.2.0
 - `bump-patch`: Bumps up a patch version, i.e. from x.y.2 -> x.y.3
+- `bump-rc`: Creates an `rc(release candidate)` tag based on the env
+  variable `TAG` to be given with the make call.
 
 Before bumping the version, make sure you have a file in the directory
 `docs/releases/` with the name of the new tag to be created. That is if you are
 planning to make a patch release to version `v1.9.2`, create a file
 `docs/releases/v1.9.2.md` with the release notes. You can see an example
 [here](releases/v0.1.0.md). Commit all the change with appropriate commit messages.
+
+Before a real release(major, minor or patch) is made, it is recommended
+to create a patch release to make sure that the module is ready for the
+real release. For this you can use the target `bump-rc`.
+
+`bump-rc` works a bit differently in that it does not bump the versions in the
+`kustomization` files or `Furyfiles` as configured in `.bumpversion.cfg`. The
+assumption behind this being the considering that a pre-release is more like a
+draft release. Another difference of this target is, it expects the rc tag name as
+a variable `TAG` along with the `make` call. This is because it is otherwise
+quite difficult to interpret which is the target version for which a `rc` is
+being created. So the example usage is:
+
+```bash
+$ TAG=v1.9.2-rc1 make bump-rc
+# This essentially creates a tag `v1.9.2-rc1` which we can  push to github to create a pre-release
+```
 
 Then, in order to release it(assuming from version `1.9.1` to `1.9.2` - so a
 patch release):
@@ -70,7 +92,20 @@ $ make lint
 # This will use a dockerised super-linter library to run linting
 ```
 
-## add-license
+## add-license and check-license
+
+### check-license
+
+This target ensures that a BSD license clause-3 copyrighted to `SIGHUP
+s.r.l` is added to all the code files in the repository. To run the
+check, run the command:
+
+```bash
+$ make check-license
+# This will use a dockerised `addlicense` library to run check for labels
+```
+
+### add-license
 
 We ensure all of our files are LICENSED respecting the community standards. The
 automated drone pipelines fail, if some files are left without license. To add
@@ -78,7 +113,8 @@ our preferred license(BSD clause-3), one could locally run:
 
 ```bash
 $ make add-license
-# This will use a dockerised `addlicense` library to run linting
+# This will use a dockerised `addlicense` library to add license to the
+# missing files
 ```
 
 ## clean-%v
@@ -107,3 +143,17 @@ command, which in turn triggers other make targets for individual components:
 $ make deploy-all
 # This deploys curator-s3, elasticsearch-triple, fluentd, kibana and cerebro
 ```
+
+## build-canonical-json
+
+> Warning: run this command only inside a clean working directory.
+
+These two targets can be used to create the canonical definition for the
+module or an existing TAG. The following are the usages:
+
+```bash
+$ TAG=v1.9.1 make build-canonical-json
+INFO[0000] Building JSON for: module fury-kubernetes-logging, version v1.9.1
+```
+
+The above command builds a canonical JSON parsing the version `v1.9.1`.
