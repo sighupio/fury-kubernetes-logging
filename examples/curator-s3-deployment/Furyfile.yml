@@ -4,6 +4,6 @@
 
 bases:
   - name: logging/curator-s3
-    version: v1.9.1
+    version: v1.9.2
   - name: logging/elasticsearch-single
-    version: v1.9.1
+    version: v1.9.2
