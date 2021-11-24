@@ -37,14 +37,14 @@ BUMP_TARGETS := $(addprefix bump-,$(SEMVER_TYPES))
 ## bump-patch: Bumps the module up by a patch version
 $(BUMP_TARGETS): bumpversion-requirements
 	$(eval bump_type := $(strip $(word 2,$(subst -, ,$@))))
-	check-release-file-${bump-type}
-	@echo "Making a $(bump_type) tag" # @bump2version --current-version $(VERSION) $(bump_type)
+	@echo "Making a ${bump_type} tag"
 	@docker run --rm -v ~/.gitconfig:/etc/gitconfig -v ${PWD}:/src -w /src ${PROJECTNAME}:local-bumpversion-requirements --current-version $(VERSION) $(bump_type)
 	@$(MAKE) clean-bumpversion-requirements
 
 ## bump-rc: Bumps the module up by a release candidate (this only adds a tag, and not bump the version in labels)
 .PHONY:
 bump-rc: check-variable-TAG check-release-file-$(TAG)
+	@echo "Making ${TAG} tag"
 	@git tag ${TAG}
 
 
