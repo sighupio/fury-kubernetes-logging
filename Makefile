@@ -24,7 +24,7 @@ check-variable-%: # detection of undefined variables.
 check-release-file-%: # checks if a release doc exists
 	$(eval tag := `echo "${*}" | sed -e "s/-rc.//"`)
 	$(eval release_file := "docs/releases/${tag}.md")
-	@test -f ${release_file} || (echo '*** Please define file `$(release_file)` ***' && exit 1)
+	@test -f ${release_file} || (echo "*** Please define file ${release_file} ***" && exit 1)
 
 bumpversion-requirements: check-docker
 	@docker build --no-cache --pull --target bumpversion-requirement -f build/builder/Dockerfile -t ${PROJECTNAME}:local-bumpversion-requirements .
@@ -44,7 +44,7 @@ $(BUMP_TARGETS): bumpversion-requirements
 
 ## bump-rc: Bumps the module up by a release candidate (this only adds a tag, and not bump the version in labels)
 .PHONY:
-bump-release-candidate: check-variable-TAG check-release-file-$(TAG)
+bump-rc: check-variable-TAG check-release-file-$(TAG)
 	@git tag ${TAG}
 
 
