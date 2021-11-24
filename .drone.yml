@@ -528,7 +528,7 @@ trigger:
 
 steps:
   - name: prepare-canonical-json
-    image: registry.sighup.io/poc/fury-repo-automations:v0.0.2
+    image: registry.sighup.io/poc/fury-repo-automations:v0.0.3
     pull: always
     depends_on: [ clone ]
     commands:
