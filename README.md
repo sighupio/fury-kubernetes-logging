@@ -31,12 +31,12 @@ your Kubernetes cluster.
   graphical user interface. Version: **0.8.5**
 - [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.8.1**
 - [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
-  deployment. Version: **6.8.8**
+  deployment. Version: **6.8.21**
 - [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
-  deployment. Version: **6.8.8**
+  deployment. Version: **6.8.21**
 - [fluentd](katalog/fluentd): fluentd instance to collect logging data and store in
   Elasticsearch. Version: **1.10.2**
-- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data. Version: **6.8.8**
+- [kibana](katalog/kibana): Kibana instance to visualize and analyse Elasticsearch data. Version: **6.8.21**
 
 You can click on each package to see its documentation.
 
