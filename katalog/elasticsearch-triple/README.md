@@ -13,7 +13,7 @@ Kubernetes.
 
 ## Image repository and tag
 
-* Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:6.8.8`
+* Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:6.8.21`
 * Elasticsearch repo: https://github.com/elastic/elasticsearch
 * Elasticsearch documentation:  https://www.elastic.co/guide/en/elasticsearch/reference/6.4/index.html
 

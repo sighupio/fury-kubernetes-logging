@@ -4,7 +4,7 @@ images:
   - name: justwatch/elasticsearch_exporter
     newTag: "1.1.0"
   - name: docker.elastic.co/elasticsearch/elasticsearch
-    newTag: "6.8.8"
+    newTag: "6.8.21"
 
 resources:
   - elasticsearch.yml

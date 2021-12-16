@@ -12,7 +12,7 @@ stored in Elasticsearch indices.
 
 ## Image repository and tag
 
-* Kibana image: `docker.elastic.co/kibana/kibana:6.8.8`
+* Kibana image: `docker.elastic.co/kibana/kibana:6.8.21`
 * Kibana repo: https://github.com/elastic/kibana
 * Kibana documentation: https://www.elastic.co/guide/en/kibana/6.8/index.html
 
