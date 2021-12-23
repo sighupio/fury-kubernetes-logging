@@ -17,7 +17,7 @@ commonLabels:
 images:
   - name: docker.elastic.co/kibana/kibana
     newName: registry.sighup.io/fury/kibana
-    newTag: 7.15.2
+    newTag: 7.16.2
 
 resources:
   - kibana.yml
