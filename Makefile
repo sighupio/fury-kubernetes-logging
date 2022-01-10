@@ -80,9 +80,17 @@ deploy-all: deploy-curator-s3 deploy-elasticsearch-triple deploy-fluentd deploy-
 deploy-curator: check-kustomize check-kubectl
 	@kustomize build katalog/curator | kubectl apply -f-
 
+## deploy-cerebro: Deploys the `cerebro` component in the cluster
+deploy-cerebro: check-kustomize check-kubectl
+	@kustomize build katalog/cerebro | kubectl apply -f-
+
 ## deploy-curator-s3: Deploys the `curator-s3` component in the cluster
 deploy-curator-s3: check-kustomize check-kubectl
 	@kustomize build katalog/curator-s3 | kubectl apply -f-
+
+## deploy-fluentd: Deploys the `fluentd` component in the cluster
+deploy-fluentd: check-kustomize check-kubectl
+	@kustomize build katalog/fluentd | kubectl apply -f-
 
 ## deploy-elasticsearch-single: Deploys the `elasticsearch-single` component in the cluster
 deploy-elasticsearch-single: check-kustomize check-kubectl
@@ -91,6 +99,10 @@ deploy-elasticsearch-single: check-kustomize check-kubectl
 ## deploy-elasticsearch-triple: Deploys the `elasticsearch-triple` component in the cluster
 deploy-elasticsearch-triple: check-kustomize check-kubectl
 	@kustomize build katalog/elasticsearch-triple | kubectl apply -f-
+
+## deploy-kibana: Deploys the `kibana` component in the cluster
+deploy-kibana: check-kustomize check-kubectl
+	@kustomize build katalog/kibana | kubectl apply -f-
 
 ## clean-%: Clean the container image resulting from another target. make build clean-build
 clean-%:
