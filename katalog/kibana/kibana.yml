@@ -46,28 +46,6 @@ spec:
                 - ALL
             runAsNonRoot: true
             runAsUser: 1000
-          startupProbe:
-            exec:
-              command:
-                - sh
-                - -c
-                - |
-                  #!/usr/bin/env bash -e
-                  http () {
-                      local path="${1}"
-                      set -- -XGET -s --fail -L
-                      if [ -n "${ELASTICSEARCH_USERNAME}" ] && [ -n "${ELASTICSEARCH_PASSWORD}" ]; then
-                        set -- "$@" -u "${ELASTICSEARCH_USERNAME}:${ELASTICSEARCH_PASSWORD}"
-                      fi
-                      STATUS=$(curl --output /dev/null --write-out "%{http_code}" -k "$@" "http://localhost:5601${path}")
-                      if [[ "${STATUS}" -eq 200 ]]; then
-                          curl -X POST "localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@file.ndjson
-                        exit 0
-                      fi
-                      echo "Error: Got HTTP code ${STATUS} but expected a 200"
-                      exit 1
-                  }
-                  http /app/kibana
           readinessProbe:
             exec:
               command:
@@ -102,6 +80,29 @@ spec:
             limits:
               cpu: "2"
               memory: 800Mi
+        - name: kibana-index-patterns
+          image: docker.elastic.co/kibana/kibana
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            runAsUser: 1000
+          command:
+           - sh
+           - -c
+           - |
+             while true; do curl -s -X POST "localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@/usr/share/kibana/file.ndjson || true; sleep 60; done
+          env:
+            - name: ELASTICSEARCH_URL
+              value: "http://elasticsearch:9200"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: "1"
+              memory: 200Mi
           volumeMounts:
             - name: config-volume
               mountPath: /usr/share/kibana/file.ndjson
