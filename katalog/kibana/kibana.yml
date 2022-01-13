@@ -92,7 +92,7 @@ spec:
            - sh
            - -c
            - |
-             while true; do curl -s -X POST "localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@/usr/share/kibana/file.ndjson || true; sleep 60; done
+             STATUS=000; while true; do if [[ "${STATUS}" -eq 000 ]]; then echo "Trying to put index patterns..."; STATUS=$(curl --output /dev/null --write-out "%{http_code}" -s -X POST "localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@/usr/share/kibana/file.ndjson); echo "Operation status code: $STATUS"; fi; sleep 60; done
           env:
             - name: ELASTICSEARCH_URL
               value: "http://elasticsearch:9200"
