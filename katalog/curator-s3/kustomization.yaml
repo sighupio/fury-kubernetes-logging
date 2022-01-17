@@ -6,7 +6,7 @@ namespace: logging
 
 commonLabels:
   module.kfd.sighup.io/name: "logging"
-  module.kfd.sighup.io/version: "v1.9.2"
+  module.kfd.sighup.io/version: "v1.9.1"
   module.kfd.sighup.io/component: "curator-s3"
   kfd.sighup.io/source: "kustomize"
 
