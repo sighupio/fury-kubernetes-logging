@@ -15,9 +15,9 @@ If you are new to KFD please refer to the [official documentation][kfd-docs] on 
 
 ## Overview
 
-**Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster. 
+**Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster.
 
-The central piece of the stack is the CNCF certified open source search engine [elasticsearch][elastic-search-page], combined with its the analytics and visualization platform [kibana][kibana-page]. The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`), pushing it to the Elasticsearch via [fluentd][fluentd-page].
+The central piece of the stack is the CNCF certified open source search engine [elasticsearch][elastic-search-page], combined with its analytics and visualization platform [kibana][kibana-page]. The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`), pushing it to the Elasticsearch via [fluentd][fluentd-page].
 
 Following is a high level design diagram of the module:
 
