@@ -1,85 +1,151 @@
-# Fury Kubernetes Logging
+<h1>
+    <img src="https://github.com/sighupio/fury-distribution/blob/master/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
+    Kubernetes Fury Logging
+</h1>
 
-This repo contains logging components to deploy on top of Kubernetes. Fury's
-logging stack is based on Elasticsearch, a very popular open-source search
-engine commonly used for log analytics. Other components are used in integration
-with Elasticsearch.
+![Release](https://img.shields.io/github/v/release/sighupio/fury-kubernetes-logging?label=Latest%20Release)
+![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
+![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
-## Requirements
+<!-- <KFD-DOCS> -->
 
-All packages in this repository have following dependencies, for package
-specific dependencies please visit the single package's documentation:
+**Kubernetes Fury Logging** provides a logging stack for the [Kubernetes Fury Distribution (KFD)][kfd-repo].
 
-- [Kubernetes](https://kubernetes.io) >= `v1.18.0`
-- [Furyctl](https://github.com/sighup-io/furyctl) package manager to install Fury packages
-- [Kustomize](https://github.com/kubernetes-sigs/kustomize) >= `v3`
+If you are new to KFD please refer to the [official documentation][kfd-docs] on how to get started with KFD.
 
+## Overview
 
-## Examples
+**Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster. 
 
-To see examples on how to customize Fury distribution packages with kustomize
-please go to [examples](examples).
+The central piece of the stack is the CNCF certified open source search engine [elasticsearch][elastic-search-page], combined with its the analytics and visualization platform [kibana][kibana-page]. The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`), pushing it to the Elasticsearch via [fluentd][fluentd-page].
 
+Following is a high level design diagram of the module:
 
-## Logging Packages
+![logging module](docs/images/logging-module.png "Kubernetes Fury Logging")
 
-The following packages are included in the Fury Kubernetes Logging katalog. All
-resources in these packages are going to be deployed in the `logging` namespace in
-your Kubernetes cluster.
+All the components are deployed in the `logging` namespace in the cluster.
 
-- [cerebro](katalog/cerebro): Cerebro instance to manage Elasticsearch cluster via a
-  graphical user interface. Version: **0.9.4**
-- [curator](katalog/curator): Curator instance to manage Elasticsearch indices. Version: **5.8.4**
-  - [curator-s3](katalog/curator-s3): Curator instance to manage Elasticsearch indices on an S3 compliant bucket.
-  Version: **5.8.4**
-- [elasticsearch-single](katalog/elasticsearch-single): Single node Elasticsearch
-  deployment. Version: **7.16.2**
-- [elasticsearch-triple](katalog/elasticsearch-triple): Three node Elasticsearch cluster
-  deployment. Version: **7.16.2**
-- [fluentd](katalog/fluentd): fluentd instance to collect logging data and store in
-  Elasticsearch. Version: **1.14.2**
-- [kibana](katalog/kibana): Kibana instance to visualize and analyze Elasticsearch data. Version: **7.15.2**
+## Packages
 
-You can click on each package to see its documentation.
+The following packages are included in the Fury Kubernetes Logging katalog:
+| Package                                              | Version  | Description                                                                                            |
+|------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------|
+| [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface         |
+| [curator](katalog/curator)                           | `5.8.4`  | Manges elasticserach indices and snapshots, alongwith configurations to set the retention log policies |
+| [curator-s3](katalog/curator-s3)                     | `5.8.4`  |                                                                                                        |
+| [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                   |
+| [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                  |
+| [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                      |
+| [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                 |
 
+Click on each package to see its full documentation.
 
 ## Compatibility
 
-| Module Version / Kubernetes Version | 1.14.X             | 1.15.X             | 1.16.X             | 1.17.X             | 1.18.X             | 1.19.X             | 1.20.X             | 1.21.X             | 1.22.X             | 1.23.X    |
-|-------------------------------------|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|-----------|
-| v1.0.0                              | :white_check_mark: |                    |                    |                    |                    |                    |                    |                    |                    |           |
-| v1.1.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
-| v1.2.0                              |                    |                    |                    |                    |                    |                    |                    |                    |                    |           |
-| v1.2.1                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
-| v1.3.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
-| v1.4.0                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
-| v1.5.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
-| v1.6.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |                    |           |
-| v1.7.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |           |
-| v1.8.0                              |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |           |
-| v1.9.0                              |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
-| v1.10.0                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| Kubernetes Version |   Compatibility    |                        Notes                        |
+| ------------------ | :----------------: | --------------------------------------------------- |
+| `1.20.x`           | :white_check_mark: | No known issues                                     |
+| `1.21.x`           | :white_check_mark: | No known issues                                     |
+| `1.22.x`           | :white_check_mark: | No known issues                                     |
+| `1.23.x`           |     :warning:      | Conformance tests passed. Not officially supported. |
 
-- :white_check_mark: Compatible
-- :warning: Has issues
-- :x: Incompatible
+Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
 
-### Warning
+## Usage
 
-- :warning: : module version: `v1.7.0` and Kubernetes Version: `1.20.x`. It works as expected. Marked as warning
-because it is not officially supported by [SIGHUP](https://sighup.io).
-- :warning: : module version: `v1.8.0` and Kubernetes Version: `1.21.x`. It works as expected. Marked as warning
-because it is not officially supported by [SIGHUP](https://sighup.io).
-- :warning: : module version: `v1.9.0` and Kubernetes Version: `1.22.x`. It works as expected. Marked as warning
-because it is not officially supported by [SIGHUP](https://sighup.io).
-- :warning: : module version: `v1.10.0` and Kubernetes Version: `1.23.x`. It works as expected. Marked as warning
-because it is not officially supported by [SIGHUP](https://sighup.io).
+### Prerequisites
 
-## Development
+| Tool                        | Version   | Description                                                                                                                                                    |
+|-----------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [furyctl][furyctl-repo]     | `>=0.6.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
+| [kustomize][kustomize-repo] | `>=3.5.0` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
-To read about testing, tagging, linting, etc. of `fury-kubernetes-logging` module,
-refer the [contribution guidelines](docs/CONTRIBUTING.md).
+### Deployment
+
+1. List the packages you want to deploy and their version in a `Furyfile.yml`
+
+```yaml
+bases:
+  - name: logging/cerebro
+    version: "v1.10.0"
+  - name: logging/curator
+    version: "v1.10.0"
+  - name: logging/elasticsearch-single
+    version: "v1.10.0"
+  - name: logging/fluentd
+    version: "v1.10.0"
+  - name: logging/kibana
+    version: "v1.10.0"
+```
+
+> See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
+
+2. Execute `furyctl vendor -H` to download the packages
+
+3. Inspect the download packages under `./vendor/katalog/logging`.
+
+4. Define a `kustomization.yaml` that includes the `./vendor/katalog/logging` directory as resource.
+
+```yaml
+resources:
+- ./vendor/katalog/logging/cerebro
+- ./vendor/katalog/logging/curator
+- ./vendor/katalog/logging/elasticsearch-single
+- ./vendor/katalog/logging/fluentd
+- ./vendor/katalog/logging/kibana
+```
+
+5. To deploy the packages to your cluster, execute:
+
+```bash
+kustomize build . | kubectl apply -f -
+```
+
+### Common Customisations
+
+#### Setup a high-availability three-node elasticsearch
+
+Logging module offers an out of the box, highly-available setup for `elasticsearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `elasticsearch-single` with `elasticsearch-triple`.
+
+#### Setup curator with datastore in an s3 compliant bucket
+
+To setup `curator` with `s3` compliant bucket support, we provide [`curator-s3`](katalog/curator-s3). To set it up, instead of `curator`, use `curator-s3` in `Furyfile` and `kustomization` in the above defined deployment step.
+
+To configure the `s3` bucket, you will have to edit the file [`secret-es-backup.env`](katalog/curator-s3/secret-es-backup.env) with the following content, with the right configuration secrets:
+
+``` sh
+AWS_ACCESS_KEY_ID=AAAA
+AWS_REGION=eu-west-1
+AWS_SECRET_ACCESS_KEY=myKey
+S3_BUCKET_NAME=my-s3_bucket
+```
+
+<!-- Links -->
+
+[elastic-search-page]: https://www.elastic.co/elasticsearch/
+[kibana-page]: https://www.elastic.co/kibana/
+[fluentbit-page]: https://fluentbit.io/
+[fluentd-page]: https://www.fluentd.org/
+[kfd-repo]: https://github.com/sighupio/fury-distribution
+[furyctl-repo]: https://github.com/sighupio/furyctl
+[kustomize-repo]: https://github.com/kubernetes-sigs/kustomize
+[kfd-docs]: https://docs.kubernetesfury.com/docs/distribution/
+[compatibility-matrix]: docs/COMPATIBILITY_MATRIX.md
+
+<!-- </KFD-DOCS> -->
+
+<!-- <FOOTER> -->
+
+## Contributing
+
+Before contributing, please read first the [Contributing Guidelines](docs/CONTRIBUTING.md).
+
+### Reporting Issues
+
+In case you experience any problem with the module, please [open a new issue](https://github.com/sighupio/fury-kubernetes-logging/issues/new/choose).
 
 ## License
 
-For license details please see [LICENSE](LICENSE)
+This module is open-source and it's released under the following [LICENSE](LICENSE)
+
+<!-- </FOOTER> -->
