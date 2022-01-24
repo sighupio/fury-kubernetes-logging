@@ -21,7 +21,7 @@ The central piece of the stack is the CNCF certified open source search engine [
 
 Following is a high level design diagram of the module:
 
-![logging module](docs/images/logging-module.png "Kubernetes Fury Logging")
+![logging module](docs/images/logging-module.jpg "Kubernetes Fury Logging")
 
 All the components are deployed in the `logging` namespace in the cluster.
 
