@@ -29,15 +29,15 @@ All the components are deployed in the `logging` namespace in the cluster.
 
 The following packages are included in the Fury Kubernetes Logging katalog:
 
-| Package                                              | Version  | Description                                                                                            |
-|------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------|
-| [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface         |
-| [curator](katalog/curator)                           | `5.8.4`  | Manges elasticserach indices and snapshots, alongwith configurations to set the retention log policies |
-| [curator-s3](katalog/curator-s3)                     | `5.8.4`  |                                                                                                        |
-| [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                   |
-| [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                  |
-| [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                      |
-| [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                 |
+| Package                                              | Version  | Description                                                                                             |
+|------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
+| [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface          |
+| [curator](katalog/curator)                           | `5.8.4`  | Manages elasticserach indices and snapshots, alongwith configurations to set the retention log policies |
+| [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
+| [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                    |
+| [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                   |
+| [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                       |
+| [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                  |
 
 Click on each package to see its full documentation.
 
@@ -131,7 +131,7 @@ S3_BUCKET_NAME=my-s3_bucket
 [furyctl-repo]: https://github.com/sighupio/furyctl
 [kustomize-repo]: https://github.com/kubernetes-sigs/kustomize
 [kfd-docs]: https://docs.kubernetesfury.com/docs/distribution/
-[compatibility-matrix]: docs/COMPATIBILITY_MATRIX.md
+[compatibility-matrix]: https://github.com/sighupio/fury-kubernetes-logging/blob/master/docs/COMPATIBILITY_MATRIX.md
 
 <!-- </KFD-DOCS> -->
 

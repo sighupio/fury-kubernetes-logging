@@ -6,7 +6,7 @@ Curator helps you manage your Elasticsearch indices and snapshots via various
 operations like delete, snapshot, and shard allocation routing. It's mainly used
 to managed retention of your infrastructure logs to a given value.
 
-For `Curator` to work with `s3`, we will require an `AWS s3` compatible object
+For `Curator` to work with `S3`, we will require an `AWS S3` compatible object
 storage bucket. Along with this, we will have to configure `elasticsearch` with
 [snapshot repository][snapshot-config]. To do so, we have added an
 `InitContainer` in the `curator` manifest that does it by making a `PUT` request
@@ -17,7 +17,7 @@ to `/_snapshot/repository_name` endpoint of `elasticsearch`
 - Kubernetes >= `1.20.0`
 - Kustomize >= `v3.3.X`
 - `elasticsearch` with [snapshot repository configured][snapshot-config]
-- `AWS s3` compatible object store bucket
+- `AWS S3` compatible object store bucket
 
 ## Image repository and tag
 
