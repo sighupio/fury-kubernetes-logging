@@ -28,6 +28,7 @@ All the components are deployed in the `logging` namespace in the cluster.
 ## Packages
 
 The following packages are included in the Fury Kubernetes Logging katalog:
+
 | Package                                              | Version  | Description                                                                                            |
 |------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------|
 | [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface         |
