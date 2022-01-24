@@ -1,24 +1,29 @@
 # Curator S3
 
+<!-- <KFD-DOCS> -->
+
 Curator helps you manage your Elasticsearch indices and snapshots via various
 operations like delete, snapshot, and shard allocation routing. It's mainly used
 to managed retention of your infrastructure logs to a given value.
 
+For `Curator` to work with `s3`, we will require an `AWS s3` compatible object
+storage bucket. Along with this, we will have to configure `elasticsearch` with
+[snapshot repository][snapshot-config]. To do so, we have added an
+`InitContainer` in the `curator` manifest that does it by making a `PUT` request
+to `/_snapshot/repository_name` endpoint of `elasticsearch`
+
 ## Requirements
 
-- It requires elasticsearch with installed the plugin `repository-s3`
-- an object storage bucket aws s3 compatible
-- Kubernetes >= `1.18.0`
-- Kustomize >= `v3`
+- Kubernetes >= `1.20.0`
+- Kustomize >= `v3.3.X`
+- `elasticsearch` with [snapshot repository configured][snapshot-config]
+- `AWS s3` compatible object store bucket
 
 ## Image repository and tag
 
-- The Dockerfile of elasticsearch should be like [this](elasticsearch/Dockerfile) or
-  a manifest with an initcontainer that setup the same logic
-- Curator image: `quay.io/sighup/curator:5.8.4_3.8-alpine`
-- Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
-- Curator documentation:
-  [https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
+* Curator image: `registry.sighup.io/fury/curator;5.8.4_3.8-alpine`
+* Curator repo: [curator at elastic Github][curtor-github]
+* Curator documentation: [curator doc][curator-doc]
 
 ## Configuration
 
@@ -26,7 +31,7 @@ to managed retention of your infrastructure logs to a given value.
 - Unit set as `30 days`
 - Curator will run every night at 00:15 to check if some indexes need deleting
 - Resource limits are `300m` for CPU and `800Mi` for memory
-- AWS bucket configuration secret file [curator-aws](../../examples/curator-s3-deployment/secret/curator-aws.env)
+- AWS bucket configuration secret file [curator-aws](secret-es-backup.env)
 
 ## Deployment
 
@@ -49,6 +54,14 @@ curator_id='curator-20190514223003'  #  the curator job id related with the task
 
 curl -XPOST "http://localhost:9200/_snapshot/s3-backup/${curator_id}/_restore?pretty=true&wait_for_completion=true"
 ```
+
+<!-- Links -->
+
+[snapshot-config]: https://www.elastic.co/guide/en/cloud/current/ec-aws-custom-repository.html#ec-aws-custom-repository
+[curator-github]: https://github.com/elastic/curator
+[curator-doc]: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
+
+<!-- </KFD-DOCS> -->
 
 ## License
 
