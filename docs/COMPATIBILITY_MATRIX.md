@@ -19,4 +19,9 @@
 - :warning: Has issues
 - :x: Incompatible
 
+## Warning
 
+- ⚠️: module version: v1.7.0 and Kubernetes Version: 1.20.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
+- ⚠️: module version: v1.8.0 and Kubernetes Version: 1.21.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
+- ⚠️: module version: v1.9.0 and Kubernetes Version: 1.22.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
+- ⚠️: module version: v1.10.0 and Kubernetes Version: 1.23.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.

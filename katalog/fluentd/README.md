@@ -1,31 +1,39 @@
-# Fluentd & Fluent-bit
+# Fluentd and Fluent-bit
 
-Fluentd is an open-source data collector for unified logging that can store
-collected data in various destinations. Fluentd deployment in Fury Kubernetes
-Logging is configured to write records into Elasticsearch.
+<!-- <KFD-DOCS> -->
 
-Fluent Bit is an open-source and multi-platform Log Processor and Forwarder which allows you to collect data/logs from different sources,
-unify and send them to multiple destinations. In our case Fluent Bit sends logs to Fluentd instances.
+Fluentd and Fluent-bit plays an integral role in the logging module, in
+collection and processing of data from the cluster and its transfer to the
+`elasticsearch`.
+
+These tools can be described in short as follows:
+
+- Fluentd is a data collector for unified logging that can store collected data
+  in various destinations. In our module, we configure `fluentd` to write the
+  data to `elasticsearch`
+- Fluent Bit is a multi-platform Log Processor and Forwarder which allows you to
+  collect data/logs from different sources, unify and send them to multiple
+  destinations
 
 ![Diagram](../../docs/images/fluentd-fluentbit.png)
 
 ## Requirements
 
-- Kubernetes >= `1.19.0`
-- Kustomize >= `v3`
-- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator)
+- Kubernetes >= `1.20.0`
+- Kustomize >= `v3.3.X`
+- [prometheus-operator][prometheus-operator]
 
+> Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
+> some metrics available from `fluentd` on prometheus
 
 ## Image repository and tag
 
-* Fluentd image: `quay.io/sighup/fluentd-elasticsearch:v1.14.2-debian-1.0`
-* Fluentd repo: [https://github.com/fluent/fluentd](https://github.com/fluent/fluentd)
-* Fluentd documentation:
-[https://docs.fluentd.org/quickstart](https://docs.fluentd.org/quickstart)
+* Fluentd image: `registry.sighup.io/sighup/fluentd-elasticsearch:v1.14.2-debian-1.0`
+* Fluentd repo: [Fluentd on Giithub][fluentd-repo]
+* Fluentd documentation: [Fluentd Homepage][fluentd-doc]
 * Fluent-bit image: `fluent/fluent-bit:1.8.10`
-* Fluent-bit repo: [https://github.com/fluent/fluent-bit](https://github.com/fluent/fluent-bit)
-* Fluent-bit documentation: [https://docs.fluentbit.io/manual/](https://docs.fluentbit.io/manual/)
-
+* Fluent-bit repo: [Fluent-bit on Github][fluentbit-repo]
+* Fluent-bit documentation: [Fluent-bit Homepage][fluentbit-doc]
 
 ## Configuration
 
@@ -36,7 +44,6 @@ unify and send them to multiple destinations. In our case Fluent Bit sends logs 
 - Integrates with [elasticsearch-single](../elasticsearch-single) and
   [elasticsearch-triple](../elasticsearch-triple)
 
-
 ## Deployment
 
 You can deploy fluentd by running the following command in the root of the project:
@@ -45,6 +52,15 @@ You can deploy fluentd by running the following command in the root of the proje
 kustomize build | kubectl apply -f -
 ```
 
+<!-- Links -->
+
+[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
+[fluentd-repo]: https://github.com/fluent/fluentd
+[fluentd-doc]: https://docs.fluentd.org/quickstart
+[fluentbit-repo]: https://github.com/fluent/fluent-bit
+[fluentbit-doc]: https://docs.fluentbit.io/manual/
+
+<!-- </KFD-DOCS> -->
 
 ## License
 

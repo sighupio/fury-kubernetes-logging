@@ -1,23 +1,25 @@
 # Elasticsearch Single
 
+<!-- <KFD-DOCS> -->
+
 Elasticsearch is an open-source distributed search and analytics engine used for
 log analytics. This package deploys a single node Elasticsearch cluster on
 Kubernetes.
 
 ## Requirements
 
-- Kubernetes >= `1.19.0`
-- Kustomize >= `v3`
-- [prometheus-operator](https://github.com/sighup-io/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator)
+- Kubernetes >= `1.20.0`
+- Kustomize >= `v3.3.X`
+- [prometheus-operator][prometheus-operator]
 
+> Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
+> some metrics available from `elasticsearch` on prometheus
 
 ## Image repository and tag
 
-* Elasticsearch image: `docker.elastic.co/elasticsearch/elasticsearch:7.15.2`
-* Elasticsearch repo: [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
-* Elasticsearch documentation:
-[https://www.elastic.co/guide/en/elasticsearch/reference/7.15/index.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/index.html)
-
+* Elasticsearch image: `elasticsearch/elasticsearch:7.16.2`
+* Elasticsearch repo: [Elasticsearch on Github][es-gh]
+* Elasticsearch documentation: [Elasticsearch Homepage][es-doc]
 
 ## Configuration
 
@@ -31,7 +33,6 @@ Fury distribution Elasticsearch Single is deployed with the following configurat
 - Requires `30Gi` storage
 - Prometheus exporter to expose Elasticsearch metrics
 - Metrics are scraped by Prometheus every `30s`
-
 
 ## Deployment
 
@@ -47,18 +48,25 @@ To learn how to customize compute resources for Elasticsearch please follow the
 
 ## Alerts
 
-Followings Prometheus [alerts](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) are already defined for this package.
+Since we are configuring a `ServiceMonitor` in this package, followings Prometheus [alerts][es-rules] are already defined:
 
-### es.rules
-| Parameter | Description | Severity | Interval |
-|------|-------------|----------|:-----:|
-| ElasticClusterRed | This alert fires when the health of the elasticsearch cluster is RED | critical | 30m |
-| ElasticClusterYellow | This alert fires when the health of the elasticsearch cluster is YELLOW | warning | 30m |
-| ElasticNumberOfRelocationShards | This alert fires when there are relocating shards for 30 minutes | warning | 30m |
-| ElasticNumberOfInitializingShards | This alert fires when there are initializing shards for 30 minutes | warning | 30m |
-| ElasticNumberOfUnassignedShards | This alert fires when there are unassigned shards for 30 minutes | warning | 30m |
-| ElasticNumberOfPendingTasks | This alert fires when there pending task for 30 minutes | warning | 30m |
+| Alert                             | Description                                                             | Severity | Interval |
+|-----------------------------------|-------------------------------------------------------------------------|----------|:--------:|
+| ElasticClusterRed                 | This alert fires when the health of the elasticsearch cluster is RED    | critical | 30m      |
+| ElasticClusterYellow              | This alert fires when the health of the elasticsearch cluster is YELLOW | warning  | 30m      |
+| ElasticNumberOfRelocationShards   | This alert fires when there are relocating shards for 30 minutes        | warning  | 30m      |
+| ElasticNumberOfInitializingShards | This alert fires when there are initializing shards for 30 minutes      | warning  | 30m      |
+| ElasticNumberOfUnassignedShards   | This alert fires when there are unassigned shards for 30 minutes        | warning  | 30m      |
+| ElasticNumberOfPendingTasks       | This alert fires when there pending task for 30 minutes                 | warning  | 30m      |
 
+<!-- Links -->
+
+[es-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+[es-gh]: https://github.com/elastic/elasticsearch
+[es-doc]: https://www.elastic.co/guide/en/elasticsearch/reference/7.16/index.html
+[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
+
+<!-- </KFD-DOCS> -->
 
 ## License
 

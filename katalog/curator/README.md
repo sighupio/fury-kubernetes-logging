@@ -1,20 +1,21 @@
 # Curator
 
+<!-- <KFD-DOCS> -->
+
 Curator helps you manage your Elasticsearch indices and snapshots via various
 operations like delete, snapshot, and shard allocation routing. It's mainly used
 to managed retention of your infrastructure logs to a given value.
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
-- Kustomize >= `v3`
+- Kubernetes >= `1.20.0`
+- Kustomize >= `v3.3.X`
 
 ## Image repository and tag
 
-* Curator image: `quay.io/sighup/curator:5.8.4_3.8-alpine`
-* Curator repo: [https://github.com/elastic/curator](https://github.com/elastic/curator)
-* Curator documentation:
-[https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
+* Curator image: `registry.sighup.io/fury/curator;5.8.4_3.8-alpine`
+* Curator repo: [curator at elastic Github][curtor-github]
+* Curator documentation: [curator doc][curator-doc]
 
 ## Configuration
 
@@ -22,7 +23,6 @@ to managed retention of your infrastructure logs to a given value.
 - Unit set as `30 days`
 - Curator will run every night at 00:15 to check if some indexes need deleting
 - Resource limits are `300m` for CPU and `800Mi` for memory
-
 
 ## Deployment
 
@@ -32,6 +32,12 @@ You can deploy Curator by running the following command in the root of the proje
 kustomize build | kubectl apply -f -
 ```
 
+<!-- Links -->
+
+[curator-github]: https://github.com/elastic/curator
+[curator-doc]: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
+
+<!-- </KFD-DOCS> -->
 
 ## License
 

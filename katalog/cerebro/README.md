@@ -1,21 +1,23 @@
 # Cerebro
 
-Cerebro is an open-source web admin tool for Elasticsearch API, you can perform
-common tasks on the ElasticSearch cluster via Cerebro's web interface.
+<!-- <KFD-DOCS> -->
+
+Cerebro is an open-source web admin tool for Elasticsearch API, that lets you perform
+common admin tasks on the ElasticSearch cluster via a web interface.
 
 ## Requirements
 
-- Kubernetes >= `1.18.0`
-- Kustomize >= `v3`
+- Kubernetes >= `1.20.0`
+- Kustomize >= `v3.3.X`
 
 ## Image repository and tag
 
 * Cerebro image: `lmenezes/cerebro:0.9.4`
-* Cerebro repo: [https://github.com/lmenezes/cerebro](https://github.com/lmenezes/cerebro)
+* Cerebro repo: [cerebro on GitHub][cerebro-github]
 
 ## Configuration
 
-Fury distribution Cerebro is deployed with the following configuration:
+In Kubernetes Fury distribution, Cerebro is deployed with the following configuration:
 
 - Replica number: `1`
 - Requires no authentication
@@ -42,6 +44,12 @@ Cerebro will be available on `http://127.0.0.1:9000` from your browser.
 
 To learn how to add basic authentication for Cerebro please see the
 [example](../../examples/cerebro-deployment).
+
+<!-- Links -->
+
+[cerebro-github]: https://github.com/lmenezes/cerebro
+
+<!-- </KFD-DOCS> -->
 
 ## License
 
