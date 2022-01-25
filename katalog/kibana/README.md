@@ -49,7 +49,7 @@ Kibana will be available on `http://127.0.0.1:5601` from your browser.
 Links
 
 [kibana-doc]: https://www.elastic.co/guide/en/kibana/7.16/index.html
-[kibana-github]:
+[kibana-github]: https://github.com/elastic/kibana
 
 <!-- </KFD-DOCS> -->
 
