@@ -4,6 +4,6 @@
 
 resources:
   - name: logging/curator-s3
-    version: v1.10.0
+    version: v1.10.1
   - name: logging/elasticsearch-single
-    version: v1.10.0
+    version: v1.10.1
