@@ -56,7 +56,7 @@ To learn how to customize compute resources for Elasticsearch please follow the
 [es-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
 [es-gh]: https://github.com/elastic/elasticsearch
 [es-doc]: https://www.elastic.co/guide/en/elasticsearch/reference/7.16/index.html
-[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
+[prometheus-operator]: https://github.com/sighupio/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator
 
 <!-- </KFD-DOCS> -->
 
