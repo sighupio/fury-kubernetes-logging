@@ -7,5 +7,14 @@ spec:
     disablePvc: false
     scaling:
       replicas: 2
-  fluentbit: {}
+  fluentbit:
+    inputTail:
+      Ignore_Older: 86400s
+    filterKubernetes:
+      Kube_URL: "https://kubernetes.default.svc:443"
+      Match: "kubernetes.*"
+      Kube_CA_File: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      Kube_Tag_Prefix: kubernetes.var.log.containers
+      Kube_Token_File: /var/run/secrets/kubernetes.io/serviceaccount/token
+      Merge_Log: "On"
   controlNamespace: logging

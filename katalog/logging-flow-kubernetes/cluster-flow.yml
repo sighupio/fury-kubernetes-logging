@@ -4,11 +4,9 @@ metadata:
   name: kubernetes
 spec:
   filters:
-    - dedot: {}
-    - parser:
-        remove_key_name_field: true
-        parse:
-          type: json
+    - dedot:
+        de_dot_separator: "_"
+        de_dot_nested: true
   match:
     - select: {}
   globalOutputRefs:
