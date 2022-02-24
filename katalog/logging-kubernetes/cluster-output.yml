@@ -8,7 +8,7 @@ spec:
     port: 9200
     scheme: http
     logstash_format: true
-    logstash_prefix: cabernetes
+    logstash_prefix: kubernetes
     log_es_400_reason: true
     request_timeout: 60s
     buffer:
