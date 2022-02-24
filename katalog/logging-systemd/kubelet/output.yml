@@ -1,0 +1,23 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Output
+metadata:
+  name: elasticsearch-systemd-kubelet
+spec:
+  elasticsearch:
+    host: elasticsearch.logging.svc.cluster.local
+    port: 9200
+    scheme: http
+    logstash_format: true
+    logstash_prefix: systemd
+    log_es_400_reason: true
+    request_timeout: 60s
+    buffer:
+      timekey: "1m"
+      timekey_wait: "10s"
+      timekey_use_utc: true
+      flush_interval: "10s"
+      chunk_limit_size: "2m"
+      queue_limit_length: 32
+      retry_max_interval: "30"
+      retry_forever: true
+      overflow_action: "block"

@@ -1,14 +1,14 @@
 apiVersion: logging.banzaicloud.io/v1beta1
-kind: ClusterOutput
+kind: Output
 metadata:
-  name: elasticsearch-kubernetes
+  name: elasticsearch-events
 spec:
   elasticsearch:
     host: elasticsearch.logging.svc.cluster.local
     port: 9200
     scheme: http
     logstash_format: true
-    logstash_prefix: kubernetes
+    logstash_prefix: events
     log_es_400_reason: true
     request_timeout: 60s
     buffer:

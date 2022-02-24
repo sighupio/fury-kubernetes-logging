@@ -8,6 +8,11 @@ spec:
         de_dot_separator: "_"
         de_dot_nested: true
   match:
-    - select: {}
+    - exclude:
+        labels:
+          app.kubernetes.io/name: host-tailer
+    - exclude:
+        labels:
+          app.kubernetes.io/name: event-tailer
   globalOutputRefs:
     - elasticsearch-kubernetes

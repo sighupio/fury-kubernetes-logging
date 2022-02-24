@@ -1,0 +1,15 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Flow
+metadata:
+  name: events
+spec:
+  filters:
+    - dedot:
+        de_dot_separator: "_"
+        de_dot_nested: true
+  match:
+    - select:
+        labels:
+          app.kubernetes.io/instance: kubernetes-event-tailer
+  localOutputRefs:
+    - elasticsearch-events
