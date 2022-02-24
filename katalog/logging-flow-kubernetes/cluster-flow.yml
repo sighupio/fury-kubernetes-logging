@@ -1,0 +1,15 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: kubernetes
+spec:
+  filters:
+    - dedot: {}
+    - parser:
+        remove_key_name_field: true
+        parse:
+          type: json
+  match:
+    - select: {}
+  globalOutputRefs:
+    - elasticsearch-kubernetes
