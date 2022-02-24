@@ -1,0 +1,10 @@
+apiVersion: logging-extensions.banzaicloud.io/v1alpha1
+kind: HostTailer
+metadata:
+  name: systemd-kubelet
+spec:
+  systemdTailers:
+    - name: systemd-kubelet-hosttailer
+      disabled: false
+      maxEntries: 100
+      systemdFilter: kubelet.service
