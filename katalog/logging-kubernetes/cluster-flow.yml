@@ -10,6 +10,9 @@ spec:
   match:
     - select: {}
     - exclude:
+        namespaces:
+          - ingress-nginx
+    - exclude:
         labels:
           app.kubernetes.io/name: host-tailer
     - exclude:

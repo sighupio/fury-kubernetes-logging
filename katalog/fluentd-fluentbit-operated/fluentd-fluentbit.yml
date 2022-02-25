@@ -17,4 +17,7 @@ spec:
       Kube_Tag_Prefix: kubernetes.var.log.containers
       Kube_Token_File: /var/run/secrets/kubernetes.io/serviceaccount/token
       Merge_Log: "On"
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule
   controlNamespace: logging
