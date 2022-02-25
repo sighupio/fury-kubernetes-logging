@@ -12,3 +12,8 @@ resources:
   - ingress-nginx
   - kubernetes
   - systemd
+
+commonLabels:
+  module.kfd.sighup.io/name: "logging"
+  module.kfd.sighup.io/version: "v1.10.1"
+  kfd.sighup.io/source: "kustomize"
