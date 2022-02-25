@@ -36,7 +36,9 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
 | [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                    |
 | [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                   |
-| [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                       |
+| [fluentd](katalog/logging-operator)                  | `3.17.0` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
+| [fluentd](katalog/logging-operated)                  | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
+| [fluentd](katalog/configs)                           | `-`      | Logging pipeline configs to gather various types of logs                                                |
 | [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                  |
 
 Click on each package to see its full documentation.
@@ -73,7 +75,11 @@ bases:
     version: "v1.10.1"
   - name: logging/elasticsearch-single
     version: "v1.10.1"
-  - name: logging/fluentd
+  - name: logging/logging-operator
+    version: "v1.10.1"
+  - name: logging/logging-operated
+    version: "v1.10.1"
+  - name: logging/configs
     version: "v1.10.1"
   - name: logging/kibana
     version: "v1.10.1"
@@ -92,7 +98,9 @@ resources:
 - ./vendor/katalog/logging/cerebro
 - ./vendor/katalog/logging/curator
 - ./vendor/katalog/logging/elasticsearch-single
-- ./vendor/katalog/logging/fluentd
+- ./vendor/katalog/logging/logging-operator
+- ./vendor/katalog/logging/logging-operated
+- ./vendor/katalog/logging/configs
 - ./vendor/katalog/logging/kibana
 ```
 
