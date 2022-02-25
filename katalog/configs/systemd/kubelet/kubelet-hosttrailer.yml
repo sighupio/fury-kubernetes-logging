@@ -8,3 +8,7 @@ spec:
       disabled: false
       maxEntries: 100
       systemdFilter: kubelet.service
+  workloadOverrides:
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule
