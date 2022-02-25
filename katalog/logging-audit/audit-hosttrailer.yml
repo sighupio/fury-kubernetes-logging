@@ -7,4 +7,12 @@ spec:
     - name: audit
       disabled: false
       path: /var/log/kubernetes/kube-apiserver-audit.log
+  workloadOverrides:
+    nodeSelector:
+      node.kubernetes.io/role: master
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule
+
+
 

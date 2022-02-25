@@ -8,3 +8,9 @@ spec:
       disabled: false
       maxEntries: 100
       systemdFilter: etcd.service
+  workloadOverrides:
+    nodeSelector:
+      node.kubernetes.io/role: master
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule
