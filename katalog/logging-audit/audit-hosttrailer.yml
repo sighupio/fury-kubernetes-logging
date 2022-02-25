@@ -3,7 +3,7 @@ kind: HostTailer
 metadata:
   name: audit
 spec:
-  systemdTailers:
+  fileTailers:
     - name: audit
       disabled: false
       path: /var/log/kubernetes/kube-apiserver-audit.log
