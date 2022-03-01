@@ -17,3 +17,11 @@ commonLabels:
   kfd.sighup.io/source: "kustomize"
 
 namespace: ingress-nginx
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: ingress-controller-index-template
+    files:
+      - ingress-controller-index-template=ingress-controller-index-template.json

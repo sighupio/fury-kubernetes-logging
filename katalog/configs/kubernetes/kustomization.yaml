@@ -17,3 +17,11 @@ commonLabels:
   kfd.sighup.io/source: "kustomize"
 
 namespace: logging
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: kubernetes-index-template
+    files:
+      - kubernetes-index-template=kubernetes-index-template.json

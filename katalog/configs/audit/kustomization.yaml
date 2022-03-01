@@ -18,3 +18,11 @@ commonLabels:
   kfd.sighup.io/source: "kustomize"
 
 namespace: logging
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: audit-index-template
+    files:
+      - audit-index-template=audit-index-template.json

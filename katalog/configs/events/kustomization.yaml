@@ -18,3 +18,11 @@ commonLabels:
   kfd.sighup.io/source: "kustomize"
 
 namespace: logging
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: events-index-template
+    files:
+      - events-index-template=events-index-template.json

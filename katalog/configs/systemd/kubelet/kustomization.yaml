@@ -18,3 +18,11 @@ commonLabels:
   kfd.sighup.io/source: "kustomize"
 
 namespace: logging
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: systemd-index-template
+    files:
+      - systemd-index-template=systemd-index-template.json
