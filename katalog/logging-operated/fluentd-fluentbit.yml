@@ -23,6 +23,7 @@ spec:
         cpu: 300m
         memory: 400Mi
   fluentbit:
+    enableUpstream: true
     inputTail:
       Ignore_Older: 86400s
     filterKubernetes:
