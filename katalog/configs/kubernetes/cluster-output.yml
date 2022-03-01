@@ -15,12 +15,11 @@ spec:
     logstash_format: true
     logstash_prefix: kubernetes
     log_es_400_reason: true
-    request_timeout: 60s
+    request_timeout: 600s
     buffer:
       timekey: "1m"
       timekey_wait: "10s"
       timekey_use_utc: true
-      flush_interval: "10s"
       chunk_limit_size: "2m"
       queue_limit_length: 32
       retry_max_interval: "30"
