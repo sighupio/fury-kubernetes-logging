@@ -27,6 +27,7 @@ spec:
     enableUpstream: true
     inputTail:
       Ignore_Older: 86400s
+      Mem_Buf_Limit: 150MB
     filterKubernetes:
       Kube_URL: "https://kubernetes.default.svc:443"
       Match: "kubernetes.*"
