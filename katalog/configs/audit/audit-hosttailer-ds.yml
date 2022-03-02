@@ -33,6 +33,8 @@ spec:
         - db=/var/pos/audit-host-tailer-audit.db
         - -p
         - buffer_max_size=256k
+        - -p
+        - skip_long_lines=On
         - -o
         - file
         - -p
