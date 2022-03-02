@@ -1,0 +1,30 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: minio-errors
+spec:
+  s3:
+    aws_key_id:
+      valueFrom:
+        secretKeyRef:
+          name: minio-credentials
+          key: MINIO_ACCESS_KEY
+    aws_sec_key:
+      valueFrom:
+        secretKeyRef:
+          name: minio-credentials
+          key: MINIO_SECRET_KEY
+    s3_bucket: logging
+    s3_region: local
+    s3_endpoint: 'http://minio.logging.svc.cluster.local:9000'
+    force_path_style: 'true'
+    path: logs/${tag}/%Y/%m/%d/
+    buffer:
+      timekey: 10m
+      timekey_wait: 30s
+      timekey_use_utc: true
