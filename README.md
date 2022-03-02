@@ -36,9 +36,9 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
 | [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                    |
 | [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                   |
-| [fluentd](katalog/logging-operator)                  | `3.17.0` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
-| [fluentd](katalog/logging-operated)                  | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
-| [fluentd](katalog/configs)                           | `-`      | Logging pipeline configs to gather various types of logs                                                |
+| [logging-operator](katalog/logging-operator)         | `3.17.0` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
+| [logging-operated](katalog/logging-operated)         | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
+| [configs](katalog/configs)                           | `-`      | Logging pipeline configs to gather various types of logs                                                |
 | [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                  |
 
 Click on each package to see its full documentation.
