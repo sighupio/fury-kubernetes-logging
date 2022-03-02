@@ -1,0 +1,75 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app.kubernetes.io/instance: audit-host-tailer
+    app.kubernetes.io/name: host-tailer
+  name: audit-host-tailer
+  namespace: logging
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: audit-host-tailer
+      app.kubernetes.io/name: host-tailer
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: audit-host-tailer
+        app.kubernetes.io/name: host-tailer
+    spec:
+      containers:
+      - command:
+        - /fluent-bit/bin/fluent-bit
+        - -i
+        - tail
+        - -p
+        - path=/var/log/kubernetes/kube-apiserver-audit.log
+        - -p
+        - db=/var/pos/audit-host-tailer-audit.db
+        - -p
+        - buffer_max_size=256k
+        - -o
+        - file
+        - -p
+        - format=template
+        - -p
+        - template={log}
+        - -p
+        - path=/dev/
+        - -p
+        - file=stdout
+        image: fluent/fluent-bit:1.6.1
+        imagePullPolicy: IfNotPresent
+        name: audit
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/pos
+          name: positions
+        - mountPath: /var/log/kubernetes
+          name: var-log-kubernetes
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        node.kubernetes.io/role: master
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      volumes:
+      - hostPath:
+          path: /var/pos
+          type: ""
+        name: positions
+      - hostPath:
+          path: /var/log/kubernetes
+          type: ""
+        name: var-log-kubernetes
