@@ -13,7 +13,6 @@ spec:
         de_dot_separator: "_"
         de_dot_nested: true
   match:
-    - select: {}
     - exclude:
         namespaces:
           - ingress-nginx
@@ -23,5 +22,6 @@ spec:
     - exclude:
         labels:
           app.kubernetes.io/name: event-tailer
+    - select: {}
   globalOutputRefs:
     - elasticsearch-kubernetes
