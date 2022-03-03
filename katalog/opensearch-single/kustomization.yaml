@@ -15,9 +15,9 @@ commonLabels:
   kfd.sighup.io/source: "kustomize"
 
 images:
-#  - name: justwatch/elasticsearch_exporter
-#    newName: registry.sighup.io/fury/justwatch/elasticsearch_exporter
-#    newTag: "1.1.0"
+  - name: justwatch/elasticsearch_exporter
+    newName: registry.sighup.io/fury/justwatch/elasticsearch_exporter
+    newTag: "1.1.0"
   - name: opensearchproject/opensearch
     newName: registry.sighup.io/fury/opensearchproject/opensearch
     newTag: "1.2.4"
