@@ -104,7 +104,7 @@ spec:
       - "ReadWriteOnce"
       resources:
         requests:
-          storage: "8Gi"
+          storage: "30Gi"
   template:
     metadata:
       name: "opensearch-cluster-master"
@@ -115,8 +115,6 @@ spec:
         app.kubernetes.io/version: "1.2.4"
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: opensearch-cluster-master
-      annotations:
-        configchecksum: 631f7b5e5f9b051cba587ec820f74a185b787765910e98a4da725cfd6bd97a2
     spec:
       securityContext:
         fsGroup: 1000
@@ -146,11 +144,12 @@ spec:
       enableServiceLinks: true
       initContainers:
       - name: fsgroup-volume
-        image: "busybox:latest"
+        image: "alpine"
         command: ['sh', '-c']
         args:
-          - 'chown -R 1000:1000 /usr/share/opensearch/data'
+          - 'sysctl -w vm.max_map_count=262144 && sysctl -w fs.file-max=65536 && sysctl -p && chown -R 1000:1000 /usr/share/opensearch/data'
         securityContext:
+          privileged: true
           runAsUser: 0
         volumeMounts:
           - name: "opensearch-cluster-master"
@@ -163,7 +162,7 @@ spec:
             - ALL
           runAsNonRoot: true
           runAsUser: 1000
-        image: "opensearchproject/opensearch:1.2.4"
+        image: "opensearchproject/opensearch"
         imagePullPolicy: "IfNotPresent"
         ports:
         - name: http

@@ -14,20 +14,20 @@ commonLabels:
   module.kfd.sighup.io/component: "opensearch"
   kfd.sighup.io/source: "kustomize"
 
-#images:
+images:
 #  - name: justwatch/elasticsearch_exporter
 #    newName: registry.sighup.io/fury/justwatch/elasticsearch_exporter
 #    newTag: "1.1.0"
-#  - name: docker.elastic.co/elasticsearch/elasticsearch
-#    newName: registry.sighup.io/fury/elasticsearch
-#    newTag: "7.16.2"
-#  - name: alpine
-#    newName: registry.sighup.io/fury/alpine
-#    newTag: "3.14"
+  - name: opensearchproject/opensearch
+    newName: registry.sighup.io/fury/opensearchproject/opensearch
+    newTag: "1.2.4"
+  - name: alpine
+    newName: registry.sighup.io/fury/alpine
+    newTag: "3.14"
 
 resources:
-  - opensearch-single-built.yaml
-  #- ns.yml
+  - deploy.yaml
+  - ns.yml
 #  - sm.yml
 #  - rules.yml
 

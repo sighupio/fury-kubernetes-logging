@@ -1,0 +1,30 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: opensearch-cluster-master
+spec:
+  replicas: 3
+  template:
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app.kubernetes.io/name"
+                      operator: In
+                      values:
+                        - opensearch
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: opensearch
+          env:
+            - name: cluster.initial_master_nodes
+              value: "opensearch-cluster-master-0,opensearch-cluster-master-1,opensearch-cluster-master-2,"

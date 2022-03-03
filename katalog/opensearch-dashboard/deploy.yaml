@@ -77,12 +77,10 @@ spec:
       labels:
         app: opensearch-dashboards
         release: "opensearch-dashboards"
-      annotations:
     spec:
       securityContext:
         {}
       serviceAccountName: opensearch-dashboards-dashboards
-      volumes:
       containers:
       - name: dashboards
         securityContext:
@@ -91,7 +89,7 @@ spec:
             - ALL
           runAsNonRoot: true
           runAsUser: 1000
-        image: "opensearchproject/opensearch-dashboards:1.2.0"
+        image: "opensearchproject/opensearch-dashboards"
         imagePullPolicy: "IfNotPresent"
         env:
         - name: OPENSEARCH_HOSTS
@@ -109,4 +107,3 @@ spec:
           requests:
             cpu: 100m
             memory: 512M
-        volumeMounts:

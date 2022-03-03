@@ -6,21 +6,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: logging
-
 commonLabels:
   module.kfd.sighup.io/name: "logging"
   module.kfd.sighup.io/version: "v1.10.1"
-  module.kfd.sighup.io/component: "opensearch-dashboard"
+  module.kfd.sighup.io/component: "opensearch-triple"
   kfd.sighup.io/source: "kustomize"
 
-images:
-  - name: opensearchproject/opensearch-dashboards
-    newName: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
-    newTag: 1.2.0
+namespace: logging
 
 resources:
-  - deploy.yaml
+  - ../opensearch-single
 
-
-
+patchesStrategicMerge:
+  - triple.yml
