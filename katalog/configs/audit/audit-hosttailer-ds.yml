@@ -45,7 +45,7 @@ spec:
         - path=/dev/
         - -p
         - file=stdout
-        image: fluent/fluent-bit:1.6.1
+        image: fluent/fluent-bit
         imagePullPolicy: IfNotPresent
         name: audit
         resources: {}

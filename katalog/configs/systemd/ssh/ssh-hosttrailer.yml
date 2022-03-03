@@ -13,6 +13,8 @@ spec:
       disabled: false
       maxEntries: 100
       systemdFilter: ssh.service
+      containerOverrides:
+        image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
   workloadOverrides:
     tolerations:
       - operator: Exists

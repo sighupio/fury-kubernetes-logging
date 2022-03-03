@@ -9,3 +9,5 @@ metadata:
   name: kubernetes
 spec:
   controlNamespace: logging
+  containerOverrides:
+    image: registry.sighup.io/fury/banzaicloud/eventrouter:v0.1.0

@@ -27,3 +27,8 @@ secretGenerator:
   - name: audit-index-template
     files:
       - audit-index-template=audit-index-template.json
+
+images:
+  - name: fluent/fluent-bit
+    newName: registry.sighup.io/fury/fluent/fluent-bit
+    newTag: 1.6.1
