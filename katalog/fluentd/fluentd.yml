@@ -37,7 +37,7 @@ spec:
         args: ["-c", "/etc/tmp-conf/fluent.conf"]
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
-            value: "opensearch-cluster-master-headless"
+            value: "opensearch-cluster-master"
           - name:  FLUENT_ELASTICSEARCH_PORT
             value: "9200"
           - name: FLUENT_ELASTICSEARCH_SCHEME

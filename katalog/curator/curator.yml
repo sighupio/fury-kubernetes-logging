@@ -20,7 +20,7 @@ spec:
             args: ["--config", "/config/config.yml", "/config/action.yml"]
             env:
             - name: ES_HOST
-              value: opensearch-cluster-master-headless
+              value: opensearch-cluster-master
             - name: UNIT
               value: days
             - name: UNIT_COUNT
