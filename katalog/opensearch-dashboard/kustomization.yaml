@@ -22,5 +22,7 @@ images:
 resources:
   - deploy.yaml
 
-
-
+secretGenerator:
+  - name: opensearch-dashboards
+    files:
+      - configs/opensearch_dashboards.yml

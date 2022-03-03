@@ -107,3 +107,11 @@ spec:
           requests:
             cpu: 100m
             memory: 512M
+        volumeMounts:
+          - name: opensearch-dashboards
+            mountPath: /usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+            subPath: opensearch_dashboards.yml
+      volumes:
+        - name: opensearch-dashboards
+          secret:
+            secretName: opensearch-dashboards
