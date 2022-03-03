@@ -141,6 +141,9 @@ spec:
       - name: config
         configMap:
           name: opensearch-cluster-master-config
+      - name: internal-users
+        secret:
+          secretName: opensearch-internal-users
       enableServiceLinks: true
       initContainers:
       - name: fsgroup-volume
@@ -199,3 +202,27 @@ spec:
         - name: config
           mountPath: /usr/share/opensearch/config/opensearch.yml
           subPath: opensearch.yml
+        - name: internal-users
+          mountPath: /usr/share/opensearch/plugins/opensearch-security/securityconfig/internal_users.yml
+          subPath: internal_users.yml
+      - name: exporter
+        image: justwatch/elasticsearch_exporter
+        args:
+          - '--es.uri=http://$HTTP_AUTH@localhost:9200'
+          - '--es.cluster_settings'
+          - '--es.indices'
+          - '--es.snapshots'
+          - '--web.listen-address=:9108'
+        ports:
+          - containerPort: 9108
+            name: metrics
+        envFrom:
+          - secretRef:
+              name: opensearch-credentials
+        resources:
+          limits:
+            cpu: 200m
+            memory: 400Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi

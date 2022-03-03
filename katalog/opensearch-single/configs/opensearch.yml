@@ -35,7 +35,7 @@ plugins:
     enable_snapshot_restore_privilege: true
     check_snapshot_restore_write_privileges: true
     restapi:
-      roles_enabled: ["all_access", "security_rest_api_access"]
+      roles_enabled: ["all_access"]
     system_indices:
       enabled: true
       indices:
@@ -51,4 +51,3 @@ plugins:
             ".opendistro-notebooks",
             ".opendistro-asynchronous-search-response*",
         ]
-######## End OpenSearch Security Demo Configuration ########
