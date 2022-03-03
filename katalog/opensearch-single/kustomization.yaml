@@ -28,8 +28,8 @@ images:
 resources:
   - deploy.yaml
   - ns.yml
-#  - sm.yml
-#  - rules.yml
+  - sm.yml
+  - rules.yml
 
 configMapGenerator:
   - name: opensearch-cluster-master-config

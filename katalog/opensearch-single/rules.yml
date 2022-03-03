@@ -1,0 +1,65 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: opensearch-rules
+  namespace: logging
+spec:
+  groups:
+    - name: opensearch.rules
+      rules:
+        - alert: OpenSearchClusterRed
+          expr: elasticsearch_cluster_health_status{color="red"} == 1
+          for: 30m
+          labels:
+            severity: critical
+          annotations:
+            message: 'OpenSearch Cluster status is Red, cluster: {{ $labels.cluster }})'
+            doc: "OpenSearch Cluster status is Red in the last 30 minutes."
+        - alert: OpenSearchClusterYellow
+          expr: elasticsearch_cluster_health_status{color="yellow"} == 1
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            message: 'OpenSearch Cluster status is Yellow, cluster: {{ $labels.cluster }})'
+            doc: "OpenSearch Cluster status is Yellow in the last 30 minutes."
+        - alert: OpenSearchNumberOfRelocationShards
+          expr: elasticsearch_cluster_health_relocating_shards > 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            message: 'Number of relocationg shards in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of relocation shards for 30 min"
+        - alert: OpenSearchNumberOfInitializingShards
+          expr: elasticsearch_cluster_health_initializing_shards > 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            message: 'Number of initializing shards in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of initializing shards in the last 30 min."
+        - alert: OpenSearchNumberOfUnassignedShards
+          expr: elasticsearch_cluster_health_unassigned_shards > 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            message: 'Number of unassigned shards in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of unassigned shards in the last 30 min."
+        - alert: OpenSearchNumberOfPendingTasks
+          expr: elasticsearch_cluster_health_number_of_pending_tasks > 0
+          for: 30m
+          labels:
+            severity: warning
+          annotations:
+            message: 'Number of pending tasks in the last 30 min: {{ $value }} in the cluster: {{ $labels.cluster }}'
+            doc: "Number of pending tasks in the last 30 min."
