@@ -12,6 +12,10 @@ spec:
     host: elasticsearch.logging.svc.cluster.local
     port: 9200
     scheme: http
+    verify_es_version_at_startup: false
+    default_elasticsearch_version: "7"
+    max_retry_get_es_version: "1"
+    max_retry_putting_template: "1"
     logstash_format: true
     logstash_prefix: events
     log_es_400_reason: true
