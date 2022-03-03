@@ -17,7 +17,7 @@ If you are new to KFD please refer to the [official documentation][kfd-docs] on 
 
 **Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster.
 
-The central piece of the stack is the CNCF certified open source search engine [opensearch][opensearch-page], combined with its analytics and visualization platform [opensearch-dashboard][opensearch-dashboard-page]. The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`), pushing it to the Opensearch via [fluentd][fluentd-page].
+The central piece of the stack is the CNCF certified open source search engine [opensearch][opensearch-page], combined with its analytics and visualization platform [opensearch-dashboards][opensearch-dashboards-page]. The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`), pushing it to the Opensearch via [fluentd][fluentd-page].
 
 Following is a high level design diagram of the module:
 
@@ -37,7 +37,7 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [opensearch-single](katalog/opensearch-single)       | `1.2.4`  | Single node opensearch deployment                                                                       |
 | [opensearch-triple](katalog/opensearch-triple)       | `1.2.4`  | Three node high-availability opensearch deployment                                                      |
 | [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                       |
-| [opensearch-dashboard](katalog/opensearch-dashboard) | `1.2.0`  | Analytics and visualization platform for Opensearch                                                     |
+| [opensearch-dashboards](katalog/opensearch-dashboards) | `1.2.0`  | Analytics and visualization platform for Opensearch                                                     |
 
 Click on each package to see its full documentation.
 
@@ -75,7 +75,7 @@ bases:
     version: "v1.10.1"
   - name: logging/fluentd
     version: "v1.10.1"
-  - name: logging/opensearch-dashboard
+  - name: logging/opensearch-dashboards
     version: "v1.10.1"
 ```
 
@@ -93,7 +93,7 @@ resources:
 - ./vendor/katalog/logging/curator
 - ./vendor/katalog/logging/opensearch-single
 - ./vendor/katalog/logging/fluentd
-- ./vendor/katalog/logging/opensearch-dashboard
+- ./vendor/katalog/logging/opensearch-dashboards
 ```
 
 5. To deploy the packages to your cluster, execute:
@@ -124,7 +124,7 @@ S3_BUCKET_NAME=my-s3_bucket
 <!-- Links -->
 
 [opensearch-page]: https://opensearch.org
-[opensearch-dashboard-page]: https://opensearch.org
+[opensearch-dashboards-page]: https://opensearch.org
 [fluentbit-page]: https://fluentbit.io/
 [fluentd-page]: https://www.fluentd.org/
 [kfd-repo]: https://github.com/sighupio/fury-distribution
