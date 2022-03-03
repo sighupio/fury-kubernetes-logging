@@ -7,12 +7,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../katalog/elasticsearch-triple
+  - ../../../katalog/opensearch-single
 
 images:
   - name: registry.sighup.io/fury/justwatch/elasticsearch_exporter
     newName: justwatch/elasticsearch_exporter
-  - name: registry.sighup.io/fury/elasticsearch
-    newName: docker.elastic.co/elasticsearch/elasticsearch
+  - name: registry.sighup.io/fury/opensearchproject/opensearch
+    newName: opensearchproject/opensearch
   - name: registry.sighup.io/fury/alpine
     newName: alpine

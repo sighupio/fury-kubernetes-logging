@@ -7,8 +7,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../katalog/kibana
+  - ../../../katalog/opensearch-dashboards
 
 images:
-  - name: registry.sighup.io/fury/kibana
-    newName: docker.elastic.co/kibana/kibana
+  - name: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
+    newName: opensearchproject/opensearch-dashboards
