@@ -401,7 +401,7 @@ spec:
     spec:
       containers:
         - name: logging-operator
-          image: "ghcr.io/banzaicloud/logging-operator:3.17.0"
+          image: "ghcr.io/banzaicloud/logging-operator"
           args:
             - -enable-leader-election=true
           imagePullPolicy: IfNotPresent
