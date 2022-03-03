@@ -39,3 +39,6 @@ secretGenerator:
   - name: es-backup-env
     envs:
       - secret-es-backup.env
+  - name: curator-opensearch-credentials
+    envs:
+      - opensearch-credentials.env

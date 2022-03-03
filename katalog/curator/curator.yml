@@ -3,7 +3,7 @@
 # license that can be found in the LICENSE file.
 
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: curator
@@ -20,11 +20,14 @@ spec:
             args: ["--config", "/config/config.yml", "/config/action.yml"]
             env:
             - name: ES_HOST
-              value: elasticsearch
+              value: opensearch-cluster-master-headless
             - name: UNIT
               value: days
             - name: UNIT_COUNT
               value: "30"
+            envFrom:
+              - secretRef:
+                  name: curator-opensearch-credentials
             resources:
               requests:
                 cpu: 100m
