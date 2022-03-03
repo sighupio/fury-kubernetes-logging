@@ -21,7 +21,6 @@ spec:
       timekey_wait: "10s"
       timekey_use_utc: true
       chunk_limit_size: "2m"
-      queue_limit_length: 32
       retry_max_interval: "30"
       retry_forever: true
       overflow_action: "block"
