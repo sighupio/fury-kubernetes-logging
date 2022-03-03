@@ -54,9 +54,9 @@ steps:
     commands:
       - kustomize build katalog/cerebro > cerebro.yml
       - kustomize build katalog/curator > curator.yml
-      - kustomize build katalog/elasticsearch-triple > elasticsearch-triple.yml
+      - kustomize build katalog/opensearch-triple > opensearch-triple.yml
       - kustomize build katalog/fluentd > fluentd.yml
-      - kustomize build katalog/kibana > kibana.yml
+      - kustomize build katalog/opensearch-dashboard > opensearch-dashboard.yml
 
   - &deprek8ion
     name: deprek8ion-cerebro
@@ -75,9 +75,9 @@ steps:
       KUBERNETES_MANIFESTS: curator.yml
 
   - <<: *deprek8ion
-    name: deprek8ion-elasticsearch-triple
+    name: deprek8ion-opensearch-triple
     environment:
-      KUBERNETES_MANIFESTS: elasticsearch-triple.yml
+      KUBERNETES_MANIFESTS: opensearch-triple.yml
 
   - <<: *deprek8ion
     name: deprek8ion-fluentd
@@ -85,9 +85,9 @@ steps:
       KUBERNETES_MANIFESTS: fluentd.yml
 
   - <<: *deprek8ion
-    name: deprek8ion-kibana
+    name: deprek8ion-opensearch-dashboard
     environment:
-      KUBERNETES_MANIFESTS: kibana.yml
+      KUBERNETES_MANIFESTS: opensearch-dashboard.yml
 
 ---
 kind: pipeline
