@@ -31,13 +31,13 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 
 | Package                                              | Version  | Description                                                                                             |
 |------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
-| [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface          |
-| [curator](katalog/curator)                           | `5.8.4`  | Manages elasticserach indices and snapshots, alongwith configurations to set the retention log policies |
+| [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface             |
+| [curator](katalog/curator)                           | `5.8.4`  | Manages opensearch indices and snapshots, along with configurations to set the retention log policies   |
 | [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
-| [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                    |
-| [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                   |
+| [opensearch-single](katalog/opensearch-single)       | `1.2.4`  | Single node opensearch deployment                                                                       |
+| [opensearch-triple](katalog/opensearch-triple)       | `1.2.4`  | Three node high-availability opensearch deployment                                                      |
 | [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                       |
-| [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                  |
+| [opensearch-dashboard](katalog/opensearch-dashboard) | `1.2.0`  | Analytics and visualization platform for Opensearch                                                     |
 
 Click on each package to see its full documentation.
 
@@ -71,11 +71,11 @@ bases:
     version: "v1.10.1"
   - name: logging/curator
     version: "v1.10.1"
-  - name: logging/elasticsearch-single
+  - name: logging/opensearch-single
     version: "v1.10.1"
   - name: logging/fluentd
     version: "v1.10.1"
-  - name: logging/kibana
+  - name: logging/opensearch-dashboard
     version: "v1.10.1"
 ```
 
@@ -91,9 +91,9 @@ bases:
 resources:
 - ./vendor/katalog/logging/cerebro
 - ./vendor/katalog/logging/curator
-- ./vendor/katalog/logging/elasticsearch-single
+- ./vendor/katalog/logging/opensearch-single
 - ./vendor/katalog/logging/fluentd
-- ./vendor/katalog/logging/kibana
+- ./vendor/katalog/logging/opensearch-dashboard
 ```
 
 5. To deploy the packages to your cluster, execute:
