@@ -37,7 +37,7 @@ spec:
         args: ["-c", "/etc/tmp-conf/fluent.conf"]
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
-            value: "elasticsearch"
+            value: "opensearch-cluster-master-headless"
           - name:  FLUENT_ELASTICSEARCH_PORT
             value: "9200"
           - name: FLUENT_ELASTICSEARCH_SCHEME
@@ -60,6 +60,10 @@ spec:
             value: "/etc/tmp-conf/index-template/fluentd-index-sighup-template-system.json"
           - name: FLUENT_ELASTICSEARCH_TEMPLATE_OVERWRITE
             value: "true"
+          - name: FLUENT_ELASTICSEARCH_USER
+            value: "admin"
+          - name: FLUENT_ELASTICSEARCH_PASSWORD
+            value: "admin"
         ports:
         - containerPort: 24231
           name: metrics
