@@ -18,18 +18,20 @@ spec:
       tag: v0.4.0
     affinity:
       podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-                - key: "app.kubernetes.io/name"
-                  operator: In
-                  values:
-                    - fluentd
-                - key: "app.kubernetes.io/component"
-                  operator: In
-                  values:
-                    - fluentd
-            topologyKey: "kubernetes.io/hostname"
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "app.kubernetes.io/name"
+                    operator: In
+                    values:
+                      - fluentd
+                  - key: "app.kubernetes.io/component"
+                    operator: In
+                    values:
+                      - fluentd
+              topologyKey: "kubernetes.io/hostname"
     disablePvc: false
     scaling:
       replicas: 2
