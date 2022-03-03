@@ -3,5 +3,7 @@
 # license that can be found in the LICENSE file.
 
 bases:
-  - name: logging/kibana
+  - name: logging/opensearch-single
     version: v1.10.1
+  - name: monitoring/prometheus-operator
+    version: master

@@ -2,8 +2,12 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-bases:
-  - vendor/katalog/logging/kibana
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
-patches:
+resources:
+  - vendor/katalog/logging/opensearch-dashboards
+
+patchesStrategicMerge:
   - node-selector.yml

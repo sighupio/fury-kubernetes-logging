@@ -1,4 +1,4 @@
-# Kibana Deployment
+# Opensearch Dashboards Deployment
 
 This example shows how to constrain assignment of Kibana pods to certain nodes.
 Pods are going to be deployed only on nodes with the given label.

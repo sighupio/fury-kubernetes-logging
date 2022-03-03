@@ -2,9 +2,13 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-bases:
-  - vendor/katalog/logging/elasticsearch-single
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - vendor/katalog/logging/opensearch-single
   - vendor/katalog/monitoring/prometheus-operator
 
-patches:
+patchesStrategicMerge:
   - set-resources.yml
