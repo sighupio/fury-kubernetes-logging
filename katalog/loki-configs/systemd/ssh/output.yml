@@ -15,7 +15,7 @@ spec:
     extra_labels:
       flow: systemd-ssh
     buffer:
-      timekey: "10s"
+      timekey: "1m"
       timekey_wait: "10s"
       timekey_use_utc: true
       chunk_limit_size: "2m"
