@@ -4,7 +4,7 @@
 
 Logging operator for Kubernetes based on Fluentd and Fluent-bit.
 
-The Logging operator automates the deployment and configuration of a Kubernetes logging pipeline. The operator deploys 
+The Logging operator automates the deployment and configuration of a Kubernetes logging pipeline. The operator deploys
 and configures a Fluent Bit daemonset on every node to collect container and application logs from the node file system.
 
 ## Requirements
