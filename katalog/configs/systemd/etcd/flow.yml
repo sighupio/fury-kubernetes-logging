@@ -17,4 +17,4 @@ spec:
         labels:
           app.kubernetes.io/instance: systemd-docker-etcd-tailer
   localOutputRefs:
-    - elasticsearch-systemd-etcd
+    - systemd-etcd

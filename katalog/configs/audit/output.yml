@@ -6,7 +6,7 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: Output
 metadata:
-  name: elasticsearch-audit
+  name: audit
 spec:
   elasticsearch:
     host: elasticsearch.logging.svc.cluster.local

@@ -6,7 +6,7 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: Output
 metadata:
-  name: elasticsearch-systemd-ssh
+  name: systemd-ssh
 spec:
   elasticsearch:
     host: elasticsearch.logging.svc.cluster.local

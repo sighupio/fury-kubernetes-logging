@@ -6,7 +6,7 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: ClusterOutput
 metadata:
-  name: minio-errors
+  name: errors
 spec:
   s3:
     aws_key_id:

@@ -6,7 +6,7 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: Output
 metadata:
-  name: elasticsearch-systemd-etcd
+  name: systemd-etcd
 spec:
   elasticsearch:
     host: elasticsearch.logging.svc.cluster.local
