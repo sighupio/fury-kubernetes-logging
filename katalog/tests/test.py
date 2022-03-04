@@ -37,6 +37,7 @@ def test_api_version(doc):
         "monitoring.coreos.com/v1",
         "rbac.authorization.k8s.io/v1",
         "apiextensions.k8s.io/v1beta1",
+        "apiextensions.k8s.io/v1",
         "logging.banzaicloud.io/v1beta1",
         "logging-extensions.banzaicloud.io/v1alpha1",
     ]
