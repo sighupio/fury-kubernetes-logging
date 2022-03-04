@@ -1,0 +1,12 @@
+---
+# Source: loki-stack/charts/loki/templates/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: loki-stack
+  namespace: logging
+spec:
+  replicas: 3
+
+
+
