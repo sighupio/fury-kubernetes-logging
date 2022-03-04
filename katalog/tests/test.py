@@ -33,9 +33,11 @@ def test_api_version(doc):
         "v1",
         "apps/v1",
         "batch/v1beta1",
+        "batch/v1",
         "monitoring.coreos.com/v1",
         "rbac.authorization.k8s.io/v1",
         "apiextensions.k8s.io/v1beta1",
+        "logging.banzaicloud.io/v1beta1",
     ]
     assert doc["apiVersion"] in allowed_api_version
 
