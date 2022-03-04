@@ -4,16 +4,16 @@
 
 ---
 apiVersion: logging.banzaicloud.io/v1beta1
-kind: ClusterOutput
+kind: Output
 metadata:
-  name: kubernetes
+  name: ingress-nginx
 spec:
   loki:
     url: http://loki-stack:3100
     extract_kubernetes_labels: true
     configure_kubernetes_labels: true
     extra_labels:
-      flow: kubernetes
+      flow: ingress-nginx
     buffer:
       timekey: "1m"
       timekey_wait: "10s"
