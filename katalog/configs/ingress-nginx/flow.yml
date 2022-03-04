@@ -21,7 +21,7 @@ spec:
         labels:
           app: ingress-nginx
   localOutputRefs:
-    - elasticsearch-ingress-nginx
+    - ingress-nginx
 
 # Alternatively:
 #    - parser:

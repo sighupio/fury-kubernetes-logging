@@ -8,7 +8,7 @@ kind: Logging
 metadata:
   name: infra
 spec:
-  errorOutputRef: minio-errors
+  errorOutputRef: errors
   fluentd:
     image:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
