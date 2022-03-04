@@ -48,21 +48,21 @@ spec:
         image: fluent/fluent-bit
         imagePullPolicy: IfNotPresent
         name: audit
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
         volumeMounts:
         - mountPath: /var/pos
           name: positions
         - mountPath: /var/log/kubernetes
           name: var-log-kubernetes
-      dnsPolicy: ClusterFirst
       nodeSelector:
         node.kubernetes.io/role: master
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
       tolerations:
       - effect: NoSchedule
         operator: Exists
