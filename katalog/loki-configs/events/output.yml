@@ -15,12 +15,10 @@ spec:
     extra_labels:
       flow: events
     buffer:
-      timekey: "1m"
+      timekey: "10s"
       timekey_wait: "10s"
       timekey_use_utc: true
-      flush_interval: "10s"
       chunk_limit_size: "2m"
       retry_max_interval: "30"
       retry_forever: true
       overflow_action: "block"
-      flush_thread_count: 4
