@@ -29,10 +29,10 @@ spec:
         resources:
           requests:
             cpu: "100m"
-            memory: "200m"
+            memory: "200Mi"
           limits:
             cpu: "1000m"
-            memory: "512m"
+            memory: "512Mi"
         envFrom:
         - secretRef:
             name: minio-credentials
