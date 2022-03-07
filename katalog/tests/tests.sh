@@ -58,6 +58,7 @@ set -o pipefail
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\|PodInitializing\)" >&2
   do
     [ $max_retry -lt 100 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
+    kubectl get pods --all-namespaces
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$((max_retry+1))
   done
