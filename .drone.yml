@@ -169,7 +169,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.20.7'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -268,7 +268,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.21.1'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -367,7 +367,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.22.0'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -466,7 +466,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.23.0'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
