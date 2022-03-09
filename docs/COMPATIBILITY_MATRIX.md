@@ -13,8 +13,8 @@
 | v1.7.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |           |
 | v1.8.0                              |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |           |
 | v1.9.0                              |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
-| v1.10.0                             |                    |                    |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning: |
-| v1.10.1                             |                    |                    |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning: |
+| v1.10.0                             |                    |                    |                    |                    |                    |                    | :x:                | :x:                | :x:                | :x:       |
+| v1.10.1                             |                    |                    |                    |                    |                    |                    | :x:                | :x:                | :x:                | :x:       |
 | v1.10.2                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 - :white_check_mark: Compatible
@@ -26,5 +26,5 @@
 - ⚠️: module version: v1.7.0 and Kubernetes Version: 1.20.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
 - ⚠️: module version: v1.8.0 and Kubernetes Version: 1.21.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
 - ⚠️: module version: v1.9.0 and Kubernetes Version: 1.22.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
-- ⚠️: module version: v1.10.0 has a known bug breaking upgrades. Please do not use.
-- ⚠️: module version: v1.10.1 has a known bug breaking upgrades. Please do not use.
+- :x:: module version: v1.10.0 has a known bug breaking upgrades. Please do not use.
+- :x:: module version: v1.10.1 has a known bug breaking upgrades. Please do not use.
