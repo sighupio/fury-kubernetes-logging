@@ -11,10 +11,4 @@ resources:
   - output.yml
   - flow.yml
 
-commonLabels:
-  module.kfd.sighup.io/name: "logging"
-  module.kfd.sighup.io/version: "v1.10.1"
-  module.kfd.sighup.io/component: "configs-etcd"
-  kfd.sighup.io/source: "kustomize"
-
 namespace: logging

@@ -10,12 +10,6 @@ resources:
   - cluster-flow.yml
   - cluster-output.yml
 
-commonLabels:
-  module.kfd.sighup.io/name: "logging"
-  module.kfd.sighup.io/version: "v1.10.1"
-  module.kfd.sighup.io/component: "configs-kubernetes"
-  kfd.sighup.io/source: "kustomize"
-
 namespace: logging
 
 generatorOptions:
