@@ -64,7 +64,7 @@ Since we are configuring a `ServiceMonitor` in this package, followings Promethe
 [es-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
 [es-gh]: https://github.com/elastic/elasticsearch
 [es-doc]: https://www.elastic.co/guide/en/elasticsearch/reference/7.16/index.html
-[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
+[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/prometheus-operator
 
 <!-- </KFD-DOCS> -->
 

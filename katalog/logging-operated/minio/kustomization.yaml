@@ -12,6 +12,8 @@ resources:
   - service.yaml
   - sts.yaml
 
+namespace: logging
+
 vars:
   - name: MINIO_NAMESPACE
     objref:

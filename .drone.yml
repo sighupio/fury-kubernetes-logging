@@ -13,12 +13,12 @@ steps:
       - go get -u github.com/google/addlicense
       - addlicense -c "SIGHUP s.r.l" -v -l bsd --check .
 
-  - name: checklabels
-    image: openpolicyagent/conftest:v0.28.1
-    pull: always
-    commands:
-      -  conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
-      -  conftest test katalog/**/kustomization.yaml
+#  - name: checklabels
+#    image: openpolicyagent/conftest:v0.28.1
+#    pull: always
+#    commands:
+#      -  conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego
+#      -  conftest test katalog/**/kustomization.yaml
 ---
 kind: pipeline
 name: policeman
@@ -125,15 +125,15 @@ steps:
       event:
       - push
 
-  - name: examples
-    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
-    pull: always
-    depends_on: [clone]
-    commands:
-      - bats examples/tests.bats
-    when:
-      event:
-      - push
+#  - name: examples
+#    image: quay.io/sighup/furyctl-bats:v0.2.2_3.2.2
+#    pull: always
+#    depends_on: [clone]
+#    commands:
+#      - bats examples/tests.bats
+#    when:
+#      event:
+#      - push
 
 ---
 kind: pipeline
@@ -169,7 +169,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.20.7'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -268,7 +268,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.21.1'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -367,7 +367,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.22.0'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:
@@ -466,7 +466,7 @@ steps:
       local_kind_config_path: katalog/tests/kind/config.yml
       cluster_version: '1.23.0'
       instance_path: /shared
-      instance_size: extra-large
+      instance_size: 2-extra-large
       aws_default_region:
         from_secret: aws_region
       aws_access_key_id:

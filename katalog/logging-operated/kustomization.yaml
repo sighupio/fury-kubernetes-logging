@@ -12,10 +12,4 @@ resources:
   - dashboards
   - fluentd-fluentbit.yml
 
-commonLabels:
-  module.kfd.sighup.io/name: "logging"
-  module.kfd.sighup.io/version: "v1.10.1"
-  module.kfd.sighup.io/component: "logging-operated"
-  kfd.sighup.io/source: "kustomize"
-
 namespace: logging
