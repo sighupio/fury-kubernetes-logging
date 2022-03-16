@@ -68,7 +68,7 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v1.10.1"
+    version: "v1.10.2"
   - name: logging/curator
     version: "v1.10.1"
   - name: logging/opensearch-single
