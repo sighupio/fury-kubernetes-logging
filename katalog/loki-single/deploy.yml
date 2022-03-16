@@ -4,11 +4,8 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
   name: loki-stack-grafana
   namespace: logging
 ---
@@ -17,11 +14,8 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
   name: loki-stack-grafana-test
   namespace: logging
 ---
@@ -47,11 +41,8 @@ metadata:
   name: loki-stack-grafana
   namespace: logging
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 data:
   grafana.ini: |
     [analytics]
@@ -73,11 +64,8 @@ metadata:
   name: loki-stack-grafana-test
   namespace: logging
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 data:
   run.sh: |-
     @test "Test Health" {
@@ -95,9 +83,6 @@ metadata:
   namespace: logging
   labels:
     app: loki-stack
-    chart: loki-stack-2.6.1
-    release: loki-stack
-    heritage: Helm
     grafana_datasource: "1"
 data:
   loki-stack-datasource.yaml: |-
@@ -116,9 +101,6 @@ metadata:
   name: loki-stack-test
   labels:
     app: loki-stack
-    chart: loki-stack-2.6.1
-    release: loki-stack
-    heritage: Helm
 data:
   test.sh: |
     #!/usr/bin/env bash
@@ -167,11 +149,8 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
   name: loki-stack-grafana-clusterrole
 rules:
 - apiGroups: [""] # "" indicates the core API group
@@ -184,11 +163,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: loki-stack-grafana-clusterrolebinding
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
     name: loki-stack-grafana
@@ -205,11 +181,8 @@ metadata:
   name: loki-stack-grafana
   namespace: logging
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 rules: []
 ---
 # Source: loki-stack/charts/loki/templates/role.yaml
@@ -220,9 +193,6 @@ metadata:
   namespace: logging
   labels:
     app: loki
-    chart: loki-2.9.1
-    heritage: Helm
-    release: loki-stack
 ---
 # Source: loki-stack/charts/grafana/templates/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -231,11 +201,8 @@ metadata:
   name: loki-stack-grafana
   namespace: logging
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -253,9 +220,6 @@ metadata:
   namespace: logging
   labels:
     app: loki
-    chart: loki-2.9.1
-    heritage: Helm
-    release: loki-stack
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -271,11 +235,8 @@ metadata:
   name: loki-stack-grafana
   namespace: logging
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
   ports:
@@ -296,10 +257,6 @@ metadata:
   namespace: logging
   labels:
     app: loki
-    chart: loki-2.9.1
-    release: loki-stack
-    heritage: Helm
-    variant: headless
 spec:
   clusterIP: None
   ports:
@@ -319,9 +276,6 @@ metadata:
   namespace: logging
   labels:
     app: loki
-    chart: loki-2.9.1
-    release: loki-stack
-    heritage: Helm
   annotations:
     {}
 spec:
@@ -342,11 +296,8 @@ metadata:
   name: loki-stack-grafana
   namespace: logging
   labels:
-    helm.sh/chart: grafana-6.21.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: loki-stack
-    app.kubernetes.io/version: "8.3.5"
-    app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -361,11 +312,6 @@ spec:
       labels:
         app.kubernetes.io/name: grafana
         app.kubernetes.io/instance: loki-stack
-      annotations:
-        checksum/config: fe9f9614af078a80e29a5a32299298cdf5f39b640e4740772af79734383b3776
-        checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/secret: ae41eeaf038e740dc9eb522cf0547c863ba20f68b7110a346a7b4a64540cb452
     spec:
       
       serviceAccountName: loki-stack-grafana
@@ -474,9 +420,6 @@ metadata:
   namespace: logging
   labels:
     app: loki
-    chart: loki-2.9.1
-    release: loki-stack
-    heritage: Helm
   annotations:
     {}
 spec:
@@ -496,7 +439,6 @@ spec:
         name: loki
         release: loki-stack
       annotations:
-        checksum/config: 6d27ec598e6c6bbadc16301ceb85cd4465cd908592785a2c2dc1af1ba27143f2
         prometheus.io/port: http-metrics
         prometheus.io/scrape: "true"
     spec:
