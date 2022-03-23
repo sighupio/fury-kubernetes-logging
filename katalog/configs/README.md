@@ -16,9 +16,9 @@ Configurations available:
 - [configs](configs): all the configurations.
 - [configs/kubernetes](configs/kubernetes): only the cluster wide pods logging configuration.
 - [configs/ingress-nginx](configs/ingress-nginx): only the nginx-ingress-controller logging configuration.
-- [configs/systemd](configs/systemd): all the systemd related configurations.
 - [configs/audit](configs/audit): all the Kubernetes audit logs related configurations (with master selector and tolerations).
 - [configs/events](configs/events): all the Kubernetes events related configurations (with master selector and tolerations).
+- [configs/systemd](configs/systemd): all the systemd related configurations.
 - [configs/systemd/kubelet](configs/systemd/common): kubelet, docker, ssh systemd service logs configuration.
 - [configs/systemd/etcd](configs/systemd/etcd): only the etcd service logs configuration (with master selector and tolerations).
 
