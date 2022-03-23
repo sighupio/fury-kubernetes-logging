@@ -9,12 +9,6 @@ kind: Kustomization
 resources:
   - ../../../configs/systemd/ssh
 
-commonLabels:
-  module.kfd.sighup.io/name: "logging"
-  module.kfd.sighup.io/version: "v1.10.1"
-  module.kfd.sighup.io/component: "loki-configs-systemd-ssh"
-  kfd.sighup.io/source: "kustomize"
-
 namespace: logging
 
 patchesJson6902:

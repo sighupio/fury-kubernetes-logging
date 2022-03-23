@@ -9,12 +9,6 @@ kind: Kustomization
 resources:
   - ../../configs/ingress-nginx
 
-commonLabels:
-  module.kfd.sighup.io/name: "logging"
-  module.kfd.sighup.io/version: "v1.10.1"
-  module.kfd.sighup.io/component: "loki-configs-ingress-nginx"
-  kfd.sighup.io/source: "kustomize"
-
 namespace: ingress-nginx
 
 patchesJson6902:
