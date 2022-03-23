@@ -442,6 +442,7 @@ spec:
         prometheus.io/port: http-metrics
         prometheus.io/scrape: "true"
     spec:
+
       serviceAccountName: loki-stack
       securityContext:
         fsGroup: 10001
@@ -482,7 +483,17 @@ spec:
       nodeSelector:
         {}
       affinity:
-        {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app"
+                      operator: In
+                      values:
+                        - loki
+                topologyKey: "kubernetes.io/hostname"
       tolerations:
         []
       terminationGracePeriodSeconds: 4800
