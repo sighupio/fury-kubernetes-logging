@@ -45,8 +45,8 @@ Click on each package to see its full documentation.
 
 ## Compatibility
 
-| Kubernetes Version |   Compatibility    |                        Notes                        |
-| ------------------ | :----------------: | --------------------------------------------------- |
+| Kubernetes Version |   Compatibility    | Notes                                               |
+|--------------------|:------------------:|-----------------------------------------------------|
 | `1.20.x`           | :white_check_mark: | No known issues                                     |
 | `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
