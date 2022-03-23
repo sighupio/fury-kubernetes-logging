@@ -23,7 +23,7 @@ spec:
   localOutputRefs:
     - ingress-nginx
 
-# Alternatively:
+# Alternatively if you want more control over the parsing, you can use the parser below:
 #    - parser:
 #        key_name: log
 #        remove_key_name_field: true
