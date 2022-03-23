@@ -19,10 +19,8 @@ Configurations available:
 - [configs/systemd](configs/systemd): all the systemd related configurations.
 - [configs/audit](configs/audit): all the Kubernetes audit logs related configurations (with master selector and tolerations).
 - [configs/events](configs/events): all the Kubernetes events related configurations (with master selector and tolerations).
-- [configs/systemd/kubelet](configs/systemd/kubelet): only the kubelet systemd service logs configuration.
-- [configs/systemd/etcd](configs/systemd/etcd): only the kubelet etcd service logs configuration (with master selector and tolerations).
-- [configs/systemd/ssh](configs/systemd/ssh): only the ssh systemd service logs configuration.
-- [configs/systemd/docker](configs/systemd/docker): only the docker systemd service logs configuration.
+- [configs/systemd/kubelet](configs/systemd/common): kubelet, docker, ssh systemd service logs configuration.
+- [configs/systemd/etcd](configs/systemd/etcd): only the etcd service logs configuration (with master selector and tolerations).
 
 ## Deployment
 
