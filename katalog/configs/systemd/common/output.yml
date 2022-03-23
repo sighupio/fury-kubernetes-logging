@@ -6,7 +6,7 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: Output
 metadata:
-  name: systemd-docker
+  name: systemd-common
 spec:
   elasticsearch:
     host: elasticsearch.logging.svc.cluster.local
@@ -20,6 +20,13 @@ spec:
     logstash_prefix: systemd
     log_es_400_reason: true
     request_timeout: 600s
+    template_overwrite: true
+    template_name: systemd
+    template_file:
+      mountFrom:
+        secretKeyRef:
+          name: systemd-index-template
+          key: systemd-index-template
     buffer:
       timekey: "1m"
       timekey_wait: "10s"

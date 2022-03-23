@@ -6,7 +6,7 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: Flow
 metadata:
-  name: systemd-kubelet
+  name: systemd-common
 spec:
   filters:
     - dedot:
@@ -15,6 +15,6 @@ spec:
   match:
     - select:
         labels:
-          app.kubernetes.io/instance: systemd-kubelet-host-tailer
+          app.kubernetes.io/instance: systemd-common-host-tailer
   localOutputRefs:
-    - systemd-kubelet
+    - systemd-common
