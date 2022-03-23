@@ -19,7 +19,7 @@ and configures a Fluent Bit daemonset on every node to collect container and app
 
 ## Configuration
 
-In Kubernetes Fury distribution, Logging operator is deployed with the following configuration:
+In Kubernetes Fury Distribution, Logging operator is deployed with the following default configuration:
 
 - Replica number: `1`
 - Resource limits are `100m` for CPU and `500Mi` for memory
