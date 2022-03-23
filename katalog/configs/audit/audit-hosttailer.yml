@@ -12,6 +12,8 @@ spec:
     - name: audit
       disabled: false
       path: /var/log/kubernetes/kube-apiserver-audit.log
+      buffer_max_size: "256k"
+      skip_long_lines: "On"
       containerOverrides:
         image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
   workloadOverrides:

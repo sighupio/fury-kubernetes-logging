@@ -15,5 +15,5 @@ resources:
 images:
   - name: ghcr.io/banzaicloud/logging-operator
     newName: registry.sighup.io/fury/banzaicloud/logging-operator
-    newTag: 3.17.0
+    newTag: 3.17.2
 
