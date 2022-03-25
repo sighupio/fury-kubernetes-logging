@@ -267,6 +267,9 @@ steps:
 volumes:
 - name: shared
   temp: {}
+- name: hosttmp
+  host:
+    path: /tmp
 
 ---
 kind: pipeline
@@ -673,7 +676,3 @@ steps:
         include:
           - refs/tags/v**
 
-volumes:
-  - name: hosttmp
-    host:
-      path: /tmp
