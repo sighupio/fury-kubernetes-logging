@@ -163,8 +163,7 @@ steps:
   - name: e2e-debug
     image: quay.io/sighup/e2e-furyctl:v1.2.1_v0.2.2_v1.20.1_20.04
     pull: always
-    depends_on:
-      - build
+    depends_on: [ clone ]
     environment:
       aws_default_region:
         from_secret: aws_region
