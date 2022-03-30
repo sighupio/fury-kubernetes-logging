@@ -1,0 +1,38 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: kubernetes
+spec:
+  elasticsearch:
+    host: elasticsearch.logging.svc.cluster.local
+    port: 9200
+    scheme: http
+    verify_es_version_at_startup: false
+    default_elasticsearch_version: "7"
+    max_retry_get_es_version: "1"
+    max_retry_putting_template: "1"
+    logstash_format: true
+    logstash_prefix: kubernetes
+    log_es_400_reason: true
+    request_timeout: 600s
+    template_overwrite: true
+    template_name: kubernetes
+    template_file:
+      mountFrom:
+        secretKeyRef:
+          name: kubernetes-index-template
+          key: kubernetes-index-template
+    buffer:
+      timekey: "1m"
+      timekey_wait: "10s"
+      timekey_use_utc: true
+      chunk_limit_size: "2m"
+      retry_max_interval: "30"
+      retry_forever: true
+      overflow_action: "block"
+      flush_thread_count: 4

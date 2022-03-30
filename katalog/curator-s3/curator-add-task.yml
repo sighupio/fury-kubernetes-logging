@@ -17,6 +17,13 @@ spec:
           containers:
             - name: curator
               image: quay.io/sighup/curator
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 500Mi
+                limits:
+                  cpu: 300m
+                  memory: 800Mi
               envFrom:
                 - secretRef:
                     name: curator-aws

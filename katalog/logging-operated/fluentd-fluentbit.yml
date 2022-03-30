@@ -1,0 +1,76 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Logging
+metadata:
+  name: infra
+spec:
+  errorOutputRef: errors
+  fluentd:
+    image:
+      repository: registry.sighup.io/fury/banzaicloud/fluentd
+      tag: v1.14.5-alpine-1
+    configReloaderImage:
+      repository: registry.sighup.io/fury/jimmidyson/configmap-reload
+      tag: v0.4.0
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "app.kubernetes.io/name"
+                    operator: In
+                    values:
+                      - fluentd
+                  - key: "app.kubernetes.io/component"
+                    operator: In
+                    values:
+                      - fluentd
+              topologyKey: "kubernetes.io/hostname"
+    disablePvc: false
+    scaling:
+      replicas: 2
+    metrics:
+      serviceMonitor: true
+      prometheusRules: true
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 600Mi
+      requests:
+        cpu: 300m
+        memory: 400Mi
+  fluentbit:
+    image:
+      repository: registry.sighup.io/fury/fluent/fluent-bit
+      tag: 1.8.13
+    enableUpstream: true
+    inputTail:
+      Ignore_Older: 86400s
+      Mem_Buf_Limit: 150MB
+    filterKubernetes:
+      Kube_URL: "https://kubernetes.default.svc:443"
+      Match: "kubernetes.*"
+      Kube_CA_File: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      Kube_Tag_Prefix: kubernetes.var.log.containers
+      Kube_Token_File: /var/run/secrets/kubernetes.io/serviceaccount/token
+      Merge_Log: "On"
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule
+    metrics:
+      serviceMonitor: true
+      prometheusRules: true
+    resources:
+      limits:
+        cpu: 200m
+        memory: 300M
+      requests:
+        cpu: 100m
+        memory: 50M
+  controlNamespace: logging

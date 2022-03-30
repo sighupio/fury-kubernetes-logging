@@ -36,15 +36,17 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
 | [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                    |
 | [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                   |
-| [fluentd](katalog/fluentd)                           | `1.14.2` | Data collector for unified logging that can store collected data in Elasticsearch                       |
+| [logging-operator](katalog/logging-operator)         | `3.17.2` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
+| [logging-operated](katalog/logging-operated)         | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
+| [configs](katalog/configs)                           | `-`      | Logging pipeline configs to gather various types of logs                                                |
 | [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                  |
 
 Click on each package to see its full documentation.
 
 ## Compatibility
 
-| Kubernetes Version |   Compatibility    |                        Notes                        |
-| ------------------ | :----------------: | --------------------------------------------------- |
+| Kubernetes Version |   Compatibility    | Notes                                               |
+|--------------------|:------------------:|-----------------------------------------------------|
 | `1.20.x`           | :white_check_mark: | No known issues                                     |
 | `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
@@ -68,15 +70,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v1.10.2"
+    version: "v2.0.0"
   - name: logging/curator
-    version: "v1.10.2"
+    version: "v2.0.0"
   - name: logging/elasticsearch-single
-    version: "v1.10.2"
-  - name: logging/fluentd
-    version: "v1.10.2"
+    version: "v2.0.0"
+  - name: logging/logging-operator
+    version: "v2.0.0"
+  - name: logging/logging-operated
+    version: "v2.0.0"
+  - name: logging/configs
+    version: "v2.0.0"
   - name: logging/kibana
-    version: "v1.10.2"
+    version: "v2.0.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -92,7 +98,9 @@ resources:
 - ./vendor/katalog/logging/cerebro
 - ./vendor/katalog/logging/curator
 - ./vendor/katalog/logging/elasticsearch-single
-- ./vendor/katalog/logging/fluentd
+- ./vendor/katalog/logging/logging-operator
+- ./vendor/katalog/logging/logging-operated
+- ./vendor/katalog/logging/configs
 - ./vendor/katalog/logging/kibana
 ```
 
