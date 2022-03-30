@@ -3,7 +3,7 @@
     Kubernetes Fury Logging
 </h1>
 
-![Release](https://img.shields.io/github/v/release/sighupio/fury-kubernetes-logging?label=Latest%20Release)
+![Release](https://img.shields.io/badge/Latest%20Release-v2.0.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
