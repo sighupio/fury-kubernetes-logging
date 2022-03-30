@@ -8,7 +8,7 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize >= `v3.3.X`
+- Kustomize >= `v3.5.3`
 - [logging-operator][logging-operator]
 - [prometheus-operator][prometheus-operator]
 

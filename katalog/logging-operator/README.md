@@ -11,7 +11,7 @@ and a Fluentd StatefulSet that receive logs from Fluent-bit and send them to var
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize >= `v3.3.X`
+- Kustomize >= `v3.5.3`
 
 ## Image repository and tag
 
