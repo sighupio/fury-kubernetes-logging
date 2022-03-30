@@ -5,7 +5,7 @@ This package is a collection of logging operator Flow/ClusterFlow and Output/Clu
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize >= `3.3.0`
+- Kustomize >= `3.5.3`
 - [logging-operated](../logging-operated)
 - [logging-operator](../logging-operator)
 
@@ -30,10 +30,16 @@ You can deploy all the configurations by running the following command in the ro
 kustomize build | kubectl apply -f -
 ```
 
-You can also deploy only one configuration by running the following command (for example):
+You can also deploy only a configuration subset by running some of the following commands (for example):
 
 ```shell
-kustomize build configs/kubernetes | kubectl apply -f -
+kustomize build kubernetes | kubectl apply -f -
+kustomize build ingress-nginx | kubectl apply -f -
+kustomize build audit | kubectl apply -f -
+kustomize build events | kubectl apply -f -
+kustomize build systemd | kubectl apply -f -
+kustomize build systemd/common | kubectl apply -f -
+kustomize build systemd/etcd | kubectl apply -f -
 ```
 
 ## License
