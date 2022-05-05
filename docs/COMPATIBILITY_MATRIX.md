@@ -16,7 +16,9 @@
 | v1.10.0                             |                    |                    |                    |                    |                    |                    | :x:                | :x:                | :x:                | :x:       |
 | v1.10.1                             |                    |                    |                    |                    |                    |                    | :x:                | :x:                | :x:                | :x:       |
 | v1.10.2                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
-| v2.0.0                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v2.0.0                              |                    |                    |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning: |
+| v2.0.1                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+
 
 - :white_check_mark: Compatible
 - :warning: Has issues

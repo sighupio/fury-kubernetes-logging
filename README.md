@@ -3,7 +3,7 @@
     Kubernetes Fury Logging
 </h1>
 
-![Release](https://img.shields.io/badge/Latest%20Release-v2.0.0-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v2.0.1-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -70,19 +70,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v2.0.0"
+    version: "v2.0.1"
   - name: logging/curator
-    version: "v2.0.0"
+    version: "v2.0.1"
   - name: logging/elasticsearch-single
-    version: "v2.0.0"
+    version: "v2.0.1"
   - name: logging/logging-operator
-    version: "v2.0.0"
+    version: "v2.0.1"
   - name: logging/logging-operated
-    version: "v2.0.0"
+    version: "v2.0.1"
   - name: logging/configs
-    version: "v2.0.0"
+    version: "v2.0.1"
   - name: logging/kibana
-    version: "v2.0.0"
+    version: "v2.0.1"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
