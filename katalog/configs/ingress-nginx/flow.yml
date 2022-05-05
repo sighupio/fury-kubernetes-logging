@@ -20,6 +20,14 @@ spec:
     - select:
         labels:
           app: ingress-nginx
+    - select:
+        labels:
+          app: ingress
+          type: external
+    - select:
+        labels:
+          app: ingress
+          type: internal
   localOutputRefs:
     - ingress-nginx
 
