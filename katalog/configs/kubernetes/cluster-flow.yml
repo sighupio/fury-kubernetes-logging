@@ -28,9 +28,8 @@ spec:
         namespaces:
           - ingress-nginx
         labels:
-          labels:
-            app: ingress
-            type: internal
+          app: ingress
+          type: internal
     - exclude:
         labels:
           app.kubernetes.io/name: host-tailer
