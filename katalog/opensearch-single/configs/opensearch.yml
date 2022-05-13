@@ -34,7 +34,7 @@ plugins:
     allow_default_init_securityindex: true
     authcz:
       admin_dn:
-        - CN=fury,OU=sighup,O=sighup,L=test,C=it
+        - CN=fury,OU=sighup,O=sighup,L=milan,C=it
     audit.type: internal_opensearch
     enable_snapshot_restore_privilege: true
     check_snapshot_restore_write_privileges: true

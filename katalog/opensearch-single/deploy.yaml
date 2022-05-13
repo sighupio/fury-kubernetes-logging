@@ -222,7 +222,7 @@ spec:
             name: metrics
         envFrom:
           - secretRef:
-              name: opensearch-credentials
+              name: opensearch-exporter-credentials
         resources:
           limits:
             cpu: 200m

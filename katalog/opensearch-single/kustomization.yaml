@@ -31,9 +31,9 @@ configMapGenerator:
       - configs/opensearch.yml
 
 secretGenerator:
-  - name: opensearch-credentials
+  - name: opensearch-exporter-credentials
     envs:
-      - opensearch-credentials.env
+      - opensearch-exporter-credentials.env
   - name: opensearch-internal-users
     files:
       - configs/internal_users.yml
