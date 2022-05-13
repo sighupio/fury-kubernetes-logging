@@ -125,9 +125,9 @@ Logging module offers an out of the box, highly-available setup for `opensearch`
 
 To setup `curator` with `s3` compliant bucket support, we provide [`curator-s3`](katalog/curator-s3). To set it up, instead of `curator`, use `curator-s3` in `Furyfile` and `kustomization` in the above defined deployment step.
 
-To configure the `s3` bucket, you will have to edit the file [`secret-es-backup.env`](katalog/curator-s3/secret-es-backup.env) with the following content, with the right configuration secrets:
+To configure the `s3` bucket, you will have to edit the file [`s3-curator-credentials.env`](katalog/curator-s3/s3-curator-credentials.env) with the following content, with the right configuration secrets:
 
-``` sh
+```
 AWS_ACCESS_KEY_ID=AAAA
 AWS_REGION=eu-west-1
 AWS_SECRET_ACCESS_KEY=myKey
