@@ -23,6 +23,6 @@ configMapGenerator:
       - config.yml
 
 secretGenerator:
-  - name: curator-opensearch-credentials
+  - name: opensearch-curator-credentials
     envs:
-      - opensearch-credentials.env
+      - opensearch-curator-credentials.env

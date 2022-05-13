@@ -27,7 +27,7 @@ spec:
               value: "30"
             envFrom:
               - secretRef:
-                  name: curator-opensearch-credentials
+                  name: opensearch-curator-credentials
             resources:
               requests:
                 cpu: 100m
