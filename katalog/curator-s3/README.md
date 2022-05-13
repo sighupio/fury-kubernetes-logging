@@ -31,7 +31,7 @@ to `/_snapshot/repository_name` endpoint of `elasticsearch`
 - Unit set as `30 days`
 - Curator will run every night at 00:15 to check if some indexes need deleting
 - Resource limits are `300m` for CPU and `800Mi` for memory
-- AWS bucket configuration secret file [curator-aws](secret-es-backup.env)
+- AWS bucket configuration secret file [curator-aws](s3-curator-credentials.env)
 
 ## Deployment
 

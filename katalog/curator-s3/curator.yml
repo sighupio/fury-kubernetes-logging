@@ -24,7 +24,7 @@ spec:
                 - configMapRef:
                     name: es-backup-env
                 - secretRef:
-                    name: es-backup-env
+                    name: s3-curator-credentials
           containers:
             - name: curator
               image: quay.io/sighup/curator
@@ -34,7 +34,7 @@ spec:
                 - configMapRef:
                     name: es-backup-env
                 - secretRef:
-                    name: es-backup-env
+                    name: s3-curator-credentials
                 - secretRef:
                     name: curator-opensearch-credentials
               resources:

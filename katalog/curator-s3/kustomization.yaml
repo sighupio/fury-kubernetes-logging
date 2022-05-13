@@ -30,9 +30,9 @@ configMapGenerator:
       - configmap-es-backup.env
 
 secretGenerator:
-  - name: es-backup-env
+  - name: s3-curator-credentials
     envs:
-      - secret-es-backup.env
-  - name: curator-opensearch-credentials
+      - s3-curator-credentials.env
+  - name: opensearch-curator-credentials
     envs:
-      - opensearch-credentials.env
+      - opensearch-curator-credentials.env
