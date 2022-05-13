@@ -9,12 +9,8 @@ kind: PodDisruptionBudget
 metadata:
   name: "opensearch-cluster-master-pdb"
   labels:
-    helm.sh/chart: opensearch-1.8.2
     app.kubernetes.io/name: opensearch
     app.kubernetes.io/instance: opensearch
-    app.kubernetes.io/version: "1.2.4"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: opensearch-cluster-master
 spec:
   maxUnavailable: 1
   selector:
@@ -28,12 +24,8 @@ apiVersion: v1
 metadata:
   name: opensearch-cluster-master
   labels:
-    helm.sh/chart: opensearch-1.8.2
     app.kubernetes.io/name: opensearch
     app.kubernetes.io/instance: opensearch
-    app.kubernetes.io/version: "1.2.4"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: opensearch-cluster-master
   annotations:
     {}
 spec:
@@ -55,12 +47,8 @@ apiVersion: v1
 metadata:
   name: opensearch-cluster-master-headless
   labels:
-    helm.sh/chart: opensearch-1.8.2
     app.kubernetes.io/name: opensearch
     app.kubernetes.io/instance: opensearch
-    app.kubernetes.io/version: "1.2.4"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: opensearch-cluster-master
   annotations:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
@@ -82,12 +70,8 @@ kind: StatefulSet
 metadata:
   name: opensearch-cluster-master
   labels:
-    helm.sh/chart: opensearch-1.8.2
     app.kubernetes.io/name: opensearch
     app.kubernetes.io/instance: opensearch
-    app.kubernetes.io/version: "1.2.4"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: opensearch-cluster-master
   annotations:
     majorVersion: "1"
 spec:
@@ -113,12 +97,8 @@ spec:
     metadata:
       name: "opensearch-cluster-master"
       labels:
-        helm.sh/chart: opensearch-1.8.2
         app.kubernetes.io/name: opensearch
         app.kubernetes.io/instance: opensearch
-        app.kubernetes.io/version: "1.2.4"
-        app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/component: opensearch-cluster-master
     spec:
       securityContext:
         fsGroup: 1000
