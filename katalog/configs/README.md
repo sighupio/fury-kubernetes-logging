@@ -42,6 +42,9 @@ kustomize build systemd/common | kubectl apply -f -
 kustomize build systemd/etcd | kubectl apply -f -
 ```
 
+> NOTE: kubernetes configuration is mandatory, due to the presence of the `opensearch-fluentd-password` secret creation,
+> other configurations are optional.
+
 ## License
 
 For license details please see [LICENSE](../../LICENSE)

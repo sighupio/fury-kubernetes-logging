@@ -9,9 +9,15 @@ metadata:
   name: kubernetes
 spec:
   elasticsearch:
-    host: elasticsearch.logging.svc.cluster.local
+    host: opensearch-cluster-master.logging.svc.cluster.local
     port: 9200
     scheme: http
+    user: admin
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: opensearch-fluentd-password
+          key: opensearch-fluentd-password
     verify_es_version_at_startup: false
     default_elasticsearch_version: "7"
     max_retry_get_es_version: "1"
