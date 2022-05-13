@@ -1,0 +1,43 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Flow
+metadata:
+  name: ingress-nginx
+spec:
+  filters:
+    - dedot:
+        de_dot_separator: "_"
+        de_dot_nested: true
+    - parser:
+        remove_key_name_field: true
+        parse:
+          type: nginx
+  match:
+    - select:
+        labels:
+          app: ingress-nginx
+    - select:
+        labels:
+          app: ingress
+          type: external
+    - select:
+        labels:
+          app: ingress
+          type: internal
+  localOutputRefs:
+    - ingress-nginx
+
+# Alternatively if you want more control over the parsing, you can use the parser below:
+#    - parser:
+#        key_name: log
+#        remove_key_name_field: true
+#        reserve_data: true
+#        parse:
+#          type: regexp
+#          expression: '/^(?<remote_addr>[^ ]*) - (?<remote_user>[^ ]+) \[(?<time_local>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*) +\S*)?" (?<status>\d+) (?<body_bytes_sent>\d+) "(?<http_referer>[^ ]*)" "(?<http_user_agent>[^\"]*)" (?<request_length>\d+) (?<request_time>[\d.]+) \[(?<proxy_upstream_name>[^\]]*)\] \[(?<proxy_alternative_upstream_name>[^\]]*)\] (?<upstream_addr>[^ ]*) (?<upstream_response_length>\d+|-) (?<upstream_response_time>[\d.]+|-) (?<upstream_status>\d+|-) (?<req_id>[^ ]*)/'
+#          time_key: time
+#          time_format: '%d/%b/%Y:%H:%M:%S %z'

@@ -20,10 +20,20 @@ set -o pipefail
   apply katalog/elasticsearch-single
 }
 
-@test "testing fluentd apply" {
+@test "testing logging-operator apply" {
   info
-  apply katalog/fluentd
-  kubectl -n logging get sts fluentd -o json | jq -r .spec.replicas=2 | kubectl apply -f -
+  apply katalog/logging-operator
+}
+
+@test "testing logging-operated apply" {
+  info
+  apply katalog/logging-operated
+
+}
+
+@test "testing kubernetes config apply" {
+  info
+  apply katalog/configs/kubernetes
 }
 
 @test "testing curator apply" {
@@ -47,7 +57,7 @@ set -o pipefail
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\|PodInitializing\)" >&2
   do
-    [ $max_retry -lt 100 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
+    [ $max_retry -lt 30 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$((max_retry+1))
   done
@@ -67,7 +77,7 @@ set -o pipefail
 @test "check fluentbit" {
   info
   test(){
-    data=$(kubectl get ds -n logging -l app=fluentbit -o json | jq '.items[] | select(.metadata.name == "fluentbit" and .status.desiredNumberScheduled == .status.numberReady)')
+    data=$(kubectl get ds -n logging -l app.kubernetes.io/name=fluentbit -o json | jq '.items[] | select(.metadata.name == "infra-fluentbit" and .status.desiredNumberScheduled == .status.numberReady)')
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 60 5
@@ -78,7 +88,7 @@ set -o pipefail
 @test "check fluentd" {
   info
   test(){
-    data=$(kubectl get sts -n logging -l app=fluentd -o json | jq '.items[] | select(.metadata.name == "fluentd" and .status.replicas == .status.readyReplicas )')
+    data=$(kubectl get sts -n logging -l app.kubernetes.io/name=fluentd -o json | jq '.items[] | select(.metadata.name == "infra-fluentd" and .status.replicas == .status.readyReplicas )')
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 60 5

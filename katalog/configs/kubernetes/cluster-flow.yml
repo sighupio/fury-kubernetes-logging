@@ -1,0 +1,41 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: kubernetes
+spec:
+  filters:
+    - dedot:
+        de_dot_separator: "_"
+        de_dot_nested: true
+  match:
+    - exclude:
+        namespaces:
+          - ingress-nginx
+        labels:
+          app: ingress-nginx
+    - exclude:
+        namespaces:
+          - ingress-nginx
+        labels:
+          app: ingress
+          type: external
+    - exclude:
+        namespaces:
+          - ingress-nginx
+        labels:
+          app: ingress
+          type: internal
+    - exclude:
+        labels:
+          app.kubernetes.io/name: host-tailer
+    - exclude:
+        labels:
+          app.kubernetes.io/name: event-tailer
+    - select: {}
+  globalOutputRefs:
+    - kubernetes

@@ -11,11 +11,14 @@
 | v1.5.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |                    |                    |                    |           |
 | v1.6.0                              |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |                    |           |
 | v1.7.0                              |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |                    |           |
-| v1.8.0                              |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |                    |           |
+| v1.8.0                              |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning:          |                    |           |
 | v1.9.0                              |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning:          |           |
 | v1.10.0                             |                    |                    |                    |                    |                    |                    | :x:                | :x:                | :x:                | :x:       |
 | v1.10.1                             |                    |                    |                    |                    |                    |                    | :x:                | :x:                | :x:                | :x:       |
 | v1.10.2                             |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v2.0.0                              |                    |                    |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning: |
+| v2.0.1                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+
 
 - :white_check_mark: Compatible
 - :warning: Has issues
@@ -26,5 +29,6 @@
 - ⚠️: module version: v1.7.0 and Kubernetes Version: 1.20.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
 - ⚠️: module version: v1.8.0 and Kubernetes Version: 1.21.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
 - ⚠️: module version: v1.9.0 and Kubernetes Version: 1.22.x. It works as expected. Marked as warning because it is not officially supported by SIGHUP.
+- ⚠️: module version: v1.8.0 has known with fluentd, use v1.9.1 instead.
 - :x:: module version: v1.10.0 has a known bug breaking upgrades. Please do not use.
 - :x:: module version: v1.10.1 has a known bug breaking upgrades. Please do not use.
