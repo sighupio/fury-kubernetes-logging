@@ -22,7 +22,3 @@ configMapGenerator:
       - action.yml
       - config.yml
 
-secretGenerator:
-  - name: opensearch-curator-credentials
-    envs:
-      - opensearch-curator-credentials.env

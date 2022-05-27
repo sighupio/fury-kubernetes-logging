@@ -3,7 +3,7 @@
 # license that can be found in the LICENSE file.
 
 ---
-# This is the internal user database
+# IMPORTANT: This is the internal user database, this is used only if security is enabled, by default in our package is disabled
 # The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh
 # to run with docker: docker run -it registry.sighup.io/fury/opensearchproject/opensearch:1.2.4 /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh
 

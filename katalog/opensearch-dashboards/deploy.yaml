@@ -84,6 +84,13 @@ spec:
           runAsUser: 1000
         image: "opensearchproject/opensearch-dashboards"
         imagePullPolicy: "IfNotPresent"
+        command:
+          - sh
+          - -c
+          - |
+            /usr/share/opensearch-dashboards/bin/opensearch-dashboards-plugin remove securityDashboards
+            ./opensearch-dashboards-docker-entrypoint.sh opensearch-dashboards
+        args: []
         env:
         - name: OPENSEARCH_HOSTS
           value: "http://opensearch-cluster-master:9200"
@@ -104,6 +111,9 @@ spec:
           - name: opensearch-dashboards
             mountPath: /usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
             subPath: opensearch_dashboards.yml
+        readinessProbe:
+          tcpSocket:
+            port: 5601
       volumes:
         - name: opensearch-dashboards
           secret:

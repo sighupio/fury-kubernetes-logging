@@ -25,9 +25,6 @@ spec:
               value: days
             - name: UNIT_COUNT
               value: "30"
-            envFrom:
-              - secretRef:
-                  name: opensearch-curator-credentials
             resources:
               requests:
                 cpu: 100m

@@ -35,8 +35,6 @@ spec:
                     name: es-backup-env
                 - secretRef:
                     name: s3-curator-credentials
-                - secretRef:
-                    name: curator-opensearch-credentials
               resources:
                 requests:
                   cpu: 100m

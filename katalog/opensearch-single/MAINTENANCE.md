@@ -16,11 +16,11 @@ What was customized:
 
 - default storage from 8Gi to 30Gi
 - removed helm release labels
-- changed initContainer
+- replace initContainer definition
 - configured requests and limits + java opts for xms and xmx
 - added prometheus exporter
-- opensearch-cluster-master-config created with configMapGenerator instead of in-line as a configMap
-- add opensearch-exporter-credentials secret for the exporter
+- opensearch-cluster-master-config created with configMapGenerator instead of in-line configMap
 - customized internal_users.yml config file with opensearch-internal-users secret
+- security plugin is disabled, we expect security on the ingress level or configured manually
 
 [opensearch-helm-charts]: https://github.com/opensearch-project/helm-charts/releases

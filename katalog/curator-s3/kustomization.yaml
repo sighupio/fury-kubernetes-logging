@@ -33,6 +33,4 @@ secretGenerator:
   - name: s3-curator-credentials
     envs:
       - s3-curator-credentials.env
-  - name: opensearch-curator-credentials
-    envs:
-      - opensearch-curator-credentials.env
+
