@@ -57,7 +57,7 @@ steps:
       - kustomize build katalog/cerebro > cerebro.yml
       - kustomize build katalog/curator > curator.yml
       - kustomize build katalog/opensearch-triple > opensearch-triple.yml
-      - kustomize build katalog/opensearch-dashboard > opensearch-dashboard.yml
+      - kustomize build katalog/opensearch-dashboards > opensearch-dashboard.yml
       - kustomize build katalog/logging-operator > logging-operator.yml
       - kustomize build katalog/logging-operated > logging-operated.yml
       - kustomize build katalog/configs > configs.yml
