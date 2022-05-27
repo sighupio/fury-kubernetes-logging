@@ -19,6 +19,3 @@ secretGenerator:
   - name: kubernetes-index-template
     files:
       - kubernetes-index-template=kubernetes-index-template.json
-  - name: opensearch-fluentd-password
-    files:
-      - opensearch-fluentd-password
