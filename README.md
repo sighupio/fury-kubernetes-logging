@@ -18,7 +18,7 @@ If you are new to KFD please refer to the [official documentation][kfd-docs] on 
 **Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster.
 
 The central piece of the stack is the CNCF certified open source search engine [opensearch][opensearch-page], combined
-with its analytics and visualization platform [opensearch-dashboards][opensearch-dashboards-page]. 
+with its analytics and visualization platform [opensearch-dashboards][opensearch-dashboards-page].
 The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`),
 pushing it to the Opensearch via [fluentd][fluentd-page].
 
@@ -127,7 +127,7 @@ To setup `curator` with `s3` compliant bucket support, we provide [`curator-s3`]
 
 To configure the `s3` bucket, you will have to edit the file [`s3-curator-credentials.env`](katalog/curator-s3/s3-curator-credentials.env) with the following content, with the right configuration secrets:
 
-```
+```env
 AWS_ACCESS_KEY_ID=AAAA
 AWS_REGION=eu-west-1
 AWS_SECRET_ACCESS_KEY=myKey
