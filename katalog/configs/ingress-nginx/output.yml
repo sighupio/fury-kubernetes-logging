@@ -8,17 +8,12 @@ kind: Output
 metadata:
   name: ingress-nginx
 spec:
-  elasticsearch:
+  opensearch:
     host: opensearch-cluster-master.logging.svc.cluster.local
     port: 9200
     scheme: http
-    verify_es_version_at_startup: false
-    default_elasticsearch_version: "7"
-    max_retry_get_es_version: "1"
-    max_retry_putting_template: "1"
     logstash_format: true
     logstash_prefix: ingress-controller
-    log_es_400_reason: true
     request_timeout: 600s
     template_overwrite: true
     template_name: ingress-controller
@@ -27,6 +22,8 @@ spec:
         secretKeyRef:
           name: ingress-controller-index-template
           key: ingress-controller-index-template
+    ssl_verify: false
+    suppress_type_name: true
     buffer:
       timekey: "1m"
       timekey_wait: "10s"
