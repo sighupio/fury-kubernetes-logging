@@ -15,7 +15,7 @@ and a Fluentd StatefulSet that receive logs from Fluent-bit and send them to var
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.0`
+* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.6`
 * Logging operator repo: [Logging operator on GitHub][logging-operator-github]
 
 ## Configuration
