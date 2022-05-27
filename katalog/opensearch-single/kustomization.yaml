@@ -29,11 +29,3 @@ configMapGenerator:
   - name: opensearch-cluster-master-config
     files:
       - configs/opensearch.yml
-
-secretGenerator:
-  - name: opensearch-exporter-credentials
-    envs:
-      - opensearch-exporter-credentials.env
-  - name: opensearch-internal-users
-    files:
-      - configs/internal_users.yml
