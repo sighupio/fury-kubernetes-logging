@@ -73,7 +73,7 @@ metadata:
     app.kubernetes.io/name: opensearch
     app.kubernetes.io/instance: opensearch
   annotations:
-    majorVersion: "1"
+    majorVersion: "2"
 spec:
   serviceName: opensearch-cluster-master-headless
   selector:

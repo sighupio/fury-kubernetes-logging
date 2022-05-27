@@ -14,7 +14,7 @@ images:
     newTag: "1.1.0"
   - name: opensearchproject/opensearch
     newName: registry.sighup.io/fury/opensearchproject/opensearch
-    newTag: "1.2.4"
+    newTag: "2.0.0"
   - name: alpine
     newName: registry.sighup.io/fury/alpine
     newTag: "3.14"
