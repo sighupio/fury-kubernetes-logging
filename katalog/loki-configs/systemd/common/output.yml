@@ -6,14 +6,14 @@
 apiVersion: logging.banzaicloud.io/v1beta1
 kind: Output
 metadata:
-  name: systemd-ssh
+  name: systemd-common
 spec:
   loki:
     url: http://loki-stack:3100
     extract_kubernetes_labels: true
     configure_kubernetes_labels: true
     extra_labels:
-      flow: systemd-ssh
+      flow: systemd
     buffer:
       timekey: "1m"
       timekey_wait: "10s"

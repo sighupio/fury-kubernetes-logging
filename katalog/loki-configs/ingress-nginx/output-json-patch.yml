@@ -1,4 +1,4 @@
 ---
 - op: remove
-  path: /spec/elasticsearch
+  path: /spec/opensearch
 
