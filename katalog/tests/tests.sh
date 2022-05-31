@@ -15,14 +15,14 @@ set -o pipefail
   kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.10.3/katalog/prometheus-operator/crd-rule.yml
 }
 
-@test "testing opensearch-single apply" {
-  info
-  apply katalog/opensearch-single
-}
-
 @test "testing logging-operator apply" {
   info
   apply katalog/logging-operator
+}
+
+@test "testing opensearch-single apply" {
+  info
+  apply katalog/opensearch-single
 }
 
 @test "testing logging-operated apply" {
@@ -41,7 +41,7 @@ set -o pipefail
   apply katalog/cerebro
 }
 
-@test "testing kibana apply" {
+@test "testing opensearch-dashboards apply" {
   info
   apply katalog/opensearch-dashboards
 }
@@ -58,7 +58,7 @@ set -o pipefail
   done
 }
 
-@test "check elasticsearch-single" {
+@test "check opensearch-single" {
   info
   test(){
     data=$(kubectl get sts -n logging -l app.kubernetes.io/name=opensearch -o json | jq '.items[] | select(.metadata.name == "opensearch-cluster-master" and .status.replicas == .status.readyReplicas)')
@@ -102,7 +102,7 @@ set -o pipefail
   [[ "$status" -eq 0 ]]
 }
 
-@test "check kibana" {
+@test "check opensearch-dashboards" {
   info
   test(){
     data=$(kubectl get deploy -n logging -l app.kubernetes.io/name=opensearch-dashboards -o json | jq '.items[] | select(.metadata.name == "opensearch-dashboards" and .status.replicas == .status.readyReplicas )')
