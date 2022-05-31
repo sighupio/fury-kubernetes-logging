@@ -15,17 +15,23 @@ images:
   - name: opensearchproject/opensearch
     newName: registry.sighup.io/fury/opensearchproject/opensearch
     newTag: "2.0.0"
+  - name: opensearchproject/opensearch-dashboards
+    newName: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
+    newTag: "2.0.0"
   - name: alpine
     newName: registry.sighup.io/fury/alpine
     newTag: "3.14"
 
 resources:
   - deploy.yaml
-  - ns.yml
   - sm.yml
   - rules.yml
+  - ism-policy-cronjob.yml
 
 configMapGenerator:
   - name: opensearch-cluster-master-config
     files:
       - configs/opensearch.yml
+  - name: opensearch-ism-policies
+    files:
+      - configs/retention.json
