@@ -19,9 +19,13 @@ Curator and its variants are also removed.
 > Please refer the individual release notes to get a detailed info on the
 > releases.
 
-## New packages: Welcome OpenSearch! 📕
+## New package: Welcome OpenSearch! 📕
 
-This release completely removes the Elasticsearch and Kibana stack in favor of the Opensarch cluster and OpenSearch Dashboards UI.
+This release completely removes the Elasticsearch and Kibana stack in favor of the OpenSearch cluster and OpenSearch Dashboards UI.
+
+## Removals: Curator and its variants 🚮
+
+In this major release, we removed the Curator and its variants. The index expiration is now managed via ISM policies on the OpenSearch cluster.
 
 ## Update Guide 🦮
 
