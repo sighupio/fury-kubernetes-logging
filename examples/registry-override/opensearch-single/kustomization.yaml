@@ -14,5 +14,7 @@ images:
     newName: justwatch/elasticsearch_exporter
   - name: registry.sighup.io/fury/opensearchproject/opensearch
     newName: opensearchproject/opensearch
+  - name: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
+    newName: opensearchproject/opensearch-dashboards
   - name: registry.sighup.io/fury/alpine
     newName: alpine
