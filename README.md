@@ -35,8 +35,6 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | Package                                                | Version  | Description                                                                                             |
 |--------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
 | [cerebro](katalog/cerebro)                             | `0.9.4`  | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface             |
-| [curator](katalog/curator)                             | `5.8.4`  | Manages opensearch indices and snapshots, along with configurations to set the retention log policies   |
-| [curator-s3](katalog/curator-s3)                       | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
 | [opensearch-single](katalog/opensearch-single)         | `1.2.4`  | Single node opensearch deployment                                                                       |
 | [opensearch-triple](katalog/opensearch-triple)         | `1.2.4`  | Three node high-availability opensearch deployment                                                      |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `1.2.0`  | Analytics and visualization platform for Opensearch                                                     |
@@ -74,8 +72,6 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 bases:
   - name: logging/cerebro
     version: "v3.0.0"
-  - name: logging/curator
-    version: "v3.0.0"
   - name: logging/opensearch-single
     version: "v3.0.0"
   - name: logging/opensearch-dashboards
@@ -101,7 +97,6 @@ bases:
 ```yaml
 resources:
 - ./vendor/katalog/logging/cerebro
-- ./vendor/katalog/logging/curator
 - ./vendor/katalog/logging/opensearch-single
 - ./vendor/katalog/logging/opensearch-dashboards
 - ./vendor/katalog/logging/logging-operator
@@ -117,22 +112,9 @@ kustomize build . | kubectl apply -f -
 
 ### Common Customisations
 
-#### Setup a high-availability three-node elasticsearch
+#### Setup a high-availability three-node opensearch
 
 Logging module offers an out of the box, highly-available setup for `opensearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `opensearch-single` with `opensearch-triple`.
-
-#### Setup curator with datastore in an s3 compliant bucket
-
-To setup `curator` with `s3` compliant bucket support, we provide [`curator-s3`](katalog/curator-s3). To set it up, instead of `curator`, use `curator-s3` in `Furyfile` and `kustomization` in the above defined deployment step.
-
-To configure the `s3` bucket, you will have to edit the file [`s3-curator-credentials.env`](katalog/curator-s3/s3-curator-credentials.env) with the following content, with the right configuration secrets:
-
-```env
-AWS_ACCESS_KEY_ID=AAAA
-AWS_REGION=eu-west-1
-AWS_SECRET_ACCESS_KEY=myKey
-S3_BUCKET_NAME=my-s3_bucket
-```
 
 <!-- Links -->
 
