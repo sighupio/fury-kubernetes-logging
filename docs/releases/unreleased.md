@@ -26,7 +26,7 @@ This release completely removes the Elasticsearch and Kibana stack in favor of t
 ## Update Guide 🦮
 
 The update procedure is pretty straightforward, you just need to install the new stack.
-The suggested approach is to maintain the old Elasticsearch and Kibana stack up&running while the new OpenSearch stack 
+The suggested approach is to maintain the old Elasticsearch and Kibana stack up&running while the new OpenSearch stack
 starts to receive logs.
 
 Also, all the configurations for the logging operator are updated to send logs to the new OpenSearch cluster.
