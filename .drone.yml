@@ -42,6 +42,8 @@ steps:
       VALIDATE_JSCPD: "false"
       # hadolint already validated dockerfiles
       VALIDATE_DOCKERFILE: "false"
+      # Disable natural language checks
+      VALIDATE_NATURAL_LANGUAGE: "false"
 
     depends_on:
       - clone
@@ -53,12 +55,11 @@ steps:
       - clone
     commands:
       - kustomize build katalog/cerebro > cerebro.yml
-      - kustomize build katalog/curator > curator.yml
-      - kustomize build katalog/elasticsearch-triple > elasticsearch-triple.yml
+      - kustomize build katalog/opensearch-triple > opensearch-triple.yml
+      - kustomize build katalog/opensearch-dashboards > opensearch-dashboard.yml
       - kustomize build katalog/logging-operator > logging-operator.yml
       - kustomize build katalog/logging-operated > logging-operated.yml
       - kustomize build katalog/configs > configs.yml
-      - kustomize build katalog/kibana > kibana.yml
 
   - &deprek8ion
     name: deprek8ion-cerebro
@@ -72,14 +73,9 @@ steps:
       - /conftest test -p /policies $${KUBERNETES_MANIFESTS}
 
   - <<: *deprek8ion
-    name: deprek8ion-curator
+    name: deprek8ion-opensearch-triple
     environment:
-      KUBERNETES_MANIFESTS: curator.yml
-
-  - <<: *deprek8ion
-    name: deprek8ion-elasticsearch-triple
-    environment:
-      KUBERNETES_MANIFESTS: elasticsearch-triple.yml
+      KUBERNETES_MANIFESTS: opensearch-triple.yml
 
   - <<: *deprek8ion
     name: deprek8ion-logging-operator
@@ -97,9 +93,9 @@ steps:
       KUBERNETES_MANIFESTS: configs.yml
 
   - <<: *deprek8ion
-    name: deprek8ion-kibana
+    name: deprek8ion-opensearch-dashboard
     environment:
-      KUBERNETES_MANIFESTS: kibana.yml
+      KUBERNETES_MANIFESTS: opensearch-dashboard.yml
 
 ---
 kind: pipeline
@@ -134,106 +130,6 @@ steps:
 #    when:
 #      event:
 #      - push
-
----
-kind: pipeline
-name: e2e-kubernetes-1.20
-
-depends_on:
-  - policeman
-
-node:
-  runner: internal
-
-platform:
-  os: linux
-  arch: amd64
-
-trigger:
-  ref:
-    include:
-      - refs/heads/master
-      - refs/tags/**
-
-steps:
-  - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
-    pull: always
-    volumes:
-    - name: shared
-      path: /shared
-    depends_on: [ clone ]
-    settings:
-      action: custom-cluster-120
-      pipeline_id: cluster-120
-      local_kind_config_path: katalog/tests/kind/config.yml
-      cluster_version: '1.20.7'
-      instance_path: /shared
-      instance_size: 2-extra-large
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
-
-  - name: e2e
-    image: quay.io/sighup/e2e-testing:1.1.0_0.2.2_2.16.1_1.9.4_1.20.7_3.8.7_2.4.1
-    pull: always
-    volumes:
-    - name: shared
-      path: /shared
-    depends_on: [ init ]
-    commands:
-      - export KUBECONFIG=/shared/kube/kubeconfig-120
-      - bats -t katalog/tests/tests.sh
-
-  - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v0.13.0
-    pull: always
-    depends_on: [ e2e ]
-    settings:
-      action: destroy
-      pipeline_id: cluster-120
-      aws_default_region:
-        from_secret: aws_region
-      aws_access_key_id:
-        from_secret: aws_access_key_id
-      aws_secret_access_key:
-        from_secret: aws_secret_access_key
-      terraform_tf_states_bucket_name:
-        from_secret: terraform_tf_states_bucket_name
-      vsphere_server:
-        from_secret: vsphere_server
-      vsphere_password:
-        from_secret: vsphere_password
-      vsphere_user:
-        from_secret: vsphere_user
-      dockerhub_username:
-        from_secret: dockerhub_username
-      dockerhub_password:
-        from_secret: dockerhub_password
-    when:
-      status:
-      - success
-      - failure
-
-volumes:
-- name: shared
-  temp: {}
-
 ---
 kind: pipeline
 name: e2e-kubernetes-1.21
@@ -536,7 +432,6 @@ kind: pipeline
 name: release
 
 depends_on:
-  - e2e-kubernetes-1.20
   - e2e-kubernetes-1.21
   - e2e-kubernetes-1.22
   - e2e-kubernetes-1.23

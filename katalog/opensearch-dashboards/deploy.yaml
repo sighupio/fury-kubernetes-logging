@@ -1,0 +1,120 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+# Source: opensearch-dashboards/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: opensearch-dashboards-dashboards
+  labels:
+    app.kubernetes.io/name: opensearch-dashboards
+    app.kubernetes.io/instance: opensearch-dashboards
+
+---
+# Source: opensearch-dashboards/templates/rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/name: opensearch-dashboards
+    app.kubernetes.io/instance: opensearch-dashboards
+  name: opensearch-dashboards-dashboards-rolebinding
+roleRef:
+  kind: Role
+  name: opensearch-dashboards-dashboards
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: opensearch-dashboards-dashboards
+  namespace: logging
+---
+# Source: opensearch-dashboards/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: opensearch-dashboards
+  labels:
+    app.kubernetes.io/name: opensearch-dashboards
+    app.kubernetes.io/instance: opensearch-dashboards
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5601
+    protocol: TCP
+    name: http
+    targetPort: 5601
+  selector:
+    app: opensearch-dashboards
+    release: "opensearch-dashboards"
+---
+# Source: opensearch-dashboards/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opensearch-dashboards
+  labels:
+    app.kubernetes.io/name: opensearch-dashboards
+    app.kubernetes.io/instance: opensearch-dashboards
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: opensearch-dashboards
+      release: "opensearch-dashboards"
+  template:
+    metadata:
+      labels:
+        app: opensearch-dashboards
+        release: "opensearch-dashboards"
+    spec:
+      securityContext:
+        {}
+      serviceAccountName: opensearch-dashboards-dashboards
+      containers:
+      - name: dashboards
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          runAsUser: 1000
+        image: "opensearchproject/opensearch-dashboards"
+        imagePullPolicy: "IfNotPresent"
+        command:
+          - sh
+          - -c
+          - |
+            /usr/share/opensearch-dashboards/bin/opensearch-dashboards-plugin remove securityDashboards
+            ./opensearch-dashboards-docker-entrypoint.sh opensearch-dashboards
+        args: []
+        env:
+        - name: OPENSEARCH_HOSTS
+          value: "http://opensearch-cluster-master:9200"
+        - name: SERVER_HOST
+          value: "0.0.0.0"
+        ports:
+        - containerPort: 5601
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 512M
+          requests:
+            cpu: 100m
+            memory: 512M
+        volumeMounts:
+          - name: opensearch-dashboards
+            mountPath: /usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+            subPath: opensearch_dashboards.yml
+        readinessProbe:
+          tcpSocket:
+            port: 5601
+      volumes:
+        - name: opensearch-dashboards
+          secret:
+            secretName: opensearch-dashboards

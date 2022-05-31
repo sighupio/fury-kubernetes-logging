@@ -2,12 +2,13 @@
 
 <!-- <KFD-DOCS> -->
 
-The Logging operated package deploys the fluentd and fluentbit stack via Logging operator CRDs.
+The Logging operated package deploys the Fluentd and Fluent-bit stack via Logging operator CRDs.
+It also deploys a MinIO instance for storing all the logs rejected from the configured outputs.
 
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize >= `v3.3.X`
+- Kustomize >= `v3.5.3`
 - [logging-operator][logging-operator]
 - [prometheus-operator][prometheus-operator]
 

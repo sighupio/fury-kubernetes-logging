@@ -1569,16 +1569,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_filesystem_size_bytes{pod=~\"$fluentd\",mountpoint=\"/buffers\",endpoint=\"buffer-metrics\", fstype!=\"\"} - node_filesystem_free_bytes{pod=~\"$fluentd\",mountpoint=\"/buffers\",endpoint=\"buffer-metrics\", fstype!=\"\"}",
+          "expr": "(\n  sum without(instance, node) (topk(1, (kubelet_volume_stats_capacity_bytes{job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"logging\", persistentvolumeclaim=~\".*$fluentd.*\"})))\n  -\n  sum without(instance, node) (topk(1, (kubelet_volume_stats_available_bytes{job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"logging\", persistentvolumeclaim=~\".*$fluentd.*\"})))\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "Used: {{pod}}",
+          "legendFormat": "Used: {{persistentvolumeclaim}}",
           "refId": "D"
         },
         {
-          "expr": "node_filesystem_size_bytes{pod=~\"$fluentd\",mountpoint=\"/buffers\",endpoint=\"buffer-metrics\", fstype!=\"\"}",
+          "expr": "sum without(instance, node) (topk(1, (kubelet_volume_stats_available_bytes{job=\"kubelet\", metrics_path=\"/metrics\", namespace=\"logging\", persistentvolumeclaim=~\".*$fluentd.*\"})))",
           "interval": "",
-          "legendFormat": "Total: {{pod}}",
+          "legendFormat": "Total: {{persistentvolumeclaim}}",
           "refId": "A"
         }
       ],

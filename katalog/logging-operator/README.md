@@ -5,21 +5,22 @@
 Logging operator for Kubernetes based on Fluentd and Fluent-bit.
 
 The Logging operator automates the deployment and configuration of a Kubernetes logging pipeline. The operator deploys
-and configures a Fluent Bit daemonset on every node to collect container and application logs from the node file system.
+and configures a Fluent-bit DaemonSet on every node to collect container and application logs from the node file system
+and a Fluentd StatefulSet that receive logs from Fluent-bit and send them to various outputs.
 
 ## Requirements
 
 - Kubernetes >= `1.20.0`
-- Kustomize >= `v3.3.X`
+- Kustomize >= `v3.5.3`
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.0`
+* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.6`
 * Logging operator repo: [Logging operator on GitHub][logging-operator-github]
 
 ## Configuration
 
-In Kubernetes Fury distribution, Logging operator is deployed with the following configuration:
+In Kubernetes Fury Distribution, Logging operator is deployed with the following default configuration:
 
 - Replica number: `1`
 - Resource limits are `100m` for CPU and `500Mi` for memory

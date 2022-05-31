@@ -2,7 +2,7 @@
 
 To maintain the Logging Operator package, you should follow this steps.
 
-Download the latest zip from https://github.com/banzaicloud/logging-operator/releases.
+Download the latest zip from [Logging Operator Releases][logging-operator-github-releases].
 
 Extract to a folder of your choice, for example: `/tmp/logging-operator`.
 
@@ -17,3 +17,4 @@ With the `logging-operator-build.yaml` file, check differences with the current 
 Eventually update CRDs in the `./crds` folder with the CRDs from the directory
 `./tmp/logging-operator/charts/logging-operator/crds`.
 
+[logging-operator-github-releases]: https://github.com/banzaicloud/logging-operator/releases

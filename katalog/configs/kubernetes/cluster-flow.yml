@@ -12,10 +12,31 @@ spec:
     - dedot:
         de_dot_separator: "_"
         de_dot_nested: true
+    # Added parser json on key message to parse containerd json logs
+    - parser:
+        key_name: message
+        parse:
+          type: json
+        remove_key_name_field: true
+        reserve_data: true
   match:
     - exclude:
         namespaces:
           - ingress-nginx
+        labels:
+          app: ingress-nginx
+    - exclude:
+        namespaces:
+          - ingress-nginx
+        labels:
+          app: ingress
+          type: external
+    - exclude:
+        namespaces:
+          - ingress-nginx
+        labels:
+          app: ingress
+          type: internal
     - exclude:
         labels:
           app.kubernetes.io/name: host-tailer

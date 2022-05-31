@@ -1,0 +1,33 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging-extensions.banzaicloud.io/v1alpha1
+kind: HostTailer
+metadata:
+  name: systemd-common
+spec:
+  systemdTailers:
+    - name: systemd-docker-hosttailer
+      disabled: false
+      maxEntries: 100
+      systemdFilter: docker.service
+      containerOverrides:
+        image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
+    - name: systemd-kubelet-hosttailer
+      disabled: false
+      maxEntries: 100
+      systemdFilter: kubelet.service
+      containerOverrides:
+        image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
+    - name: systemd-ssh-hosttailer
+      disabled: false
+      maxEntries: 100
+      systemdFilter: ssh.service
+      containerOverrides:
+        image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
+  workloadOverrides:
+    tolerations:
+      - operator: Exists
+        effect: NoSchedule

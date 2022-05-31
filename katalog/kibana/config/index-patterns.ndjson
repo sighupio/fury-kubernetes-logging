@@ -1,3 +1,0 @@
-{"type":"index-pattern","id":"system","attributes":{"title":"system-*","timeFieldName":"@timestamp"}}
-{"type":"index-pattern","id":"kubernetes","attributes":{"title":"kubernetes-*","timeFieldName":"@timestamp"}}
-{"type":"index-pattern","id":"ingress-controller","attributes":{"title":"ingress-controller-*","timeFieldName":"@timestamp"}}
