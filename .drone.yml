@@ -55,7 +55,6 @@ steps:
       - clone
     commands:
       - kustomize build katalog/cerebro > cerebro.yml
-      - kustomize build katalog/curator > curator.yml
       - kustomize build katalog/opensearch-triple > opensearch-triple.yml
       - kustomize build katalog/opensearch-dashboards > opensearch-dashboard.yml
       - kustomize build katalog/logging-operator > logging-operator.yml
@@ -72,11 +71,6 @@ steps:
       - render
     commands:
       - /conftest test -p /policies $${KUBERNETES_MANIFESTS}
-
-  - <<: *deprek8ion
-    name: deprek8ion-curator
-    environment:
-      KUBERNETES_MANIFESTS: curator.yml
 
   - <<: *deprek8ion
     name: deprek8ion-opensearch-triple

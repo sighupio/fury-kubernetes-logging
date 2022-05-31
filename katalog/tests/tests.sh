@@ -36,11 +36,6 @@ set -o pipefail
   apply katalog/configs/kubernetes
 }
 
-@test "testing curator apply" {
-  info
-  apply katalog/curator
-}
-
 @test "testing cerebro apply" {
   info
   apply katalog/cerebro
@@ -118,22 +113,12 @@ set -o pipefail
   [[ "$status" -eq 0 ]]
 }
 
-@test "run curator job" {
-  info
-  test(){
-    kubectl -n logging create job curator-test --from cronjob/curator
-    kubectl -n logging wait --for=condition=complete job/curator-test --timeout=600s
-  }
-  run test
-  [ "$status" -eq 0 ]
-}
-
 @test "cleanup" {
   if [ -z "${LOCAL_DEV_ENV}" ];
   then
     skip
   fi
-  for dir in opensearch-single fluentd curator cerebro opensearch-dashboards
+  for dir in opensearch-single fluentd cerebro opensearch-dashboards
   do
     echo "# deleting katalog/$dir" >&3
     kustomize build katalog/$dir | kubectl delete -f - || true
