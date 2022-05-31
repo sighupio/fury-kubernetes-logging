@@ -15,8 +15,14 @@ images:
 
 resources:
   - deploy.yaml
+  - index-patterns-cronjob.yml
 
 secretGenerator:
   - name: opensearch-dashboards
     files:
       - configs/opensearch_dashboards.yml
+
+configMapGenerator:
+  - name: opensearch-index-patterns
+    files:
+      - configs/index-patterns.ndjson

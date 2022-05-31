@@ -1,0 +1,38 @@
+# kubernetes cronjob
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: index-patterns-cronjob
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: index-patterns
+            securityContext:
+              capabilities:
+                drop:
+                  - ALL
+              runAsNonRoot: true
+              runAsUser: 1000
+            image: opensearchproject/opensearch-dashboards
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - |
+              curl -X POST "http://opensearch-dashboards:5601/api/saved_objects/_import?overwrite=true" -H "osd-xsrf: true" --form file=@/tmp/index-patterns.ndjson
+            volumeMounts:
+              - name: config-volume
+                mountPath: /tmp/index-patterns.ndjson
+                subPath: index-patterns.ndjson
+          volumes:
+            - name: config-volume
+              configMap:
+                name: opensearch-index-patterns
+                items:
+                  - key: index-patterns.ndjson
+                    path: index-patterns.ndjson
+          restartPolicy: OnFailure
+  schedule: "0 * * * *"
