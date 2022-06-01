@@ -12,9 +12,12 @@ resources:
   - datasource
   - deploy.yml
 
+images:
+  - name: grafana/loki
+    newName: registry.sighup.io/fury/grafana/loki
+    newTag: 2.4.2
+
 secretGenerator:
   - name: loki-stack
     files:
       - configs/loki.yaml
-
-
