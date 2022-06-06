@@ -16,7 +16,7 @@ stored in OpenSearch indices.
 
 * OpenSearch Dashboards image: `opensearchproject/opensearch-dashboards:1.2.0`
 * OpenSearch Dashboards repo: [OpenSearch Dashboards on Github][opensearch-dashboards-github]
-* OpenSearch Dashboards documentation: [OpenSearch Dashboards at elastic.co][opensearch-dashboards-doc]
+* OpenSearch Dashboards documentation: [OpenSearch Dashboards at opensearch.org][opensearch-dashboards-doc]
 
 ## Configuration
 
