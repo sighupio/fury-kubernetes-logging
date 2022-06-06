@@ -48,7 +48,7 @@ To learn how to customize compute resources for OpenSearch please follow the
 
 ## Alerts
 
-Since we are configuring a `ServiceMonitor` in this package, followings Prometheus [alerts][es-rules] are already defined:
+Since we are configuring a `ServiceMonitor` in this package, the following Prometheus [alerts][opensearch-rules] are already defined:
 
 | Alert                             | Description                                                             | Severity | Interval |
 |-----------------------------------|-------------------------------------------------------------------------|----------|:--------:|
