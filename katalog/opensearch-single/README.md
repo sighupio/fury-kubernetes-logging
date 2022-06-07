@@ -28,7 +28,6 @@ Fury distribution OpenSearch Single is deployed with the following configuration
 - Single node
 - Listens on port `9200` for client connections
 - Listens on port `9300` for node-to-node connections
-- Uses default unicast Zen Discovery module to discover Elasticsearch nodes
 - Resource limits are `2000m` for CPU and `4G` for memory
 - Requires `30Gi` storage
 - Prometheus exporter to expose OpenSearch metrics
