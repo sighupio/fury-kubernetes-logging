@@ -13,7 +13,7 @@ Kubernetes.
 - [prometheus-operator][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
-> some metrics available from `elasticsearch` on prometheus
+> some metrics available from `OpenSearch` on prometheus
 
 ## Image repository and tag
 

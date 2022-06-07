@@ -7,7 +7,7 @@ log analytics. This package deploys a three-node OpenSearch cluster on
 Kubernetes.
 
 `opensearch-triple` is a high availability setup of OpenSearch, that sets
-up a 3-node cluster of `elasticsearch` for a robust and reliable setup.
+up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Requirements
 
