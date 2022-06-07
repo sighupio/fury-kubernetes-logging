@@ -28,7 +28,7 @@ up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Configuration
 
-Fury distribution OpenSearch Single is deployed with the following configuration:
+OpenSearch Triple is deployed with the following configuration:
 
 - OpenSearch cluster with `3` nodes
 - Listens on port `9200` for client connections
