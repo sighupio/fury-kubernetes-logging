@@ -3,7 +3,7 @@
 <!-- <KFD-DOCS> -->
 
 OpenSearch is an open-source distributed search and analytics engine used for
-log analytics. This package deploys a single node OpenSearch cluster on
+log analytics. This package deploys a three-node OpenSearch cluster on
 Kubernetes.
 
 `opensearch-triple` is a high availability setup of OpenSearch, that sets
