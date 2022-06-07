@@ -48,9 +48,6 @@ You can deploy OpenSearch Triple by running the following command in the root of
 kustomize build | kubectl apply -f -
 ```
 
-To learn how to customize compute resources for OpenSearch please follow the
-[example](../../examples/OpenSearch-resources).
-
 <!-- Links -->
 
 [opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1

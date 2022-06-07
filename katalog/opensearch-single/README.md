@@ -43,9 +43,6 @@ the project:
 kustomize build | kubectl apply -f -
 ```
 
-To learn how to customize compute resources for OpenSearch please follow the
-[example](../../examples/opensearch-resources).
-
 ## Alerts
 
 Since we are configuring a `ServiceMonitor` in this package, the following Prometheus [alerts][opensearch-rules] are already defined:
