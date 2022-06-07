@@ -22,9 +22,9 @@ up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Image repository and tag
 
-* Elasticsearch image: `elasticsearch/elasticsearch:7.16.2`
-* Elasticsearch repo: [Elasticsearch on Github][es-gh]
-* Elasticsearch documentation: [Elasticsearch Homepage][es-doc]
+* OpenSearch image: `opensearchproject/opensearch:1.2.4`
+* OpenSearch repo: [OpenSearch on Github][opensearch-gh]
+* OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 
 ## Configuration
 
