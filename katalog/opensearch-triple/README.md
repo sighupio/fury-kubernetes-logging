@@ -22,21 +22,21 @@ up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Image repository and tag
 
-* Elasticsearch image: `elasticsearch/elasticsearch:7.16.2`
-* Elasticsearch repo: [Elasticsearch on Github][es-gh]
-* Elasticsearch documentation: [Elasticsearch Homepage][es-doc]
+* OpenSearch image: `opensearchproject/opensearch:1.2.4`
+* OpenSearch repo: [OpenSearch on Github][opensearch-gh]
+* OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 
 ## Configuration
 
-Fury distribution OpenSearch Single is deployed with the following configuration:
+OpenSearch Triple is deployed with the following configuration:
 
 - OpenSearch cluster with `3` nodes
 - Listens on port `9200` for client connections
 - Listens on port `9300` for node-to-node connections
 - Resource limits are `2000m` for CPU and `4G` for memory
 - Requires `30Gi` storage
-- Only a single OpenSearch node can be deployed on each node of the cluster
-- Prometheus exporter to expose Opensearch metrics
+- Each OpenSearch node is running in a different Kubernetes node
+- Prometheus exporter to expose OpenSearch metrics
 - Metrics are scraped by Prometheus every `30s`
 
 ## Deployment
