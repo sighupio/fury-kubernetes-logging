@@ -33,9 +33,6 @@ You can deploy OpenSearch Dashboard by running the following command in the root
 kustomize build | kubectl apply -f -
 ```
 
-To learn how to constrain OpenSearch Dashboard deployment please see the
-[example](../../examples/opensearch-dashboard-node-selector).
-
 ### Accessing OpenSearch Dashboards UI
 
 You can access OpenSearch Dashboards web UI by port-forwarding on port `5601`:
