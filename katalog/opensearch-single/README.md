@@ -61,7 +61,7 @@ Since we are configuring a `ServiceMonitor` in this package, the following Prome
 
 <!-- Links -->
 
-[opensearch-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+[opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1
 [opensearch-gh]: https://github.com/opensearch-project/OpenSearch
 [opensearch-doc]: https://opensearch.org/docs/latest
 [prometheus-operator]: https://github.com/sighupio/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator

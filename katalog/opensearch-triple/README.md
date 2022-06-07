@@ -53,7 +53,7 @@ To learn how to customize compute resources for OpenSearch please follow the
 
 <!-- Links -->
 
-[opensearch-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+[opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1
 [opensearch-gh]: https://github.com/opensearch-project/OpenSearch
 [opensearch-doc]: https://opensearch.org/docs/latest
 [prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
