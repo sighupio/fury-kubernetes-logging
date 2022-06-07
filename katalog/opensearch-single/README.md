@@ -6,6 +6,8 @@ OpenSearch is an open-source distributed search and analytics engine used for
 log analytics. This package deploys a single node OpenSearch cluster on
 Kubernetes.
 
+> ⚠️ Please note that the OpenSearch Single variant is not intended for production use. Please use [opensearch-triple](../opensearch-triple), the high-availability version, for production.
+
 ## Requirements
 
 - Kubernetes >= `1.20.0`
