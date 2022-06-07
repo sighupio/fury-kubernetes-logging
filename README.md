@@ -17,14 +17,10 @@ If you are new to KFD please refer to the [official documentation][kfd-docs] on 
 
 **Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster.
 
-The central piece of the stack is the CNCF certified open source search engine [opensearch][opensearch-page], combined
+The central piece of the stack is the open source search engine [opensearch][opensearch-page], combined
 with its analytics and visualization platform [opensearch-dashboards][opensearch-dashboards-page].
-The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`),
-pushing it to the Opensearch via [fluentd][fluentd-page].
-
-Following is a high level design diagram of the module:
-
-![logging module](docs/images/logging-module.jpg "Kubernetes Fury Logging")
+The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page],
+pushing it to the OpenSearch via [fluentd][fluentd-page]. The fluentbit and fluentd stack is managed by Banzai Logging Operator.
 
 All the components are deployed in the `logging` namespace in the cluster.
 
