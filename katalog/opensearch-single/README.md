@@ -54,6 +54,8 @@ Since we are configuring a `ServiceMonitor` in this package, the following Prome
 | OpenSearchOfUnassignedShards      | This alert fires when there are unassigned shards for 30 minutes        | warning  | 30m      |
 | OpenSearchOfPendingTasks          | This alert fires when there pending task for 30 minutes                 | warning  | 30m      |
 
+> ℹ️ when using the OpenSearch single variant, the cluster will be in `YELLOW` state because of the single replica.
+
 <!-- Links -->
 
 [opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1
