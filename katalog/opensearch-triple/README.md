@@ -3,11 +3,11 @@
 <!-- <KFD-DOCS> -->
 
 OpenSearch is an open-source distributed search and analytics engine used for
-log analytics. This package deploys a single node OpenSearch cluster on
+log analytics. This package deploys a three-node OpenSearch cluster on
 Kubernetes.
 
-`elasticsearch-triple` is a high availability setup of elasticsearch, that sets
-up a 3-node cluster of `elasticsearch` for a robust and reliable setup.
+`opensearch-triple` is a high availability setup of OpenSearch, that sets
+up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ up a 3-node cluster of `elasticsearch` for a robust and reliable setup.
 - [prometheus-operator][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
-> some metrics available from `elasticsearch` on prometheus. Please refer,
+> some metrics available from `opensearch` on prometheus. Please refer,
 > [`opensearch-single](../opensearch-single/README.md#alerts) to read
 > about the available Prometheus rules.
 
@@ -33,7 +33,6 @@ Fury distribution OpenSearch Single is deployed with the following configuration
 - OpenSearch cluster with `3` nodes
 - Listens on port `9200` for client connections
 - Listens on port `9300` for node-to-node connections
-- Uses default unicast Zen Discovery module to discover Elasticsearch nodes
 - Resource limits are `2000m` for CPU and `4G` for memory
 - Requires `30Gi` storage
 - Only a single OpenSearch node can be deployed on each node of the cluster
@@ -48,15 +47,12 @@ You can deploy OpenSearch Triple by running the following command in the root of
 kustomize build | kubectl apply -f -
 ```
 
-To learn how to customize compute resources for OpenSearch please follow the
-[example](../../examples/OpenSearch-resources).
-
 <!-- Links -->
 
-[opensearch-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+[opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1
 [opensearch-gh]: https://github.com/opensearch-project/OpenSearch
 [opensearch-doc]: https://opensearch.org/docs/latest
-[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
+[prometheus-operator]: https://github.com/sighupio/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator
 
 <!-- </KFD-DOCS> -->
 

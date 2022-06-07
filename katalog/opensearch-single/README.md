@@ -13,7 +13,7 @@ Kubernetes.
 - [prometheus-operator][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
-> some metrics available from `elasticsearch` on prometheus
+> some metrics available from `OpenSearch` on prometheus
 
 ## Image repository and tag
 
@@ -27,8 +27,6 @@ Fury distribution OpenSearch Single is deployed with the following configuration
 
 - Single node
 - Listens on port `9200` for client connections
-- Listens on port `9300` for node-to-node connections
-- Uses default unicast Zen Discovery module to discover Elasticsearch nodes
 - Resource limits are `2000m` for CPU and `4G` for memory
 - Requires `30Gi` storage
 - Prometheus exporter to expose OpenSearch metrics
@@ -43,12 +41,9 @@ the project:
 kustomize build | kubectl apply -f -
 ```
 
-To learn how to customize compute resources for OpenSearch please follow the
-[example](../../examples/opensearch-resources).
-
 ## Alerts
 
-Since we are configuring a `ServiceMonitor` in this package, followings Prometheus [alerts][es-rules] are already defined:
+Since we are configuring a `ServiceMonitor` in this package, the following Prometheus [alerts][opensearch-rules] are already defined:
 
 | Alert                             | Description                                                             | Severity | Interval |
 |-----------------------------------|-------------------------------------------------------------------------|----------|:--------:|
@@ -61,10 +56,10 @@ Since we are configuring a `ServiceMonitor` in this package, followings Promethe
 
 <!-- Links -->
 
-[opensearch-rules]: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+[opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1
 [opensearch-gh]: https://github.com/opensearch-project/OpenSearch
 [opensearch-doc]: https://opensearch.org/docs/latest
-[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/prometheus-operator
+[prometheus-operator]: https://github.com/sighupio/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator
 
 <!-- </KFD-DOCS> -->
 

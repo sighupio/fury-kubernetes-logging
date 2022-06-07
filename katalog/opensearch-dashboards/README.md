@@ -16,7 +16,7 @@ stored in OpenSearch indices.
 
 * OpenSearch Dashboards image: `opensearchproject/opensearch-dashboards:1.2.0`
 * OpenSearch Dashboards repo: [OpenSearch Dashboards on Github][opensearch-dashboards-github]
-* OpenSearch Dashboards documentation: [OpenSearch Dashboards at elastic.co][opensearch-dashboards-doc]
+* OpenSearch Dashboards documentation: [OpenSearch Dashboards at opensearch.org][opensearch-dashboards-doc]
 
 ## Configuration
 
@@ -32,9 +32,6 @@ You can deploy OpenSearch Dashboard by running the following command in the root
 ```shell
 kustomize build | kubectl apply -f -
 ```
-
-To learn how to constrain OpenSearch Dashboard deployment please see the
-[example](../../examples/opensearch-dashboard-node-selector).
 
 ### Accessing OpenSearch Dashboards UI
 
