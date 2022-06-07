@@ -31,7 +31,7 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | Package                                                | Version  | Description                                                                                             |
 |--------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
 | [cerebro](katalog/cerebro)                             | `0.9.4`  | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface             |
-| [opensearch-single](katalog/opensearch-single)         | `2.0.0`  | Single node opensearch deployment                                                                       |
+| [opensearch-single](katalog/opensearch-single)         | `2.0.0`  | Single node opensearch deployment. Not intended for production use.               |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.0.0`  | Three node high-availability opensearch deployment                                                      |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.0.0`  | Analytics and visualization platform for Opensearch                                                     |
 | [logging-operator](katalog/logging-operator)           | `3.17.6` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
