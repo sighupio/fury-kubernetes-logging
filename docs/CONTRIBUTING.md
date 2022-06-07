@@ -60,6 +60,7 @@ Basic rules:
 - `MAINTENANCE.md` file should always be present, describing the package maintenance specifying what to do to upgrade the package.
 - If possible, add a Prometheus `ServiceMonitor` to the component if metrics are exported.
 - If possible, add a Grafana dashboard for the component using the ConfigMap approach: [add-new-dashboards][add-new-dashboards].
+- All the images in the module should be pushed to the sighup registry using our [image-sync repository][image-sync-repository].
 
 ## CI explanations
 
@@ -97,3 +98,4 @@ Run `make help` to see all the available commands.
 <!-- Links -->
 
 [add-new-dashboards]: https://github.com/sighupio/fury-kubernetes-monitoring/tree/master/katalog/grafana#add-new-dashboards
+[image-sync-repository]: https://github.com/sighupio/fury-distribution-container-image-sync
