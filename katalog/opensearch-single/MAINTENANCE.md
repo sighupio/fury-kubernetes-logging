@@ -12,6 +12,9 @@ Run the following command:
 helm template opensearch /tmp/opensearch -n logging > opensearch-built.yaml
 ```
 
+With the `opensearch-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
+
+
 What was customized:
 
 - default storage from 8Gi to 30Gi

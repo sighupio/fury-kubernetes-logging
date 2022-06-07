@@ -12,6 +12,8 @@ Run the following command:
 helm template opensearch-dashboards /tmp/opensearch-dashboards -n logging > opensearch-dashboards-built.yaml
 ```
 
+With the `opensearch-dashboards-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
+
 What was customized:
 
 - configured requests and limits
