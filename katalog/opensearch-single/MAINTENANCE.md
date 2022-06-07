@@ -1,10 +1,17 @@
-# Opensearch - maintenance
+# OpenSearch - maintenance
 
 To maintain the Opensearch package, you should follow this steps.
 
 Download the latest zip from [Opensearch Helm Charts][opensearch-helm-charts].
 
 Extract to a folder of your choice, for example: `/tmp/opensearch`.
+
+Alternatively you can download the chart with:
+
+```bash
+helm repo add opensearch https://opensearch-project.github.io/helm-charts/
+helm pull opensearch/opensearch --version 2.0.1 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch
+```
 
 Run the following command:
 
