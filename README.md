@@ -82,8 +82,6 @@ bases:
     version: "v3.0.0"
   - name: logging/configs
     version: "v3.0.0"
-  - name: logging/kibana
-    version: "v3.0.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
