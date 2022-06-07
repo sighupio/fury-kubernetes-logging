@@ -35,7 +35,7 @@ OpenSearch Triple is deployed with the following configuration:
 - Listens on port `9300` for node-to-node connections
 - Resource limits are `2000m` for CPU and `4G` for memory
 - Requires `30Gi` storage
-- Only a single OpenSearch node can be deployed on each node of the cluster
+- Each OpenSearch node is running in a different Kubernetes node
 - Prometheus exporter to expose OpenSearch metrics
 - Metrics are scraped by Prometheus every `30s`
 
