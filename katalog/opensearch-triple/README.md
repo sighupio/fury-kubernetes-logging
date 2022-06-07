@@ -36,7 +36,7 @@ OpenSearch Triple is deployed with the following configuration:
 - Resource limits are `2000m` for CPU and `4G` for memory
 - Requires `30Gi` storage
 - Only a single OpenSearch node can be deployed on each node of the cluster
-- Prometheus exporter to expose Opensearch metrics
+- Prometheus exporter to expose OpenSearch metrics
 - Metrics are scraped by Prometheus every `30s`
 
 ## Deployment
