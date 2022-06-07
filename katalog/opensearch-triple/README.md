@@ -53,7 +53,7 @@ kustomize build | kubectl apply -f -
 [opensearch-rules]: https://awesome-prometheus-alerts.grep.to/rules.html#elasticsearch-1
 [opensearch-gh]: https://github.com/opensearch-project/OpenSearch
 [opensearch-doc]: https://opensearch.org/docs/latest
-[prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/prometheus-operator
+[prometheus-operator]: https://github.com/sighupio/fury-kubernetes-monitoring/tree/master/katalog/prometheus-operator
 
 <!-- </KFD-DOCS> -->
 
