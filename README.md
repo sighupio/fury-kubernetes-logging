@@ -17,11 +17,10 @@ If you are new to KFD please refer to the [official documentation][kfd-docs] on 
 
 **Kubernetes Fury Logging** uses a collection of open source tools to provide the most resilient and robust logging stack for the cluster.
 
-The central piece of the stack is the CNCF certified open source search engine [elasticsearch][elastic-search-page], combined with its analytics and visualization platform [kibana][kibana-page]. The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page](deployed as `Daemonsets`), pushing it to the Elasticsearch via [fluentd][fluentd-page].
-
-Following is a high level design diagram of the module:
-
-![logging module](docs/images/logging-module.jpg "Kubernetes Fury Logging")
+The central piece of the stack is the open source search engine [opensearch][opensearch-page], combined
+with its analytics and visualization platform [opensearch-dashboards][opensearch-dashboards-page].
+The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page],
+pushing it to the OpenSearch via [fluentd][fluentd-page]. The fluentbit and fluentd stack is managed by Banzai Logging Operator.
 
 All the components are deployed in the `logging` namespace in the cluster.
 
@@ -29,17 +28,15 @@ All the components are deployed in the `logging` namespace in the cluster.
 
 The following packages are included in the Fury Kubernetes Logging katalog:
 
-| Package                                              | Version  | Description                                                                                             |
-|------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
-| [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface          |
-| [curator](katalog/curator)                           | `5.8.4`  | Manages elasticserach indices and snapshots, alongwith configurations to set the retention log policies |
-| [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
-| [elasticsearch-single](katalog/elasticsearch-single) | `7.16.2` | Single node elasticsearch deployment                                                                    |
-| [elasticsearch-triple](katalog/elasticsearch-triple) | `7.16.2` | Three node high-availability elasticsearch deployment                                                   |
-| [logging-operator](katalog/logging-operator)         | `3.17.2` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
-| [logging-operated](katalog/logging-operated)         | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
-| [configs](katalog/configs)                           | `-`      | Logging pipeline configs to gather various types of logs                                                |
-| [kibana](katalog/kibana)                             | `7.16.2` | Analytics and visualization platform for Elasticsearch                                                  |
+| Package                                                | Version  | Description                                                                                             |
+|--------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
+| [cerebro](katalog/cerebro)                             | `0.9.4`  | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface             |
+| [opensearch-single](katalog/opensearch-single)         | `2.0.0`  | Single node opensearch deployment. Not intended for production use.                                     |
+| [opensearch-triple](katalog/opensearch-triple)         | `2.0.0`  | Three node high-availability opensearch deployment                                                      |
+| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.0.0`  | Analytics and visualization platform for Opensearch                                                     |
+| [logging-operator](katalog/logging-operator)           | `3.17.6` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
+| [logging-operated](katalog/logging-operated)           | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
+| [configs](katalog/configs)                             | `-`      | Logging pipeline configs to gather various types of logs                                                |
 
 Click on each package to see its full documentation.
 
@@ -47,10 +44,10 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes                                               |
 |--------------------|:------------------:|-----------------------------------------------------|
-| `1.20.x`           | :white_check_mark: | No known issues                                     |
 | `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
-| `1.23.x`           |     :warning:      | Conformance tests passed. Not officially supported. |
+| `1.23.x`           | :white_check_mark: | No known issues                                     |
+| `1.24.x`           |     :warning:      | Conformance tests passed. Not officially supported. |
 
 Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
 
@@ -70,19 +67,17 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v2.0.1"
-  - name: logging/curator
-    version: "v2.0.1"
-  - name: logging/elasticsearch-single
-    version: "v2.0.1"
+    version: "v3.0.0"
+  - name: logging/opensearch-single
+    version: "v3.0.0"
+  - name: logging/opensearch-dashboards
+    version: "v3.0.0"
   - name: logging/logging-operator
-    version: "v2.0.1"
+    version: "v3.0.0"
   - name: logging/logging-operated
-    version: "v2.0.1"
+    version: "v3.0.0"
   - name: logging/configs
-    version: "v2.0.1"
-  - name: logging/kibana
-    version: "v2.0.1"
+    version: "v3.0.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -96,12 +91,11 @@ bases:
 ```yaml
 resources:
 - ./vendor/katalog/logging/cerebro
-- ./vendor/katalog/logging/curator
-- ./vendor/katalog/logging/elasticsearch-single
+- ./vendor/katalog/logging/opensearch-single
+- ./vendor/katalog/logging/opensearch-dashboards
 - ./vendor/katalog/logging/logging-operator
 - ./vendor/katalog/logging/logging-operated
 - ./vendor/katalog/logging/configs
-- ./vendor/katalog/logging/kibana
 ```
 
 5. To deploy the packages to your cluster, execute:
@@ -112,27 +106,14 @@ kustomize build . | kubectl apply -f -
 
 ### Common Customisations
 
-#### Setup a high-availability three-node elasticsearch
+#### Setup a high-availability three-node opensearch
 
-Logging module offers an out of the box, highly-available setup for `elasticsearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `elasticsearch-single` with `elasticsearch-triple`.
-
-#### Setup curator with datastore in an s3 compliant bucket
-
-To setup `curator` with `s3` compliant bucket support, we provide [`curator-s3`](katalog/curator-s3). To set it up, instead of `curator`, use `curator-s3` in `Furyfile` and `kustomization` in the above defined deployment step.
-
-To configure the `s3` bucket, you will have to edit the file [`secret-es-backup.env`](katalog/curator-s3/secret-es-backup.env) with the following content, with the right configuration secrets:
-
-``` sh
-AWS_ACCESS_KEY_ID=AAAA
-AWS_REGION=eu-west-1
-AWS_SECRET_ACCESS_KEY=myKey
-S3_BUCKET_NAME=my-s3_bucket
-```
+Logging module offers an out of the box, highly-available setup for `opensearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `opensearch-single` with `opensearch-triple`.
 
 <!-- Links -->
 
-[elastic-search-page]: https://www.elastic.co/elasticsearch/
-[kibana-page]: https://www.elastic.co/kibana/
+[opensearch-page]: https://opensearch.org
+[opensearch-dashboards-page]: https://opensearch.org
 [fluentbit-page]: https://fluentbit.io/
 [fluentd-page]: https://www.fluentd.org/
 [kfd-repo]: https://github.com/sighupio/fury-distribution
