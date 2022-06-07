@@ -16,7 +16,7 @@ up a 3-node cluster of `elasticsearch` for a robust and reliable setup.
 - [prometheus-operator][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
-> some metrics available from `elasticsearch` on prometheus. Please refer,
+> some metrics available from `opensearch` on prometheus. Please refer,
 > [`opensearch-single](../opensearch-single/README.md#alerts) to read
 > about the available Prometheus rules.
 
