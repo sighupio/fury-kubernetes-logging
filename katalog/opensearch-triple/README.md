@@ -6,7 +6,7 @@ OpenSearch is an open-source distributed search and analytics engine used for
 log analytics. This package deploys a single node OpenSearch cluster on
 Kubernetes.
 
-`elasticsearch-triple` is a high availability setup of elasticsearch, that sets
+`opensearch-triple` is a high availability setup of OpenSearch, that sets
 up a 3-node cluster of `elasticsearch` for a robust and reliable setup.
 
 ## Requirements
