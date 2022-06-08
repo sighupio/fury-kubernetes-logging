@@ -25,7 +25,7 @@ It does not index the contents of the logs, but rather a set of labels for each 
 
 ## Configuration
 
-Fury distribution Loki Stack Single is deployed with the following configuration:
+Loki Stack Single is deployed with the following configuration:
 
 - Single node
 - Listens on port `3100` for client connections and metrics scraping
