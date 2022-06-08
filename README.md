@@ -39,7 +39,6 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [configs](katalog/configs)                             | `-`      | Logging pipeline configs to gather various types of logs and send them to OpenSearch                    |
 | [loki-configs](katalog/loki-configs)                   | `-`      | Logging pipeline configs to gather various types of logs and send them to Loki                          |
 | [loki-single](katalog/loki-single)                     | `2.4.2`  | Single node Loki deployment                                                                             |
-| [loki-triple](katalog/loki-triple)                     | `2.4.2`  | Three node high-availability Loki deployment                                                            |
 
 Click on each package to see its full documentation.
 

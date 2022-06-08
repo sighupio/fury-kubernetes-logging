@@ -61,7 +61,7 @@ steps:
       - kustomize build katalog/logging-operated > logging-operated.yml
       - kustomize build katalog/configs > configs.yml
       - kustomize build katalog/loki-configs > loki-configs.yml
-      - kustomize build katalog/loki-triple > loki-triple.yml
+      - kustomize build katalog/loki-single > loki-single.yml
 
   - &deprek8ion
     name: deprek8ion-cerebro
@@ -100,14 +100,14 @@ steps:
       KUBERNETES_MANIFESTS: opensearch-dashboard.yml
 
   - <<: *deprek8ion
-    name: loki-configs
+    name: deprek8ion-loki-configs
     environment:
       KUBERNETES_MANIFESTS: loki-configs.yml
 
   - <<: *deprek8ion
-    name: loki-triple
+    name: deprek8ion-loki-single
     environment:
-      KUBERNETES_MANIFESTS: loki-triple.yml
+      KUBERNETES_MANIFESTS: loki-single.yml
 
 ---
 kind: pipeline
