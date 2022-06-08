@@ -13,7 +13,7 @@ It does not index the contents of the logs, but rather a set of labels for each 
 - Kubernetes >= `1.21.0`
 - Kustomize >= `v3.5.3`
 - [prometheus-operator from KFD monitoring module][prometheus-operator]
-- [grafana from KFD monitoring module][grafana]
+- [grafana from KFD monitoring module][grafana] (module version `>=1.15.0`)
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
 > some metrics available from `loki` on prometheus
