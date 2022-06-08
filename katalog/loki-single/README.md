@@ -41,15 +41,6 @@ the project:
 kustomize build | kubectl apply -f -
 ```
 
-
-## Alerts
-
-Since we are configuring a `ServiceMonitor` in this package, followings Prometheus alerts are provided:
-
-| Alert                             | Description                                                             | Severity | Interval |
-|-----------------------------------|-------------------------------------------------------------------------|----------|:--------:|
-| TBD              | TBD       | critical | 30m      |
-
 <!-- Links -->
 
 [prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/prometheus-operator
