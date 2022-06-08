@@ -41,10 +41,14 @@ the project:
 kustomize build | kubectl apply -f -
 ```
 
+This project also implements a dynamic Loki datasource that our Grafana from the monitoring stack automatically fetches and configures.
+To see the logs, navigate in Grafana to the [explore section][grafana-explore-doc].
+
 <!-- Links -->
 
 [prometheus-operator]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/prometheus-operator
 [grafana]: https://github.com/sighup-io/fury-kubernetes-monitoring/blob/master/katalog/grafana
+[grafana-explore-doc]: https://grafana.com/docs/grafana/latest/explore/
 [loki-gh]: https://github.com/grafana/loki
 
 <!-- </KFD-DOCS> -->
