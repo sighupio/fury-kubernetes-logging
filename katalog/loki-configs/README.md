@@ -10,7 +10,9 @@ This package is a collection of logging operator Flow/ClusterFlow and Output/Clu
 
 ## Configuration
 
-Configurations available (patched from the base [configs](../configs)):
+> ⚠️ This package cannot be used together with `configs` package, one excludes the other.
+
+Configurations available (patched from the base [configs](../configs) ) :
 
 - [configs](configs): all the configurations.
 - [configs/kubernetes](configs/kubernetes): only the cluster wide pods logging configuration.
