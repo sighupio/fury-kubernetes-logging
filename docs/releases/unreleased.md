@@ -15,6 +15,7 @@ Curator and its variants are also removed.
 | `opensearch-dashboards`  | [`v2.0.0`](https://github.com/opensearch-project/OpenSearch-Dashboards/releases/tag/2.0.0)             | `New component`  |
 | `cerebro`                | [`v0.9.4`](https://github.com/lmenezes/cerebro/releases/tag/v0.9.4)                                    | `No update`      |
 | `logging-operator`       | [`v3.17.6`](https://github.com/banzaicloud/logging-operator/releases/tag/3.17.6)                       | `v3.17.2`        |
+| `loki-stack`             | [`v2.4.2`](https://github.com/grafana/loki/releases/tag/v2.4.2)                                        | `New component`  |
 
 > Please refer the individual release notes to get a detailed info on the
 > releases.
@@ -25,7 +26,11 @@ This release completely removes the Elasticsearch and Kibana stack in favor of t
 
 ## Removals: Curator and its variants 🚮
 
-In this major release, we removed the Curator and its variants. The index expiration is now managed via ISM policies on the OpenSearch cluster.
+This release completely removes Curator package and its variants. The index expiration is now managed via ISM policies on the OpenSearch cluster.
+
+## Technical preview: Loki 🔬
+
+We are also adding Loki storage as an alternative to OpenSearch. This is a preview release and is not considered production ready.
 
 ## Update Guide 🦮
 

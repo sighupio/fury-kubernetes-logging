@@ -28,7 +28,6 @@ set -o pipefail
 @test "testing logging-operated apply" {
   info
   apply katalog/logging-operated
-
 }
 
 @test "testing kubernetes config apply" {
@@ -106,6 +105,27 @@ set -o pipefail
   info
   test(){
     data=$(kubectl get deploy -n logging -l app.kubernetes.io/name=opensearch-dashboards -o json | jq '.items[] | select(.metadata.name == "opensearch-dashboards" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
+  }
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "testing kubernetes loki-config apply" {
+  info
+  apply katalog/loki-configs/kubernetes
+}
+
+@test "testing loki-single apply" {
+  info
+  apply katalog/loki-single
+}
+
+@test "check loki-single" {
+  info
+  test(){
+    data=$(kubectl get sts -n logging -l app=loki -o json | jq '.items[] | select(.metadata.name == "loki-stack" and .status.replicas == .status.readyReplicas )')
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 400 6
