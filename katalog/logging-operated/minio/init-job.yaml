@@ -35,7 +35,7 @@ spec:
         command:
         - /bin/sh
         - -c
-        - "mc --config-dir=/config config host add $(MINIO_NAMESPACE) http://$(MINIO_STS_NAME)-0.$(MINIO_SERVICE_NAME):9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY} && mc --config-dir=/config mb -p $(MINIO_NAMESPACE)/$(MINIO_NAMESPACE)"
+        - "mc --config-dir=/config config host add $(MINIO_LOGGING_NAMESPACE) http://$(MINIO_LOGGING_STS_NAME)-0.$(MINIO_LOGGING_SERVICE_NAME):9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY} && mc --config-dir=/config mb -p $(MINIO_LOGGING_NAMESPACE)/$(MINIO_LOGGING_NAMESPACE)"
         volumeMounts:
         - name: config
           mountPath: "/config"
