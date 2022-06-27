@@ -15,21 +15,21 @@ resources:
 namespace: logging
 
 vars:
-  - name: MINIO_NAMESPACE
+  - name: MINIO_LOGGING_NAMESPACE
     objref:
       kind: Service
       name: minio
       apiVersion: v1
     fieldref:
       fieldpath: metadata.namespace
-  - name: MINIO_SERVICE_NAME
+  - name: MINIO_LOGGING_SERVICE_NAME
     objref:
       kind: Service
       name: minio
       apiVersion: v1
     fieldref:
       fieldpath: metadata.name
-  - name: MINIO_STS_NAME
+  - name: MINIO_LOGGING_STS_NAME
     objref:
       kind: StatefulSet
       name: minio
