@@ -18,7 +18,7 @@ spec:
         image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
   workloadOverrides:
     nodeSelector:
-      node.kubernetes.io/role: master
+      node-role.kubernetes.io/master: ""
     tolerations:
       - operator: Exists
         effect: NoSchedule

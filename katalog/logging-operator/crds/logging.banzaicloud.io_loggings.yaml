@@ -122,6 +122,25 @@ spec:
                             stream:
                               type: string
                           type: object
+                        elasticsearch_genid:
+                          properties:
+                            hash_id_key:
+                              type: string
+                            hash_type:
+                              type: string
+                            include_tag_in_seed:
+                              type: boolean
+                            include_time_in_seed:
+                              type: boolean
+                            record_keys:
+                              type: string
+                            separator:
+                              type: string
+                            use_entire_record:
+                              type: boolean
+                            use_record_as_seed:
+                              type: boolean
+                          type: object
                         enhanceK8s:
                           properties:
                             api_groups:
@@ -385,6 +404,8 @@ spec:
                               type: string
                             parse:
                               properties:
+                                custom_pattern_path:
+                                  type: string
                                 delimiter:
                                   type: string
                                 delimiter_pattern:
@@ -397,6 +418,31 @@ spec:
                                   type: string
                                 format_firstline:
                                   type: string
+                                grok_failure_key:
+                                  type: string
+                                grok_name_key:
+                                  type: string
+                                grok_pattern:
+                                  type: string
+                                grok_patterns:
+                                  items:
+                                    properties:
+                                      keep_time_key:
+                                        type: boolean
+                                      name:
+                                        type: string
+                                      pattern:
+                                        type: string
+                                      time_format:
+                                        type: string
+                                      time_key:
+                                        type: string
+                                      timezone:
+                                        type: string
+                                    required:
+                                    - pattern
+                                    type: object
+                                  type: array
                                 keep_time_key:
                                   type: boolean
                                 keys:
@@ -405,6 +451,8 @@ spec:
                                   type: string
                                 local_time:
                                   type: boolean
+                                multi_line_start_regexp:
+                                  type: string
                                 multiline:
                                   items:
                                     type: string
@@ -464,6 +512,8 @@ spec:
                             parsers:
                               items:
                                 properties:
+                                  custom_pattern_path:
+                                    type: string
                                   delimiter:
                                     type: string
                                   delimiter_pattern:
@@ -476,6 +526,31 @@ spec:
                                     type: string
                                   format_firstline:
                                     type: string
+                                  grok_failure_key:
+                                    type: string
+                                  grok_name_key:
+                                    type: string
+                                  grok_pattern:
+                                    type: string
+                                  grok_patterns:
+                                    items:
+                                      properties:
+                                        keep_time_key:
+                                          type: boolean
+                                        name:
+                                          type: string
+                                        pattern:
+                                          type: string
+                                        time_format:
+                                          type: string
+                                        time_key:
+                                          type: string
+                                        timezone:
+                                          type: string
+                                      required:
+                                      - pattern
+                                      type: object
+                                    type: array
                                   keep_time_key:
                                     type: boolean
                                   keys:
@@ -484,6 +559,8 @@ spec:
                                     type: string
                                   local_time:
                                     type: boolean
+                                  multi_line_start_regexp:
+                                    type: string
                                   multiline:
                                     items:
                                       type: string
@@ -734,6 +811,8 @@ spec:
                 type: string
               fluentbit:
                 properties:
+                  HostNetwork:
+                    type: boolean
                   affinity:
                     properties:
                       nodeAffinity:
@@ -1366,6 +1445,8 @@ spec:
                         type: string
                       Buffer_Size:
                         type: string
+                      Cache_Use_Docker_Id:
+                        type: string
                       DNS_Retries:
                         type: string
                       DNS_Wait_Time:
@@ -1628,6 +1709,8 @@ spec:
                         type: string
                       Path_Key:
                         type: string
+                      Read_From_Head:
+                        type: boolean
                       Refresh_Interval:
                         type: string
                       Rotate_Wait:
@@ -4367,6 +4450,25 @@ spec:
                         stream:
                           type: string
                       type: object
+                    elasticsearch_genid:
+                      properties:
+                        hash_id_key:
+                          type: string
+                        hash_type:
+                          type: string
+                        include_tag_in_seed:
+                          type: boolean
+                        include_time_in_seed:
+                          type: boolean
+                        record_keys:
+                          type: string
+                        separator:
+                          type: string
+                        use_entire_record:
+                          type: boolean
+                        use_record_as_seed:
+                          type: boolean
+                      type: object
                     enhanceK8s:
                       properties:
                         api_groups:
@@ -4630,6 +4732,8 @@ spec:
                           type: string
                         parse:
                           properties:
+                            custom_pattern_path:
+                              type: string
                             delimiter:
                               type: string
                             delimiter_pattern:
@@ -4642,6 +4746,31 @@ spec:
                               type: string
                             format_firstline:
                               type: string
+                            grok_failure_key:
+                              type: string
+                            grok_name_key:
+                              type: string
+                            grok_pattern:
+                              type: string
+                            grok_patterns:
+                              items:
+                                properties:
+                                  keep_time_key:
+                                    type: boolean
+                                  name:
+                                    type: string
+                                  pattern:
+                                    type: string
+                                  time_format:
+                                    type: string
+                                  time_key:
+                                    type: string
+                                  timezone:
+                                    type: string
+                                required:
+                                - pattern
+                                type: object
+                              type: array
                             keep_time_key:
                               type: boolean
                             keys:
@@ -4650,6 +4779,8 @@ spec:
                               type: string
                             local_time:
                               type: boolean
+                            multi_line_start_regexp:
+                              type: string
                             multiline:
                               items:
                                 type: string
@@ -4709,6 +4840,8 @@ spec:
                         parsers:
                           items:
                             properties:
+                              custom_pattern_path:
+                                type: string
                               delimiter:
                                 type: string
                               delimiter_pattern:
@@ -4721,6 +4854,31 @@ spec:
                                 type: string
                               format_firstline:
                                 type: string
+                              grok_failure_key:
+                                type: string
+                              grok_name_key:
+                                type: string
+                              grok_pattern:
+                                type: string
+                              grok_patterns:
+                                items:
+                                  properties:
+                                    keep_time_key:
+                                      type: boolean
+                                    name:
+                                      type: string
+                                    pattern:
+                                      type: string
+                                    time_format:
+                                      type: string
+                                    time_key:
+                                      type: string
+                                    timezone:
+                                      type: string
+                                  required:
+                                  - pattern
+                                  type: object
+                                type: array
                               keep_time_key:
                                 type: boolean
                               keys:
@@ -4729,6 +4887,8 @@ spec:
                                 type: string
                               local_time:
                                 type: boolean
+                              multi_line_start_regexp:
+                                type: string
                               multiline:
                                 items:
                                   type: string
@@ -8275,6 +8435,8 @@ spec:
                               type: string
                             Buffer_Size:
                               type: string
+                            Cache_Use_Docker_Id:
+                              type: string
                             DNS_Retries:
                               type: string
                             DNS_Wait_Time:
@@ -8385,6 +8547,8 @@ spec:
                               type: string
                             Path_Key:
                               type: string
+                            Read_From_Head:
+                              type: boolean
                             Refresh_Interval:
                               type: string
                             Rotate_Wait:
@@ -9004,6 +9168,8 @@ spec:
                       type: string
                   type: object
                 type: array
+              skipInvalidResources:
+                type: boolean
               watchNamespaces:
                 items:
                   type: string
