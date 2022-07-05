@@ -36,8 +36,6 @@ spec:
               fileTailers:
                 items:
                   properties:
-                    buffer_chunk_size:
-                      type: string
                     buffer_max_size:
                       type: string
                     containerOverrides:

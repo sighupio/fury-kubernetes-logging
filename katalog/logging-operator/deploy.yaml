@@ -11,8 +11,10 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.0
+    helm.sh/chart: logging-operator-3.17.7
     app.kubernetes.io/instance: logging-operator
+    app.kubernetes.io/version: "3.17.7"
+    app.kubernetes.io/managed-by: Helm
 ---
 # Source: logging-operator/templates/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -337,8 +339,10 @@ metadata:
   name: logging-operator
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.0
+    helm.sh/chart: logging-operator-3.17.7
     app.kubernetes.io/instance: logging-operator
+    app.kubernetes.io/version: "3.17.7"
+    app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
     name: logging-operator
@@ -356,7 +360,7 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.0
+    helm.sh/chart: logging-operator-3.17.7
     app.kubernetes.io/instance: logging-operator
 spec:
   type: ClusterIP
@@ -378,8 +382,10 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.0
+    helm.sh/chart: logging-operator-3.17.7
     app.kubernetes.io/instance: logging-operator
+    app.kubernetes.io/version: "3.17.7"
+    app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
   selector:
