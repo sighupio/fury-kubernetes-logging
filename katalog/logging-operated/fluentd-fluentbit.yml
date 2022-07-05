@@ -12,7 +12,7 @@ spec:
   fluentd:
     image:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
-      tag: v1.14.5-alpine-1
+      tag: v1.14.6-alpine-5
     configReloaderImage:
       repository: registry.sighup.io/fury/jimmidyson/configmap-reload
       tag: v0.4.0
@@ -48,7 +48,7 @@ spec:
   fluentbit:
     image:
       repository: registry.sighup.io/fury/fluent/fluent-bit
-      tag: 1.8.15
+      tag: 1.9.5
     enableUpstream: true
     inputTail:
       Ignore_Older: 86400s
