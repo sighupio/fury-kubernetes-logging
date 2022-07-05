@@ -74,12 +74,12 @@ spec:
             - name: ELASTICSEARCH_URL
               value: "http://elasticsearch:9200"
             - name: NODE_OPTIONS
-              value: "--max-old-space-size=800"
+              value: "--max-old-space-size=400"
             - name: MONITORING_UI_ENABLED
               value: "false"
             - name: APM_ENABLED
               value: "false"
-            - name: TIMELION_ENABLED
+            - name: TIMELION_ENABLE
               value: "false"
             - name: MAPS_ENABLED
               value: "false"
@@ -96,10 +96,10 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 1024Mi
+              memory: 500Mi
             limits:
               cpu: "2"
-              memory: 1024Mi
+              memory: 500Mi
         - name: kibana-index-patterns
           image: docker.elastic.co/kibana/kibana
           securityContext:
