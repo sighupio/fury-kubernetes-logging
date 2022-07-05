@@ -68,15 +68,15 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v1.10.2"
+    version: "v1.10.3"
   - name: logging/curator
-    version: "v1.10.2"
+    version: "v1.10.3"
   - name: logging/elasticsearch-single
-    version: "v1.10.2"
+    version: "v1.10.3"
   - name: logging/fluentd
-    version: "v1.10.2"
+    version: "v1.10.3"
   - name: logging/kibana
-    version: "v1.10.2"
+    version: "v1.10.3"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
