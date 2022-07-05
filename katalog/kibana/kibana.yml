@@ -73,13 +73,33 @@ spec:
           env:
             - name: ELASTICSEARCH_URL
               value: "http://elasticsearch:9200"
+            - name: NODE_OPTIONS
+              value: "--max-old-space-size=400"
+            - name: MONITORING_UI_ENABLED
+              value: "false"
+            - name: APM_ENABLED
+              value: "false"
+            - name: TIMELION_ENABLE
+              value: "false"
+            - name: MAPS_ENABLED
+              value: "false"
+            - name: GRAPH_ENABLED
+              value: "false"
+            - name: INFRA_ENABLED
+              value: "false"
+            - name: CANVAS_ENABLED
+              value: "false"
+            - name: ML_ENABLED
+              value: "false"
+            - name: UPTIME_ENABLED
+              value: "false"
           resources:
             requests:
               cpu: 100m
               memory: 500Mi
             limits:
               cpu: "2"
-              memory: 800Mi
+              memory: 500Mi
         - name: kibana-index-patterns
           image: docker.elastic.co/kibana/kibana
           securityContext:
