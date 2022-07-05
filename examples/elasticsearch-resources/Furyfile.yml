@@ -4,6 +4,6 @@
 
 bases:
   - name: logging/elasticsearch-single
-    version: v1.10.2
+    version: v1.10.3
   - name: monitoring/prometheus-operator
     version: master
