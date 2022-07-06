@@ -34,7 +34,7 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [opensearch-single](katalog/opensearch-single)         | `2.0.0`  | Single node opensearch deployment. Not intended for production use.                                     |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.0.0`  | Three node high-availability opensearch deployment                                                      |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.0.0`  | Analytics and visualization platform for Opensearch                                                     |
-| [logging-operator](katalog/logging-operator)           | `3.17.6` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
+| [logging-operator](katalog/logging-operator)           | `3.17.7` | Banzai logging operator, manages fluentbit/fluentd and their configurations                             |
 | [logging-operated](katalog/logging-operated)           | `-`      | fluentd and fluentbit deployment using logging operator                                                 |
 | [configs](katalog/configs)                             | `-`      | Logging pipeline configs to gather various types of logs and send them to OpenSearch                    |
 | [loki-configs](katalog/loki-configs)                   | `-`      | Logging pipeline configs to gather various types of logs and send them to Loki                          |
