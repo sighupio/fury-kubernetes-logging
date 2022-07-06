@@ -14,7 +14,7 @@ Curator and its variants are also removed.
 | `opensearch`             | [`v2.0.0`](https://github.com/opensearch-project/OpenSearch/releases/tag/2.0.0)                        | `New component`  |
 | `opensearch-dashboards`  | [`v2.0.0`](https://github.com/opensearch-project/OpenSearch-Dashboards/releases/tag/2.0.0)             | `New component`  |
 | `cerebro`                | [`v0.9.4`](https://github.com/lmenezes/cerebro/releases/tag/v0.9.4)                                    | `No update`      |
-| `logging-operator`       | [`v3.17.6`](https://github.com/banzaicloud/logging-operator/releases/tag/3.17.6)                       | `v3.17.2`        |
+| `logging-operator`       | [`v3.17.7`](https://github.com/banzaicloud/logging-operator/releases/tag/3.17.7)                       | `No update`      |
 | `loki-stack`             | [`v2.4.2`](https://github.com/grafana/loki/releases/tag/v2.4.2)                                        | `New component`  |
 
 > Please refer the individual release notes to get a detailed info on the

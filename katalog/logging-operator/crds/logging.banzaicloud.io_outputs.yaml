@@ -658,6 +658,8 @@ spec:
                     type: boolean
                   reload_on_failure:
                     type: boolean
+                  remove_keys:
+                    type: string
                   remove_keys_on_update:
                     type: string
                   remove_keys_on_update_key:
@@ -1671,6 +1673,8 @@ spec:
                     type: boolean
                   reload_on_failure:
                     type: boolean
+                  remove_keys:
+                    type: string
                   remove_keys_on_update:
                     type: string
                   remove_keys_on_update_key:
@@ -3513,6 +3517,10 @@ spec:
                       type:
                         type: string
                     type: object
+                  bulk_limit:
+                    type: integer
+                  bulk_limit_warning_limit:
+                    type: integer
                   endpoint:
                     properties:
                       port:
@@ -6450,6 +6458,8 @@ spec:
                     type: boolean
                   reload_on_failure:
                     type: boolean
+                  remove_keys:
+                    type: string
                   remove_keys_on_update:
                     type: string
                   remove_keys_on_update_key:
@@ -7463,6 +7473,8 @@ spec:
                     type: boolean
                   reload_on_failure:
                     type: boolean
+                  remove_keys:
+                    type: string
                   remove_keys_on_update:
                     type: string
                   remove_keys_on_update_key:
@@ -9305,6 +9317,10 @@ spec:
                       type:
                         type: string
                     type: object
+                  bulk_limit:
+                    type: integer
+                  bulk_limit_warning_limit:
+                    type: integer
                   endpoint:
                     properties:
                       port:
