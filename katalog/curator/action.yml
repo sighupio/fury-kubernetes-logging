@@ -52,7 +52,7 @@ actions:
   3:
     action: delete_indices
     description: >-
-      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for ingress-controller-
+      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for kubernetes-
       prefixed indices. Ignore the error if the filter does not result in an
       actionable list of indices (ignore_empty_list) and exit cleanly.
     options:
@@ -75,7 +75,30 @@ actions:
   4:
     action: delete_indices
     description: >-
-      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for ingress-controller-
+      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for systemd-
+      prefixed indices. Ignore the error if the filter does not result in an
+      actionable list of indices (ignore_empty_list) and exit cleanly.
+    options:
+      ignore_empty_list: True
+      timeout_override:
+      continue_if_exception: True
+      disable_action: False
+    filters:
+      - filtertype: pattern
+        kind: prefix
+        value: systemd-
+        exclude:
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '%Y.%m.%d'
+        unit: ${UNIT:months}
+        unit_count: ${UNIT_COUNT:1}
+        exclude:
+  5:
+    action: delete_indices
+    description: >-
+      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for system-
       prefixed indices. Ignore the error if the filter does not result in an
       actionable list of indices (ignore_empty_list) and exit cleanly.
     options:
@@ -95,10 +118,10 @@ actions:
         unit: ${UNIT:months}
         unit_count: ${UNIT_COUNT:1}
         exclude:
-  5:
+  6:
     action: delete_indices
     description: >-
-      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for ingress-controller-
+      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for audit-
       prefixed indices. Ignore the error if the filter does not result in an
       actionable list of indices (ignore_empty_list) and exit cleanly.
     options:
@@ -110,6 +133,29 @@ actions:
       - filtertype: pattern
         kind: prefix
         value: audit-
+        exclude:
+      - filtertype: age
+        source: name
+        direction: older
+        timestring: '%Y.%m.%d'
+        unit: ${UNIT:months}
+        unit_count: ${UNIT_COUNT:1}
+        exclude:
+  7:
+    action: delete_indices
+    description: >-
+      Delete indices older than ${UNIT_COUNT:1} ${UNIT:months} (based on index name), for events-
+      prefixed indices. Ignore the error if the filter does not result in an
+      actionable list of indices (ignore_empty_list) and exit cleanly.
+    options:
+      ignore_empty_list: True
+      timeout_override:
+      continue_if_exception: True
+      disable_action: False
+    filters:
+      - filtertype: pattern
+        kind: prefix
+        value: events-
         exclude:
       - filtertype: age
         source: name
