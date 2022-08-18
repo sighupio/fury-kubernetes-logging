@@ -21,8 +21,13 @@ The central piece of the stack is the open source search engine [opensearch][ope
 with its analytics and visualization platform [opensearch-dashboards][opensearch-dashboards-page].
 The logs are collected using a node-level data collection and enrichment agent [fluentbit][fluentbit-page],
 pushing it to the OpenSearch via [fluentd][fluentd-page]. The fluentbit and fluentd stack is managed by Banzai Logging Operator.
+We are also providing [loki][loki-page] as an alternative storage to Opensearch as a technical preview.
 
 All the components are deployed in the `logging` namespace in the cluster.
+
+High level diagram of the stack:
+
+![logging module](docs/images/diagram.png "Kubernetes Fury Logging")
 
 ## Packages
 
@@ -118,6 +123,7 @@ Logging module offers an out of the box, highly-available setup for `opensearch`
 [opensearch-dashboards-page]: https://opensearch.org
 [fluentbit-page]: https://fluentbit.io/
 [fluentd-page]: https://www.fluentd.org/
+[loki-page]: https://grafana.com/oss/loki/
 [kfd-repo]: https://github.com/sighupio/fury-distribution
 [furyctl-repo]: https://github.com/sighupio/furyctl
 [kustomize-repo]: https://github.com/kubernetes-sigs/kustomize
