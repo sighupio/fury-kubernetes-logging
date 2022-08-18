@@ -24,6 +24,10 @@ pushing it to the OpenSearch via [fluentd][fluentd-page]. The fluentbit and flue
 
 All the components are deployed in the `logging` namespace in the cluster.
 
+High level diagram of the stack:
+
+![logging module](docs/images/diagram.png "Kubernetes Fury Logging")
+
 ## Packages
 
 The following packages are included in the Fury Kubernetes Logging katalog:
