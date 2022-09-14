@@ -54,7 +54,7 @@ Click on each package to see its full documentation.
 | `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
 | `1.23.x`           | :white_check_mark: | No known issues                                     |
-| `1.24.x`           |     :warning:      | Conformance tests passed. Not officially supported. |
+| `1.24.x`           | :white_check_mark: | No known issues                                     |
 
 Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
 
