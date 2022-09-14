@@ -1,0 +1,206 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+# Source: opensearch/templates/poddisruptionbudget.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: "opensearch-cluster-master-pdb"
+  labels:
+    app.kubernetes.io/name: opensearch
+    app.kubernetes.io/instance: opensearch
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opensearch
+      app.kubernetes.io/instance: opensearch
+---
+# Source: opensearch/templates/service.yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: opensearch-cluster-master
+  labels:
+    app.kubernetes.io/name: opensearch
+    app.kubernetes.io/instance: opensearch
+  annotations:
+    {}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: opensearch
+    app.kubernetes.io/instance: opensearch
+  ports:
+  - name: http
+    protocol: TCP
+    port: 9200
+  - name: transport
+    protocol: TCP
+    port: 9300
+  - name: metrics
+    protocol: TCP
+    port: 9108
+---
+# Source: opensearch/templates/service.yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: opensearch-cluster-master-headless
+  labels:
+    app.kubernetes.io/name: opensearch
+    app.kubernetes.io/instance: opensearch
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  clusterIP: None # This is needed for statefulset hostnames like opensearch-0 to resolve
+  # Create endpoints also if the related pod isn't ready
+  publishNotReadyAddresses: true
+  selector:
+    app.kubernetes.io/name: opensearch
+    app.kubernetes.io/instance: opensearch
+  ports:
+  - name: http
+    port: 9200
+  - name: transport
+    port: 9300
+---
+# Source: opensearch/templates/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: opensearch-cluster-master
+  labels:
+    app.kubernetes.io/name: opensearch
+    app.kubernetes.io/instance: opensearch
+  annotations:
+    majorVersion: "2"
+spec:
+  serviceName: opensearch-cluster-master-headless
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opensearch
+      app.kubernetes.io/instance: opensearch
+  replicas: 1
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  volumeClaimTemplates:
+  - metadata:
+      name: opensearch-cluster-master
+    spec:
+      accessModes:
+      - "ReadWriteOnce"
+      resources:
+        requests:
+          storage: "30Gi"
+  template:
+    metadata:
+      name: "opensearch-cluster-master"
+      labels:
+        app.kubernetes.io/name: opensearch
+        app.kubernetes.io/instance: opensearch
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      serviceAccountName: ""
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/instance
+                  operator: In
+                  values:
+                  - opensearch
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - opensearch
+      terminationGracePeriodSeconds: 120
+      volumes:
+      - name: config
+        configMap:
+          name: opensearch-cluster-master-config
+      enableServiceLinks: true
+      initContainers:
+      - name: fsgroup-volume
+        image: "alpine"
+        command: ['sh', '-c']
+        args:
+          - 'sysctl -w vm.max_map_count=262144 && sysctl -w fs.file-max=65536 && sysctl -p && chown -R 1000:1000 /usr/share/opensearch/data'
+        securityContext:
+          privileged: true
+          runAsUser: 0
+        volumeMounts:
+          - name: "opensearch-cluster-master"
+            mountPath: /usr/share/opensearch/data
+      containers:
+      - name: "opensearch"
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          runAsUser: 1000
+        image: "opensearchproject/opensearch"
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - name: http
+          containerPort: 9200
+        - name: transport
+          containerPort: 9300
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4G
+          requests:
+            cpu: 1500m
+            memory: 3G
+        env:
+        - name: node.name
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: cluster.initial_master_nodes
+          value: "opensearch-cluster-master-0,"
+        - name: discovery.seed_hosts
+          value: "opensearch-cluster-master-headless"
+        - name: cluster.name
+          value: "opensearch-cluster"
+        - name: network.host
+          value: "0.0.0.0"
+        - name: OPENSEARCH_JAVA_OPTS
+          value: "-Xms2G -Xmx2G"
+        - name: node.roles
+          value: "master,ingest,data,remote_cluster_client,"
+        volumeMounts:
+        - name: "opensearch-cluster-master"
+          mountPath: /usr/share/opensearch/data
+        - name: config
+          mountPath: /usr/share/opensearch/config/opensearch.yml
+          subPath: opensearch.yml
+      - name: exporter
+        image: justwatch/elasticsearch_exporter
+        args:
+          - '--es.uri=http://localhost:9200'
+          - '--es.cluster_settings'
+          - '--es.indices'
+          - '--es.snapshots'
+          - '--web.listen-address=:9108'
+        ports:
+          - containerPort: 9108
+            name: metrics
+        resources:
+          limits:
+            cpu: 200m
+            memory: 400Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi

@@ -15,20 +15,19 @@ set -o pipefail
   kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.10.3/katalog/prometheus-operator/crd-rule.yml
 }
 
-@test "testing elasticsearch-single apply" {
-  info
-  apply katalog/elasticsearch-single
-}
-
 @test "testing logging-operator apply" {
   info
   apply katalog/logging-operator
 }
 
+@test "testing opensearch-single apply" {
+  info
+  apply katalog/opensearch-single
+}
+
 @test "testing logging-operated apply" {
   info
   apply katalog/logging-operated
-
 }
 
 @test "testing kubernetes config apply" {
@@ -36,19 +35,14 @@ set -o pipefail
   apply katalog/configs/kubernetes
 }
 
-@test "testing curator apply" {
-  info
-  apply katalog/curator
-}
-
 @test "testing cerebro apply" {
   info
   apply katalog/cerebro
 }
 
-@test "testing kibana apply" {
+@test "testing opensearch-dashboards apply" {
   info
-  apply katalog/kibana
+  apply katalog/opensearch-dashboards
 }
 
 @test "wait for apply to settle and dump state to dump.json" {
@@ -63,10 +57,10 @@ set -o pipefail
   done
 }
 
-@test "check elasticsearch-single" {
+@test "check opensearch-single" {
   info
   test(){
-    data=$(kubectl get sts -n logging -l app=elasticsearch -o json | jq '.items[] | select(.metadata.name == "elasticsearch" and .status.replicas == .status.readyReplicas)')
+    data=$(kubectl get sts -n logging -l app.kubernetes.io/name=opensearch -o json | jq '.items[] | select(.metadata.name == "opensearch-cluster-master" and .status.replicas == .status.readyReplicas)')
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 60 5
@@ -107,10 +101,10 @@ set -o pipefail
   [[ "$status" -eq 0 ]]
 }
 
-@test "check kibana" {
+@test "check opensearch-dashboards" {
   info
   test(){
-    data=$(kubectl get deploy -n logging -l app=kibana -o json | jq '.items[] | select(.metadata.name == "kibana" and .status.replicas == .status.readyReplicas )')
+    data=$(kubectl get deploy -n logging -l app.kubernetes.io/name=opensearch-dashboards -o json | jq '.items[] | select(.metadata.name == "opensearch-dashboards" and .status.replicas == .status.readyReplicas )')
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 400 6
@@ -118,14 +112,25 @@ set -o pipefail
   [[ "$status" -eq 0 ]]
 }
 
-@test "run curator job" {
+@test "testing kubernetes loki-config apply" {
+  info
+  apply katalog/loki-configs/kubernetes
+}
+
+@test "testing loki-single apply" {
+  info
+  apply katalog/loki-single
+}
+
+@test "check loki-single" {
   info
   test(){
-    kubectl -n logging create job curator-test --from cronjob/curator
-    kubectl -n logging wait --for=condition=complete job/curator-test --timeout=600s
+    data=$(kubectl get sts -n logging -l app=loki -o json | jq '.items[] | select(.metadata.name == "loki-stack" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
   }
-  run test
-  [ "$status" -eq 0 ]
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
 }
 
 @test "cleanup" {
@@ -133,7 +138,7 @@ set -o pipefail
   then
     skip
   fi
-  for dir in elasticsearch-single fluentd curator cerebro kibana
+  for dir in opensearch-single fluentd cerebro opensearch-dashboards
   do
     echo "# deleting katalog/$dir" >&3
     kustomize build katalog/$dir | kubectl delete -f - || true

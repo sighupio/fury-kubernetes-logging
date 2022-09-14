@@ -1,0 +1,28 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: logging
+
+images:
+  - name: opensearchproject/opensearch-dashboards
+    newName: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
+    newTag: "2.0.0"
+
+resources:
+  - deploy.yaml
+  - index-patterns-cronjob.yml
+
+secretGenerator:
+  - name: opensearch-dashboards
+    files:
+      - configs/opensearch_dashboards.yml
+
+configMapGenerator:
+  - name: opensearch-index-patterns
+    files:
+      - configs/index-patterns.ndjson

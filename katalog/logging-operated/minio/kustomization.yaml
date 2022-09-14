@@ -8,45 +8,15 @@ kind: Kustomization
 
 resources:
   - rbac.yaml
-  - init-job.yaml
   - service.yaml
   - sts.yaml
 
 namespace: logging
 
-vars:
-  - name: MINIO_NAMESPACE
-    objref:
-      kind: Service
-      name: minio
-      apiVersion: v1
-    fieldref:
-      fieldpath: metadata.namespace
-  - name: MINIO_SERVICE_NAME
-    objref:
-      kind: Service
-      name: minio
-      apiVersion: v1
-    fieldref:
-      fieldpath: metadata.name
-  - name: MINIO_STS_NAME
-    objref:
-      kind: StatefulSet
-      name: minio
-      apiVersion: apps/v1
-    fieldref:
-      fieldpath: metadata.name
-
 images:
   - name: minio/minio
     newName: registry.sighup.io/fury/minio
     newTag: RELEASE.2021-05-26T00-22-46Z
-  - name: minio/mc
-    newName: registry.sighup.io/fury/minio/mc
-    newTag: RELEASE.2021-05-18T03-39-44Z
-  - name: groundnuty/k8s-wait-for
-    newName: registry.sighup.io/fury/groundnuty/k8s-wait-for
-    newTag: v1.4
 
 generatorOptions:
   disableNameSuffixHash: true

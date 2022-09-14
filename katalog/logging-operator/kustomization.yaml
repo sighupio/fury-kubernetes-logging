@@ -9,6 +9,7 @@ kind: Kustomization
 namespace: logging
 
 resources:
+  - ns.yml
   - deploy.yaml
   - crds
 

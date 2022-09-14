@@ -1,0 +1,37 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: logging
+
+images:
+  - name: justwatch/elasticsearch_exporter
+    newName: registry.sighup.io/fury/justwatch/elasticsearch_exporter
+    newTag: "1.1.0"
+  - name: opensearchproject/opensearch
+    newName: registry.sighup.io/fury/opensearchproject/opensearch
+    newTag: "2.0.0"
+  - name: opensearchproject/opensearch-dashboards
+    newName: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
+    newTag: "2.0.0"
+  - name: alpine
+    newName: registry.sighup.io/fury/alpine
+    newTag: "3.14"
+
+resources:
+  - deploy.yaml
+  - sm.yml
+  - rules.yml
+  - ism-policy-cronjob.yml
+
+configMapGenerator:
+  - name: opensearch-cluster-master-config
+    files:
+      - configs/opensearch.yml
+  - name: opensearch-ism-policies
+    files:
+      - configs/retention.json

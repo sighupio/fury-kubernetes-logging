@@ -19,3 +19,4 @@ secretGenerator:
   - name: ingress-controller-index-template
     files:
       - ingress-controller-index-template=ingress-controller-index-template.json
+

@@ -1,0 +1,24 @@
+# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Output
+metadata:
+  name: ingress-nginx
+spec:
+  loki:
+    url: http://loki-stack:3100
+    extract_kubernetes_labels: true
+    configure_kubernetes_labels: true
+    extra_labels:
+      flow: ingress-nginx
+    buffer:
+      timekey: "1m"
+      timekey_wait: "10s"
+      timekey_use_utc: true
+      chunk_limit_size: "2m"
+      retry_max_interval: "30"
+      retry_forever: true
+      overflow_action: "block"

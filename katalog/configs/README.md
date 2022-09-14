@@ -4,7 +4,6 @@ This package is a collection of logging operator Flow/ClusterFlow and Output/Clu
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
 - Kustomize >= `3.5.3`
 - [logging-operated](../logging-operated)
 - [logging-operator](../logging-operator)
