@@ -1,8 +1,8 @@
 # OpenSearch - maintenance
 
-To maintain the Opensearch package, you should follow this steps.
+To maintain the OpenSearch package, you should follow this steps.
 
-Download the latest zip from [Opensearch Helm Charts][opensearch-helm-charts].
+Download the latest zip from [OpenSearch Helm Charts][opensearch-helm-charts].
 
 Extract to a folder of your choice, for example: `/tmp/opensearch`.
 
@@ -21,7 +21,6 @@ helm template opensearch /tmp/opensearch -n logging > opensearch-built.yaml
 
 With the `opensearch-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
-
 What was customized:
 
 - default storage from 8Gi to 30Gi
@@ -29,6 +28,7 @@ What was customized:
 - replace initContainer definition
 - configured requests and limits + java opts for xms and xmx
 - added prometheus exporter
+- added custom prometheus AlertRules
 - opensearch-cluster-master-config created with configMapGenerator instead of in-line configMap
 - customized internal_users.yml config file with opensearch-internal-users secret
 - security plugin is disabled, we expect security on the ingress level or configured manually
