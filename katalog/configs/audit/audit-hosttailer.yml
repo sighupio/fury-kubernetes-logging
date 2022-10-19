@@ -18,16 +18,15 @@ spec:
         image: registry.sighup.io/fury/fluent/fluent-bit:1.6.1
   workloadOverrides:
     affinity:
-      value:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: node-role.kubernetes.io/control-plane
-                    operator: Exists
-              - matchExpressions:
-                  - key: node-role.kubernetes.io/master
-                    operator: Exists
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+            - matchExpressions:
+                - key: node-role.kubernetes.io/master
+                  operator: Exists
     tolerations:
       - operator: Exists
         effect: NoSchedule
