@@ -74,17 +74,17 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/opensearch-single
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/opensearch-dashboards
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/logging-operator
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/logging-operated
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/configs
-    version: "v3.0.0"
+    version: "v3.0.1"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
