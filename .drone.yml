@@ -160,6 +160,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
+      - refs/heads/main
       - refs/tags/**
 
 steps:
@@ -259,6 +260,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
+      - refs/heads/main
       - refs/tags/**
 
 steps:
@@ -358,6 +360,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
+      - refs/heads/main
       - refs/tags/**
 
 steps:
@@ -457,6 +460,7 @@ trigger:
   ref:
     include:
       - refs/heads/master
+      - refs/heads/main
       - refs/tags/**
 
 steps:
