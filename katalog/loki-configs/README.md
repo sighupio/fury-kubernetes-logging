@@ -1,6 +1,6 @@
-# Logging operator configs
+# Logging operator configs for Loki
 
-This package is a collection of logging operator Flow/ClusterFlow and Output/ClusterOutput configs.
+This package is a collection of logging operator Flow/ClusterFlow and Output/ClusterOutput configs to be used together with Loki.
 
 ## Requirements
 
