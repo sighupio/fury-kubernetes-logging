@@ -117,6 +117,10 @@ kustomize build . | kubectl apply -f -
 
 Logging module offers an out of the box, highly-available setup for `opensearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `opensearch-single` with `opensearch-triple`.
 
+#### Configure tolerations and node selectors
+
+If you need to specify tolerations and/or node selectors, you can find some snippets in [examples/tolerations](examples/tolerations) and its subfolders.
+
 <!-- Links -->
 
 [opensearch-page]: https://opensearch.org
