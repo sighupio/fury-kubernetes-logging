@@ -1,7 +1,9 @@
+<!-- markdownlint-disable MD033 -->
 <h1>
-    <img src="https://github.com/sighupio/fury-distribution/blob/master/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
+    <img src="https://github.com/sighupio/fury-distribution/blob/main/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
     Kubernetes Fury Logging
 </h1>
+<!-- markdownlint-enable MD033 -->
 
 ![Release](https://img.shields.io/badge/Latest%20Release-v2.0.3-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
@@ -30,7 +32,7 @@ All the components are deployed in the `logging` namespace in the cluster.
 The following packages are included in the Fury Kubernetes Logging katalog:
 
 | Package                                              | Version  | Description                                                                                             |
-|------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
 | [cerebro](katalog/cerebro)                           | `0.9.4`  | Web admin tool that helps you manage your Elasticsearch cluster via a graphical user interface          |
 | [curator](katalog/curator)                           | `5.8.4`  | Manages elasticserach indices and snapshots, alongwith configurations to set the retention log policies |
 | [curator-s3](katalog/curator-s3)                     | `5.8.4`  | `curator` with S3 compliant bucket support                                                              |
@@ -46,7 +48,7 @@ Click on each package to see its full documentation.
 ## Compatibility
 
 | Kubernetes Version |   Compatibility    | Notes                                               |
-|--------------------|:------------------:|-----------------------------------------------------|
+| ------------------ | :----------------: | --------------------------------------------------- |
 | `1.20.x`           | :white_check_mark: | No known issues                                     |
 | `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
@@ -59,7 +61,7 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ### Prerequisites
 
 | Tool                        | Version   | Description                                                                                                                                                    |
-|-----------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [furyctl][furyctl-repo]     | `>=0.6.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
 | [kustomize][kustomize-repo] | `>=3.5.0` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
@@ -95,13 +97,13 @@ bases:
 
 ```yaml
 resources:
-- ./vendor/katalog/logging/cerebro
-- ./vendor/katalog/logging/curator
-- ./vendor/katalog/logging/elasticsearch-single
-- ./vendor/katalog/logging/logging-operator
-- ./vendor/katalog/logging/logging-operated
-- ./vendor/katalog/logging/configs
-- ./vendor/katalog/logging/kibana
+  - ./vendor/katalog/logging/cerebro
+  - ./vendor/katalog/logging/curator
+  - ./vendor/katalog/logging/elasticsearch-single
+  - ./vendor/katalog/logging/logging-operator
+  - ./vendor/katalog/logging/logging-operated
+  - ./vendor/katalog/logging/configs
+  - ./vendor/katalog/logging/kibana
 ```
 
 5. To deploy the packages to your cluster, execute:
@@ -112,22 +114,37 @@ kustomize build . | kubectl apply -f -
 
 ### Common Customisations
 
-#### Setup a high-availability three-node elasticsearch
+#### Setup a high-availability three-node ElasticSearch
 
 Logging module offers an out of the box, highly-available setup for `elasticsearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `elasticsearch-single` with `elasticsearch-triple`.
 
-#### Setup curator with datastore in an s3 compliant bucket
+#### Setup curator with datastore in an S3 compliant bucket
 
 To setup `curator` with `s3` compliant bucket support, we provide [`curator-s3`](katalog/curator-s3). To set it up, instead of `curator`, use `curator-s3` in `Furyfile` and `kustomization` in the above defined deployment step.
 
 To configure the `s3` bucket, you will have to edit the file [`secret-es-backup.env`](katalog/curator-s3/secret-es-backup.env) with the following content, with the right configuration secrets:
 
-``` sh
+```sh
 AWS_ACCESS_KEY_ID=AAAA
 AWS_REGION=eu-west-1
 AWS_SECRET_ACCESS_KEY=myKey
 S3_BUCKET_NAME=my-s3_bucket
 ```
+
+### Screenshots
+
+Screenshot of Kibana's UI (click to enlarge):
+<!-- markdownlint-disable MD033 -->
+<a href="docs/images/kibana.png"><img src="docs/images/kibana.png" width="250"/></a>
+<!-- markdownlint-enable MD033 -->
+
+### Monitoring
+
+The Logging module integrates with KFD's Monitoring module, adding to the standard metrics and alerts provided by the monitoring module the following set of alerts:
+
+| Alert          | Summary                        | Description                    |
+| -------------- | ------------------------------ | ------------------------------ |
+| KibanaNotReady | Kibana container is not ready. | Kibana container is not ready. |
 
 <!-- Links -->
 
