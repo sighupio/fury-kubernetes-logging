@@ -10,13 +10,17 @@ resources:
   - rbac.yaml
   - service.yaml
   - sts.yaml
+  - cronjob.yaml
 
 namespace: logging
 
 images:
   - name: minio/minio
     newName: registry.sighup.io/fury/minio
-    newTag: RELEASE.2021-05-26T00-22-46Z
+    newTag: RELEASE.2022-10-24T18-35-07Z
+  - name: minio/mc
+    newName: registry.sighup.io/fury/minio/mc
+    newTag: RELEASE.2022-10-22T03-39-29Z
 
 generatorOptions:
   disableNameSuffixHash: true
