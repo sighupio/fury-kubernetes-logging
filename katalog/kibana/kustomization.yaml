@@ -15,6 +15,7 @@ images:
 
 resources:
   - kibana.yml
+  - rules.yaml
 
 configMapGenerator:
   - name: kibana-index-patterns-configmap

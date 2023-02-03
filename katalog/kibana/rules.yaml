@@ -1,0 +1,25 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: kibana-rules
+spec:
+  groups:
+    - name: kibana
+      rules:
+        - alert: KibanaNotReady
+          annotations:
+            description: 'Kibana container is not ready.'
+            summary: Kibana container is not ready.
+          expr: |
+            kube_pod_container_status_ready{job="kube-state-metrics",container="kibana",namespace="logging"} == 0
+          for: 15m
+          labels:
+            severity: warning
