@@ -14,8 +14,8 @@ spec:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
       tag: v1.14.6-alpine-5
     configReloaderImage:
-      repository: registry.sighup.io/fury/jimmidyson/configmap-reload
-      tag: v0.4.0
+      repository: registry.sighup.io/fury/banzaicloud/config-reloader
+      tag: 0.0.1
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
