@@ -15,7 +15,8 @@ This package is a collection of logging operator Flow/ClusterFlow and Output/Clu
 Configurations available (patched from the base [configs](../configs) ) :
 
 - [configs](configs): all the configurations.
-- [configs/kubernetes](configs/kubernetes): only the cluster wide pods logging configuration.
+- [configs/kubernetes](configs/kubernetes): only the cluster wide pods logging configuration (infrastructural namespaced excluded).
+- [configs/infra](configs/infra): only the infrastructural namespaces logs  
 - [configs/ingress-nginx](configs/ingress-nginx): only the nginx-ingress-controller logging configuration.
 - [configs/audit](configs/audit): all the Kubernetes audit logs related configurations (with master selector and tolerations).
 - [configs/events](configs/events): all the Kubernetes events related configurations (with master selector and tolerations).
@@ -35,6 +36,7 @@ You can also deploy only a configuration subset by running some of the following
 
 ```shell
 kustomize build kubernetes | kubectl apply -f -
+kustomize build infra | kubectl apply -f -
 kustomize build ingress-nginx | kubectl apply -f -
 kustomize build audit | kubectl apply -f -
 kustomize build events | kubectl apply -f -
