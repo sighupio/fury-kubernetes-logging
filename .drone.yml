@@ -462,7 +462,6 @@ trigger:
     include:
       - refs/tags/**
 
-load:
 steps:
   - name: prepare-canonical-json
     image: registry.sighup.io/poc/fury-repo-automations:v0.0.3
