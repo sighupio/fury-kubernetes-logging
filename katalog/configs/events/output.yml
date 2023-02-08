@@ -22,6 +22,7 @@ spec:
         secretKeyRef:
           name: events-index-template
           key: events-index-template
+    log_os_400_reason: true
     ssl_verify: false
     suppress_type_name: true
     buffer:
