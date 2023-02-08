@@ -19,6 +19,7 @@ spec:
           type: json
         remove_key_name_field: true
         reserve_data: true
+        emit_invalid_record_to_error: false
   match:
     - exclude:
         namespaces:
