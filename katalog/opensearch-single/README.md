@@ -10,8 +10,8 @@ Kubernetes.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
-- Kustomize >= `v3.3.X`
+- Kubernetes >= `1.23.0`
+- Kustomize = `v3.5.3`
 - [prometheus-operator][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
@@ -19,7 +19,7 @@ Kubernetes.
 
 ## Image repository and tag
 
-* OpenSearch image: `opensearchproject/opensearch:1.2.4`
+* OpenSearch image: `opensearchproject/opensearch:2.5.0`
 * OpenSearch repo: [OpenSearch on Github][opensearch-gh]
 * OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 

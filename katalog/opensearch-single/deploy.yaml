@@ -4,7 +4,7 @@
 
 ---
 # Source: opensearch/templates/poddisruptionbudget.yaml
-apiVersion: policy/v1beta1
+apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: "opensearch-cluster-master-pdb"
@@ -167,8 +167,22 @@ spec:
             - ALL
           runAsNonRoot: true
           runAsUser: 1000
+          runAsGroup: 1000
         image: "opensearchproject/opensearch"
         imagePullPolicy: "IfNotPresent"
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 5
+          tcpSocket:
+            port: 9200
+          timeoutSeconds: 3
+        startupProbe:
+          failureThreshold: 30
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          tcpSocket:
+            port: 9200
+          timeoutSeconds: 3
         ports:
         - name: http
           containerPort: 9200
@@ -196,6 +210,10 @@ spec:
           value: "0.0.0.0"
         - name: OPENSEARCH_JAVA_OPTS
           value: "-Xms2G -Xmx2G"
+        - name: DISABLE_INSTALL_DEMO_CONFIG
+          value: "true"
+        - name: DISABLE_PERFORMANCE_ANALYZER_AGENT_CLI
+          value: "true"
         - name: node.roles
           value: "master,ingest,data,remote_cluster_client,"
         volumeMounts:

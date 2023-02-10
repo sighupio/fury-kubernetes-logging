@@ -52,6 +52,9 @@ spec:
         envFrom:
         - secretRef:
             name: minio-credentials
+        env:
+        - name: MINIO_CONSOLE_ADDRESS
+          value: ":9001"
         image: minio/minio
         securityContext:
           allowPrivilegeEscalation: false
@@ -60,6 +63,7 @@ spec:
         - /data
         ports:
         - containerPort: 9000
+        - containerPort: 9001
         volumeMounts:
         - name: data
           mountPath: /data
