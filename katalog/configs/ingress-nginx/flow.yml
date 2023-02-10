@@ -25,10 +25,7 @@ spec:
             # this handles nginx error log
             - type: regexp
               expression: '/^(?<logtime>\d{4}\/\d{1,2}\/\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}) (?<log_level>\[[^\s]+\]) (?<message>.*)$/'
-              types:
-                logtime: string
-                log_level: string
-                message: string
+              types: 'logtime:string,log_level:string,message: string'
   match:
     - select:
         labels:
