@@ -12,7 +12,7 @@ Run the following command:
 helm template logging-operator ./tmp/logging-operator/charts/logging-operator -n logging > logging-operator-built.yaml
 ```
 
-With the `logging-operator-build.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
+With the `logging-operator-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
 Eventually update CRDs in the `./crds` folder with the CRDs from the directory
 `./tmp/logging-operator/charts/logging-operator/crds`.
