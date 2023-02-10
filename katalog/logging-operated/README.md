@@ -7,14 +7,14 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
+- Kubernetes >= `1.23.0`
 - Kustomize >= `v3.5.3`
 - [logging-operator][logging-operator]
 - [prometheus-operator][prometheus-operator]
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.0`
+* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.10`
 
 ## Configuration
 
