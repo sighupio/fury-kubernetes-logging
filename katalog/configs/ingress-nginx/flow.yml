@@ -21,14 +21,7 @@ spec:
             - type: regexp
               expression: '/^(?<remote_addr>[^ ]*) - (?<remote_user>[^ ]+) \[(?<time_local>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*) +\S*)?" (?<status>\d+) (?<body_bytes_sent>\d+) "(?<http_referer>[^ ]*)" "(?<http_user_agent>[^\"]*)" (?<request_length>\d+) (?<request_time>[\d.]+) \[(?<proxy_upstream_name>[^\]]*)\] \[(?<proxy_alternative_upstream_name>[^\]]*)\] (?<upstream_addr>[^ ,]*(?:,\s[^ ,]*)*) (?<upstream_response_length>(?:\d+|-)(?:,\s(?:\d+|-))*) (?<upstream_response_time>(?:[\d.]+|-)(?:,\s(?:[\d.]+|-))*) (?<upstream_status>(?:\d+|-)(?:,\s(?:\d+|-))*) (?<req_id>[[:alnum:]]*)/'
               time_format: "%Y-%m-%dT%H:%M:%S.%L%z"
-              types:
-                request_length: integer
-                request_time: float
-                status: integer
-                body_bytes_sent: integer
-                upstream_response_length: string
-                upstream_response_time: string
-                upstream_status: string
+              types: 'request_length:integer,request_time:float,status:integer,body_bytes_sent:integer,upstream_response_length:string,upstream_response_time:string,upstream_status:string'
             # this handles nginx error log
             - type: regexp
               expression: '/^(?<logtime>\d{4}\/\d{1,2}\/\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}) (?<log_level>\[[^\s]+\]) (?<message>.*)$/'
