@@ -1,0 +1,35 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: infra
+spec:
+  opensearch:
+    host: opensearch-cluster-master.logging.svc.cluster.local
+    port: 9200
+    scheme: http
+    logstash_format: true
+    logstash_prefix: infra
+    request_timeout: 600s
+    template_overwrite: true
+    template_name: infra
+    template_file:
+      mountFrom:
+        secretKeyRef:
+          name: infra-index-template
+          key: infra-index-template
+    ssl_verify: false
+    suppress_type_name: true
+    buffer:
+      timekey: "1m"
+      timekey_wait: "10s"
+      timekey_use_utc: true
+      chunk_limit_size: "2m"
+      retry_max_interval: "30"
+      retry_forever: true
+      overflow_action: "block"
+      flush_thread_count: 4
