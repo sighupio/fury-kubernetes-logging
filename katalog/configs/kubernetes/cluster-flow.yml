@@ -19,30 +19,20 @@ spec:
           type: json
         remove_key_name_field: true
         reserve_data: true
+        emit_invalid_record_to_error: false
   match:
     - exclude:
         namespaces:
+          - kube-system
+          - logging
+          - monitoring
           - ingress-nginx
-        labels:
-          app: ingress-nginx
-    - exclude:
-        namespaces:
-          - ingress-nginx
-        labels:
-          app: ingress
-          type: external
-    - exclude:
-        namespaces:
-          - ingress-nginx
-        labels:
-          app: ingress
-          type: internal
-    - exclude:
-        labels:
-          app.kubernetes.io/name: host-tailer
-    - exclude:
-        labels:
-          app.kubernetes.io/name: event-tailer
+          - cert-manager
+          - tigera-operator
+          - calico-system
+          - calico-api
+          - vmware-system-csi
+          - pomerium
     - select: {}
   globalOutputRefs:
     - kubernetes

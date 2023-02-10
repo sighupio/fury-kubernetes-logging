@@ -1,23 +1,19 @@
-# Copyright (c) 2022 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
 ---
 apiVersion: logging.banzaicloud.io/v1beta1
-kind: Output
+kind: ClusterOutput
 metadata:
-  name: systemd-etcd
+  name: infra
 spec:
-  opensearch:
-    host: opensearch-cluster-master.logging.svc.cluster.local
-    port: 9200
-    scheme: http
-    logstash_format: true
-    logstash_prefix: systemd
-    request_timeout: 600s
-    log_os_400_reason: true
-    ssl_verify: false
-    suppress_type_name: true
+  loki:
+    url: http://loki-stack:3100
+    extract_kubernetes_labels: true
+    configure_kubernetes_labels: true
+    extra_labels:
+      flow: infra
     buffer:
       timekey: "1m"
       timekey_wait: "10s"
@@ -26,3 +22,4 @@ spec:
       retry_max_interval: "30"
       retry_forever: true
       overflow_action: "block"
+
