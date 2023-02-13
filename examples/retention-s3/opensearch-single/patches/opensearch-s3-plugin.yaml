@@ -1,0 +1,18 @@
+- op: add
+  path: /spec/template/spec/initContainers/-
+  value:
+    name: opensearch-s3-plugin
+    image: opensearchproject/opensearch
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        /usr/share/opensearch/bin/opensearch-plugin install --batch repository-s3
+    volumeMounts:
+      - name: "opensearch-cluster-master"
+        mountPath: /usr/share/opensearch/data
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000

@@ -1,0 +1,67 @@
+{
+  "policy": {
+    "description": "delete INDEXNAME indexes after 30 days",
+    "default_state": "hot",
+    "schema_version": 1,
+    "states": [
+      {
+        "name": "hot",
+        "actions": [],
+        "transitions": [
+          {
+            "state_name": "snapshot",
+            "conditions": {
+              "min_index_age": "SNAPSHOT_MIN_AGEd"
+            }
+          }
+        ]
+      },
+      {
+        "name": "snapshot",
+        "actions": [
+          {
+            "retry": {
+              "count": 3,
+              "backoff": "exponential",
+              "delay": "2m"
+            },
+            "snapshot": {
+              "repository": "REPOSITORYNAME",
+              "snapshot": ""
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "state_name": "delete",
+            "conditions": {
+              "min_index_age": "DELETE_MIN_AGEd"
+            }
+          }
+        ]
+      },
+      {
+        "name": "delete",
+        "actions": [
+          {
+            "retry": {
+              "count": 3,
+              "backoff": "exponential",
+              "delay": "2m"
+            },
+            "delete": {}
+          }
+        ],
+        "transitions": []
+      }
+    ],
+    "ism_template": [
+      {
+        "index_patterns": [
+          "INDEXNAME-*"
+        ],
+        "priority": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+- op: add
+  path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+  value:
+     - configMapRef:
+        name: os-backup-env
+
+
+- op: replace
+  path: /spec/jobTemplate/spec/template/spec/containers/0/args
+  value:
+    - cat /tmp/retention.json | sed 's/REPOSITORYNAME/$(SNAPSHOT_S3_TASK)/g' > /tmp/retention-s3.json
+    - /script/index-retentions.sh /tmp/retention-s3.json http://opensearch-cluster-master:9200

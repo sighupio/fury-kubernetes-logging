@@ -1,0 +1,56 @@
+# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: logging
+resources:
+  - ../../../katalog/opensearch-single
+  - cronjob.yaml
+
+images:
+  - name: registry.sighup.io/fury/justwatch/elasticsearch_exporter
+    newName: justwatch/elasticsearch_exporter
+  - name: registry.sighup.io/fury/opensearchproject/opensearch
+    newName: opensearchproject/opensearch
+  - name: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
+    newName: opensearchproject/opensearch-dashboards
+  - name: registry.sighup.io/fury/alpine
+    newName: alpine
+
+# add a patch for install opensearch plugins repository-s3
+#
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: StatefulSet
+      name: opensearch-cluster-master
+    path: patches/opensearch-s3-plugin.yaml
+  - target:
+      group: batch
+      version: v1
+      kind: CronJob
+      name: ism-policy-cronjob
+    path: patches/ism-policy-cronjob.yaml
+
+
+configMapGenerator:
+  - name: snapshot-script
+    files:
+      - snapshot-s3.py
+  - name: os-backup-env
+    envs:
+      - configs/configmap-snapshot-s3.env
+  - name: opensearch-ism-policies
+    behavior: replace
+    files:
+      - configs/retention-s3.json
+
+secretGenerator:
+  - name: os-backup-env
+    envs:
+      - secrets/secret-snapshot-s3.env
