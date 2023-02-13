@@ -35,3 +35,6 @@ configMapGenerator:
   - name: opensearch-ism-policies
     files:
       - configs/retention.json
+  - name: index-retention-script
+    files:
+      - index-retentions.sh

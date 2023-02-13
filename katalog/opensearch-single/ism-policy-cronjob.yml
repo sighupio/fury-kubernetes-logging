@@ -25,31 +25,19 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - |
-                  cp /tmp/retention.json kubernetes-retention.json
-                  sed -i 's/INDEXNAME/kubernetes/g' kubernetes-retention.json
-                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/kubernetes" -H "Content-Type: application/json" -d @./kubernetes-retention.json
-                  cp /tmp/retention.json audit-retention.json
-                  sed -i 's/INDEXNAME/audit/g' audit-retention.json
-                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/audit" -H "Content-Type: application/json" -d @./audit-retention.json
-                  cp /tmp/retention.json events-retention.json
-                  sed -i 's/INDEXNAME/events/g' events-retention.json
-                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/events" -H "Content-Type: application/json" -d @./events-retention.json
-                  cp /tmp/retention.json systemd-retention.json
-                  sed -i 's/INDEXNAME/systemd/g' systemd-retention.json
-                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/systemd" -H "Content-Type: application/json" -d @./systemd-retention.json
-                  cp /tmp/retention.json ingress-controller-retention.json
-                  sed -i 's/INDEXNAME/ingress-controller/g' ingress-controller-retention.json
-                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/ingress-controller" -H "Content-Type: application/json" -d @./ingress-controller-retention.json
-                  cp /tmp/retention.json infra-retention.json
-                  sed -i 's/INDEXNAME/infra/g' infra-retention.json
-                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/infra" -H "Content-Type: application/json" -d @./infra-retention.json
+              args:
+                - /script/index-retentions.sh /tmp/retention.json http://opensearch-cluster-master:9200
               volumeMounts:
                 - name: config-volume
                   mountPath: /tmp
+                - name: script-volume
+                  mountPath: /script
           volumes:
             - name: config-volume
               configMap:
                 name: opensearch-ism-policies
+            - name: script-volume
+              configMap:
+                name: index-retention-script
           restartPolicy: OnFailure
   schedule: "0 * * * *"
