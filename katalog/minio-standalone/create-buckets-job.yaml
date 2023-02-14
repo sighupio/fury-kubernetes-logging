@@ -1,0 +1,76 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-logging-buckets-setup
+  labels:
+    app: minio-logging-buckets-setup
+spec:
+  template:
+    metadata:
+      labels:
+        app: minio-logging-buckets-setup
+    spec:
+      serviceAccountName: wait-for-minio
+      restartPolicy: OnFailure
+      volumes:
+        - name: config
+          emptyDir: {}
+      initContainers:
+        - name: wait-for-minio
+          image: groundnuty/k8s-wait-for:v1.6
+          imagePullPolicy: Always
+          args: ["pod", "-lv1.min.io/tenant=minio-logging"]
+      containers:
+        - name: mc
+          image: minio/mc:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: minio-logging-job-credentials
+          command:
+            - /bin/sh
+            - -c
+            - |
+              mc --config-dir=/config config host add logging http://minio.logging.svc.cluster.local ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}
+              mc --config-dir=/config mb -p logging/loki
+              mc --config-dir=/config mb -p logging/errors
+              mc --config-dir=/config ilm add --expiry-days "7" logging/errors
+          volumeMounts:
+            - name: config
+              mountPath: "/config"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wait-for-minio
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: wait-for-minio
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: minio-setup:wait-for-minio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: wait-for-minio
+subjects:
+  - kind: ServiceAccount
+    name: wait-for-minio
+    namespace: logging
