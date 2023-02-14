@@ -29,12 +29,12 @@ limits_config:
 schema_config:
   configs:
     - from: "2020-10-24"
+      store: boltdb-shipper
+      object_store: s3
+      schema: v11
       index:
         period: 24h
         prefix: index_
-      object_store: filesystem
-      schema: v11
-      store: boltdb-shipper
 server:
   http_listen_port: 3100
 storage_config:
@@ -42,9 +42,11 @@ storage_config:
     active_index_directory: /data/loki/boltdb-shipper-active
     cache_location: /data/loki/boltdb-shipper-cache
     cache_ttl: 24h
-    shared_store: filesystem
-  filesystem:
-    directory: /data/loki/chunks
+    resync_interval: 5s
+    shared_store: s3
+  aws:
+    s3: http://minio:minio123@minio.logging.svc.cluster.local/loki
+    s3forcepathstyle: true
 table_manager:
   retention_deletes_enabled: false
   retention_period: 0s

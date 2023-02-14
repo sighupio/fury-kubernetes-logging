@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  sighup-logger-json
+  namespace: logging
+  labels:
+    kubernetes.io.stuff: robe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      #app:  sighup-logger-json
+      kubernetes.io.stuff: robe
+  template:
+    metadata:
+      labels:
+        #app:  sighup-logger-json
+        kubernetes.io.stuff: robe
+    spec:
+      containers:
+      - name: logger1
+        image: busybox
+        imagePullPolicy: Always
+        command: 
+          - "/bin/sh" 
+          - "-c"
+          - |
+            while true; do echo '{"airplane123":{ "test": "ciao" },"something123":"better","number123":"10","superdatona123":"'$(date +%s)'"}'; sleep 0.01; done;
