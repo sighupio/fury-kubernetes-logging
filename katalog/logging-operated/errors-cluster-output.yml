@@ -21,7 +21,7 @@ spec:
           key: MINIO_SECRET_KEY
     s3_bucket: logging
     s3_region: local
-    s3_endpoint: 'http://minio.logging.svc.cluster.local:9000'
+    s3_endpoint: 'http://minio.logging.svc.cluster.local'
     force_path_style: 'true'
     path: logs/${tag}/%Y/%m/%d/
     buffer:
