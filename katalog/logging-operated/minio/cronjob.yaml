@@ -1,0 +1,46 @@
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: minio-ilm
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: mc-ilm
+              command: 
+               - sh 
+               - -c
+              args: 
+               - | 
+                # Set alias for the two minio instances
+                mc alias set minio_0 http://minio-0.minio.logging.svc.cluster.local:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+                mc alias set minio_1 http://minio-1.minio.logging.svc.cluster.local:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+                
+                # Check connection
+                mc admin info minio_0
+                mc admin info minio_1
+                
+                # Remove all rules (we only need the one that expires objects)
+                mc ilm rm --all --force minio_0/logging
+                mc ilm rm --all --force minio_1/logging
+
+                # Add 7 days rule to each minio instance
+                mc ilm add --expiry-days "7" minio_0/logging
+                mc ilm add --expiry-days "7" minio_1/logging
+
+              envFrom:
+              - secretRef:
+                  name: minio-credentials
+              image: minio/mc
+              imagePullPolicy: IfNotPresent
+              securityContext:
+                allowPrivilegeEscalation: false
+          restartPolicy: OnFailure
+  schedule: "0 * * * *"
