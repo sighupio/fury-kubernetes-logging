@@ -22,6 +22,7 @@ spec:
         secretKeyRef:
           name: kubernetes-index-template
           key: kubernetes-index-template
+    log_os_400_reason: true
     ssl_verify: false
     suppress_type_name: true
     buffer:
