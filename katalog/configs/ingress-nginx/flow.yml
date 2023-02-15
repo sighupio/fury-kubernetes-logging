@@ -13,9 +13,23 @@ spec:
         de_dot_separator: "_"
         de_dot_nested: true
     - parser:
-        remove_key_name_field: true
+        key_name: message
         parse:
-          type: nginx
+          type: multi_format
+          patterns:
+            # this is the nginx access log format from the ingress controller
+            - format: regexp
+              expression: '/^(?<remote_addr>[^ ]*) - (?<remote_user>[^ ]+) \[(?<time_local>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*) +\S*)?" (?<status>\d+) (?<body_bytes_sent>\d+) "(?<http_referer>[^ ]*)" "(?<http_user_agent>[^\"]*)" (?<request_length>\d+) (?<request_time>[\d.]+) \[(?<proxy_upstream_name>[^\]]*)\] \[(?<proxy_alternative_upstream_name>[^\]]*)\] (?<upstream_addr>[^ ,]*(?:,\s[^ ,]*)*) (?<upstream_response_length>(?:\d+|-)(?:,\s(?:\d+|-))*) (?<upstream_response_time>(?:[\d.]+|-)(?:,\s(?:[\d.]+|-))*) (?<upstream_status>(?:\d+|-)(?:,\s(?:\d+|-))*) (?<req_id>[[:alnum:]]*)/'
+              time_format: "%Y-%m-%dT%H:%M:%S.%L%z"
+              types: 'request_length:integer,request_time:float,status:integer,body_bytes_sent:integer,upstream_response_length:string,upstream_response_time:string,upstream_status:string'
+            # this handles nginx error log
+            - format: regexp
+              expression: '/^(?<logtime>\d{4}\/\d{1,2}\/\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}) (?<log_level>\[[^\s]+\]) (?<message>.*)$/'
+              types: 'logtime:string,log_level:string,message:string'
+            # catch all ingress nginx logs
+            - format: regexp
+              expression: '/^(?<generic>.*)$/'
+              types: 'generic:string'
   match:
     - select:
         labels:
@@ -30,14 +44,3 @@ spec:
           type: internal
   localOutputRefs:
     - ingress-nginx
-
-# Alternatively if you want more control over the parsing, you can use the parser below:
-#    - parser:
-#        key_name: log
-#        remove_key_name_field: true
-#        reserve_data: true
-#        parse:
-#          type: regexp
-#          expression: '/^(?<remote_addr>[^ ]*) - (?<remote_user>[^ ]+) \[(?<time_local>[^\]]*)\] "(?<method>\S+)(?: +(?<path>[^\"]*) +\S*)?" (?<status>\d+) (?<body_bytes_sent>\d+) "(?<http_referer>[^ ]*)" "(?<http_user_agent>[^\"]*)" (?<request_length>\d+) (?<request_time>[\d.]+) \[(?<proxy_upstream_name>[^\]]*)\] \[(?<proxy_alternative_upstream_name>[^\]]*)\] (?<upstream_addr>[^ ]*) (?<upstream_response_length>\d+|-) (?<upstream_response_time>[\d.]+|-) (?<upstream_status>\d+|-) (?<req_id>[^ ]*)/'
-#          time_key: time
-#          time_format: '%d/%b/%Y:%H:%M:%S %z'
