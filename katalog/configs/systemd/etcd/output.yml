@@ -15,6 +15,7 @@ spec:
     logstash_format: true
     logstash_prefix: systemd
     request_timeout: 600s
+    log_os_400_reason: true
     ssl_verify: false
     suppress_type_name: true
     buffer:
