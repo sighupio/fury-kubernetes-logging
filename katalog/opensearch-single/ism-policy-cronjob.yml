@@ -41,6 +41,9 @@ spec:
                   cp /tmp/retention.json ingress-controller-retention.json
                   sed -i 's/INDEXNAME/ingress-controller/g' ingress-controller-retention.json
                   curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/ingress-controller" -H "Content-Type: application/json" -d @./ingress-controller-retention.json
+                  cp /tmp/retention.json infra-retention.json
+                  sed -i 's/INDEXNAME/infra/g' infra-retention.json
+                  curl -X PUT "http://opensearch-cluster-master:9200/_plugins/_ism/policies/infra" -H "Content-Type: application/json" -d @./infra-retention.json
               volumeMounts:
                 - name: config-volume
                   mountPath: /tmp

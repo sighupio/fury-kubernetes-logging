@@ -4,7 +4,7 @@
 
 ---
 # Source: opensearch/templates/poddisruptionbudget.yaml
-apiVersion: policy/v1beta1
+apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: "opensearch-cluster-master-pdb"
@@ -134,7 +134,25 @@ spec:
         image: "alpine"
         command: ['sh', '-c']
         args:
-          - 'sysctl -w vm.max_map_count=262144 && sysctl -w fs.file-max=65536 && sysctl -p && chown -R 1000:1000 /usr/share/opensearch/data'
+          - |
+            sysctl -a
+            MAX_MAP_COUNT=$(sysctl -a | grep max_map_count | cut -d " " -f3)
+            if [ "$MAX_MAP_COUNT" -gt "262143" ]; then
+              echo "Nothing to do, vm.max_map_count value is high enough"
+            else
+              echo "Changing vm.max_map_count value to 262144"
+              sysctl -w vm.max_map_count=262144
+              sysctl -p
+            fi
+            FILE_MAX=$(sysctl -a | grep file-max | cut -d " " -f3)
+            if [ "$FILE_MAX" -gt "524287" ]; then
+              echo "Nothing to do, vm.file-max value is high enough"
+            else
+              echo "Changing vm.file-max value to 524288"
+              sysctl -w vm.max_map_count=524288
+              sysctl -p
+            fi
+            chown -R 1000:1000 /usr/share/opensearch/data
         securityContext:
           privileged: true
           runAsUser: 0
@@ -149,8 +167,22 @@ spec:
             - ALL
           runAsNonRoot: true
           runAsUser: 1000
+          runAsGroup: 1000
         image: "opensearchproject/opensearch"
         imagePullPolicy: "IfNotPresent"
+        readinessProbe:
+          failureThreshold: 3
+          periodSeconds: 5
+          tcpSocket:
+            port: 9200
+          timeoutSeconds: 3
+        startupProbe:
+          failureThreshold: 30
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          tcpSocket:
+            port: 9200
+          timeoutSeconds: 3
         ports:
         - name: http
           containerPort: 9200
@@ -178,6 +210,10 @@ spec:
           value: "0.0.0.0"
         - name: OPENSEARCH_JAVA_OPTS
           value: "-Xms2G -Xmx2G"
+        - name: DISABLE_INSTALL_DEMO_CONFIG
+          value: "true"
+        - name: DISABLE_PERFORMANCE_ANALYZER_AGENT_CLI
+          value: "true"
         - name: node.roles
           value: "master,ingest,data,remote_cluster_client,"
         volumeMounts:

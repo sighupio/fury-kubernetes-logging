@@ -1,5 +1,5 @@
 <h1>
-    <img src="https://github.com/sighupio/fury-distribution/blob/master/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
+    <img src="https://github.com/sighupio/fury-distribution/blob/main/docs/assets/fury-epta-white.png?raw=true" align="left" width="90" style="margin-right: 15px"/>
     Kubernetes Fury Logging
 </h1>
 
@@ -74,17 +74,17 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/opensearch-single
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/opensearch-dashboards
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/logging-operator
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/logging-operated
-    version: "v3.0.0"
+    version: "v3.0.1"
   - name: logging/configs
-    version: "v3.0.0"
+    version: "v3.0.1"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -116,6 +116,10 @@ kustomize build . | kubectl apply -f -
 #### Setup a high-availability three-node opensearch
 
 Logging module offers an out of the box, highly-available setup for `opensearch` instead of a single node version. To set this up, in the `Furyfile` and `kustomization`, you can replace `opensearch-single` with `opensearch-triple`.
+
+#### Configure tolerations and node selectors
+
+If you need to specify tolerations and/or node selectors, you can find some snippets in [examples/tolerations](examples/tolerations) and its subfolders.
 
 <!-- Links -->
 
