@@ -523,8 +523,8 @@ spec:
         - name: temp
           emptyDir: {}
         - name: config
-          configMap:
-            name: loki-distributed
+          secret:
+            secretName: loki-distributed
         - name: runtime-config
           configMap:
             name: loki-distributed-runtime
@@ -636,8 +636,8 @@ spec:
 
       volumes:
         - name: config
-          configMap:
-            name: loki-distributed
+          secret:
+            secretName: loki-distributed
         - name: runtime-config
           configMap:
             name: loki-distributed-runtime
@@ -841,8 +841,8 @@ spec:
 
       volumes:
         - name: config
-          configMap:
-            name: loki-distributed
+          secret:
+            secretName: loki-distributed
         - name: runtime-config
           configMap:
             name: loki-distributed-runtime
@@ -1072,8 +1072,8 @@ spec:
 
       volumes:
         - name: config
-          configMap:
-            name: loki-distributed
+          secret:
+            secretName: loki-distributed
         - name: runtime-config
           configMap:
             name: loki-distributed-runtime
@@ -1186,8 +1186,8 @@ spec:
             {}
       volumes:
         - name: config
-          configMap:
-            name: loki-distributed
+          secret:
+            secretName: loki-distributed
         - name: runtime-config
           configMap:
             name: loki-distributed-runtime
