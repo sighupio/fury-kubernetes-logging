@@ -33,7 +33,6 @@ metadata:
   labels:
     app: minio
 spec:
-  image: quay.io/minio/minio:RELEASE.2023-01-12T02-06-16Z
   imagePullPolicy: IfNotPresent
   configuration:
     name: minio-logging-env-configuration

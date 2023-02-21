@@ -10,3 +10,8 @@ namespace: logging
 
 resources:
   - deploy.yaml
+
+images:
+  - name: minio/operator
+    newName: registry.sighup.io/fury/minio/operator
+    newTag: v4.5.8
