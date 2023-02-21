@@ -24,7 +24,8 @@ With the `loki-stack-built.yaml` file, check differences with the current `deplo
 What was customized (what differs from the helm template command):
 
 - Loki configuration has been moved on it's own file `configs/loki.yaml`
-- Gateway service has been renamed as loki-stack
+- Gateway service has been renamed as loki-stack to maintain compatibility with existing loki-configs
+- Configmap loki-distributed has been changed to a secret
 
 
 [github-releases]: https://github.com/grafana/helm-charts/releases?q=loki-stack&expanded=true
