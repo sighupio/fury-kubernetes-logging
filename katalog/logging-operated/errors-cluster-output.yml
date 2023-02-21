@@ -19,7 +19,7 @@ spec:
         secretKeyRef:
           name: minio-credentials
           key: MINIO_SECRET_KEY
-    s3_bucket: logging
+    s3_bucket: errors
     s3_region: local
     s3_endpoint: 'http://minio.logging.svc.cluster.local'
     force_path_style: 'true'
