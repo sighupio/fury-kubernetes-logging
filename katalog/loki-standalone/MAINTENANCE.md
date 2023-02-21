@@ -21,4 +21,8 @@ helm template loki-stack /tmp/loki-stack --set grafana.enabled=false --set loki.
 
 With the `loki-stack-built.yaml` file, check differences with the current `deploy.yml` file and change accordingly.
 
+What was customized (what differs from the helm template command):
+
+- Loki version has been updated to 2.7.3 to use the same version as the `loki-distributed` package
+
 [github-releases]: https://github.com/grafana/helm-charts/releases?q=loki-stack&expanded=true
