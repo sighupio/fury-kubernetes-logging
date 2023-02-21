@@ -7,5 +7,5 @@ datasources:
   - name: Loki
     type: loki
     access: proxy
-    url: http://loki-distributed-gateway.logging.svc.cluster.local
+    url: http://loki-stack.logging.svc.cluster.local:3100
     version: 1
