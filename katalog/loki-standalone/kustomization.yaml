@@ -15,7 +15,7 @@ resources:
 images:
   - name: grafana/loki
     newName: registry.sighup.io/fury/grafana/loki
-    newTag: 2.4.2
+    newTag: 2.7.3
 
 secretGenerator:
   - name: loki-stack
