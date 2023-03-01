@@ -5,7 +5,7 @@
 </h1>
 <!-- markdownlint-enable MD033 -->
 
-![Release](https://img.shields.io/badge/Latest%20Release-v2.0.3-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v2.0.4-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -72,19 +72,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v2.0.3"
+    version: "v2.0.4"
   - name: logging/curator
-    version: "v2.0.3"
+    version: "v2.0.4"
   - name: logging/elasticsearch-single
-    version: "v2.0.3"
+    version: "v2.0.4"
   - name: logging/logging-operator
-    version: "v2.0.3"
+    version: "v2.0.4"
   - name: logging/logging-operated
-    version: "v2.0.3"
+    version: "v2.0.4"
   - name: logging/configs
-    version: "v2.0.3"
+    version: "v2.0.4"
   - name: logging/kibana
-    version: "v2.0.3"
+    version: "v2.0.4"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
