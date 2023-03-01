@@ -1,4 +1,4 @@
-## Opensearch Snapshot and Restore Plugin
+# Opensearch Snapshot and Restore Plugin
 
 This plugin provides a way to take snapshots of an index and restore it later. It also provides APIs to manage the snapshots.
 The constraints of the plugin are:
