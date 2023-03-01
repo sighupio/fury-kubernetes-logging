@@ -20,6 +20,8 @@
 | v2.0.0                              |                    |                    |                    |                    |                    |                    | :warning:          | :warning:          | :warning:          | :warning: |
 | v2.0.1                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :warning:          | :warning:          | :warning: |
 | v2.0.2                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v2.0.3                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
+| v2.0.4                              |                    |                    |                    |                    |                    |                    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: |
 
 
 - :white_check_mark: Compatible
