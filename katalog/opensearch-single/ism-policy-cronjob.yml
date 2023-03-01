@@ -24,9 +24,9 @@ spec:
               imagePullPolicy: IfNotPresent
               command:
                 - /bin/sh
-                - -c
               args:
-                - /script/index-retentions.sh /tmp/retention.json http://opensearch-cluster-master:9200
+                - "-c"
+                - "bash /script/index-retentions.sh /tmp/retention.json http://opensearch-cluster-master:9200"
               volumeMounts:
                 - name: config-volume
                   mountPath: /tmp

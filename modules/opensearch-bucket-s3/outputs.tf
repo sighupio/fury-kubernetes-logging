@@ -1,3 +1,7 @@
+# Copyright (c) 2023 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
 locals {
   os_backup_env_secret       = <<EOT
 AWS_ACCESS_KEY_ID=${aws_iam_access_key.os-backup.id}
