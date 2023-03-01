@@ -1,0 +1,33 @@
+# Copyright (c) 2023 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+- op: add
+  path: /spec/template/spec/containers/0/command
+  value:
+    - "sh"
+    - "-c"
+    - |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      # Add the opensearch-s3-plugin
+      ./bin/opensearch-plugin install --batch repository-s3
+      # Create the keystore
+      ./bin/opensearch-keystore create
+      # Add the S3 credentials to the keystore
+      echo $AWS_ACCESS_KEY_ID | opensearch-keystore add --stdin --force s3.client.default.access_key
+      echo $AWS_SECRET_ACCESS_KEY | opensearch-keystore add --stdin --force s3.client.default.secret_key
+      # Run the entrypoint
+      bash opensearch-docker-entrypoint.sh
+
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value:
+    name: OPENSEARCH_JAVA_OPTS
+    value: "-Xms2G -Xmx2G -Dopensearch.allow_insecure_settings=true"
+
+- op: add
+  path: /spec/template/spec/containers/0/envFrom
+  value:
+    - secretRef:
+        name: os-snapshot-env

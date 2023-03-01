@@ -1,0 +1,16 @@
+# Copyright (c) 2023 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+- op: add
+  path: /spec/jobTemplate/spec/template/spec/containers/0/envFrom
+  value:
+    - configMapRef:
+        name: os-snapshot-env
+
+- op: replace
+  path: /spec/jobTemplate/spec/template/spec/containers/0/args
+  value:
+    - "-c"
+    - "cat /tmp/retention-s3.json | sed 's/REPOSITORYNAME/$(SNAPSHOT_S3_TASK)/g' > /var/tmp/retention-s3.json &&\
+      cat /var/tmp/retention-s3.json &&\
+      bash /script/index-retentions.sh /var/tmp/retention-s3.json http://opensearch-cluster-master:9200"
