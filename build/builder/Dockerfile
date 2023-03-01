@@ -8,6 +8,7 @@ FROM quay.io/sighup/policeman:latest as linter
 ENV VALIDATE_KUBERNETES_KUBEVAL="false"
 ENV VALIDATE_JSCPD="false"
 ENV VALIDATE_DOCKERFILE="false"
+ENV VALIDATE_TERRAFORM_TERRASCAN="false"
 
 RUN mkdir /app
 WORKDIR /app

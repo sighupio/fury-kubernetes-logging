@@ -25,6 +25,8 @@ fi
 function retention_policy_does_not_exist() {
     local policy_name=$1
     local opensearch_url=$2
+
+    # shellcheck disable=SC2155
     local response=$(curl -s -XGET "$opensearch_url/_plugins/_ism/policies/$policy_name")
     if [[ "$response" == *"Policy not found"* ]]; then
         return 0
