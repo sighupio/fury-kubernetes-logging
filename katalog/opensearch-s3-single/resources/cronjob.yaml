@@ -1,0 +1,35 @@
+# Copyright (c) 2021 SIGHUP s.r.l All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: snapshot-configurator
+spec:
+  schedule: "0 0 * * *"
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: snapshot-configurator
+              image: python:3-alpine
+              envFrom:
+                - configMapRef:
+                    name: os-snapshot-env
+                - secretRef:
+                    name: os-snapshot-env
+              command:
+                - python
+              args:
+                - /scripts/snapshot-s3.py
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
+          restartPolicy: OnFailure
+          volumes:
+            - name: scripts
+              configMap:
+                name: snapshot-script

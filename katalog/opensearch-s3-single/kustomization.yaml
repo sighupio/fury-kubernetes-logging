@@ -10,7 +10,7 @@ namespace: logging
 
 resources:
   - ../opensearch-single
-  - cronjob.yaml
+  - resources/cronjob.yaml
 
 images:
   - name: registry.sighup.io/fury/justwatch/elasticsearch_exporter
@@ -21,7 +21,6 @@ images:
     newName: opensearchproject/opensearch-dashboards
   - name: registry.sighup.io/fury/alpine
     newName: alpine
-
 
 patches:
   - target:
