@@ -28,6 +28,12 @@ You can deploy Logging operated by running the following command in the root of 
 kustomize build | kubectl apply -f -
 ```
 
+## Error logs
+
+All logs with errors in being sent to their outputs are collected by two MinIO instances.
+These instances serve for debugging purposes and to understand why the collected logs are not being sent.
+These MinIO instances are configured to have a 7-day file retention.
+
 <!-- Links -->
 
 [logging-operator]: https://github.com/sighup-io/fury-kubernetes-logging/blob/master/katalog/logging-operator
