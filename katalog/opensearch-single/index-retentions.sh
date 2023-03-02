@@ -22,17 +22,31 @@ if [ -z "$opensearch_url" ]; then
   exit 1
 fi
 
-function retention_policy_does_not_exist() {
-    local policy_name=$1
-    local opensearch_url=$2
+function install_curl_jq() {
+  # download the jq binary
+  curl -L -o /usr/share/opensearch/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
 
-    # shellcheck disable=SC2155
-    local response=$(curl -s -XGET "$opensearch_url/_plugins/_ism/policies/$policy_name")
-    if [[ "$response" == *"Policy not found"* ]]; then
-        return 0
-    fi
-    return 1
-    }
+  # make the binary executable
+  chmod +x /usr/share/opensearch/bin/jq
+}
+
+function retention_policy_does_not_exist() {
+  local policy_name=$1
+  local opensearch_url=$2
+
+  # shellcheck disable=SC2155
+  local response=$(curl -s -XGET "$opensearch_url/_plugins/_ism/policies/$policy_name")
+
+  if echo "$response" | jq -e '.error.type == "index_not_found_exception"' >/dev/null; then
+    return 0
+  fi
+
+  if echo "$response" | jq -e '.error.root_cause[0].reason == "Policy not found"' >/dev/null; then
+    return 0
+  fi
+
+  return 1
+}
 
 function put_retention_policy() {
   local index_name=$1
@@ -40,15 +54,16 @@ function put_retention_policy() {
   local opensearch_url=$3
 
   echo "configuring retention for index $index_name"
-  cp "${retention_json_file}" "${index_name}"-retention.json &&\
-    sed -i "s/INDEXNAME/${index_name}/g" "${index_name}"-retention.json &&\
-    sed -i "s/SNAPSHOT_MIN_AGE/${SNAPSHOT_MIN_AGE}/g" "${index_name}"-retention.json &&\
-    sed -i "s/DELETE_MIN_AGE/${DELETE_MIN_AGE}/g" "${index_name}"-retention.json &&\
+  cp "${retention_json_file}" "${index_name}"-retention.json &&
+    sed -i "s/INDEXNAME/${index_name}/g" "${index_name}"-retention.json &&
+    sed -i "s/SNAPSHOT_MIN_AGE/${SNAPSHOT_MIN_AGE}/g" "${index_name}"-retention.json &&
+    sed -i "s/DELETE_MIN_AGE/${DELETE_MIN_AGE}/g" "${index_name}"-retention.json &&
     curl -X PUT "${opensearch_url}/_plugins/_ism/policies/${name}" -H "Content-Type: application/json" -d @./"${name}"-retention.json
 }
 
 INDEX_NAME="kubernetes,audit,events,systemd,ingress-controller,infra"
 
+install_curl_jq
 IFS=',' read -r -a index_names <<<"$INDEX_NAME"
 for name in "${index_names[@]}"; do
   if retention_policy_does_not_exist "${name}" "${opensearch_url}"; then
