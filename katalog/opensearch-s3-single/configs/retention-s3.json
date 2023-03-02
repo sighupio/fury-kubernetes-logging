@@ -1,6 +1,6 @@
 {
   "policy": {
-    "description": "delete INDEXNAME indexes after 30 days",
+    "description": "Delete INDEXNAME indexes after DELETE_MIN_AGE days and store snapshots after SNAPSHOT_MIN_AGE days of the indexes in an S3 repository using AWS access and secret keys from OpenSearch keystore.",
     "default_state": "hot",
     "schema_version": 1,
     "states": [
@@ -27,7 +27,7 @@
             },
             "snapshot": {
               "repository": "REPOSITORYNAME",
-              "snapshot": ""
+              "snapshot": "INDEXNAME-$(date +%Y-%m-%d-%H-%M-%S)"
             }
           }
         ],
