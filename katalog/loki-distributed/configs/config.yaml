@@ -76,7 +76,7 @@ server:
   http_listen_port: 3100
 storage_config:
   aws:
-    s3: http://minio:minio123@minio.logging.svc.cluster.local/loki
+    s3: http://minio:minio123@minio-logging.logging.svc.cluster.local:9000/loki
     s3forcepathstyle: true
   boltdb_shipper:
     active_index_directory: /var/loki/index
