@@ -469,7 +469,6 @@ spec:
         app.kubernetes.io/part-of: memberlist
     spec:
       serviceAccountName: loki-distributed
-
       securityContext:
         fsGroup: 10001
         runAsGroup: 10001
@@ -518,7 +517,12 @@ spec:
             - name: data
               mountPath: /var/loki
           resources:
-            {}
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
       volumes:
         - name: temp
           emptyDir: {}
@@ -614,7 +618,12 @@ spec:
             - name: runtime-config
               mountPath: /var/loki-distributed-runtime
           resources:
-            {}
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -713,7 +722,12 @@ spec:
             - name: docker-entrypoint-d-override
               mountPath: /docker-entrypoint.d
           resources:
-            {}
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -819,7 +833,12 @@ spec:
             - name: runtime-config
               mountPath: /var/loki-distributed-runtime
           resources:
-            {}
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -1031,19 +1050,24 @@ spec:
               drop:
                 - ALL
             readOnlyRootFilesystem: true
-
           readinessProbe:
             httpGet:
               path: /ready
               port: http
             initialDelaySeconds: 30
             timeoutSeconds: 1
-
           livenessProbe:
             httpGet:
               path: /ready
               port: http
             initialDelaySeconds: 300
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
           volumeMounts:
             - name: config
               mountPath: /etc/loki/config
@@ -1183,7 +1207,12 @@ spec:
             - name: data
               mountPath: /var/loki
           resources:
-            {}
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
       volumes:
         - name: config
           secret:
