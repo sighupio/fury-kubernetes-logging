@@ -27,7 +27,18 @@ It does not index the contents of the logs, but rather a set of labels for each 
 
 Loki Distributed is deployed in the following configuration:
 
-- TBD
+- Each microservice has its own Deployment/StatefulSet
+- Each Deployment has its own HPA
+- Common resources set as:
+    ```yaml
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 1024Mi
+    ```
 
 ## Deployment
 
