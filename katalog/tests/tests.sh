@@ -11,7 +11,9 @@ set -o pipefail
 
 @test "applying monitoring" {
   info
-  apply "https://github.com/sighupio/fury-kubernetes-monitoring//katalog/prometheus-operator/?ref=v2.0.1"
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v2.0.1/katalog/prometheus-operator/crd/0podmonitorCustomResourceDefinition.yaml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v2.0.1/katalog/prometheus-operator/crd/0prometheusruleCustomResourceDefinition.yaml
+  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v2.0.1/katalog/prometheus-operator/crd/0servicemonitorCustomResourceDefinition.yaml
 }
 
 @test "testing logging-operator apply" {
