@@ -12,3 +12,4 @@ resources:
   - ingress-nginx
   - kubernetes
   - systemd
+  - infra

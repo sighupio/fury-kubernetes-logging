@@ -7,14 +7,14 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
+- Kubernetes >= `1.23.0`
 - Kustomize >= `v3.5.3`
 - [logging-operator][logging-operator]
 - [prometheus-operator][prometheus-operator]
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.0`
+* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.10`
 
 ## Configuration
 
@@ -27,6 +27,12 @@ You can deploy Logging operated by running the following command in the root of 
 ```shell
 kustomize build | kubectl apply -f -
 ```
+
+## Error logs
+
+All logs with errors in being sent to their outputs are collected by two MinIO instances.
+These instances serve for debugging purposes and to understand why the collected logs are not being sent.
+These MinIO instances are configured to have a 7-day file retention.
 
 <!-- Links -->
 
