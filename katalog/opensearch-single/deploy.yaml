@@ -146,10 +146,10 @@ spec:
             fi
             FILE_MAX=$(sysctl -a | grep file-max | cut -d " " -f3)
             if [ "$FILE_MAX" -gt "524287" ]; then
-              echo "Nothing to do, vm.file-max value is high enough"
+              echo "Nothing to do, fs.file-max value is high enough"
             else
-              echo "Changing vm.file-max value to 524288"
-              sysctl -w vm.max_map_count=524288
+              echo "Changing fs.file-max value to 524288"
+              sysctl -w fs.file-max=524288
               sysctl -p
             fi
             chown -R 1000:1000 /usr/share/opensearch/data
