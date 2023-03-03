@@ -5,7 +5,7 @@
 </h1>
 <!-- markdownlint-enable MD033 -->
 
-![Release](https://img.shields.io/badge/Latest%20Release-v2.0.4-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v2.1.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -49,7 +49,6 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes                                               |
 | ------------------ | :----------------: | --------------------------------------------------- |
-| `1.21.x`           | :white_check_mark: | No known issues                                     |
 | `1.22.x`           | :white_check_mark: | No known issues                                     |
 | `1.23.x`           | :white_check_mark: | No known issues                                     |
 | `1.24.x`           | :white_check_mark: | No known issues                                     |
@@ -72,19 +71,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v2.0.4"
+    version: "v2.1.0"
   - name: logging/curator
-    version: "v2.0.4"
+    version: "v2.1.0"
   - name: logging/elasticsearch-single
-    version: "v2.0.4"
+    version: "v2.1.0"
   - name: logging/logging-operator
-    version: "v2.0.4"
+    version: "v2.1.0"
   - name: logging/logging-operated
-    version: "v2.0.4"
+    version: "v2.1.0"
   - name: logging/configs
-    version: "v2.0.4"
+    version: "v2.1.0"
   - name: logging/kibana
-    version: "v2.0.4"
+    version: "v2.1.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
