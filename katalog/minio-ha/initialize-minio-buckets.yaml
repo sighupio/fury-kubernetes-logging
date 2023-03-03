@@ -36,7 +36,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              mc --config-dir=/config config host add logging http://minio-logging.logging.svc.cluster.local:9000 ${rootUser} ${rootPassword}
+              mc --config-dir=/config config host add logging http://minio-logging.logging.svc.cluster.local:9000 ${ROOT_USER} ${ROOT_PASSWORD}
               mc --config-dir=/config mb -p logging/loki
               mc --config-dir=/config mb -p logging/errors
               mc --config-dir=/config ilm add --expiry-days "7" logging/errors
