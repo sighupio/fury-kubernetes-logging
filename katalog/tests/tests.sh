@@ -112,20 +112,80 @@ set -o pipefail
   [[ "$status" -eq 0 ]]
 }
 
-@test "testing kubernetes loki-config apply" {
-  info
-  apply katalog/loki-configs/kubernetes
-}
-
-@test "testing loki-single apply" {
-  info
-  apply katalog/loki-single
-}
-
-@test "check loki-single" {
+@test "check output kubernetes" {
   info
   test(){
-    data=$(kubectl get sts -n logging -l app=loki -o json | jq '.items[] | select(.metadata.name == "loki-stack" and .status.replicas == .status.readyReplicas )')
+    data=$(kubectl get clusteroutput | grep kubernetes | grep true)
+    if [ "${data}" == "" ]; then return 1; fi
+  }
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "testing loki-distributed apply" {
+  info
+  apply katalog/loki-distributed
+}
+
+@test "testing minio-ha apply" {
+  info
+  apply katalog/minio-ha
+}
+
+@test "testing infra config (with loki) apply" {
+  info
+  apply katalog/loki-configs/infra
+}
+
+@test "check loki-distributed ingester" {
+  info
+  test(){
+    data=$(kubectl get sts -n logging -l app.kubernetes.io/instance=loki-distributed -o json | jq '.items[] | select(.metadata.name == "loki-distributed-ingester" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
+  }
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "check loki-distributed querier" {
+  info
+  test(){
+    data=$(kubectl get sts -n logging -l app.kubernetes.io/instance=loki-distributed -o json | jq '.items[] | select(.metadata.name == "loki-distributed-querier" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
+  }
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "check minio-ha" {
+  info
+  test(){
+    data=$(kubectl get sts -n logging -l app=minio -o json | jq '.items[] | select(.metadata.name == "minio-logging" and .status.replicas == .status.readyReplicas )')
+    if [ "${data}" == "" ]; then return 1; fi
+  }
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "check minio setup job" {
+  info
+  test(){
+    data=$(kubectl get job -n logging -l app=minio-logging-buckets-setup -o json | jq '.items[] | select(.metadata.name == "minio-logging-buckets-setup" and .status.succeeded == 1 )')
+    if [ "${data}" == "" ]; then return 1; fi
+  }
+  loop_it test 400 6
+  status=${loop_it_result}
+  [[ "$status" -eq 0 ]]
+}
+
+@test "check output infra" {
+  info
+  test(){
+    data=$(kubectl get clusteroutput | grep infra | grep true)
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 400 6
