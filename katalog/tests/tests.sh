@@ -11,7 +11,7 @@ set -o pipefail
 
 @test "applying monitoring" {
   info
-  kustomize build "https://github.com/sighupio/fury-kubernetes-monitoring//katalog/prometheus-operator/?ref=v2.0.1" | kubectl apply -f - --server-side
+  apply "https://github.com/sighupio/fury-kubernetes-monitoring//katalog/prometheus-operator/?ref=v2.0.1"
 }
 
 @test "testing logging-operator apply" {
