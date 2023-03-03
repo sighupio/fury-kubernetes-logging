@@ -11,8 +11,7 @@ set -o pipefail
 
 @test "applying monitoring" {
   info
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.10.3/katalog/prometheus-operator/crd-servicemonitor.yml
-  kubectl apply -f https://raw.githubusercontent.com/sighupio/fury-kubernetes-monitoring/v1.10.3/katalog/prometheus-operator/crd-rule.yml
+  kustomize build "https://github.com/sighupio/fury-kubernetes-monitoring//katalog/prometheus-operator/?ref=v2.0.1" | kubectl apply -f - --server-side
 }
 
 @test "testing logging-operator apply" {
