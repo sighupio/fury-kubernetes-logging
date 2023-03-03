@@ -1,3 +1,5 @@
+# MinIO HA - maintenance
+
 To maintain the MinIO package, you should follow this steps.
 
 Download the latest tgz from [Main Minio repository releases][github-releases].
