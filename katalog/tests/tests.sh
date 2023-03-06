@@ -116,7 +116,7 @@ set -o pipefail
 @test "check output kubernetes" {
   info
   test(){
-    data=$(kubectl get clusteroutput | grep kubernetes | grep true)
+    data=$(kubectl get clusteroutput -n logging | grep kubernetes | grep true)
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 400 6
@@ -137,6 +137,18 @@ set -o pipefail
 @test "testing infra config (with loki) apply" {
   info
   apply katalog/loki-configs/infra
+}
+
+@test "wait for apply to settle and dump state to dump.json" {
+  info
+  max_retry=0
+  echo "=====" $max_retry "=====" >&2
+  while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\|PodInitializing\)" >&2
+  do
+    [ $max_retry -lt 30 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
+    sleep 10 && echo "# waiting..." $max_retry >&3
+    max_retry=$((max_retry+1))
+  done
 }
 
 @test "check loki-distributed ingester" {
@@ -186,7 +198,7 @@ set -o pipefail
 @test "check output infra" {
   info
   test(){
-    data=$(kubectl get clusteroutput | grep infra | grep true)
+    data=$(kubectl get clusteroutput -n logging | grep infra | grep true)
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 400 6
