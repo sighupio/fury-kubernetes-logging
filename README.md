@@ -160,7 +160,7 @@ resources:
 kustomize build . | kubectl apply -f -
 ```
 
-> Note: When installing the packages, you need to ensure that the Prometheus operator is also installed. 
+> Note: When installing the packages, you need to ensure that the Prometheus operator is also installed.
 > Otherwise, the API server will reject all ServiceMonitor resources.
 
 ### Common Customisations
