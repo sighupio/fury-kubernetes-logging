@@ -51,7 +51,7 @@ kustomize build | kubectl apply -f -
 This project also implements a dynamic Loki datasource that our Grafana from the monitoring stack automatically fetches and configures.
 To see the logs, navigate in Grafana to the [explore section][grafana-explore-doc].
 
-> Note: These instructions are only for installing Loki as a log storage solution. 
+> Note: These instructions are only for installing Loki as a log storage solution.
 > For complete instructions, please refer to the main README of the Logging module.
 
 <!-- Links -->
