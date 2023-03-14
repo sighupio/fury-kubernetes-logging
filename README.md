@@ -114,6 +114,9 @@ resources:
 kustomize build . | kubectl apply -f -
 ```
 
+> Note: When installing the packages, you need to ensure that the Prometheus operator is also installed.
+> Otherwise, the API server will reject all ServiceMonitor resources.
+
 ### Deployment with Loki
 
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
@@ -156,6 +159,9 @@ resources:
 ```bash
 kustomize build . | kubectl apply -f -
 ```
+
+> Note: When installing the packages, you need to ensure that the Prometheus operator is also installed. 
+> Otherwise, the API server will reject all ServiceMonitor resources.
 
 ### Common Customisations
 
