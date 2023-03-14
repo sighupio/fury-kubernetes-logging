@@ -1,6 +1,6 @@
 # MinIO HA - maintenance
 
-To maintain the MinIO package, you should follow this steps.
+To maintain the MinIO package, you should follow these steps.
 
 Download the latest tgz from [Main Minio repository releases][github-releases].
 
@@ -14,7 +14,7 @@ helm template minio-logging /tmp/minio/helm/minio --values MAINTENANCE.values.ya
 What was customized (what differs from the helm template command):
 
 - Config has been moved from the template output and generated via kustomize
-- Add a custom init job to create buckets and add 7 day retention
-- Add `preferredDuringSchedulingIgnoredDuringExecution` on minio pods
+- Added a custom init job to create buckets and add 7 day retention
+- Added `preferredDuringSchedulingIgnoredDuringExecution` on minio pods
 
 [github-releases]: https://github.com/minio/minio/releases

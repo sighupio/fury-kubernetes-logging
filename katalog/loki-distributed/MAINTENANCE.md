@@ -1,6 +1,6 @@
 # Loki Distributed - maintenance
 
-To maintain the Loki Stack package, you should follow this steps.
+To maintain the Loki Stack package, you should follow these steps.
 
 Download the latest tgz from [Grafana Helm Charts Loki Stack releseas][github-releases].
 
