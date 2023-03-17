@@ -57,7 +57,8 @@ steps:
       - kustomize build katalog/logging-operated > logging-operated.yml
       - kustomize build katalog/configs > configs.yml
       - kustomize build katalog/loki-configs > loki-configs.yml
-      - kustomize build katalog/loki-single > loki-single.yml
+      - kustomize build katalog/loki-distributed > loki-distributed.yml
+      - kustomize build katalog/minio-ha > minio-ha.yml
 
   - &check-deprecated-apis
     name: check-deprecated-apis
@@ -102,9 +103,14 @@ steps:
       KUBERNETES_MANIFESTS: loki-configs.yml
 
   - <<: *check-deprecated-apis
-    name: check-deprecated-apis-loki-single
+    name: check-deprecated-apis-loki-distributed
     environment:
-      KUBERNETES_MANIFESTS: loki-single.yml
+      KUBERNETES_MANIFESTS: loki-distributed.yml
+
+  - <<: *check-deprecated-apis
+    name: check-deprecated-apis-minio-ha
+    environment:
+      KUBERNETES_MANIFESTS: minio-ha.yml
 
 ---
 name: unit-test

@@ -1,8 +1,6 @@
-# Loki Single
+# Loki Distributed
 
 <!-- <KFD-DOCS> -->
-
-> 🚨 This package is in technical preview and is subject to change.
 
 Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.
 It is designed to be very cost effective and easy to operate.
@@ -10,10 +8,11 @@ It does not index the contents of the logs, but rather a set of labels for each 
 
 ## Requirements
 
-- Kubernetes >= `1.21.0`
+- Kubernetes >= `1.23.0`
 - Kustomize >= `v3.5.3`
 - [prometheus-operator from KFD monitoring module][prometheus-operator]
 - [grafana from KFD monitoring module][grafana] (module version `>=1.15.0`)
+- [minio-ha](../minio-ha)
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
 > some metrics available from `loki` on prometheus
@@ -25,16 +24,24 @@ It does not index the contents of the logs, but rather a set of labels for each 
 
 ## Configuration
 
-Loki Stack Single is deployed with the following configuration:
+Loki Distributed is deployed in the following configuration:
 
-- Single node
-- Listens on port `3100` for client connections and metrics scraping
-- Resource limits are `200m` for CPU and `512Mi` for memory
-- Requires `10Gi` storage
+- Each microservice has its own Deployment/StatefulSet
+- Each Deployment has its own HPA
+- Common resources set as:
+    ```yaml
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 1024Mi
+    ```
 
 ## Deployment
 
-You can deploy Loki Stack Single by running the following command in the root of
+You can deploy Loki Distributed by running the following command in the root of
 the project:
 
 ```shell
@@ -43,6 +50,9 @@ kustomize build | kubectl apply -f -
 
 This project also implements a dynamic Loki datasource that our Grafana from the monitoring stack automatically fetches and configures.
 To see the logs, navigate in Grafana to the [explore section][grafana-explore-doc].
+
+> Note: These instructions are only for installing Loki as a log storage solution.
+> For complete instructions, please refer to the main README of the Logging module.
 
 <!-- Links -->
 

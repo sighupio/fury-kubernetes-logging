@@ -11,6 +11,7 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 - Kustomize >= `v3.5.3`
 - [logging-operator][logging-operator]
 - [prometheus-operator][prometheus-operator]
+- [minio-ha](../minio-ha)
 
 ## Image repository and tag
 

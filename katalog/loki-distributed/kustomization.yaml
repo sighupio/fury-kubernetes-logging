@@ -13,11 +13,14 @@ resources:
   - deploy.yml
 
 images:
-  - name: grafana/loki
+  - name: docker.io/grafana/loki
     newName: registry.sighup.io/fury/grafana/loki
-    newTag: 2.4.2
+    newTag: 2.7.3
+  - name: docker.io/nginxinc/nginx-unprivileged
+    newName: registry.sighup.io/fury/nginxinc/nginx-unprivileged
+    newTag: 1.20.2-alpine
 
 secretGenerator:
-  - name: loki-stack
+  - name: loki-distributed
     files:
-      - configs/loki.yaml
+      - configs/config.yaml
