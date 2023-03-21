@@ -48,5 +48,6 @@ spec:
           - calico-api
           - vmware-system-csi
           - pomerium
+          - gatekeeper-system
   globalOutputRefs:
     - infra
