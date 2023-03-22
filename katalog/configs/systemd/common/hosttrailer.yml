@@ -15,6 +15,12 @@ spec:
       systemdFilter: docker.service
       containerOverrides:
         image: registry.sighup.io/fury/fluent/fluent-bit:1.9.5
+    - name: systemd-containerd-hosttailer
+      disabled: false
+      maxEntries: 100
+      systemdFilter: containerd.service
+      containerOverrides:
+        image: registry.sighup.io/fury/fluent/fluent-bit:1.9.5
     - name: systemd-kubelet-hosttailer
       disabled: false
       maxEntries: 100
