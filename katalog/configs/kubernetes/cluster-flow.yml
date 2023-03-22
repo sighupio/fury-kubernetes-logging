@@ -33,6 +33,7 @@ spec:
           - calico-api
           - vmware-system-csi
           - pomerium
+          - gatekeeper-system
     - select: {}
   globalOutputRefs:
     - kubernetes

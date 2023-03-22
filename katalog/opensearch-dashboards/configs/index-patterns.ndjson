@@ -1,4 +1,5 @@
 {"type":"index-pattern","id":"kubernetes","attributes":{"title":"kubernetes-*","timeFieldName":"@timestamp"}}
+{"type":"index-pattern","id":"infra","attributes":{"title":"infra-*","timeFieldName":"@timestamp"}}
 {"type":"index-pattern","id":"systemd","attributes":{"title":"systemd-*","timeFieldName":"@timestamp"}}
 {"type":"index-pattern","id":"events","attributes":{"title":"events-*","timeFieldName":"@timestamp"}}
 {"type":"index-pattern","id":"audit","attributes":{"title":"audit-*","timeFieldName":"@timestamp"}}
