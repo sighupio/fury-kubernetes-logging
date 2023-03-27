@@ -15,7 +15,7 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.10`
+- Logging operator: `ghcr.io/banzaicloud/logging-operator:3.17.10`
 
 ## Configuration
 
