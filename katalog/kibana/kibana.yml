@@ -73,8 +73,6 @@ spec:
           env:
             - name: ELASTICSEARCH_URL
               value: "http://elasticsearch:9200"
-            - name: NODE_OPTIONS
-              value: "--max-old-space-size=400"
             - name: MONITORING_UI_ENABLED
               value: "false"
             - name: APM_ENABLED
