@@ -41,8 +41,8 @@ spec:
     protocol: TCP
     port: 9300
   - name: metrics
+    port: 9600
     protocol: TCP
-    port: 9108
 ---
 # Source: opensearch/templates/service.yaml
 kind: Service
@@ -62,10 +62,12 @@ spec:
     app.kubernetes.io/name: opensearch
     app.kubernetes.io/instance: opensearch
   ports:
-  - name: http
-    port: 9200
-  - name: transport
-    port: 9300
+    - name: http
+      port: 9200
+    - name: transport
+      port: 9300
+    - name: metrics
+      port: 9600
 ---
 # Source: opensearch/templates/statefulset.yaml
 apiVersion: apps/v1
@@ -188,6 +190,8 @@ spec:
           containerPort: 9200
         - name: transport
           containerPort: 9300
+        - name: metrics
+          containerPort: 9600
         resources:
           limits:
             cpu: 2000m
@@ -222,21 +226,3 @@ spec:
         - name: config
           mountPath: /usr/share/opensearch/config/opensearch.yml
           subPath: opensearch.yml
-      - name: exporter
-        image: justwatch/elasticsearch_exporter
-        args:
-          - '--es.uri=http://localhost:9200'
-          - '--es.cluster_settings'
-          - '--es.indices'
-          - '--es.snapshots'
-          - '--web.listen-address=:9108'
-        ports:
-          - containerPort: 9108
-            name: metrics
-        resources:
-          limits:
-            cpu: 200m
-            memory: 400Mi
-          requests:
-            cpu: 100m
-            memory: 200Mi
