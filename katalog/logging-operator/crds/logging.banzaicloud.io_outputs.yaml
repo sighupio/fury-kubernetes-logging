@@ -3796,6 +3796,8 @@ spec:
                     type: object
                   extract_kubernetes_labels:
                     type: boolean
+                  include_thread_label:
+                    type: boolean
                   insecure_tls:
                     type: boolean
                   key:
@@ -4201,6 +4203,12 @@ spec:
                   custom_headers:
                     type: string
                   customize_template:
+                    type: string
+                  data_stream_enable:
+                    type: boolean
+                  data_stream_name:
+                    type: string
+                  data_stream_template_name:
                     type: string
                   default_opensearch_version:
                     type: integer
@@ -9687,6 +9695,8 @@ spec:
                     type: object
                   extract_kubernetes_labels:
                     type: boolean
+                  include_thread_label:
+                    type: boolean
                   insecure_tls:
                     type: boolean
                   key:
@@ -10092,6 +10102,12 @@ spec:
                   custom_headers:
                     type: string
                   customize_template:
+                    type: string
+                  data_stream_enable:
+                    type: boolean
+                  data_stream_name:
+                    type: string
+                  data_stream_template_name:
                     type: string
                   default_opensearch_version:
                     type: integer
