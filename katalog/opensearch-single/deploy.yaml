@@ -190,8 +190,6 @@ spec:
           containerPort: 9200
         - name: transport
           containerPort: 9300
-        - name: metrics
-          containerPort: 9108
         resources:
           limits:
             cpu: 2000m
