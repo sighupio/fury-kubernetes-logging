@@ -3,7 +3,7 @@
     Kubernetes Fury Logging
 </h1>
 
-![Release](https://img.shields.io/badge/Latest%20Release-v3.1.3-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v3.2.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -52,9 +52,9 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes           |
 | ------------------ | :----------------: | --------------- |
-| `1.23.x`           | :white_check_mark: | No known issues |
 | `1.24.x`           | :white_check_mark: | No known issues |
 | `1.25.x`           | :white_check_mark: | No known issues |
+| `1.26.x`           | :white_check_mark: | No known issues |
 
 Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
 
@@ -74,19 +74,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/opensearch-single
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/opensearch-dashboards
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/logging-operator
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/logging-operated
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: minio/minio-ha
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/configs
-    version: "v3.1.3"
+    version: "v3.2.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -124,17 +124,17 @@ kustomize build . | kubectl apply -f -
 ```yaml
 bases:
   - name: logging/loki-distributed
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/logging-operator
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/logging-operated
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: minio/minio-ha
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/configs
-    version: "v3.1.3"
+    version: "v3.2.0"
   - name: logging/loki-configs
-    version: "v3.1.3"
+    version: "v3.2.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
