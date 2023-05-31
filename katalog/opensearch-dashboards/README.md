@@ -9,12 +9,12 @@ stored in OpenSearch indices.
 
 ## Requirements
 
-- Kubernetes >= `1.23.0`
+- Kubernetes >= `1.24.0`
 - Kustomize = `v3.5.3`
 
 ## Image repository and tag
 
-* OpenSearch Dashboards image: `opensearchproject/opensearch-dashboards:2.5.0`
+* OpenSearch Dashboards image: `opensearchproject/opensearch-dashboards:2.7.0`
 * OpenSearch Dashboards repo: [OpenSearch Dashboards on Github][opensearch-dashboards-github]
 * OpenSearch Dashboards documentation: [OpenSearch Dashboards at opensearch.org][opensearch-dashboards-doc]
 
