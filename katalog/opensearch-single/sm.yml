@@ -20,4 +20,3 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: opensearch
-      app.kubernetes.io/instance: opensearch

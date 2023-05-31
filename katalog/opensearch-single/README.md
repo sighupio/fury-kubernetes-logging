@@ -10,7 +10,7 @@ Kubernetes.
 
 ## Requirements
 
-- Kubernetes >= `1.24.0`
+- Kubernetes >= `1.23.0`
 - Kustomize = `v3.5.3`
 - [prometheus-operator][prometheus-operator]
 
@@ -19,7 +19,7 @@ Kubernetes.
 
 ## Image repository and tag
 
-* OpenSearch image: `opensearchproject/opensearch:2.7.0`
+* OpenSearch image: `opensearchproject/opensearch:2.5.0`
 * OpenSearch repo: [OpenSearch on Github][opensearch-gh]
 * OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 

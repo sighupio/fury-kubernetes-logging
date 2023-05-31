@@ -41,8 +41,8 @@ spec:
     protocol: TCP
     port: 9300
   - name: metrics
-    port: 9108
     protocol: TCP
+    port: 9108
 ---
 # Source: opensearch/templates/service.yaml
 kind: Service
@@ -66,8 +66,6 @@ spec:
     port: 9200
   - name: transport
     port: 9300
-  - name: metrics
-    port: 9108
 ---
 # Source: opensearch/templates/statefulset.yaml
 apiVersion: apps/v1
