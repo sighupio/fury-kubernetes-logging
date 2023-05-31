@@ -14,7 +14,7 @@ resources:
   - crds
 
 images:
-  - name: ghcr.io/banzaicloud/logging-operator
+  - name: ghcr.io/kube-logging/logging-operator
     newName: registry.sighup.io/fury/banzaicloud/logging-operator
-    newTag: 3.17.10
+    newTag: 4.1.0
 

@@ -11,9 +11,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.10
+    helm.sh/chart: logging-operator-4.1.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "3.17.10"
+    app.kubernetes.io/version: "4.1.0"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: logging-operator/templates/clusterrole.yaml
@@ -258,6 +258,7 @@ rules:
   - clusteroutputs
   - flows
   - loggings
+  - nodeagents
   - outputs
   verbs:
   - create
@@ -274,7 +275,34 @@ rules:
   - clusteroutputs/status
   - flows/status
   - loggings/status
+  - nodeagents/status
   - outputs/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - logging.banzaicloud.io
+  resources:
+  - syslogngclusterflows
+  - syslogngclusteroutputs
+  - syslogngflows
+  - syslogngoutputs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - logging.banzaicloud.io
+  resources:
+  - syslogngclusterflows/status
+  - syslogngclusteroutputs/status
+  - syslogngflows/status
+  - syslogngoutputs/status
   verbs:
   - get
   - patch
@@ -339,9 +367,9 @@ metadata:
   name: logging-operator
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.10
+    helm.sh/chart: logging-operator-4.1.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "3.17.10"
+    app.kubernetes.io/version: "4.1.0"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -360,8 +388,10 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.10
+    helm.sh/chart: logging-operator-4.1.0
     app.kubernetes.io/instance: logging-operator
+    app.kubernetes.io/version: "4.1.0"
+    app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
   clusterIP: None
@@ -382,9 +412,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-3.17.10
+    helm.sh/chart: logging-operator-4.1.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "3.17.10"
+    app.kubernetes.io/version: "4.1.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -400,7 +430,7 @@ spec:
     spec:
       containers:
         - name: logging-operator
-          image: "ghcr.io/banzaicloud/logging-operator"
+          image: "ghcr.io/kube-logging/logging-operator"
           args:
             - -enable-leader-election=true
           imagePullPolicy: IfNotPresent
