@@ -11,7 +11,7 @@ up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Requirements
 
-- Kubernetes >= `1.20.0`
+- Kubernetes >= `1.24.0`
 - Kustomize >= `v3.3.X`
 - [prometheus-operator][prometheus-operator]
 
@@ -22,7 +22,7 @@ up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Image repository and tag
 
-* OpenSearch image: `opensearchproject/opensearch:1.2.4`
+* OpenSearch image: `opensearchproject/opensearch:2.7.0`
 * OpenSearch repo: [OpenSearch on Github][opensearch-gh]
 * OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 
