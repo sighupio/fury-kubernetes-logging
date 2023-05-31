@@ -10,7 +10,7 @@ Alternatively you can download the chart with:
 
 ```bash
 helm repo add opensearch https://opensearch-project.github.io/helm-charts/
-helm pull opensearch/opensearch --version 2.12.0 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch
+helm pull opensearch/opensearch --version 2.10.0 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch
 ```
 
 Run the following command:

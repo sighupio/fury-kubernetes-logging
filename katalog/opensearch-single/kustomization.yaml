@@ -14,10 +14,10 @@ images:
     newTag: "1.1.0"
   - name: opensearchproject/opensearch
     newName: registry.sighup.io/fury/opensearchproject/opensearch
-    newTag: "2.7.0"
+    newTag: "2.5.0"
   - name: opensearchproject/opensearch-dashboards
     newName: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
-    newTag: "2.7.0"
+    newTag: "2.5.0"
   - name: alpine
     newName: registry.sighup.io/fury/alpine
     newTag: "3.14"
