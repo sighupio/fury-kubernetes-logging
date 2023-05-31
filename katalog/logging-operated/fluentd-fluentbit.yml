@@ -13,10 +13,10 @@ spec:
     logLevel: debug
     image:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
-      tag: v1.14.6-alpine-5
+      tag: v1.14.6
     configReloaderImage:
       repository: registry.sighup.io/fury/banzaicloud/config-reloader
-      tag: 0.0.1
+      tag: v0.0.4
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
@@ -49,7 +49,7 @@ spec:
   fluentbit:
     image:
       repository: registry.sighup.io/fury/fluent/fluent-bit
-      tag: 1.9.5
+      tag: 1.9.10
     enableUpstream: true
     inputTail:
       Ignore_Older: 86400s
