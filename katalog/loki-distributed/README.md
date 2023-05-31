@@ -8,7 +8,7 @@ It does not index the contents of the logs, but rather a set of labels for each 
 
 ## Requirements
 
-- Kubernetes >= `1.23.0`
+- Kubernetes >= `1.24.0`
 - Kustomize >= `v3.5.3`
 - [prometheus-operator from KFD monitoring module][prometheus-operator]
 - [grafana from KFD monitoring module][grafana] (module version `>=1.15.0`)

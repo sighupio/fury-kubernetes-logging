@@ -9,10 +9,10 @@ kind: ServiceAccount
 metadata:
   name: loki-distributed
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
 automountServiceAccountToken: true
 ---
@@ -22,10 +22,10 @@ kind: ConfigMap
 metadata:
   name: loki-distributed-gateway
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: gateway
 data:
@@ -129,10 +129,10 @@ kind: ConfigMap
 metadata:
   name: loki-distributed-runtime
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
 data:
   runtime.yaml: |
@@ -145,10 +145,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: data-loki-distributed-compactor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: compactor
 spec:
@@ -164,10 +164,10 @@ kind: Service
 metadata:
   name: loki-distributed-compactor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: compactor
 spec:
@@ -188,10 +188,10 @@ kind: Service
 metadata:
   name: loki-distributed-distributor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: distributor
 spec:
@@ -216,10 +216,10 @@ kind: Service
 metadata:
   name: loki-stack
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: gateway
 spec:
@@ -267,10 +267,10 @@ kind: Service
 metadata:
   name: loki-distributed-ingester
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: ingester
 spec:
@@ -322,10 +322,10 @@ kind: Service
 metadata:
   name: loki-distributed-querier
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: querier
 spec:
@@ -350,10 +350,10 @@ kind: Service
 metadata:
   name: loki-distributed-query-frontend-headless
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: query-frontend
     prometheus.io/service-monitor: "false"
@@ -385,10 +385,10 @@ kind: Service
 metadata:
   name: loki-distributed-query-frontend
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: query-frontend
 spec:
@@ -418,10 +418,10 @@ kind: Service
 metadata:
   name: loki-distributed-memberlist
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -442,10 +442,10 @@ kind: Deployment
 metadata:
   name: loki-distributed-compactor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: compactor
 spec:
@@ -477,7 +477,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: compactor
-          image: docker.io/grafana/loki:2.7.3
+          image: docker.io/grafana/loki:2.8.0
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -542,10 +542,10 @@ kind: Deployment
 metadata:
   name: loki-distributed-distributor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: distributor
     app.kubernetes.io/part-of: memberlist
@@ -580,7 +580,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: distributor
-          image: docker.io/grafana/loki:2.7.3
+          image: docker.io/grafana/loki:2.8.0
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -657,10 +657,10 @@ kind: Deployment
 metadata:
   name: loki-distributed-gateway
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: gateway
 spec:
@@ -762,10 +762,10 @@ kind: Deployment
 metadata:
   name: loki-distributed-query-frontend
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: query-frontend
 spec:
@@ -798,7 +798,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: query-frontend
-          image: docker.io/grafana/loki:2.7.3
+          image: docker.io/grafana/loki:2.8.0
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -872,10 +872,10 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: loki-distributed-distributor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: distributor
 spec:
@@ -899,10 +899,10 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: loki-distributed-gateway
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: gateway
 spec:
@@ -926,10 +926,10 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: loki-distributed-ingester
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: ingester
 spec:
@@ -953,10 +953,10 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: loki-distributed-query-frontend
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: query-frontend
 spec:
@@ -980,10 +980,10 @@ kind: StatefulSet
 metadata:
   name: loki-distributed-ingester
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: ingester
     app.kubernetes.io/part-of: memberlist
@@ -1029,7 +1029,7 @@ spec:
       terminationGracePeriodSeconds: 300
       containers:
         - name: ingester
-          image: docker.io/grafana/loki:2.7.3
+          image: docker.io/grafana/loki:2.8.0
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1117,10 +1117,10 @@ kind: StatefulSet
 metadata:
   name: loki-distributed-querier
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: querier
     app.kubernetes.io/part-of: memberlist
@@ -1167,7 +1167,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: querier
-          image: docker.io/grafana/loki:2.7.3
+          image: docker.io/grafana/loki:2.8.0
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1236,10 +1236,10 @@ kind: PrometheusRule
 metadata:
   name: loki-distributed
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   groups:
@@ -1251,10 +1251,10 @@ kind: ServiceMonitor
 metadata:
   name: loki-distributed-compactor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: compactor
 spec:
@@ -1273,10 +1273,10 @@ kind: ServiceMonitor
 metadata:
   name: loki-distributed-distributor
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: distributor
 spec:
@@ -1295,10 +1295,10 @@ kind: ServiceMonitor
 metadata:
   name: loki-distributed-ingester
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: ingester
 spec:
@@ -1322,10 +1322,10 @@ kind: ServiceMonitor
 metadata:
   name: loki-distributed-querier
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: querier
 spec:
@@ -1349,10 +1349,10 @@ kind: ServiceMonitor
 metadata:
   name: loki-distributed-query-frontend
   labels:
-    helm.sh/chart: loki-distributed-0.69.4
+    helm.sh/chart: loki-distributed-0.69.15
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "2.7.3"
+    app.kubernetes.io/version: "2.8.0"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: query-frontend
 spec:
