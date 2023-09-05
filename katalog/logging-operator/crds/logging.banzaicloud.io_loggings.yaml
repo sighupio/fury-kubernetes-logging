@@ -56,6 +56,17 @@ spec:
                 type: boolean
               clusterDomain:
                 type: string
+              configCheck:
+                properties:
+                  labels:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  strategy:
+                    type: string
+                  timeoutSeconds:
+                    type: integer
+                type: object
               controlNamespace:
                 type: string
               defaultFlow:
@@ -988,10 +999,14 @@ spec:
                           type: object
                       type: object
                     type: array
+                  flowLabel:
+                    type: string
                   globalOutputRefs:
                     items:
                       type: string
                     type: array
+                  includeLabelInRouter:
+                    type: boolean
                   outputRefs:
                     items:
                       type: string
@@ -1514,6 +1529,31 @@ spec:
                                 type: string
                             type: object
                         type: object
+                      secret:
+                        properties:
+                          defaultMode:
+                            format: int32
+                            type: integer
+                          items:
+                            items:
+                              properties:
+                                key:
+                                  type: string
+                                mode:
+                                  format: int32
+                                  type: integer
+                                path:
+                                  type: string
+                              required:
+                              - key
+                              - path
+                              type: object
+                            type: array
+                          optional:
+                            type: boolean
+                          secretName:
+                            type: string
+                        type: object
                     type: object
                   bufferVolumeArgs:
                     items:
@@ -1582,6 +1622,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -1625,6 +1669,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -1724,10 +1772,43 @@ spec:
                       timeout:
                         type: string
                     type: object
+                  bufferVolumeResources:
+                    properties:
+                      claims:
+                        items:
+                          properties:
+                            name:
+                              type: string
+                          required:
+                          - name
+                          type: object
+                        type: array
+                        x-kubernetes-list-map-keys:
+                        - name
+                        x-kubernetes-list-type: map
+                      limits:
+                        additionalProperties:
+                          anyOf:
+                          - type: integer
+                          - type: string
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          x-kubernetes-int-or-string: true
+                        type: object
+                      requests:
+                        additionalProperties:
+                          anyOf:
+                          - type: integer
+                          - type: string
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          x-kubernetes-int-or-string: true
+                        type: object
+                    type: object
                   coroStackSize:
                     format: int32
                     type: integer
                   customConfigSecret:
+                    type: string
+                  customParsers:
                     type: string
                   daemonsetAnnotations:
                     additionalProperties:
@@ -2241,6 +2322,8 @@ spec:
                     type: object
                   logLevel:
                     type: string
+                  loggingRef:
+                    type: string
                   metrics:
                     properties:
                       interval:
@@ -2288,6 +2371,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -2331,6 +2418,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -2600,6 +2691,31 @@ spec:
                                 type: string
                             type: object
                         type: object
+                      secret:
+                        properties:
+                          defaultMode:
+                            format: int32
+                            type: integer
+                          items:
+                            items:
+                              properties:
+                                key:
+                                  type: string
+                                mode:
+                                  format: int32
+                                  type: integer
+                                path:
+                                  type: string
+                              required:
+                              - key
+                              - path
+                              type: object
+                            type: array
+                          optional:
+                            type: boolean
+                          secretName:
+                            type: string
+                        type: object
                     type: object
                   positiondb:
                     properties:
@@ -2736,6 +2852,31 @@ spec:
                               volumeName:
                                 type: string
                             type: object
+                        type: object
+                      secret:
+                        properties:
+                          defaultMode:
+                            format: int32
+                            type: integer
+                          items:
+                            items:
+                              properties:
+                                key:
+                                  type: string
+                                mode:
+                                  format: int32
+                                  type: integer
+                                path:
+                                  type: string
+                              required:
+                              - key
+                              - path
+                              type: object
+                            type: array
+                          optional:
+                            type: boolean
+                          secretName:
+                            type: string
                         type: object
                     type: object
                   readinessProbe:
@@ -3577,6 +3718,31 @@ spec:
                                 type: string
                             type: object
                         type: object
+                      secret:
+                        properties:
+                          defaultMode:
+                            format: int32
+                            type: integer
+                          items:
+                            items:
+                              properties:
+                                key:
+                                  type: string
+                                mode:
+                                  format: int32
+                                  type: integer
+                                path:
+                                  type: string
+                              required:
+                              - key
+                              - path
+                              type: object
+                            type: array
+                          optional:
+                            type: boolean
+                          secretName:
+                            type: string
+                        type: object
                     type: object
                   bufferVolumeArgs:
                     items:
@@ -3645,6 +3811,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -3688,6 +3858,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -3786,6 +3960,37 @@ spec:
                         type: object
                       timeout:
                         type: string
+                    type: object
+                  bufferVolumeResources:
+                    properties:
+                      claims:
+                        items:
+                          properties:
+                            name:
+                              type: string
+                          required:
+                          - name
+                          type: object
+                        type: array
+                        x-kubernetes-list-map-keys:
+                        - name
+                        x-kubernetes-list-type: map
+                      limits:
+                        additionalProperties:
+                          anyOf:
+                          - type: integer
+                          - type: string
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          x-kubernetes-int-or-string: true
+                        type: object
+                      requests:
+                        additionalProperties:
+                          anyOf:
+                          - type: integer
+                          - type: string
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          x-kubernetes-int-or-string: true
+                        type: object
                     type: object
                   compressConfigFile:
                     type: boolean
@@ -4104,6 +4309,31 @@ spec:
                                       type: string
                                   type: object
                               type: object
+                            secret:
+                              properties:
+                                defaultMode:
+                                  format: int32
+                                  type: integer
+                                items:
+                                  items:
+                                    properties:
+                                      key:
+                                        type: string
+                                      mode:
+                                        format: int32
+                                        type: integer
+                                      path:
+                                        type: string
+                                    required:
+                                    - key
+                                    - path
+                                    type: object
+                                  type: array
+                                optional:
+                                  type: boolean
+                                secretName:
+                                  type: string
+                              type: object
                           type: object
                         volumeName:
                           type: string
@@ -4259,6 +4489,31 @@ spec:
                               volumeName:
                                 type: string
                             type: object
+                        type: object
+                      secret:
+                        properties:
+                          defaultMode:
+                            format: int32
+                            type: integer
+                          items:
+                            items:
+                              properties:
+                                key:
+                                  type: string
+                                mode:
+                                  format: int32
+                                  type: integer
+                                path:
+                                  type: string
+                              required:
+                              - key
+                              - path
+                              type: object
+                            type: array
+                          optional:
+                            type: boolean
+                          secretName:
+                            type: string
                         type: object
                     type: object
                   forwardInputConfig:
@@ -4484,6 +4739,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -4527,6 +4786,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -4801,6 +5064,10 @@ spec:
                                 type: string
                               tag:
                                 type: string
+                            type: object
+                          labels:
+                            additionalProperties:
+                              type: string
                             type: object
                           pauseImage:
                             properties:
@@ -6199,6 +6466,31 @@ spec:
                                       type: string
                                   type: object
                               type: object
+                            secret:
+                              properties:
+                                defaultMode:
+                                  format: int32
+                                  type: integer
+                                items:
+                                  items:
+                                    properties:
+                                      key:
+                                        type: string
+                                      mode:
+                                        format: int32
+                                        type: integer
+                                      path:
+                                        type: string
+                                    required:
+                                    - key
+                                    - path
+                                    type: object
+                                  type: array
+                                optional:
+                                  type: boolean
+                                secretName:
+                                  type: string
+                              type: object
                           type: object
                         containersPath:
                           type: string
@@ -7006,6 +7298,19 @@ spec:
                                                     format: int32
                                                     type: integer
                                                 type: object
+                                              resizePolicy:
+                                                items:
+                                                  properties:
+                                                    resourceName:
+                                                      type: string
+                                                    restartPolicy:
+                                                      type: string
+                                                  required:
+                                                  - resourceName
+                                                  - restartPolicy
+                                                  type: object
+                                                type: array
+                                                x-kubernetes-list-type: atomic
                                               resources:
                                                 properties:
                                                   claims:
@@ -7629,6 +7934,19 @@ spec:
                                                     format: int32
                                                     type: integer
                                                 type: object
+                                              resizePolicy:
+                                                items:
+                                                  properties:
+                                                    resourceName:
+                                                      type: string
+                                                    restartPolicy:
+                                                      type: string
+                                                  required:
+                                                  - resourceName
+                                                  - restartPolicy
+                                                  type: object
+                                                type: array
+                                                x-kubernetes-list-type: atomic
                                               resources:
                                                 properties:
                                                   claims:
@@ -8256,6 +8574,19 @@ spec:
                                                     format: int32
                                                     type: integer
                                                 type: object
+                                              resizePolicy:
+                                                items:
+                                                  properties:
+                                                    resourceName:
+                                                      type: string
+                                                    restartPolicy:
+                                                      type: string
+                                                  required:
+                                                  - resourceName
+                                                  - restartPolicy
+                                                  type: object
+                                                type: array
+                                                x-kubernetes-list-type: atomic
                                               resources:
                                                 properties:
                                                   claims:
@@ -9613,6 +9944,10 @@ spec:
                                         - Lowercase
                                         - uppercase
                                         - Uppercase
+                                        - keepequal
+                                        - KeepEqual
+                                        - dropequal
+                                        - DropEqual
                                         type: string
                                       modulus:
                                         format: int64
@@ -9656,6 +9991,10 @@ spec:
                                         - Lowercase
                                         - uppercase
                                         - Uppercase
+                                        - keepequal
+                                        - KeepEqual
+                                        - dropequal
+                                        - DropEqual
                                         type: string
                                       modulus:
                                         format: int64
@@ -10020,6 +10359,31 @@ spec:
                                       type: string
                                   type: object
                               type: object
+                            secret:
+                              properties:
+                                defaultMode:
+                                  format: int32
+                                  type: integer
+                                items:
+                                  items:
+                                    properties:
+                                      key:
+                                        type: string
+                                      mode:
+                                        format: int32
+                                        type: integer
+                                      path:
+                                        type: string
+                                    required:
+                                    - key
+                                    - path
+                                    type: object
+                                  type: array
+                                optional:
+                                  type: boolean
+                                secretName:
+                                  type: string
+                              type: object
                           type: object
                         security:
                           properties:
@@ -10273,6 +10637,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -10316,6 +10684,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -11260,6 +11632,19 @@ spec:
                                   format: int32
                                   type: integer
                               type: object
+                            resizePolicy:
+                              items:
+                                properties:
+                                  resourceName:
+                                    type: string
+                                  restartPolicy:
+                                    type: string
+                                required:
+                                - resourceName
+                                - restartPolicy
+                                type: object
+                              type: array
+                              x-kubernetes-list-type: atomic
                             resources:
                               properties:
                                 claims:
@@ -11883,6 +12268,19 @@ spec:
                                   format: int32
                                   type: integer
                               type: object
+                            resizePolicy:
+                              items:
+                                properties:
+                                  resourceName:
+                                    type: string
+                                  restartPolicy:
+                                    type: string
+                                required:
+                                - resourceName
+                                - restartPolicy
+                                type: object
+                              type: array
+                              x-kubernetes-list-type: atomic
                             resources:
                               properties:
                                 claims:
@@ -12510,6 +12908,19 @@ spec:
                                   format: int32
                                   type: integer
                               type: object
+                            resizePolicy:
+                              items:
+                                properties:
+                                  resourceName:
+                                    type: string
+                                  restartPolicy:
+                                    type: string
+                                required:
+                                - resourceName
+                                - restartPolicy
+                                type: object
+                              type: array
+                              x-kubernetes-list-type: atomic
                             resources:
                               properties:
                                 claims:
@@ -13607,6 +14018,15 @@ spec:
                     type: object
                   globalOptions:
                     properties:
+                      log_level:
+                        type: string
+                      stats:
+                        properties:
+                          freq:
+                            type: integer
+                          level:
+                            type: integer
+                        type: object
                       stats_freq:
                         type: integer
                       stats_level:
@@ -13667,6 +14087,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -13710,6 +14134,10 @@ spec:
                                   - Lowercase
                                   - uppercase
                                   - Uppercase
+                                  - keepequal
+                                  - KeepEqual
+                                  - dropequal
+                                  - DropEqual
                                   type: string
                                 modulus:
                                   format: int64
@@ -14890,6 +15318,19 @@ spec:
                                               format: int32
                                               type: integer
                                           type: object
+                                        resizePolicy:
+                                          items:
+                                            properties:
+                                              resourceName:
+                                                type: string
+                                              restartPolicy:
+                                                type: string
+                                            required:
+                                            - resourceName
+                                            - restartPolicy
+                                            type: object
+                                          type: array
+                                          x-kubernetes-list-type: atomic
                                         resources:
                                           properties:
                                             claims:
@@ -15513,6 +15954,19 @@ spec:
                                               format: int32
                                               type: integer
                                           type: object
+                                        resizePolicy:
+                                          items:
+                                            properties:
+                                              resourceName:
+                                                type: string
+                                              restartPolicy:
+                                                type: string
+                                            required:
+                                            - resourceName
+                                            - restartPolicy
+                                            type: object
+                                          type: array
+                                          x-kubernetes-list-type: atomic
                                         resources:
                                           properties:
                                             claims:
@@ -16140,6 +16594,19 @@ spec:
                                               format: int32
                                               type: integer
                                           type: object
+                                        resizePolicy:
+                                          items:
+                                            properties:
+                                              resourceName:
+                                                type: string
+                                              restartPolicy:
+                                                type: string
+                                            required:
+                                            - resourceName
+                                            - restartPolicy
+                                            type: object
+                                          type: array
+                                          x-kubernetes-list-type: atomic
                                         resources:
                                           properties:
                                             claims:
@@ -17375,6 +17842,29 @@ spec:
                         type: string
                     required:
                     - enabled
+                    type: object
+                type: object
+              watchNamespaceSelector:
+                properties:
+                  matchExpressions:
+                    items:
+                      properties:
+                        key:
+                          type: string
+                        operator:
+                          type: string
+                        values:
+                          items:
+                            type: string
+                          type: array
+                      required:
+                      - key
+                      - operator
+                      type: object
+                    type: array
+                  matchLabels:
+                    additionalProperties:
+                      type: string
                     type: object
                 type: object
               watchNamespaces:
