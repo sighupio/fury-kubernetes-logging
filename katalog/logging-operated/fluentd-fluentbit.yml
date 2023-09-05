@@ -13,10 +13,10 @@ spec:
     logLevel: debug
     image:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
-      tag: v1.14.6
+      tag: v1.15-ruby3
     configReloaderImage:
       repository: registry.sighup.io/fury/banzaicloud/config-reloader
-      tag: v0.0.4
+      tag: v0.0.5
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
@@ -46,32 +46,37 @@ spec:
       requests:
         cpu: 300m
         memory: 400Mi
-  fluentbit:
-    image:
-      repository: registry.sighup.io/fury/fluent/fluent-bit
-      tag: 1.9.10
-    enableUpstream: true
-    inputTail:
-      Ignore_Older: 86400s
-      Mem_Buf_Limit: 150MB
-    filterKubernetes:
-      Kube_URL: "https://kubernetes.default.svc:443"
-      Match: "kubernetes.*"
-      Kube_CA_File: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-      Kube_Tag_Prefix: kubernetes.var.log.containers
-      Kube_Token_File: /var/run/secrets/kubernetes.io/serviceaccount/token
-      Merge_Log: "On"
-    tolerations:
-      - operator: Exists
-        effect: NoSchedule
-    metrics:
-      serviceMonitor: true
-      prometheusRules: true
-    resources:
-      limits:
-        cpu: 200m
-        memory: 300M
-      requests:
-        cpu: 100m
-        memory: 50M
   controlNamespace: logging
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: FluentbitAgent
+metadata:
+  name: infra
+spec:
+  image:
+    repository: registry.sighup.io/fury/fluent/fluent-bit
+    tag: 2.1.4
+  enableUpstream: true
+  inputTail:
+    Ignore_Older: 86400s
+    Mem_Buf_Limit: 150MB
+  filterKubernetes:
+    Kube_URL: "https://kubernetes.default.svc:443"
+    Match: "kubernetes.*"
+    Kube_CA_File: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    Kube_Tag_Prefix: kubernetes.var.log.containers
+    Kube_Token_File: /var/run/secrets/kubernetes.io/serviceaccount/token
+    Merge_Log: "On"
+  tolerations:
+    - operator: Exists
+      effect: NoSchedule
+  metrics:
+    serviceMonitor: true
+    prometheusRules: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 300M
+    requests:
+      cpu: 100m
+      memory: 50M
