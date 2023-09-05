@@ -34,12 +34,12 @@ High level diagram of the stack:
 The following packages are included in the Fury Kubernetes Logging katalog:
 
 | Package                                                | Version                         | Description                                                                                 |
-| ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------ |---------------------------------| ------------------------------------------------------------------------------------------- |
 | [cerebro](katalog/cerebro)                             | `0.9.4`                         | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface |
 | [opensearch-single](katalog/opensearch-single)         | `2.7.0`                         | Single node opensearch deployment. Not intended for production use.                         |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.7.0`                         | Three node high-availability opensearch deployment                                          |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.7.0`                         | Analytics and visualization platform for Opensearch                                         |
-| [logging-operator](katalog/logging-operator)           | `4.1.0`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
+| [logging-operator](katalog/logging-operator)           | `4.3.0`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                                     |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch        |
 | [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki              |
