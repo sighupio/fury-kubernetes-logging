@@ -472,6 +472,10 @@ spec:
           image: "ghcr.io/kube-logging/logging-operator"
           args:
             - -enable-leader-election=true
+          # https://github.com/kube-logging/logging-operator/issues/1428
+          env:
+            - name: PSP_ENABLED
+              value: 0
           imagePullPolicy: IfNotPresent
           resources:
             limits:
