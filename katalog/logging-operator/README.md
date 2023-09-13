@@ -15,7 +15,7 @@ and a Fluentd StatefulSet that receive logs from Fluent-bit and send them to var
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/kube-logging/logging-operator:4.1.0`
+* Logging operator: `ghcr.io/kube-logging/logging-operator:4.3.0`
 * Logging operator repo: [Logging operator on GitHub][logging-operator-github]
 
 ## Configuration

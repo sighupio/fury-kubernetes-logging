@@ -11,354 +11,393 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-4.1.0
+    helm.sh/chart: logging-operator-4.3.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "4.1.0"
+    app.kubernetes.io/version: "4.3.0"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: logging-operator/templates/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  creationTimestamp: null
   name: logging-operator
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  - secrets
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - endpoints
-  - namespaces
-  - nodes
-  - nodes/proxy
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - get
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - persistentvolumeclaims
-  - pods
-  - serviceaccounts
-  - services
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - serviceaccounts
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - ""
-  - events.k8s.io
-  resources:
-  - events
-  verbs:
-  - create
-  - get
-  - list
-  - watch
-- apiGroups:
-  - apps
-  resources:
-  - daemonsets
-  - replicasets
-  - statefulsets
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - apps
-  - extensions
-  resources:
-  - daemonsets
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - apps
-  - extensions
-  resources:
-  - deployments
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - apps
-  - extensions
-  resources:
-  - statefulsets
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - batch
-  resources:
-  - jobs
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - coordination.k8s.io
-  resources:
-  - leases
-  verbs:
-  - '*'
-- apiGroups:
-  - events.k8s.io
-  resources:
-  - events
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - extensions
-  - networking.k8s.io
-  resources:
-  - ingresses
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - extensions
-  - policy
-  resources:
-  - podsecuritypolicies
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - use
-  - watch
-- apiGroups:
-  - logging-extensions.banzaicloud.io
-  resources:
-  - eventtailers
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - logging-extensions.banzaicloud.io
-  resources:
-  - eventtailers/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - logging-extensions.banzaicloud.io
-  resources:
-  - hosttailers
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - logging-extensions.banzaicloud.io
-  resources:
-  - hosttailers/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - logging.banzaicloud.io
-  resources:
-  - clusterflows
-  - clusteroutputs
-  - flows
-  - loggings
-  - nodeagents
-  - outputs
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - logging.banzaicloud.io
-  resources:
-  - clusterflows/status
-  - clusteroutputs/status
-  - flows/status
-  - loggings/status
-  - nodeagents/status
-  - outputs/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - logging.banzaicloud.io
-  resources:
-  - syslogngclusterflows
-  - syslogngclusteroutputs
-  - syslogngflows
-  - syslogngoutputs
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - logging.banzaicloud.io
-  resources:
-  - syslogngclusterflows/status
-  - syslogngclusteroutputs/status
-  - syslogngflows/status
-  - syslogngoutputs/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - monitoring.coreos.com
-  resources:
-  - prometheusrules
-  - servicemonitors
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterrolebindings
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterrolebindings
-  - clusterroles
-  - rolebindings
-  - roles
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterroles
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+      - secrets
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - endpoints
+      - namespaces
+      - nodes
+      - nodes/proxy
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - events
+    verbs:
+      - create
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - persistentvolumeclaims
+      - pods
+      - serviceaccounts
+      - services
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - ""
+    resources:
+      - serviceaccounts
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - ""
+      - events.k8s.io
+    resources:
+      - events
+    verbs:
+      - create
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apps
+    resources:
+      - daemonsets
+      - replicasets
+      - statefulsets
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - apps
+      - extensions
+    resources:
+      - daemonsets
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - apps
+      - extensions
+    resources:
+      - deployments
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - apps
+      - extensions
+    resources:
+      - statefulsets
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - batch
+    resources:
+      - jobs
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - '*'
+  - apiGroups:
+      - events.k8s.io
+    resources:
+      - events
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - extensions
+      - networking.k8s.io
+    resources:
+      - ingresses
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - extensions
+      - policy
+    resources:
+      - podsecuritypolicies
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - use
+      - watch
+  - apiGroups:
+      - logging-extensions.banzaicloud.io
+    resources:
+      - eventtailers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - logging-extensions.banzaicloud.io
+    resources:
+      - eventtailers/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - logging-extensions.banzaicloud.io
+    resources:
+      - hosttailers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - logging-extensions.banzaicloud.io
+    resources:
+      - hosttailers/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - logging.banzaicloud.io
+    resources:
+      - clusterflows
+      - clusteroutputs
+      - flows
+      - fluentbitagents
+      - loggings
+      - nodeagents
+      - outputs
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - logging.banzaicloud.io
+    resources:
+      - clusterflows/status
+      - clusteroutputs/status
+      - flows/status
+      - fluentbitagents/status
+      - loggings/status
+      - nodeagents/status
+      - outputs/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - logging.banzaicloud.io
+    resources:
+      - syslogngclusterflows
+      - syslogngclusteroutputs
+      - syslogngflows
+      - syslogngoutputs
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - logging.banzaicloud.io
+    resources:
+      - syslogngclusterflows/status
+      - syslogngclusteroutputs/status
+      - syslogngflows/status
+      - syslogngoutputs/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - monitoring.coreos.com
+    resources:
+      - prometheusrules
+      - servicemonitors
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - clusterrolebindings
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - clusterrolebindings
+      - clusterroles
+      - rolebindings
+      - roles
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - clusterroles
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+---
+# Source: logging-operator/templates/userrole.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: logging-operator-edit
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+rules:
+  - apiGroups:
+      - logging.banzaicloud.io
+    resources:
+      - flows
+      - outputs
+    verbs:
+      - create
+      - delete
+      - deletecollection
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - logging.banzaicloud.io
+    resources:
+      - syslogngflows
+      - syslogngoutputs
+    verbs:
+      - create
+      - delete
+      - deletecollection
+      - get
+      - list
+      - patch
+      - update
+      - watch
 ---
 # Source: logging-operator/templates/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -367,9 +406,9 @@ metadata:
   name: logging-operator
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-4.1.0
+    helm.sh/chart: logging-operator-4.3.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "4.1.0"
+    app.kubernetes.io/version: "4.3.0"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -388,9 +427,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-4.1.0
+    helm.sh/chart: logging-operator-4.3.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "4.1.0"
+    app.kubernetes.io/version: "4.3.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -412,9 +451,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-4.1.0
+    helm.sh/chart: logging-operator-4.3.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "4.1.0"
+    app.kubernetes.io/version: "4.3.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -433,6 +472,10 @@ spec:
           image: "ghcr.io/kube-logging/logging-operator"
           args:
             - -enable-leader-election=true
+          # https://github.com/kube-logging/logging-operator/issues/1428
+          env:
+            - name: PSP_ENABLED
+              value: "0"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
