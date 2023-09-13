@@ -475,7 +475,7 @@ spec:
           # https://github.com/kube-logging/logging-operator/issues/1428
           env:
             - name: PSP_ENABLED
-              value: 0
+              value: "0"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
