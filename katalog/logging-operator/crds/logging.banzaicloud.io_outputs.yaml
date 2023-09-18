@@ -3796,6 +3796,8 @@ spec:
                     type: object
                   extract_kubernetes_labels:
                     type: boolean
+                  include_thread_label:
+                    type: boolean
                   insecure_tls:
                     type: boolean
                   key:
@@ -3951,6 +3953,92 @@ spec:
                     type: object
                   base_uri:
                     type: string
+                  buffer:
+                    properties:
+                      chunk_full_threshold:
+                        type: string
+                      chunk_limit_records:
+                        type: integer
+                      chunk_limit_size:
+                        type: string
+                      compress:
+                        type: string
+                      delayed_commit_timeout:
+                        type: string
+                      disable_chunk_backup:
+                        type: boolean
+                      disabled:
+                        type: boolean
+                      flush_at_shutdown:
+                        type: boolean
+                      flush_interval:
+                        type: string
+                      flush_mode:
+                        type: string
+                      flush_thread_burst_interval:
+                        type: string
+                      flush_thread_count:
+                        type: integer
+                      flush_thread_interval:
+                        type: string
+                      overflow_action:
+                        type: string
+                      path:
+                        type: string
+                      queue_limit_length:
+                        type: integer
+                      queued_chunks_limit_size:
+                        type: integer
+                      retry_exponential_backoff_base:
+                        type: string
+                      retry_forever:
+                        type: boolean
+                      retry_max_interval:
+                        type: string
+                      retry_max_times:
+                        type: integer
+                      retry_randomize:
+                        type: boolean
+                      retry_secondary_threshold:
+                        type: string
+                      retry_timeout:
+                        type: string
+                      retry_type:
+                        type: string
+                      retry_wait:
+                        type: string
+                      tags:
+                        type: string
+                      timekey:
+                        type: string
+                      timekey_use_utc:
+                        type: boolean
+                      timekey_wait:
+                        type: string
+                      timekey_zone:
+                        type: string
+                      total_limit_size:
+                        type: string
+                      type:
+                        type: string
+                    type: object
+                  format:
+                    properties:
+                      add_newline:
+                        type: boolean
+                      message_key:
+                        type: string
+                      type:
+                        enum:
+                        - out_file
+                        - json
+                        - ltsv
+                        - csv
+                        - msgpack
+                        - hash
+                        - single_value
+                        type: string
+                    type: object
                   license_key:
                     properties:
                       mountFrom:
@@ -4202,6 +4290,12 @@ spec:
                     type: string
                   customize_template:
                     type: string
+                  data_stream_enable:
+                    type: boolean
+                  data_stream_name:
+                    type: string
+                  data_stream_template_name:
+                    type: string
                   default_opensearch_version:
                     type: integer
                   emit_error_for_missing_id:
@@ -4329,6 +4423,8 @@ spec:
                     type: string
                   ssl_verify:
                     type: boolean
+                  ssl_version:
+                    type: string
                   suppress_doc_wrap:
                     type: boolean
                   suppress_type_name:
@@ -4742,6 +4838,13 @@ spec:
                     type: string
                   ttl:
                     type: integer
+                type: object
+              relabel:
+                properties:
+                  label:
+                    type: string
+                required:
+                - label
                 type: object
               s3:
                 properties:
@@ -9687,6 +9790,8 @@ spec:
                     type: object
                   extract_kubernetes_labels:
                     type: boolean
+                  include_thread_label:
+                    type: boolean
                   insecure_tls:
                     type: boolean
                   key:
@@ -9805,6 +9910,87 @@ spec:
                         type: object
                     type: object
                 type: object
+              mattermost:
+                properties:
+                  ca_path:
+                    properties:
+                      mountFrom:
+                        properties:
+                          secretKeyRef:
+                            properties:
+                              key:
+                                type: string
+                              name:
+                                type: string
+                              optional:
+                                type: boolean
+                            required:
+                            - key
+                            type: object
+                        type: object
+                      value:
+                        type: string
+                      valueFrom:
+                        properties:
+                          secretKeyRef:
+                            properties:
+                              key:
+                                type: string
+                              name:
+                                type: string
+                              optional:
+                                type: boolean
+                            required:
+                            - key
+                            type: object
+                        type: object
+                    type: object
+                  channel_id:
+                    type: string
+                  enable_tls:
+                    type: boolean
+                  message:
+                    type: string
+                  message_color:
+                    type: string
+                  message_title:
+                    type: string
+                  webhook_url:
+                    properties:
+                      mountFrom:
+                        properties:
+                          secretKeyRef:
+                            properties:
+                              key:
+                                type: string
+                              name:
+                                type: string
+                              optional:
+                                type: boolean
+                            required:
+                            - key
+                            type: object
+                        type: object
+                      value:
+                        type: string
+                      valueFrom:
+                        properties:
+                          secretKeyRef:
+                            properties:
+                              key:
+                                type: string
+                              name:
+                                type: string
+                              optional:
+                                type: boolean
+                            required:
+                            - key
+                            type: object
+                        type: object
+                    type: object
+                required:
+                - webhook_url
+                type: object
               newrelic:
                 properties:
                   api_key:
@@ -9842,6 +10028,92 @@ spec:
                     type: object
                   base_uri:
                     type: string
+                  buffer:
+                    properties:
+                      chunk_full_threshold:
+                        type: string
+                      chunk_limit_records:
+                        type: integer
+                      chunk_limit_size:
+                        type: string
+                      compress:
+                        type: string
+                      delayed_commit_timeout:
+                        type: string
+                      disable_chunk_backup:
+                        type: boolean
+                      disabled:
+                        type: boolean
+                      flush_at_shutdown:
+                        type: boolean
+                      flush_interval:
+                        type: string
+                      flush_mode:
+                        type: string
+                      flush_thread_burst_interval:
+                        type: string
+                      flush_thread_count:
+                        type: integer
+                      flush_thread_interval:
+                        type: string
+                      overflow_action:
+                        type: string
+                      path:
+                        type: string
+                      queue_limit_length:
+                        type: integer
+                      queued_chunks_limit_size:
+                        type: integer
+                      retry_exponential_backoff_base:
+                        type: string
+                      retry_forever:
+                        type: boolean
+                      retry_max_interval:
+                        type: string
+                      retry_max_times:
+                        type: integer
+                      retry_randomize:
+                        type: boolean
+                      retry_secondary_threshold:
+                        type: string
+                      retry_timeout:
+                        type: string
+                      retry_type:
+                        type: string
+                      retry_wait:
+                        type: string
+                      tags:
+                        type: string
+                      timekey:
+                        type: string
+                      timekey_use_utc:
+                        type: boolean
+                      timekey_wait:
+                        type: string
+                      timekey_zone:
+                        type: string
+                      total_limit_size:
+                        type: string
+                      type:
+                        type: string
+                    type: object
+                  format:
+                    properties:
+                      add_newline:
+                        type: boolean
+                      message_key:
+                        type: string
+                      type:
+                        enum:
+                        - out_file
+                        - json
+                        - ltsv
+                        - csv
+                        - msgpack
+                        - hash
+                        - single_value
+                        type: string
+                    type: object
                   license_key:
                     properties:
                       mountFrom:
@@ -10093,6 +10365,12 @@ spec:
                     type: string
                   customize_template:
                     type: string
+                  data_stream_enable:
+                    type: boolean
+                  data_stream_name:
+                    type: string
+                  data_stream_template_name:
+                    type: string
                   default_opensearch_version:
                     type: integer
                   emit_error_for_missing_id:
@@ -10220,6 +10498,8 @@ spec:
                     type: string
                   ssl_verify:
                     type: boolean
+                  ssl_version:
+                    type: string
                   suppress_doc_wrap:
                     type: boolean
                   suppress_type_name:
@@ -10633,6 +10913,13 @@ spec:
                     type: string
                   ttl:
                     type: integer
+                type: object
+              relabel:
+                properties:
+                  label:
+                    type: string
+                required:
+                - label
                 type: object
               s3:
                 properties:
