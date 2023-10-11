@@ -30,26 +30,4 @@ COPY . .
 
 RUN addlicense -c "SIGHUP s.r.l" -v -l bsd --check .
 
-FROM openpolicyagent/conftest:v0.28.1 as checklabel
 
-RUN mkdir /app
-WORKDIR /app
-
-COPY . .
-
-RUN conftest pull https://raw.githubusercontent.com/sighupio/ci-commons/main/conftest/kustomization/kfd-labels.rego && \
-        conftest test katalog/**/kustomization.yaml
-
-FROM registry.sighup.io/poc/fury-repo-automations:v0.0.2 as jsonbuilder
-
-RUN mkdir /app
-WORKDIR /app
-
-COPY . .
-
-FROM python:3.9-alpine as bumpversion-requirement
-
-# hadolint ignore=DL3018
-RUN apk add git --no-cache && pip --no-cache-dir install bump2version==1.0.1
-
-ENTRYPOINT ["/usr/local/bin/bumpversion"]
