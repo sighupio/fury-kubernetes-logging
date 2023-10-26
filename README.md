@@ -36,9 +36,9 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | Package                                                | Version                         | Description                                                                                 |
 | ------------------------------------------------------ |---------------------------------| ------------------------------------------------------------------------------------------- |
 | [cerebro](katalog/cerebro)                             | `0.9.4`                         | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface |
-| [opensearch-single](katalog/opensearch-single)         | `2.7.0`                         | Single node opensearch deployment. Not intended for production use.                         |
-| [opensearch-triple](katalog/opensearch-triple)         | `2.7.0`                         | Three node high-availability opensearch deployment                                          |
-| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.7.0`                         | Analytics and visualization platform for Opensearch                                         |
+| [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                         |
+| [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                          |
+| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                         |
 | [logging-operator](katalog/logging-operator)           | `4.3.0`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                                     |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch        |
@@ -52,9 +52,9 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes           |
 | ------------------ | :----------------: | --------------- |
-| `1.24.x`           | :white_check_mark: | No known issues |
 | `1.25.x`           | :white_check_mark: | No known issues |
 | `1.26.x`           | :white_check_mark: | No known issues |
+| `1.27.x`           | :white_check_mark: | No known issues |
 
 Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
 
