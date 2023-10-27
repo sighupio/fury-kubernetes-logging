@@ -11,7 +11,7 @@ namespace: logging
 images:
   - name: opensearchproject/opensearch-dashboards
     newName: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
-    newTag: "2.7.0"
+    newTag: "2.11.0"
 
 resources:
   - deploy.yaml
