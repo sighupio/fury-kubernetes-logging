@@ -11,6 +11,7 @@ resources:
   - logging.banzaicloud.io_clusteroutputs.yaml
   - logging.banzaicloud.io_flows.yaml
   - logging.banzaicloud.io_fluentbitagents.yaml
+  - logging.banzaicloud.io_loggingroutes.yaml
   - logging.banzaicloud.io_loggings.yaml
   - logging.banzaicloud.io_nodeagents.yaml
   - logging.banzaicloud.io_outputs.yaml
