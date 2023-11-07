@@ -18,7 +18,7 @@ frontend:
   log_queries_longer_than: 5s
   tail_proxy_url: http://loki-distributed-querier:3100
 frontend_worker:
-  frontend_address: loki-distributed-query-frontend:9095
+  frontend_address: loki-distributed-query-frontend-headless:9095
 ingester:
   chunk_block_size: 262144
   chunk_encoding: snappy
@@ -32,6 +32,9 @@ ingester:
   max_transfer_retries: 0
   wal:
     dir: /var/loki/wal
+ingester_client:
+  grpc_client_config:
+    grpc_compression: gzip
 limits_config:
   enforce_metric_name: false
   max_cache_freshness_per_query: 10m
