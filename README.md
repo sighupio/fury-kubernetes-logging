@@ -39,7 +39,7 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                         |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                          |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                         |
-| [logging-operator](katalog/logging-operator)           | `4.3.0`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
+| [logging-operator](katalog/logging-operator)           | `4.4.1`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                                     |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch        |
 | [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki              |
@@ -111,7 +111,7 @@ resources:
 5. To deploy the packages to your cluster, execute:
 
 ```bash
-kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply --server-side -f -
 ```
 
 > Note: When installing the packages, you need to ensure that the Prometheus operator is also installed.
@@ -157,7 +157,7 @@ resources:
 5. To deploy the packages to your cluster, execute:
 
 ```bash
-kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply --server-side -f -
 ```
 
 > Note: When installing the packages, you need to ensure that the Prometheus operator is also installed.
