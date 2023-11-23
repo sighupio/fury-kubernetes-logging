@@ -55,7 +55,7 @@ metadata:
 spec:
   image:
     repository: registry.sighup.io/fury/fluent/fluent-bit
-    tag: 2.1.4
+    tag: 2.1.8
   enableUpstream: true
   inputTail:
     Ignore_Older: 86400s

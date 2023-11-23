@@ -10,7 +10,7 @@ Alternatively you can download the chart with:
 
 ```bash
 helm repo add opensearch https://opensearch-project.github.io/helm-charts/
-helm pull opensearch/opensearch --version 2.12.0 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch
+helm pull opensearch/opensearch --version 2.16.1 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch
 ```
 
 Run the following command:
@@ -29,6 +29,7 @@ What was customized:
 - configured requests and limits + java opts for xms and xmx
 - added prometheus exporter
 - added custom prometheus AlertRules
+- changed metrics port to 9108
 - opensearch-cluster-master-config created with configMapGenerator instead of in-line configMap
 - customized internal_users.yml config file with opensearch-internal-users secret
 - security plugin is disabled, we expect security on the ingress level or configured manually

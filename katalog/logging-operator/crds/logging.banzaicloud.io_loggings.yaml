@@ -40,7 +40,24 @@ spec:
     storage: false
     subresources:
       status: {}
-  - name: v1beta1
+  - additionalPrinterColumns:
+    - description: Logging reference
+      jsonPath: .spec.loggingRef
+      name: LoggingRef
+      type: string
+    - description: Control namespace
+      jsonPath: .spec.controlNamespace
+      name: ControlNamespace
+      type: string
+    - description: Watched namespaces
+      jsonPath: .status.watchNamespaces
+      name: WatchNamespaces
+      type: string
+    - description: Number of problems
+      jsonPath: .status.problemsCount
+      name: Problems
+      type: integer
+    name: v1beta1
     schema:
       openAPIV3Schema:
         properties:
@@ -1388,6 +1405,8 @@ spec:
                         type: string
                       storage.checksum:
                         type: string
+                      storage.metrics:
+                        type: string
                       storage.path:
                         type: string
                       storage.sync:
@@ -2151,12 +2170,23 @@ spec:
                         type: string
                       Time_as_Integer:
                         type: boolean
+                      Workers:
+                        type: integer
                       storage.total_limit_size:
                         type: string
                     type: object
                   grace:
                     format: int32
                     type: integer
+                  healthCheck:
+                    properties:
+                      hcErrorsCount:
+                        type: integer
+                      hcPeriod:
+                        type: integer
+                      hcRetryFailureCount:
+                        type: integer
+                    type: object
                   image:
                     properties:
                       imagePullSecrets:
@@ -3166,6 +3196,8 @@ spec:
                     type: object
                   syslogng_output:
                     properties:
+                      Workers:
+                        type: integer
                       json_date_format:
                         type: string
                       json_date_key:
@@ -5085,6 +5117,98 @@ spec:
                               tag:
                                 type: string
                             type: object
+                          resources:
+                            properties:
+                              claims:
+                                items:
+                                  properties:
+                                    name:
+                                      type: string
+                                  required:
+                                  - name
+                                  type: object
+                                type: array
+                                x-kubernetes-list-map-keys:
+                                - name
+                                x-kubernetes-list-type: map
+                              limits:
+                                additionalProperties:
+                                  anyOf:
+                                  - type: integer
+                                  - type: string
+                                  pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                  x-kubernetes-int-or-string: true
+                                type: object
+                              requests:
+                                additionalProperties:
+                                  anyOf:
+                                  - type: integer
+                                  - type: string
+                                  pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                  x-kubernetes-int-or-string: true
+                                type: object
+                            type: object
+                          securityContext:
+                            properties:
+                              allowPrivilegeEscalation:
+                                type: boolean
+                              capabilities:
+                                properties:
+                                  add:
+                                    items:
+                                      type: string
+                                    type: array
+                                  drop:
+                                    items:
+                                      type: string
+                                    type: array
+                                type: object
+                              privileged:
+                                type: boolean
+                              procMount:
+                                type: string
+                              readOnlyRootFilesystem:
+                                type: boolean
+                              runAsGroup:
+                                format: int64
+                                type: integer
+                              runAsNonRoot:
+                                type: boolean
+                              runAsUser:
+                                format: int64
+                                type: integer
+                              seLinuxOptions:
+                                properties:
+                                  level:
+                                    type: string
+                                  role:
+                                    type: string
+                                  type:
+                                    type: string
+                                  user:
+                                    type: string
+                                type: object
+                              seccompProfile:
+                                properties:
+                                  localhostProfile:
+                                    type: string
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                              windowsOptions:
+                                properties:
+                                  gmsaCredentialSpec:
+                                    type: string
+                                  gmsaCredentialSpecName:
+                                    type: string
+                                  hostProcess:
+                                    type: boolean
+                                  runAsUserName:
+                                    type: string
+                                type: object
+                            type: object
                         type: object
                       podManagementPolicy:
                         type: string
@@ -6324,6 +6448,8 @@ spec:
                             storage.backlog.mem_limit:
                               type: string
                             storage.checksum:
+                              type: string
+                            storage.metrics:
                               type: string
                             storage.path:
                               type: string
@@ -9824,6 +9950,8 @@ spec:
                               type: string
                             Time_as_Integer:
                               type: boolean
+                            Workers:
+                              type: integer
                             storage.total_limit_size:
                               type: string
                           type: object
@@ -17881,6 +18009,12 @@ spec:
                   type: boolean
                 type: object
               problems:
+                items:
+                  type: string
+                type: array
+              problemsCount:
+                type: integer
+              watchNamespaces:
                 items:
                   type: string
                 type: array

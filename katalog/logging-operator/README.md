@@ -15,7 +15,7 @@ and a Fluentd StatefulSet that receive logs from Fluent-bit and send them to var
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/kube-logging/logging-operator:4.3.0`
+* Logging operator: `ghcr.io/kube-logging/logging-operator:4.4.1`
 * Logging operator repo: [Logging operator on GitHub][logging-operator-github]
 
 ## Configuration
@@ -33,8 +33,8 @@ You can deploy Logging operator by running the following command in the root of 
 kustomize build | kubectl apply -f -
 ```
 
-See [logging-operated](../logging-operated) for the fluentd and fluentbit stack deployment and [configs](../configs)
-for the Flow/Clusterflow and Output/ClusterOutput configuration.
+See [logging-operated](../logging-operated) for the fluentd and fluentbit stack deployment, [configs](../configs)
+for OpenSearch Flow/Clusterflow and Output/ClusterOutput configuration and [loki-configs](../loki-configs) for Loki Flow/Clusterflow and Output/ClusterOutput configuration.
 
 <!-- Links -->
 

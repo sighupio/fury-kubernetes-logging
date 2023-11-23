@@ -3,7 +3,7 @@
     Kubernetes Fury Logging
 </h1>
 
-![Release](https://img.shields.io/badge/Latest%20Release-v3.2.1-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v3.3.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -36,14 +36,14 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 | Package                                                | Version                         | Description                                                                                 |
 | ------------------------------------------------------ |---------------------------------| ------------------------------------------------------------------------------------------- |
 | [cerebro](katalog/cerebro)                             | `0.9.4`                         | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface |
-| [opensearch-single](katalog/opensearch-single)         | `2.7.0`                         | Single node opensearch deployment. Not intended for production use.                         |
-| [opensearch-triple](katalog/opensearch-triple)         | `2.7.0`                         | Three node high-availability opensearch deployment                                          |
-| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.7.0`                         | Analytics and visualization platform for Opensearch                                         |
-| [logging-operator](katalog/logging-operator)           | `4.3.0`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
+| [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                         |
+| [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                          |
+| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                         |
+| [logging-operator](katalog/logging-operator)           | `4.4.1`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                                     |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch        |
 | [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki              |
-| [loki-distributed](katalog/loki-distributed)           | `2.8.0`                         | Distributed Loki deployment                                                                 |
+| [loki-distributed](katalog/loki-distributed)           | `2.9.2`                         | Distributed Loki deployment                                                                 |
 | [minio-ha](katalog/minio-ha)                           | `vRELEASE.2023-01-12T02-06-16Z` | Three nodes HA MinIO deployment                                                             |
 
 Click on each package to see its full documentation.
@@ -52,9 +52,9 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes           |
 | ------------------ | :----------------: | --------------- |
-| `1.24.x`           | :white_check_mark: | No known issues |
 | `1.25.x`           | :white_check_mark: | No known issues |
 | `1.26.x`           | :white_check_mark: | No known issues |
+| `1.27.x`           | :white_check_mark: | No known issues |
 
 Check the [compatibility matrix][compatibility-matrix] for additional informations about previous releases of the modules.
 
@@ -74,19 +74,19 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 ```yaml
 bases:
   - name: logging/cerebro
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/opensearch-single
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/opensearch-dashboards
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/logging-operator
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/logging-operated
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: minio/minio-ha
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/configs
-    version: "v3.2.1"
+    version: "v3.3.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -111,7 +111,7 @@ resources:
 5. To deploy the packages to your cluster, execute:
 
 ```bash
-kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply --server-side -f -
 ```
 
 > Note: When installing the packages, you need to ensure that the Prometheus operator is also installed.
@@ -124,17 +124,17 @@ kustomize build . | kubectl apply -f -
 ```yaml
 bases:
   - name: logging/loki-distributed
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/logging-operator
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/logging-operated
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: minio/minio-ha
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/configs
-    version: "v3.2.1"
+    version: "v3.3.0"
   - name: logging/loki-configs
-    version: "v3.2.1"
+    version: "v3.3.0"
 ```
 
 > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
@@ -157,7 +157,7 @@ resources:
 5. To deploy the packages to your cluster, execute:
 
 ```bash
-kustomize build . | kubectl apply -f -
+kustomize build . | kubectl apply --server-side -f -
 ```
 
 > Note: When installing the packages, you need to ensure that the Prometheus operator is also installed.
