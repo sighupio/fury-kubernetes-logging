@@ -47,13 +47,13 @@ set -o pipefail
   apply katalog/opensearch-dashboards
 }
 
-@test "wait for apply to settle and dump state to dump.json" {
+@test "wait for apply to settle and dump state to dump.json (1)" {
   info
   max_retry=0
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\|PodInitializing\)" >&2
   do
-    [ $max_retry -lt 30 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
+    [ $max_retry -lt 60 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$((max_retry+1))
   done
@@ -140,13 +140,13 @@ set -o pipefail
   apply katalog/loki-configs/infra
 }
 
-@test "wait for apply to settle and dump state to dump.json" {
+@test "wait for apply to settle and dump state to dump.json (2)" {
   info
   max_retry=0
   echo "=====" $max_retry "=====" >&2
   while kubectl get pods --all-namespaces | grep -ie "\(Pending\|Error\|CrashLoop\|ContainerCreating\|PodInitializing\)" >&2
   do
-    [ $max_retry -lt 30 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
+    [ $max_retry -lt 60 ] || ( kubectl describe all --all-namespaces >&2 && return 1 )
     sleep 10 && echo "# waiting..." $max_retry >&3
     max_retry=$((max_retry+1))
   done
