@@ -33,17 +33,17 @@ High level diagram of the stack:
 
 The following packages are included in the Fury Kubernetes Logging katalog:
 
-| Package                                                | Version                         | Description                                                                                 |
-| ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------- |
-| [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                         |
-| [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                          |
-| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                         |
-| [logging-operator](katalog/logging-operator)           | `4.5.6`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
-| [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                                     |
-| [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch        |
-| [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki              |
-| [loki-distributed](katalog/loki-distributed)           | `2.9.2`                         | Distributed Loki deployment                                                                 |
-| [minio-ha](katalog/minio-ha)                           | `vRELEASE.2023-01-12T02-06-16Z` | Three nodes HA MinIO deployment                                                             |
+| Package                                                | Version                         | Description                                                                          |
+| ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------ |
+| [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                  |
+| [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                   |
+| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                  |
+| [logging-operator](katalog/logging-operator)           | `4.5.6`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations          |
+| [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                              |
+| [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch |
+| [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki       |
+| [loki-distributed](katalog/loki-distributed)           | `2.9.2`                         | Distributed Loki deployment                                                          |
+| [minio-ha](katalog/minio-ha)                           | `vRELEASE.2023-01-12T02-06-16Z` | Three nodes HA MinIO deployment                                                      |
 
 Click on each package to see its full documentation.
 
