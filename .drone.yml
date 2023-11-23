@@ -131,14 +131,14 @@ steps:
   - name: katalog
     image: quay.io/sighup/katalog:3.2.2_3
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     commands:
       - flake8 --ignore=E501 katalog/tests/test.py
       - bash katalog/tests/pytest.sh
       - rm -rf .pytest_cache katalog/tests/__pycache__
     when:
       event:
-      - push
+        - push
 
 ---
 name: E2E Tests Kubernetes 1.26
@@ -165,7 +165,7 @@ steps:
   - name: Create Kind Cluster
     image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
@@ -181,7 +181,6 @@ steps:
       # save the kubeconfig so we can use it from other steps.
       - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
-
   - name: End-to-End Tests
     # KUBECTL 1.25.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
@@ -189,7 +188,7 @@ steps:
     network_mode: host
     environment:
       KUBECONFIG: kubeconfig-126
-    depends_on: [ "Create Kind Cluster" ]
+    depends_on: ["Create Kind Cluster"]
     commands:
       # wait for Kind cluster to be ready
       - until kubectl get serviceaccount default > /dev/null 2>&1; do echo "waiting for control-plane" && sleep 1; done
@@ -242,7 +241,7 @@ steps:
   - name: Create Kind Cluster
     image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
@@ -258,7 +257,6 @@ steps:
       # save the kubeconfig so we can use it from other steps.
       - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
-
   - name: End-to-End Tests
     # KUBECTL 1.25.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
@@ -266,7 +264,7 @@ steps:
     network_mode: host
     environment:
       KUBECONFIG: kubeconfig-127
-    depends_on: [ "Create Kind Cluster" ]
+    depends_on: ["Create Kind Cluster"]
     commands:
       # wait for Kind cluster to be ready
       - until kubectl get serviceaccount default > /dev/null 2>&1; do echo "waiting for control-plane" && sleep 1; done
@@ -319,7 +317,7 @@ steps:
   - name: Create Kind Cluster
     image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
@@ -335,7 +333,6 @@ steps:
       # save the kubeconfig so we can use it from other steps.
       - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
-
   - name: End-to-End Tests
     # KUBECTL 1.25.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
@@ -343,7 +340,7 @@ steps:
     network_mode: host
     environment:
       KUBECONFIG: kubeconfig-128
-    depends_on: [ "Create Kind Cluster" ]
+    depends_on: ["Create Kind Cluster"]
     commands:
       # wait for Kind cluster to be ready
       - until kubectl get serviceaccount default > /dev/null 2>&1; do echo "waiting for control-plane" && sleep 1; done
@@ -396,7 +393,7 @@ steps:
   - name: Create Kind Cluster
     image: quay.io/sighup/dind-kind-kubectl-kustomize:0.20.0_1.29.1_3.10.0
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
@@ -412,7 +409,6 @@ steps:
       # save the kubeconfig so we can use it from other steps.
       - kind get kubeconfig --name $${CLUSTER_NAME} > $${KUBECONFIG}
 
-
   - name: End-to-End Tests
     # KUBECTL 1.25.3 - KUSTOMIZE 3.5.3 - HELM 3.1.1 - YQ 4.21.1 - ISTIOCTL 1.9.4 - FURYCTL 0.9.0 - BATS 1.1.0
     image: quay.io/sighup/e2e-testing:1.1.0_0.11.0_3.1.1_1.9.4_1.26.3_3.5.3_4.33.3
@@ -420,7 +416,7 @@ steps:
     network_mode: host
     environment:
       KUBECONFIG: kubeconfig-129
-    depends_on: [ "Create Kind Cluster" ]
+    depends_on: ["Create Kind Cluster"]
     commands:
       # wait for Kind cluster to be ready
       - until kubectl get serviceaccount default > /dev/null 2>&1; do echo "waiting for control-plane" && sleep 1; done
@@ -475,7 +471,7 @@ steps:
   - name: prepare-tar-gz
     image: alpine:latest
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     commands:
       - tar -zcvf fury-kubernetes-logging-${DRONE_TAG}.tar.gz katalog/ LICENSE README.md
     when:
@@ -483,11 +479,10 @@ steps:
         include:
           - refs/tags/**
 
-
   - name: prepare-release-notes
     image: quay.io/sighup/fury-release-notes-plugin:3.7_2.8.4
     pull: always
-    depends_on: [ clone ]
+    depends_on: [clone]
     settings:
       release_notes_file_path: release-notes.md
     when:
