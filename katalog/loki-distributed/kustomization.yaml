@@ -15,7 +15,7 @@ resources:
 images:
   - name: docker.io/grafana/loki
     newName: registry.sighup.io/fury/grafana/loki
-    newTag: 2.8.0
+    newTag: 2.9.2
   - name: docker.io/nginxinc/nginx-unprivileged
     newName: registry.sighup.io/fury/nginxinc/nginx-unprivileged
     newTag: 1.20.2-alpine

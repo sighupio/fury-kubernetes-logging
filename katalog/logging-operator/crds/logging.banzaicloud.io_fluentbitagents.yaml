@@ -399,6 +399,8 @@ spec:
                     type: string
                   storage.checksum:
                     type: string
+                  storage.metrics:
+                    type: string
                   storage.path:
                     type: string
                   storage.sync:
@@ -1162,12 +1164,23 @@ spec:
                     type: string
                   Time_as_Integer:
                     type: boolean
+                  Workers:
+                    type: integer
                   storage.total_limit_size:
                     type: string
                 type: object
               grace:
                 format: int32
                 type: integer
+              healthCheck:
+                properties:
+                  hcErrorsCount:
+                    type: integer
+                  hcPeriod:
+                    type: integer
+                  hcRetryFailureCount:
+                    type: integer
+                type: object
               image:
                 properties:
                   imagePullSecrets:
@@ -2177,6 +2190,8 @@ spec:
                 type: object
               syslogng_output:
                 properties:
+                  Workers:
+                    type: integer
                   json_date_format:
                     type: string
                   json_date_key:

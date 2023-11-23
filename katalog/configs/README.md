@@ -1,6 +1,6 @@
-# Logging operator configs
+# Logging operator configs for OpenSearch
 
-This package is a collection of logging operator Flow/ClusterFlow and Output/ClusterOutput configs.
+This package is a collection of logging operator Flow/ClusterFlow and Output/ClusterOutput configs to be used together with OpenSearch.
 
 ## Requirements
 
@@ -9,6 +9,8 @@ This package is a collection of logging operator Flow/ClusterFlow and Output/Clu
 - [logging-operator](../logging-operator)
 
 ## Configuration
+
+> ⚠️ This package cannot be used together with `loki-configs` package, one excludes the other.
 
 Configurations available:
 

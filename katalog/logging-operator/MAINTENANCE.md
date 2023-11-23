@@ -2,7 +2,11 @@
 
 To maintain the Logging Operator package, you should follow this steps.
 
-Download the latest zip from [Logging Operator Releases][logging-operator-github-releases] and get the `logging-operator` chart release.
+Download the latest compressed archive of the `logging-operator` chart.
+
+```bash
+helm pull oci://ghcr.io/kube-logging/helm-charts/logging-operator
+```
 
 Extract to a folder of your choice, for example: `/tmp/logging-operator`.
 
@@ -16,5 +20,3 @@ With the `logging-operator-built.yaml` file, check differences with the current 
 
 Eventually update CRDs in the `./crds` folder with the CRDs from the directory
 `/tmp/logging-operator/crds`.
-
-[logging-operator-github-releases]: https://github.com/kube-logging/helm-charts/releases
