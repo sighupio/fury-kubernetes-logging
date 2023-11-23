@@ -373,7 +373,7 @@ trigger:
 
 steps:
   - name: init
-    image: quay.io/sighup/e2e-testing-drone-plugin:v1.27.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v2.0.0
     pull: always
     volumes:
       - name: shared
@@ -417,7 +417,7 @@ steps:
       - bats -t katalog/tests/tests.sh
 
   - name: destroy
-    image: quay.io/sighup/e2e-testing-drone-plugin:v1.27.1
+    image: quay.io/sighup/e2e-testing-drone-plugin:v2.0.0
     pull: always
     depends_on: [ e2e ]
     settings:
