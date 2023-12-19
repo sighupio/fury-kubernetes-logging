@@ -49,5 +49,7 @@ spec:
           - vmware-system-csi
           - pomerium
           - gatekeeper-system
+          - tracing
+          - kyverno
   globalOutputRefs:
     - infra
