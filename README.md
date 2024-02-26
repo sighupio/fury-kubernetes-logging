@@ -35,7 +35,6 @@ The following packages are included in the Fury Kubernetes Logging katalog:
 
 | Package                                                | Version                         | Description                                                                                 |
 | ------------------------------------------------------ |---------------------------------| ------------------------------------------------------------------------------------------- |
-| [cerebro](katalog/cerebro)                             | `0.9.4`                         | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface |
 | [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                         |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                          |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                         |
@@ -73,8 +72,6 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 ```yaml
 bases:
-  - name: logging/cerebro
-    version: "v3.3.0"
   - name: logging/opensearch-single
     version: "v3.3.0"
   - name: logging/opensearch-dashboards
@@ -99,7 +96,6 @@ bases:
 
 ```yaml
 resources:
-- ./vendor/katalog/logging/cerebro
 - ./vendor/katalog/logging/opensearch-single
 - ./vendor/katalog/logging/opensearch-dashboards
 - ./vendor/katalog/logging/logging-operator
