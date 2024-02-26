@@ -1,4 +1,4 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
@@ -33,7 +33,7 @@ platform:
   arch: amd64
 
 steps:
-  - name: lint
+  - name: Lint with Policeman
     image: quay.io/sighup/policeman
     pull: always
     environment:
@@ -50,7 +50,7 @@ steps:
     depends_on:
       - clone
 
-  - name: render
+  - name: Render Manifests
     image: quay.io/sighup/e2e-testing:1.1.0_0.7.0_3.1.1_1.9.4_1.21.12_3.8.7_4.21.1
     pull: always
     depends_on:
@@ -71,10 +71,10 @@ steps:
     image: us-docker.pkg.dev/fairwinds-ops/oss/pluto:v5
     pull: always
     depends_on:
-      - render
+      - Render Manifests
     commands:
       # we use --ignore-deprecations because we don't want the CI to fail when the API has not been removed yet.
-      - /pluto detect $${KUBERNETES_MANIFESTS} --ignore-deprecations --target-versions=k8s=v1.27.0
+      - /pluto detect $${KUBERNETES_MANIFESTS} --ignore-deprecations --target-versions=k8s=v1.29.0
     environment:
       KUBERNETES_MANIFESTS: cerebro.yml
 
