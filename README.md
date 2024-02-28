@@ -34,12 +34,12 @@ High level diagram of the stack:
 The following packages are included in the Fury Kubernetes Logging katalog:
 
 | Package                                                | Version                         | Description                                                                                 |
-| ------------------------------------------------------ |---------------------------------| ------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------- |
 | [cerebro](katalog/cerebro)                             | `0.9.4`                         | Web admin tool that helps you manage your Opensearch cluster via a graphical user interface |
 | [opensearch-single](katalog/opensearch-single)         | `2.11.0`                        | Single node opensearch deployment. Not intended for production use.                         |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.11.0`                        | Three node high-availability opensearch deployment                                          |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.11.0`                        | Analytics and visualization platform for Opensearch                                         |
-| [logging-operator](katalog/logging-operator)           | `4.4.1`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
+| [logging-operator](katalog/logging-operator)           | `4.5.6`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations                 |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                                     |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch        |
 | [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki              |
@@ -62,10 +62,10 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 ### Prerequisites
 
-| Tool                        | Version   | Description                                                                                                                                                    |
-| --------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tool                        | Version    | Description                                                                                                                                                    |
+| --------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [furyctl][furyctl-repo]     | `>=0.25.0` | The recommended tool to download and manage KFD modules and their packages. To learn more about `furyctl` read the [official documentation][furyctl-repo].     |
-| [kustomize][kustomize-repo] | `>=3.5.0` | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
+| [kustomize][kustomize-repo] | `>=3.5.0`  | Packages are customized using `kustomize`. To learn how to create your customization layer with `kustomize`, please refer to the [repository][kustomize-repo]. |
 
 ### Deployment with OpenSearch
 

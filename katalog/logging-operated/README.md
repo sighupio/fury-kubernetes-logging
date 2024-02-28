@@ -15,7 +15,7 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/kube-logging/logging-operator:4.1.0`
+- Logging operator: `ghcr.io/kube-logging/logging-operator:4.5.6`
 
 ## Configuration
 
@@ -26,7 +26,7 @@ See the file [fluentd-fluentbit.yaml](fluentd-fluentbit.yml) in the root of the 
 You can deploy Logging operated by running the following command in the root of the project:
 
 ```shell
-kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f - --server-side
 ```
 
 ## Error logs
