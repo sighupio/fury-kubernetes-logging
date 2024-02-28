@@ -13,7 +13,7 @@ spec:
     logLevel: debug
     image:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
-      tag: v1.15-ruby3
+      tag: v1.16-full
     configReloaderImage:
       repository: registry.sighup.io/fury/banzaicloud/config-reloader
       tag: v0.0.5
