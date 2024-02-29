@@ -3,7 +3,6 @@
 # license that can be found in the LICENSE file.
 
 ---
-
 loki:
   schemaConfig:
     configs:
@@ -67,6 +66,14 @@ ingester:
     storageClass: null
     # -- Annotations for ingester PVCs
     annotations: {}
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
 # Configuration for the distributor
 distributor:
@@ -83,6 +90,14 @@ distributor:
     targetCPUUtilizationPercentage: 60
     # -- Target memory utilisation percentage for the distributor
     targetMemoryUtilizationPercentage:
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
 # Configuration for the querier
 querier:
@@ -117,6 +132,14 @@ querier:
   appProtocol:
     # -- Set the optional grpc service protocol. Ex: "grpc", "http2" or "https"
     grpc: ""
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
 # Configuration for the query-frontend
 queryFrontend:
@@ -133,6 +156,14 @@ queryFrontend:
     targetCPUUtilizationPercentage: 60
     # -- Target memory utilisation percentage for the query-frontend
     targetMemoryUtilizationPercentage:
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
 # Configuration for the gateway
 gateway:
@@ -158,11 +189,23 @@ gateway:
     targetMemoryUtilizationPercentage:
   # -- See `kubectl explain deployment.spec.strategy` for more,
   # ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
 # Configuration for the compactor
 compactor:
   # -- Specifies whether compactor should be enabled
   enabled: true
+
+  # -- Default has changed from Deployment to StatefulSet in 0.78.0, we keep it as deployment
+  # ref: https://github.com/grafana/helm-charts/pull/2747
+  kind: Deployment
 
   persistence:
     # -- Enable creating PVCs for the compactor
@@ -177,6 +220,14 @@ compactor:
     storageClass: null
     # -- Annotations for compactor PVCs
     annotations: {}
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
 # Configuration for the ruler
 ruler:
@@ -200,3 +251,11 @@ ruler:
     # -- Annotations for ruler PVCs
     annotations: {}
   # -- Directories containing rules files
+  # -- Setting resources and limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
