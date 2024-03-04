@@ -74,15 +74,11 @@ lint: check-docker
 	@$(MAKE) clean-lint
 
 ## deploy-all: Deploys all the components in the logging module (with curator-s3 and elasticsearch-triple)
-deploy-all: deploy-curator-s3 deploy-elasticsearch-triple deploy-fluentd deploy-kibana deploy-cerebro
+deploy-all: deploy-curator-s3 deploy-elasticsearch-triple deploy-fluentd deploy-kibana
 
 ## deploy-curator: Deploys the `curator` component in the cluster
 deploy-curator: check-kustomize check-kubectl
 	@kustomize build katalog/curator | kubectl apply -f-
-
-## deploy-cerebro: Deploys the `cerebro` component in the cluster
-deploy-cerebro: check-kustomize check-kubectl
-	@kustomize build katalog/cerebro | kubectl apply -f-
 
 ## deploy-curator-s3: Deploys the `curator-s3` component in the cluster
 deploy-curator-s3: check-kustomize check-kubectl

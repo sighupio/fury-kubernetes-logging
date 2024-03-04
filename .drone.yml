@@ -56,7 +56,6 @@ steps:
     depends_on:
       - clone
     commands:
-      - kustomize build katalog/cerebro > cerebro.yml
       - kustomize build katalog/opensearch-triple > opensearch-triple.yml
       - kustomize build katalog/opensearch-dashboards > opensearch-dashboard.yml
       - kustomize build katalog/logging-operator > logging-operator.yml
@@ -75,11 +74,6 @@ steps:
     commands:
       # we use --ignore-deprecations because we don't want the CI to fail when the API has not been removed yet.
       - /pluto detect $${KUBERNETES_MANIFESTS} --ignore-deprecations --target-versions=k8s=v1.29.0
-    environment:
-      KUBERNETES_MANIFESTS: cerebro.yml
-
-  - <<: *check-deprecated-apis
-    name: check-deprecated-apis-opensearch-triple
     environment:
       KUBERNETES_MANIFESTS: opensearch-triple.yml
 

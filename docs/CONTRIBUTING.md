@@ -141,7 +141,7 @@ command, which in turn triggers other make targets for individual components:
 
 ```bash
 $ make deploy-all
-# This deploys curator-s3, elasticsearch-triple, fluentd, kibana and cerebro
+# This deploys curator-s3, elasticsearch-triple, fluentd and kibana
 ```
 
 ## build-canonical-json

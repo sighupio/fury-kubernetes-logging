@@ -37,11 +37,6 @@ set -o pipefail
   apply katalog/configs/kubernetes
 }
 
-@test "testing cerebro apply" {
-  info
-  apply katalog/cerebro
-}
-
 @test "testing opensearch-dashboards apply" {
   info
   apply katalog/opensearch-dashboards
@@ -85,17 +80,6 @@ set -o pipefail
   info
   test(){
     data=$(kubectl get sts -n logging -l app.kubernetes.io/name=fluentd -o json | jq '.items[] | select(.metadata.name == "infra-fluentd" and .status.replicas == .status.readyReplicas )')
-    if [ "${data}" == "" ]; then return 1; fi
-  }
-  loop_it test 60 5
-  status=${loop_it_result}
-  [[ "$status" -eq 0 ]]
-}
-
-@test "check cerebro" {
-  info
-  test(){
-    data=$(kubectl get deploy -n logging -l app=cerebro -o json | jq '.items[] | select(.metadata.name == "cerebro" and .status.replicas == .status.readyReplicas )')
     if [ "${data}" == "" ]; then return 1; fi
   }
   loop_it test 60 5
@@ -212,7 +196,7 @@ set -o pipefail
   then
     skip
   fi
-  for dir in opensearch-single fluentd cerebro opensearch-dashboards
+  for dir in opensearch-single fluentd opensearch-dashboards
   do
     echo "# deleting katalog/$dir" >&3
     kustomize build katalog/$dir | kubectl delete -f - || true
