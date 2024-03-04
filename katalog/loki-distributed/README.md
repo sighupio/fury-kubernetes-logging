@@ -9,7 +9,7 @@ It does not index the contents of the logs, but rather a set of labels for each 
 ## Requirements
 
 - Kubernetes >= `1.24.0`
-- Kustomize >= `v3.5.3`
+- Kustomize >= `v3.10.0`
 - [prometheus-operator from KFD monitoring module][prometheus-operator]
 - [grafana from KFD monitoring module][grafana] (module version `>=1.15.0`)
 - [minio-ha](../minio-ha)
@@ -19,8 +19,8 @@ It does not index the contents of the logs, but rather a set of labels for each 
 
 ## Image repository and tag
 
-* Loki image: `grafana/loki`
-* Loki repo: [Loki on Github][loki-gh]
+- Loki image: `grafana/loki`
+- Loki repo: [Loki on Github][loki-gh]
 
 ## Configuration
 
@@ -29,15 +29,16 @@ Loki Distributed is deployed in the following configuration:
 - Each microservice has its own Deployment/StatefulSet
 - Each Deployment has its own HPA
 - Common resources set as:
-    ```yaml
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        cpu: 500m
-        memory: 1024Mi
-    ```
+
+```yaml
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+```
 
 ## Deployment
 

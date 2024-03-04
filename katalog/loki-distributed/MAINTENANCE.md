@@ -2,7 +2,7 @@
 
 To maintain the Loki Stack package, you should follow these steps.
 
-Download the latest tgz from [Grafana Helm Charts Loki Stack releseas][github-releases].
+Download the latest tgz for `loki-distributed` from [Grafana Helm Charts Loki Stack releases][github-releases] (there are other charts in the releases page).
 
 Extract to a folder of your choice, for example: `/tmp/loki-distributed`.
 
@@ -24,9 +24,8 @@ With the `loki-stack-built.yaml` file, check differences with the current `deplo
 
 What was customized (what differs from the helm template command):
 
-- Loki configuration has been moved on it's own file `configs/loki.yaml`
-- Gateway service has been renamed as loki-stack to maintain compatibility with existing loki-configs
+- Loki configuration has been moved on it's own file `configs/config.yaml`
+- Gateway service has been renamed from `loki-distributed-gateway` to `loki-stack` to maintain compatibility with existing loki-configs
 - Configmap loki-distributed has been changed to a secret
-
 
 [github-releases]: https://github.com/grafana/helm-charts/releases?q=loki-stack&expanded=true
