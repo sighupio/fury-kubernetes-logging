@@ -1,11 +1,12 @@
-# Copyright (c) 2020 SIGHUP s.r.l All rights reserved.
+# Copyright (c) 2017-present SIGHUP s.r.l All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-networking:
-  apiServerAddress: "0.0.0.0"
+# we let kind choose a random port for the API server.
+# networking:
+#   apiServerAddress: "0.0.0.0"
 # One control plane node and three "workers".
 #
 # While these will not add more real compute capacity and
@@ -20,12 +21,3 @@ nodes:
 - role: control-plane
 - role: worker
 - role: worker
-
-containerdConfigPatches:
-- |-
-    [debug]
-      level = "debug"
-    [plugins."io.containerd.grpc.v1.cri".registry]
-      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
-        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
-          endpoint = ["https://mirror.gcr.io", "https://registry-1.docker.io"]
