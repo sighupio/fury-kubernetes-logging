@@ -108,7 +108,7 @@ spec:
       securityContext:
         fsGroup: 1000
         runAsUser: 1000
-      serviceAccountName: ""
+      automountServiceAccountToken: false
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
