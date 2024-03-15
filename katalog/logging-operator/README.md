@@ -15,8 +15,8 @@ and a Fluentd StatefulSet that receive logs from Fluent-bit and send them to var
 
 ## Image repository and tag
 
-* Logging operator: `ghcr.io/kube-logging/logging-operator:4.4.1`
-* Logging operator repo: [Logging operator on GitHub][logging-operator-github]
+- Logging operator: `ghcr.io/kube-logging/logging-operator:4.5.6`
+- Logging operator repo: [Logging operator on GitHub][logging-operator-github]
 
 ## Configuration
 
@@ -30,7 +30,7 @@ In Kubernetes Fury Distribution, Logging operator is deployed with the following
 You can deploy Logging operator by running the following command in the root of the project:
 
 ```shell
-kustomize build | kubectl apply -f -
+kustomize build | kubectl apply -f - --server-side
 ```
 
 See [logging-operated](../logging-operated) for the fluentd and fluentbit stack deployment, [configs](../configs)

@@ -16,5 +16,3 @@ resources:
 images:
   - name: ghcr.io/kube-logging/logging-operator
     newName: registry.sighup.io/fury/banzaicloud/logging-operator
-    newTag: 4.4.1
-
