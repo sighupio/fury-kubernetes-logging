@@ -11,7 +11,7 @@ Kubernetes.
 ## Requirements
 
 - Kubernetes >= `1.24.0`
-- Kustomize = `v3.5.3`
+- Kustomize = `v3.10.0`
 - [prometheus-operator][prometheus-operator]
 
 > Prometheus Operator is necessary since we configure a `ServiceMonitor` to make
@@ -19,9 +19,9 @@ Kubernetes.
 
 ## Image repository and tag
 
-* OpenSearch image: `opensearchproject/opensearch:2.11.0`
-* OpenSearch repo: [OpenSearch on Github][opensearch-gh]
-* OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
+- OpenSearch image: `opensearchproject/opensearch:2.12.0`
+- OpenSearch repo: [OpenSearch on Github][opensearch-gh]
+- OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 
 ## Configuration
 
@@ -47,14 +47,14 @@ kustomize build | kubectl apply -f -
 
 Since we are configuring a `ServiceMonitor` in this package, the following Prometheus [alerts][opensearch-rules] are already defined:
 
-| Alert                             | Description                                                             | Severity | Interval |
-|-----------------------------------|-------------------------------------------------------------------------|----------|:--------:|
-| OpenSearchClusterRed              | This alert fires when the health of the opensearch cluster is RED       | critical | 30m      |
-| OpenSearchYellow                  | This alert fires when the health of the opensearch cluster is YELLOW    | warning  | 30m      |
-| OpenSearchOfRelocationShards      | This alert fires when there are relocating shards for 30 minutes        | warning  | 30m      |
-| OpenSearchOfInitializingShards    | This alert fires when there are initializing shards for 30 minutes      | warning  | 30m      |
-| OpenSearchOfUnassignedShards      | This alert fires when there are unassigned shards for 30 minutes        | warning  | 30m      |
-| OpenSearchOfPendingTasks          | This alert fires when there pending task for 30 minutes                 | warning  | 30m      |
+| Alert                          | Description                                                          | Severity | Interval |
+| ------------------------------ | -------------------------------------------------------------------- | -------- | :------: |
+| OpenSearchClusterRed           | This alert fires when the health of the opensearch cluster is RED    | critical |   30m    |
+| OpenSearchYellow               | This alert fires when the health of the opensearch cluster is YELLOW | warning  |   30m    |
+| OpenSearchOfRelocationShards   | This alert fires when there are relocating shards for 30 minutes     | warning  |   30m    |
+| OpenSearchOfInitializingShards | This alert fires when there are initializing shards for 30 minutes   | warning  |   30m    |
+| OpenSearchOfUnassignedShards   | This alert fires when there are unassigned shards for 30 minutes     | warning  |   30m    |
+| OpenSearchOfPendingTasks       | This alert fires when there pending task for 30 minutes              | warning  |   30m    |
 
 > ℹ️ when using the OpenSearch single variant, the cluster will be in `YELLOW` state because of the single replica.
 

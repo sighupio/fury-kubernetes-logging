@@ -9,11 +9,12 @@ metadata:
   name: infra
 spec:
   errorOutputRef: errors
+  enableRecreateWorkloadOnImmutableFieldChange: true
   fluentd:
     logLevel: debug
     image:
       repository: registry.sighup.io/fury/banzaicloud/fluentd
-      tag: v1.14.6-alpine-5
+      tag: v1.16-full
     configReloaderImage:
       repository: registry.sighup.io/fury/banzaicloud/config-reloader
       tag: v0.0.5
@@ -80,3 +81,6 @@ spec:
     requests:
       cpu: 100m
       memory: 50M
+  positiondb:
+    hostPath:
+      path: /var/log/infra-fluentbit-pos
