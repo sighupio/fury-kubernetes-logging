@@ -158,7 +158,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
       - refs/tags/**
 
 steps:
@@ -234,7 +233,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
       - refs/tags/**
 
 steps:
@@ -310,7 +308,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
       - refs/tags/**
 
 steps:
@@ -386,7 +383,6 @@ platform:
 trigger:
   ref:
     include:
-      - refs/heads/main
       - refs/tags/**
 
 steps:
