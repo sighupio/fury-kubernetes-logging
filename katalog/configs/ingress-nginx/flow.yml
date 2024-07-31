@@ -14,6 +14,8 @@ spec:
         de_dot_nested: true
     - parser:
         key_name: message
+        # we need to set this to true to keep the kubernetes metadata, otherwise it gets droped
+        reserve_data: true
         parse:
           type: multi_format
           patterns:
@@ -30,6 +32,9 @@ spec:
             - format: regexp
               expression: '/^(?<generic>.*)$/'
               types: 'generic:string'
+    # we use this filter to remove the message field, setting reserve_data to true has the side effect that it keeps the original (message) field unstransformed too.
+    - record_transformer:
+        remove_keys: message
   match:
     - select:
         labels:
