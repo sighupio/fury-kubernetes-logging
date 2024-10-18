@@ -15,7 +15,7 @@ It also deploys a MinIO instance for storing all the logs rejected from the conf
 
 ## Image repository and tag
 
-- Logging operator: `ghcr.io/kube-logging/logging-operator:4.5.6`
+- Logging operator: `ghcr.io/kube-logging/logging-operator:4.10.0`
 
 ## Configuration
 
