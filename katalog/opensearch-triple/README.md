@@ -22,7 +22,7 @@ up a 3-node cluster of `OpenSearch` for a robust and reliable setup.
 
 ## Image repository and tag
 
-- OpenSearch image: `opensearchproject/opensearch:2.12.0`
+- OpenSearch image: `opensearchproject/opensearch:2.17.1`
 - OpenSearch repo: [OpenSearch on Github][opensearch-gh]
 - OpenSearch documentation: [OpenSearch Homepage][opensearch-doc]
 
