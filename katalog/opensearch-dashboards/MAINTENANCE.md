@@ -1,4 +1,4 @@
-# Opensearch DAshboards - maintenance
+# Opensearch Dashboards - maintenance
 
 To maintain the Opensearch Dashboards package, you should follow these steps.
 
@@ -10,7 +10,7 @@ Alternatively you can download the chart with:
 
 ```bash
 helm repo add opensearch https://opensearch-project.github.io/helm-charts/
-helm pull opensearch/opensearch-dashboards --version 2.16.0 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch-dashboards
+helm pull opensearch/opensearch-dashboards --version 2.24.0 --untar --untardir /tmp # this command will download the chart in /tmp/opensearch-dashboards
 ```
 
 > [!TIP]
