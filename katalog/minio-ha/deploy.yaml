@@ -18,7 +18,7 @@ metadata:
   namespace: "logging"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-logging
     heritage: Helm
 spec:
@@ -40,7 +40,7 @@ metadata:
   namespace: "logging"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-logging
     heritage: Helm
     monitoring: "true"
@@ -63,9 +63,9 @@ metadata:
   namespace: "logging"
   labels:
     app: minio
-    chart: minio-5.0.7
-    release: "minio-logging"
-    heritage: "Helm"
+    chart: minio-5.3.0
+    release: minio-logging
+    heritage: Helm
 spec:
   publishNotReadyAddresses: true
   clusterIP: None
@@ -86,7 +86,7 @@ metadata:
   namespace: "logging"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-logging
     heritage: Helm
 spec:
@@ -186,7 +186,7 @@ metadata:
   namespace: "logging"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-logging
     heritage: Helm
 spec:
@@ -208,7 +208,7 @@ metadata:
   namespace: "logging"
   labels:
     app: minio
-    chart: minio-5.0.7
+    chart: minio-5.3.0
     release: minio-logging
     heritage: Helm
 spec:
