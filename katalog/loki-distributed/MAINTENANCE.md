@@ -11,7 +11,7 @@ Alternatively you can download the chart with:
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
-helm pull grafana/loki-distributed --version 0.69.15 --untar --untardir /tmp # this command will download the chart in /tmp/loki-stack
+helm pull grafana/loki-distributed --version 0.79.4 --untar --untardir /tmp # this command will download the chart in /tmp/loki-stack
 ```
 
 Run the following command:
