@@ -75,7 +75,7 @@ schema_config:
       object_store: s3
       schema: v11
       store: boltdb-shipper
-    - from: "2024-11-12"
+    - from: "2024-12-01"
       index:
         period: 24h
         prefix: index_
