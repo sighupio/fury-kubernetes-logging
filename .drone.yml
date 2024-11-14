@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-name: Check License Header Presence
+name: check-license-header-presence
 kind: pipeline
 type: docker
 
@@ -18,7 +18,7 @@ steps:
       - addlicense -c "SIGHUP s.r.l" -v -l bsd --check .
 
 ---
-name: Linting
+name: linting
 kind: pipeline
 type: docker
 
@@ -26,14 +26,14 @@ clone:
   depth: 1
 
 depends_on:
-  - Check License Header Presence
+  - check-license-header-presence
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-  - name: Lint with Policeman
+  - name: lint-policeman
     image: quay.io/sighup/policeman
     pull: always
     environment:
@@ -50,7 +50,7 @@ steps:
     depends_on:
       - clone
 
-  - name: Render Manifests
+  - name: render-manifests
     image: quay.io/sighup/e2e-testing:1.1.0_3.12.0_1.31.1_3.10.0_4.33.3
     pull: always
     depends_on:
@@ -70,7 +70,7 @@ steps:
     image: us-docker.pkg.dev/fairwinds-ops/oss/pluto:v5
     pull: always
     depends_on:
-      - Render Manifests
+      - render-manifests
     commands:
       # we use --ignore-deprecations because we don't want the CI to fail when the API has not been removed yet.
       - /pluto detect $${KUBERNETES_MANIFESTS} --ignore-deprecations --target-versions=k8s=v1.29.0
@@ -113,7 +113,7 @@ steps:
       KUBERNETES_MANIFESTS: minio-ha.yml
 
 ---
-name: Unit Test
+name: unit-tests
 kind: pipeline
 type: docker
 
@@ -121,7 +121,7 @@ clone:
   depth: 1
 
 depends_on:
-  - Linting
+  - linting
 
 platform:
   os: linux
@@ -145,7 +145,7 @@ kind: pipeline
 type: docker
 
 depends_on:
-  - Linting
+  - linting
 
 clone:
   depth: 1
@@ -220,7 +220,7 @@ kind: pipeline
 type: docker
 
 depends_on:
-  - Linting
+  - linting
 
 clone:
   depth: 1
@@ -295,7 +295,7 @@ kind: pipeline
 type: docker
 
 depends_on:
-  - Linting
+  - linting
 
 clone:
   depth: 1
@@ -368,7 +368,7 @@ kind: pipeline
 type: docker
 
 depends_on:
-  - Linting
+  - linting
 
 clone:
   depth: 1
