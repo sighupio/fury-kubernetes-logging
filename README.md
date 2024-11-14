@@ -40,12 +40,12 @@ The following packages are included in the Kubernetes Fury Logging module:
 | [opensearch-single](katalog/opensearch-single)         | `2.17.1`                        | Single node opensearch deployment. Not intended for production use.                  |
 | [opensearch-triple](katalog/opensearch-triple)         | `2.17.1`                        | Three node high-availability opensearch deployment                                   |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `2.17.1`                        | Analytics and visualization platform for Opensearch                                  |
-| [logging-operator](katalog/logging-operator)           | `4.10.0`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations          |
+| [logging-operator](katalog/logging-operator)           | `4.10.0`                        | Banzai logging operator, manages fluentbit/fluentd and their configurations          |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                              |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch |
 | [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki       |
-| [loki-distributed](katalog/loki-distributed)           | `2.9.2`                         | Distributed Loki deployment                                                          |
-| [minio-ha](katalog/minio-ha)                           | `RELEASE.2024-10-13T13-34-11Z` | Three nodes HA MinIO deployment                                                      |
+| [loki-distributed](katalog/loki-distributed)           | `2.9.10`                        | Distributed Loki deployment                                                          |
+| [minio-ha](katalog/minio-ha)                           | `RELEASE.2024-10-13T13-34-11Z`  | Three nodes HA MinIO deployment                                                      |
 
 Click on each package to see its full documentation.
 
