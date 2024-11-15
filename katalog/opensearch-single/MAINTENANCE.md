@@ -14,7 +14,7 @@ helm pull opensearch/opensearch --version 2.26.0 --untar --untardir /tmp # this 
 ```
 
 > [!TIP]
-> Chart v2.18.0 uses OpenSearch v2.12.0
+> Chart v2.26.0 uses OpenSearch v2.17.1
 
 Run the following command:
 
