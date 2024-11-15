@@ -28,6 +28,6 @@ What was customized (what differs from the helm template command):
 - Gateway service has been renamed from `loki-distributed-gateway` to `loki-stack` to maintain compatibility with existing loki-configs
 - Configmap loki-distributed has been changed to a secret
 - The `-boltdb.shipper.compactor.working-directory=/var/loki/compactor` arg in the `compactor` container of the `loki-distributed-compactor` Deployment
-  has been maintained.
+  has been kept.
 
 [github-releases]: https://github.com/grafana/helm-charts/releases?q=loki-distributed&expanded=true
