@@ -73,23 +73,23 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
 
-```yaml
-bases:
-  - name: logging/opensearch-single
-    version: "v4.0.0"
-  - name: logging/opensearch-dashboards
-    version: "v4.0.0"
-  - name: logging/logging-operator
-    version: "v4.0.0"
-  - name: logging/logging-operated
-    version: "v4.0.0"
-  - name: minio/minio-ha
-    version: "v4.0.0"
-  - name: logging/configs
-    version: "v4.0.0"
-```
+    ```yaml
+    bases:
+      - name: logging/opensearch-single
+        version: "v4.0.0"
+      - name: logging/opensearch-dashboards
+        version: "v4.0.0"
+      - name: logging/logging-operator
+        version: "v4.0.0"
+      - name: logging/logging-operated
+        version: "v4.0.0"
+      - name: minio/minio-ha
+        version: "v4.0.0"
+      - name: logging/configs
+        version: "v4.0.0"
+    ```
 
-> See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
+    > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
 
 2. Execute `furyctl legacy vendor -H` to download the packages
 
@@ -120,23 +120,23 @@ kustomize build . | kubectl apply --server-side -f -
 
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
 
-```yaml
-bases:
-  - name: logging/loki-distributed
-    version: "v4.0.0"
-  - name: logging/logging-operator
-    version: "v4.0.0"
-  - name: logging/logging-operated
-    version: "v4.0.0"
-  - name: minio/minio-ha
-    version: "v4.0.0"
-  - name: logging/configs
-    version: "v4.0.0"
-  - name: logging/loki-configs
-    version: "v4.0.0"
-```
+    ```yaml
+    bases:
+      - name: logging/loki-distributed
+        version: "v4.0.0"
+      - name: logging/logging-operator
+        version: "v4.0.0"
+      - name: logging/logging-operated
+        version: "v4.0.0"
+      - name: minio/minio-ha
+        version: "v4.0.0"
+      - name: logging/configs
+        version: "v4.0.0"
+      - name: logging/loki-configs
+        version: "v4.0.0"
+    ```
 
-> See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
+    > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
 
 2. Execute `furyctl legacy vendor -H` to download the packages
 
