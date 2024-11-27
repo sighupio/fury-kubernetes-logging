@@ -223,12 +223,12 @@ spec:
           mountPath: /usr/share/opensearch/config/opensearch.yml
           subPath: opensearch.yml
       - name: exporter
-        image: justwatch/elasticsearch_exporter
+        image: quay.io/prometheuscommunity/elasticsearch-exporter
         args:
           - '--es.uri=http://localhost:9200'
-          - '--es.cluster_settings'
+          - '--collector.clustersettings'
           - '--es.indices'
-          - '--es.snapshots'
+          - '--collector.snapshots'
           - '--web.listen-address=:9108'
         ports:
           - containerPort: 9108

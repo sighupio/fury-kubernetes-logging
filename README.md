@@ -5,7 +5,7 @@
 </h1>
 <!-- markdownlint-enable MD033 MD045 -->
 
-![Release](https://img.shields.io/badge/Latest%20Release-v3.4.1-blue)
+![Release](https://img.shields.io/badge/Latest%20Release-v4.0.0-blue)
 ![License](https://img.shields.io/github/license/sighupio/fury-kubernetes-logging?label=License)
 ![Slack](https://img.shields.io/badge/slack-@kubernetes/fury-yellow.svg?logo=slack&label=Slack)
 
@@ -37,15 +37,15 @@ The following packages are included in the Kubernetes Fury Logging module:
 
 | Package                                                | Version                         | Description                                                                          |
 | ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------ |
-| [opensearch-single](katalog/opensearch-single)         | `2.12.0`                        | Single node opensearch deployment. Not intended for production use.                  |
-| [opensearch-triple](katalog/opensearch-triple)         | `2.12.0`                        | Three node high-availability opensearch deployment                                   |
-| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.12.0`                        | Analytics and visualization platform for Opensearch                                  |
-| [logging-operator](katalog/logging-operator)           | `4.5.6`                         | Banzai logging operator, manages fluentbit/fluentd and their configurations          |
+| [opensearch-single](katalog/opensearch-single)         | `2.17.1`                        | Single node opensearch deployment. Not intended for production use.                  |
+| [opensearch-triple](katalog/opensearch-triple)         | `2.17.1`                        | Three node high-availability opensearch deployment                                   |
+| [opensearch-dashboards](katalog/opensearch-dashboards) | `2.17.1`                        | Analytics and visualization platform for Opensearch                                  |
+| [logging-operator](katalog/logging-operator)           | `4.10.0`                        | Banzai logging operator, manages fluentbit/fluentd and their configurations          |
 | [logging-operated](katalog/logging-operated)           | `-`                             | fluentd and fluentbit deployment using logging operator                              |
 | [configs](katalog/configs)                             | `-`                             | Logging pipeline configs to gather various types of logs and send them to OpenSearch |
 | [loki-configs](katalog/loki-configs)                   | `-`                             | Logging pipeline configs to gather various types of logs and send them to Loki       |
-| [loki-distributed](katalog/loki-distributed)           | `2.9.2`                         | Distributed Loki deployment                                                          |
-| [minio-ha](katalog/minio-ha)                           | `vRELEASE.2023-01-12T02-06-16Z` | Three nodes HA MinIO deployment                                                      |
+| [loki-distributed](katalog/loki-distributed)           | `2.9.10`                        | Distributed Loki deployment                                                          |
+| [minio-ha](katalog/minio-ha)                           | `RELEASE.2024-10-13T13-34-11Z`  | Three nodes HA MinIO deployment                                                      |
 
 Click on each package to see its full documentation.
 
@@ -53,10 +53,10 @@ Click on each package to see its full documentation.
 
 | Kubernetes Version |   Compatibility    | Notes           |
 | ------------------ | :----------------: | --------------- |
-| `1.26.x`           | :white_check_mark: | No known issues |
-| `1.27.x`           | :white_check_mark: | No known issues |
 | `1.28.x`           | :white_check_mark: | No known issues |
 | `1.29.x`           | :white_check_mark: | No known issues |
+| `1.30.x`           | :white_check_mark: | No known issues |
+| `1.31.x`           | :white_check_mark: | No known issues |
 
 Check the [compatibility matrix][compatibility-matrix] for additional information about previous releases of the modules.
 
@@ -73,23 +73,23 @@ Check the [compatibility matrix][compatibility-matrix] for additional informatio
 
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
 
-```yaml
-bases:
-  - name: logging/opensearch-single
-    version: "v3.4.1"
-  - name: logging/opensearch-dashboards
-    version: "v3.4.1"
-  - name: logging/logging-operator
-    version: "v3.4.1"
-  - name: logging/logging-operated
-    version: "v3.4.1"
-  - name: minio/minio-ha
-    version: "v3.4.1"
-  - name: logging/configs
-    version: "v3.4.1"
-```
+    ```yaml
+    bases:
+      - name: logging/opensearch-single
+        version: "v4.0.0"
+      - name: logging/opensearch-dashboards
+        version: "v4.0.0"
+      - name: logging/logging-operator
+        version: "v4.0.0"
+      - name: logging/logging-operated
+        version: "v4.0.0"
+      - name: minio/minio-ha
+        version: "v4.0.0"
+      - name: logging/configs
+        version: "v4.0.0"
+    ```
 
-> See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
+    > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
 
 2. Execute `furyctl legacy vendor -H` to download the packages
 
@@ -120,23 +120,23 @@ kustomize build . | kubectl apply --server-side -f -
 
 1. List the packages you want to deploy and their version in a `Furyfile.yml`
 
-```yaml
-bases:
-  - name: logging/loki-distributed
-    version: "v3.4.1"
-  - name: logging/logging-operator
-    version: "v3.4.1"
-  - name: logging/logging-operated
-    version: "v3.4.1"
-  - name: minio/minio-ha
-    version: "v3.4.1"
-  - name: logging/configs
-    version: "v3.4.1"
-  - name: logging/loki-configs
-    version: "v3.4.1"
-```
+    ```yaml
+    bases:
+      - name: logging/loki-distributed
+        version: "v4.0.0"
+      - name: logging/logging-operator
+        version: "v4.0.0"
+      - name: logging/logging-operated
+        version: "v4.0.0"
+      - name: minio/minio-ha
+        version: "v4.0.0"
+      - name: logging/configs
+        version: "v4.0.0"
+      - name: logging/loki-configs
+        version: "v4.0.0"
+    ```
 
-> See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
+    > See `furyctl` [documentation][furyctl-repo] for additional details about `Furyfile.yml` format.
 
 2. Execute `furyctl legacy vendor -H` to download the packages
 
