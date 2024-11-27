@@ -4,8 +4,7 @@
 
 MinIO is a popular distributed object storage system that allows organizations to deploy highly available
 and scalable storage infrastructure.
-In order to achieve high availability (HA) for MinIO, a cluster of multiple MinIO nodes must be deployed,
-with each node having access to its own set of PVCs.
+In order to achieve high availability (HA) for MinIO, a cluster of multiple MinIO nodes must be deployed backed by their own set of PVCs.
 
 ## Requirements
 
@@ -19,7 +18,7 @@ with each node having access to its own set of PVCs.
 ## Image repository and tag
 
 * MinIO image: `minio/minio`
-* MinIO repo: [MinIO on Github][minio-gh]
+* MinIO repo: [MinIO on GitHub][minio-gh]
 
 ## Configuration
 
