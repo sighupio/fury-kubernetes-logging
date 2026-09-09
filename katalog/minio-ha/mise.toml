@@ -45,8 +45,7 @@ kustomize edit set image registry.sighup.io/fury/minio/mc:${usage_mc_version}
 echo "Updated MinIO MC tag in kustomization.yaml"
 
 yq -i ".image.tag = \"${MINIO_IMAGE_TAG}\"" MAINTENANCE.values.yaml
-yq -i ".mcImage.tag = \"${usage_mc_version}\"" MAINTENANCE.values.yaml
-echo "Updated image tags in MAINTENANCE.values.yaml"
+echo "Updated image tag in MAINTENANCE.values.yaml"
 
 helm template minio-logging /tmp/minio-chainguard/helm/minio --values MAINTENANCE.values.yaml -n logging \
   | yq 'select(.kind != "ConfigMap" or .metadata.name != "minio-logging")' > deploy.yaml
