@@ -8,10 +8,8 @@ namespace: logging
 images:
 - name: registry.sighup.io/fury/alpine
   newTag: "3.24"
-- name: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
-  newTag: 3.7.0
 - name: registry.sighup.io/fury/prometheuscommunity/elasticsearch-exporter
-  newTag: v1.10.0
+  newTag: v1.11.0
 resources:
 - deploy.yaml
 - sm.yml
