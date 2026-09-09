@@ -8,7 +8,6 @@ namespace: logging
 resources:
   - datasource
   - deploy.yaml
-  - dashboards
 generatorOptions:
   disableNameSuffixHash: true
 secretGenerator:
