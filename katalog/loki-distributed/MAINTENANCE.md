@@ -24,6 +24,7 @@ mise run upgrade 18.12.1
 The script performs the following operations on top of the chart output:
 
 - Extracts the Loki config and gateway config from the chart-generated resources to `configs/`
+- Extracts the operational dashboard ConfigMap to `dashboard-loki-operational.yaml`
 - Removes the chart-generated Secret and ConfigMap from `deploy.yaml` (recreated by kustomize generators)
 - Renames the gateway Service from `loki-distributed-gateway` to `loki-stack` for backward compatibility
 
