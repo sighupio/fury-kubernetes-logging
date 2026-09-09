@@ -1,7 +1,7 @@
 # Copyright OpenSearch Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-# Default values for opensearch-dashboards.
+# Default values for opensearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
