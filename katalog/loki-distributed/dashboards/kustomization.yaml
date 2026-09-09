@@ -8,9 +8,6 @@ kind: Kustomization
 
 namespace: logging
 
-resources:
-  - loki-rules.yaml
-
 generatorOptions:
   labels:
     grafana-sighup-dashboard: default

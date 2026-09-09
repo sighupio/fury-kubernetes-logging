@@ -1931,6 +1931,96 @@ spec:
               cpu: 100m
               memory: 128Mi
 ---
+# Source: loki/templates/monitoring/rules/loki_rules.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: loki-distributed-loki-rules
+  namespace: logging
+  labels:
+    helm.sh/chart: loki-18.12.1
+    app.kubernetes.io/name: loki-distributed
+    app.kubernetes.io/instance: loki-distributed
+    app.kubernetes.io/version: "3.7.7"
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+    - name: loki_rules
+      rules:
+        - expr: histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job))
+          record: cluster_job:loki_request_duration_seconds:99quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.50, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job))
+          record: cluster_job:loki_request_duration_seconds:50quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job) / sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job)
+          record: cluster_job:loki_request_duration_seconds:avg
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job)
+          record: cluster_job:loki_request_duration_seconds_bucket:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job)
+          record: cluster_job:loki_request_duration_seconds_sum:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job)
+          record: cluster_job:loki_request_duration_seconds_count:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job, route))
+          record: cluster_job_route:loki_request_duration_seconds:99quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.50, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job, route))
+          record: cluster_job_route:loki_request_duration_seconds:50quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job, route) / sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds:avg
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds_bucket:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds_sum:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds_count:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, namespace, job, route))
+          record: cluster_namespace_job_route:loki_request_duration_seconds:99quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.50, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, namespace, job, route))
+          record: cluster_namespace_job_route:loki_request_duration_seconds:50quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, namespace, job, route) / sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds:avg
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds_bucket:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds_sum:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds_count:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+---
 # Source: loki/templates/monitoring/servicemonitor.yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
