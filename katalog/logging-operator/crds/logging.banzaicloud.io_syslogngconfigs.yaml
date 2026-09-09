@@ -34,6 +34,8 @@ spec:
             properties:
               bufferVolumeMetrics:
                 properties:
+                  bind:
+                    type: string
                   enabled:
                     type: boolean
                   interval:
@@ -123,6 +125,7 @@ spec:
                               type: string
                             modulus:
                               format: int64
+                              minimum: 0
                               type: integer
                             regex:
                               type: string
@@ -169,6 +172,7 @@ spec:
                               type: string
                             modulus:
                               format: int64
+                              minimum: 0
                               type: integer
                             regex:
                               type: string
@@ -4217,6 +4221,8 @@ spec:
                 properties:
                   log_level:
                     type: string
+                  log_msg_size:
+                    type: integer
                   stats:
                     properties:
                       freq:
@@ -4239,6 +4245,8 @@ spec:
                 type: integer
               metrics:
                 properties:
+                  bind:
+                    type: string
                   enabled:
                     type: boolean
                   interval:
@@ -4326,6 +4334,7 @@ spec:
                               type: string
                             modulus:
                               format: int64
+                              minimum: 0
                               type: integer
                             regex:
                               type: string
@@ -4372,6 +4381,7 @@ spec:
                               type: string
                             modulus:
                               format: int64
+                              minimum: 0
                               type: integer
                             regex:
                               type: string

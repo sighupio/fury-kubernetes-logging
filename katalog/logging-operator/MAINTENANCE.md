@@ -11,7 +11,7 @@ To maintain the Logging Operator package, you should follow these steps.
 
 2. Run the upgrade task with the desired chart version:
    ```bash
-   mise run upgrade 6.5.1
+   mise run upgrade 6.8.0
    ```
 
 What was customized (what differs from the helm template command):

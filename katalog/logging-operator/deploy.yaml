@@ -11,9 +11,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-6.5.1
+    helm.sh/chart: logging-operator-6.8.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "6.5.1"
+    app.kubernetes.io/version: "6.8.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
 ---
@@ -25,9 +25,9 @@ metadata:
   annotations:
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-6.5.1
+    helm.sh/chart: logging-operator-6.8.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "6.5.1"
+    app.kubernetes.io/version: "6.8.0"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups:
@@ -327,9 +327,9 @@ metadata:
   annotations:
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-6.5.1
+    helm.sh/chart: logging-operator-6.8.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "6.5.1"
+    app.kubernetes.io/version: "6.8.0"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -348,9 +348,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-6.5.1
+    helm.sh/chart: logging-operator-6.8.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "6.5.1"
+    app.kubernetes.io/version: "6.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -372,9 +372,9 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-6.5.1
+    helm.sh/chart: logging-operator-6.8.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "6.5.1"
+    app.kubernetes.io/version: "6.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -390,7 +390,7 @@ spec:
     spec:
       containers:
         - name: logging-operator
-          image: "registry.sighup.io/fury/banzaicloud/logging-operator:6.5.1"
+          image: "registry.sighup.io/fury/banzaicloud/logging-operator:6.8.0"
           args:
             - -enable-leader-election=true
           imagePullPolicy: IfNotPresent
@@ -414,17 +414,17 @@ metadata:
   namespace: logging
   labels:
     app.kubernetes.io/name: logging-operator
-    helm.sh/chart: logging-operator-6.5.1
+    helm.sh/chart: logging-operator-6.8.0
     app.kubernetes.io/instance: logging-operator
-    app.kubernetes.io/version: "6.5.1"
+    app.kubernetes.io/version: "6.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: logging-operator
-      helm.sh/chart: logging-operator-6.5.1
+      helm.sh/chart: logging-operator-6.8.0
       app.kubernetes.io/instance: logging-operator
-      app.kubernetes.io/version: "6.5.1"
+      app.kubernetes.io/version: "6.8.0"
       app.kubernetes.io/managed-by: Helm
   endpoints:
     - port: http

@@ -6743,6 +6743,10 @@ spec:
                     type: string
                   ssekms_key_id:
                     type: string
+                  ssl_ca_bundle:
+                    type: string
+                  ssl_ca_directory:
+                    type: string
                   ssl_verify_peer:
                     type: string
                   storage_class:
@@ -14647,6 +14651,10 @@ spec:
                   sse_customer_key_md5:
                     type: string
                   ssekms_key_id:
+                    type: string
+                  ssl_ca_bundle:
+                    type: string
+                  ssl_ca_directory:
                     type: string
                   ssl_verify_peer:
                     type: string
