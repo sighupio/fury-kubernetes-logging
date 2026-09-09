@@ -11,7 +11,7 @@ To maintain the MinIO package, you should follow these steps.
 
 2. Run the upgrade task with the desired versions:
    ```bash
-   mise run upgrade RELEASE.2026-05-20T23-44-52Z RELEASE.2025-08-13T08-35-41Z 2026-04-10.1
+   mise run upgrade RELEASE.2026-07-17T12-07-51Z RELEASE.2025-08-13T08-35-41Z 2026-04-10.1
    ```
 
 What was customized:
