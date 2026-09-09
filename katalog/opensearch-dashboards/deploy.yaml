@@ -9,10 +9,10 @@ kind: ServiceAccount
 metadata:
   name: opensearch-dashboards-dashboards
   labels:
-    helm.sh/chart: opensearch-dashboards-3.7.0
+    helm.sh/chart: opensearch-dashboards-3.8.0
     app.kubernetes.io/name: opensearch-dashboards
     app.kubernetes.io/instance: opensearch-dashboards
-    app.kubernetes.io/version: "3.7.0"
+    app.kubernetes.io/version: "3.8.0"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: opensearch-dashboards/templates/rolebinding.yaml
@@ -20,10 +20,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   labels:
-    helm.sh/chart: opensearch-dashboards-3.7.0
+    helm.sh/chart: opensearch-dashboards-3.8.0
     app.kubernetes.io/name: opensearch-dashboards
     app.kubernetes.io/instance: opensearch-dashboards
-    app.kubernetes.io/version: "3.7.0"
+    app.kubernetes.io/version: "3.8.0"
     app.kubernetes.io/managed-by: Helm
   name: opensearch-dashboards-dashboards-rolebinding
 roleRef:
@@ -41,10 +41,10 @@ kind: Service
 metadata:
   name: opensearch-dashboards
   labels:
-    helm.sh/chart: opensearch-dashboards-3.7.0
+    helm.sh/chart: opensearch-dashboards-3.8.0
     app.kubernetes.io/name: opensearch-dashboards
     app.kubernetes.io/instance: opensearch-dashboards
-    app.kubernetes.io/version: "3.7.0"
+    app.kubernetes.io/version: "3.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -66,10 +66,10 @@ kind: Deployment
 metadata:
   name: opensearch-dashboards
   labels:
-    helm.sh/chart: opensearch-dashboards-3.7.0
+    helm.sh/chart: opensearch-dashboards-3.8.0
     app.kubernetes.io/name: opensearch-dashboards
     app.kubernetes.io/instance: opensearch-dashboards
-    app.kubernetes.io/version: "3.7.0"
+    app.kubernetes.io/version: "3.8.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -104,7 +104,7 @@ spec:
             - ALL
           runAsNonRoot: true
           runAsUser: 1000
-        image: "registry.sighup.io/fury/opensearchproject/opensearch-dashboards:3.7.0"
+        image: "registry.sighup.io/fury/opensearchproject/opensearch-dashboards:3.8.0"
         imagePullPolicy: "IfNotPresent"
         readinessProbe:
           failureThreshold: 10
