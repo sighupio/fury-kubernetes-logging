@@ -12,25 +12,25 @@ spec:
       maxEntries: 100
       systemdFilter: docker.service
       containerOverrides:
-        image: registry.sighup.io/fury/fluent/fluent-bit:5.0.5
+        image: registry.sighup.io/fury/fluent/fluent-bit:5.1.0
     - name: systemd-containerd-hosttailer
       disabled: false
       maxEntries: 100
       systemdFilter: containerd.service
       containerOverrides:
-        image: registry.sighup.io/fury/fluent/fluent-bit:5.0.5
+        image: registry.sighup.io/fury/fluent/fluent-bit:5.1.0
     - name: systemd-kubelet-hosttailer
       disabled: false
       maxEntries: 100
       systemdFilter: kubelet.service
       containerOverrides:
-        image: registry.sighup.io/fury/fluent/fluent-bit:5.0.5
+        image: registry.sighup.io/fury/fluent/fluent-bit:5.1.0
     - name: systemd-ssh-hosttailer
       disabled: false
       maxEntries: 100
       systemdFilter: ssh.service
       containerOverrides:
-        image: registry.sighup.io/fury/fluent/fluent-bit:5.0.5
+        image: registry.sighup.io/fury/fluent/fluent-bit:5.1.0
   workloadMetaOverrides: {}
   workloadOverrides:
     tolerations:
