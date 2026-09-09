@@ -9,7 +9,7 @@ mise run chart-versions
 Then run:
 
 ```bash
-mise run upgrade 3.7.0
+mise run upgrade 3.8.0
 ```
 
 **NOTE:** the chart version here MUST be kept in sync with [`opensearch-single`](../opensearch-single/MAINTENANCE.md).
