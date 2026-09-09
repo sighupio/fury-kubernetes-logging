@@ -18,7 +18,7 @@ mise run chart-versions
 Then run:
 
 ```bash
-mise run upgrade 17.4.4
+mise run upgrade 18.12.1
 ```
 
 The script performs the following operations on top of the chart output:
