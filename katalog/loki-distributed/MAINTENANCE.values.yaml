@@ -380,5 +380,10 @@ singleBinary:
    replicas: 0
 
 monitoring:
+  rules:
+    enabled: true
+    labels:
+      prometheus: k8s
+      role: alert-rules
   serviceMonitor:
     enabled: true
