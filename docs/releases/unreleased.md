@@ -17,8 +17,11 @@ This release adds support for Kubernetes 1.36 and updates all core components to
 ## Features ✨
 
 ### MinIO
-Added two new Prometheus alerts: 
-- `MinioClusterErasureSetQuorumLost`, fired when an erasure set loses quorum and MinIO can no longer guarantee reads/writes for that pool.
+
+Added two new Prometheus alerts:
+
+- `MinioClusterErasureSetQuorumLost`, fired when an erasure set loses quorum and MinIO can no longer guarantee
+  reads/writes for that pool.
 - `MinioKmsUnavailable`, fired when the KMS backend is offline and SSE-KMS operations fail.
 
 ## Breaking Changes 💔
