@@ -15,7 +15,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: check
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -46,7 +46,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: render
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -70,7 +70,7 @@ steps:
       - kustomize build katalog/minio-ha > minio-ha.yml
 
   - name: lint
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -160,7 +160,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -187,7 +187,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -209,7 +209,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -259,7 +259,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -286,7 +286,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -308,7 +308,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -358,7 +358,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -385,7 +385,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -407,7 +407,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -457,7 +457,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -484,7 +484,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -506,7 +506,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -556,7 +556,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -583,7 +583,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -605,7 +605,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -655,7 +655,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -682,7 +682,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -704,7 +704,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -753,7 +753,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -780,7 +780,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -802,7 +802,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -852,7 +852,7 @@ volumes:
       path: /root/mise_data_dir
 steps:
   - name: Create Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
@@ -879,7 +879,7 @@ steps:
       - clone
 
   - name: End-to-End Tests
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     network_mode: host
     environment:
@@ -901,7 +901,7 @@ steps:
       - Create Kind Cluster
 
   - name: Destroy Kind Cluster
-    image: quay.io/sighup/mise:v2026.6.14
+    image: quay.io/sighup/mise:v2026.8.6
     pull: always
     environment:
       MISE_DATA_DIR: /mise-data
