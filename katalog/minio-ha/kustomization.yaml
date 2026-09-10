@@ -11,7 +11,7 @@ resources:
 - prometheusrules.yaml
 images:
 - name: registry.sighup.io/fury/groundnuty/k8s-wait-for
-  newTag: v1.6
+  newTag: v2.0
 - name: registry.sighup.io/fury/minio/mc
   newTag: RELEASE.2025-08-13T08-35-41Z
 secretGenerator:
