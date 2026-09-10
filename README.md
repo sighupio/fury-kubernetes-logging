@@ -37,8 +37,8 @@ The following packages are included in the Logging module:
 
 | Package                                                | Version                        | Description                                                                          |
 |--------------------------------------------------------|--------------------------------|--------------------------------------------------------------------------------------|
-| [opensearch-single](katalog/opensearch-single)         | `v3.7.0`                       | Single node opensearch deployment. Not intended for production use.                  |
-| [opensearch-triple](katalog/opensearch-triple)         | `v3.7.0`                       | Three node high-availability opensearch deployment                                   |
+| [opensearch-single](katalog/opensearch-single)         | `v3.8.0`                       | Single node opensearch deployment. Not intended for production use.                  |
+| [opensearch-triple](katalog/opensearch-triple)         | `v3.8.0`                       | Three node high-availability opensearch deployment                                   |
 | [opensearch-dashboards](katalog/opensearch-dashboards) | `v3.7.0`                       | Analytics and visualization platform for Opensearch                                  |
 | [logging-operator](katalog/logging-operator)           | `v6.5.1`                       | Banzai logging operator, manages fluentbit/fluentd and their configurations          |
 | [logging-operated](katalog/logging-operated)           | `-`                            | fluentd and fluentbit deployment using logging operator                              |
