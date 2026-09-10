@@ -893,7 +893,7 @@ steps:
         path: /mise-data
     commands:
       - |
-        mise use bats@1.11.0 kubectl@$${KUBECTL_VERSION} kustomize@5.8.1
+        mise use bats@1.11.0 kubectl@$${KUBECTL_VERSION} kustomize@5.6.0
         eval "$(mise activate bash --shims)"
       - until kubectl get serviceaccount default > /dev/null 2>&1; do echo "waiting for control-plane" && sleep 1; done
       - bats -t ./katalog/tests/tests.sh
