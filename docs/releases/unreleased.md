@@ -14,7 +14,7 @@ This release adds support for Kubernetes 1.36 and updates all core components to
 | `loki-distributed`      | [`v3.7.7`](https://github.com/grafana/loki/releases/tag/v3.7.7)                                               | `v3.7.2`                       |
 | `minio-ha`              | [`RELEASE.2026-07-17T12-07-51Z`](https://github.com/chainguard-forks/minio/tree/RELEASE.2026-07-17T12-07-51Z) | `RELEASE.2026-05-20T23-44-52Z` |
 
-## Features ✨
+## New Features ✨
 
 ### MinIO
 
