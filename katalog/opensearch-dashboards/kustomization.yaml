@@ -8,9 +8,6 @@ namespace: logging
 resources:
 - deploy.yaml
 - index-patterns-cronjob.yml
-images:
-- name: registry.sighup.io/fury/opensearchproject/opensearch-dashboards
-  newTag: 3.7.0
 secretGenerator:
 - files:
   - configs/opensearch_dashboards.yml

@@ -20,11 +20,5 @@ helm template opensearch-dashboards opensearch/opensearch-dashboards \
   -n logging > deploy.yaml
 echo "Generated template in deploy.yaml"
 
-OPENSEARCH_APP_VERSION=$(helm show chart opensearch/opensearch-dashboards --version ${usage_chart_version} | yq '.appVersion')
-echo "Found app version ${OPENSEARCH_APP_VERSION}"
-
-kustomize edit set image registry.sighup.io/fury/opensearchproject/opensearch-dashboards:${OPENSEARCH_APP_VERSION}
-echo "Patched kustomization.yaml with OpenSearch Dashboards version ${OPENSEARCH_APP_VERSION}"
-
 mise run //:add-license
 '''
