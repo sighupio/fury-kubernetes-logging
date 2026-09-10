@@ -1,17 +1,22 @@
 # OpenSearch - maintenance
 
+To update the package, follow these steps:
 
-The upgrade is handled automatically by the `upgrade` task. First, find the available chart versions:
+1. Find the available chart versions:
 
 ```bash
 mise run chart-versions
 ```
 
-Then run:
+2. Update OpenSearch with:
 
 ```bash
-mise run upgrade 3.7.0
+mise run upgrade 3.8.0
 ```
+
+3. Update the version of elasticsearch-exporter in [kustomization.yaml](./kustomization.yaml) with the [latest version](https://github.com/prometheus-community/elasticsearch_exporter/releases).
+
+4. Update the version of alpine in [kustomization.yaml](./kustomization.yaml) with the [latest stable](https://alpinelinux.org/releases/).
 
 **NOTE:** the chart version here MUST be kept in sync with [`opensearch-dashboards`](../opensearch-dashboards/MAINTENANCE.md).
 
@@ -23,7 +28,7 @@ Then, Kustomize will automate the following changes:
 
 - custom prometheus AlertRules
 - security plugin disabled via ConfigMap
-- image tag pinning for `alpine`, `elasticsearch-exporter`, and `opensearch-dashboards`
+- image tag pinning for `alpine` and `elasticsearch-exporter`
 
 ## Prometheus metrics
 
