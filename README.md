@@ -44,7 +44,7 @@ The following packages are included in the Logging module:
 | [logging-operated](katalog/logging-operated)           | `-`                            | fluentd and fluentbit deployment using logging operator                              |
 | [configs](katalog/configs)                             | `-`                            | Logging pipeline configs to gather various types of logs and send them to OpenSearch |
 | [loki-configs](katalog/loki-configs)                   | `-`                            | Logging pipeline configs to gather various types of logs and send them to Loki       |
-| [loki-distributed](katalog/loki-distributed)           | `v3.7.2`                       | Distributed Loki deployment                                                          |
+| [loki-distributed](katalog/loki-distributed)           | `v3.7.7`                       | Distributed Loki deployment                                                          |
 | [minio-ha](katalog/minio-ha)                           | `RELEASE.2026-07-17T12-07-51Z` | Three nodes HA MinIO deployment                                                      |
 
 Click on each package to see its full documentation.
