@@ -24,7 +24,6 @@ arg "<mc_version>" help="MinIO MC version to use for the upgrade"
 arg "<prometheus_alerts_version>" help="Prometheus alerts version to use for the upgrade"
 '''
 run = '''
-echo "Updating MinIO with version ${usage_minio_version}"
 MINIO_IMAGE_TAG="${usage_minio_version}-chainguard"
 echo "Using MinIO version ${usage_minio_version} with image tag ${MINIO_IMAGE_TAG}"
 echo "Updating MinIO MC with version ${usage_mc_version}"
