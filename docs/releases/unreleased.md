@@ -14,6 +14,13 @@ This release adds support for Kubernetes 1.36 and updates all core components to
 | `loki-distributed`      | [`v3.7.2`](https://github.com/grafana/loki/releases/tag/v3.7.2)                                               | `v3.5.3`                       |
 | `minio-ha`              | [`RELEASE.2026-07-17T12-07-51Z`](https://github.com/chainguard-forks/minio/tree/RELEASE.2026-07-17T12-07-51Z) | `RELEASE.2026-05-20T23-44-52Z` |
 
+## Features ✨
+
+### MinIO
+Added two new Prometheus alerts: 
+- `MinioClusterErasureSetQuorumLost`, fired when an erasure set loses quorum and MinIO can no longer guarantee reads/writes for that pool.
+- `MinioKmsUnavailable`, fired when the KMS backend is offline and SSE-KMS operations fail.
+
 ## Breaking Changes 💔
 
 No breaking changes detected.
