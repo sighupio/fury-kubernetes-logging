@@ -29,8 +29,8 @@ If applicable, add screenshots to help explain your problem.
  - Version [e.g. 22]
 
 **Kubernetes (please complete the following information):**
- - Kubernetes version: [e.g. 1.30.0]
- - Module version: [e.g. v5.4.0]
+ - Kubernetes version: [e.g. 1.36.4]
+ - Module version: [e.g. v5.5.0]
 
 **Additional context**
 Add any other context about the problem here.
