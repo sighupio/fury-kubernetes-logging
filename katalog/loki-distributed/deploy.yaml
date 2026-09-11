@@ -10,10 +10,10 @@ metadata:
   name: loki-distributed-gateway
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: gateway
 automountServiceAccountToken: false
 ---
@@ -24,10 +24,10 @@ metadata:
   name: loki-distributed
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
 automountServiceAccountToken: true
 ---
 # Source: loki/templates/runtime-configmap.yaml
@@ -37,10 +37,10 @@ metadata:
   name: loki-distributed-runtime
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
 data:
   runtime-config.yaml: |
     {}
@@ -50,10 +50,10 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
   name: loki-distributed-clusterrole
 rules:
   - apiGroups: [""] # "" indicates the core API group
@@ -66,10 +66,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: loki-distributed-clusterrolebinding
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
 subjects:
   - kind: ServiceAccount
     name: loki-distributed
@@ -86,10 +86,10 @@ metadata:
   name: "loki-distributed-compactor"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "compactor"
   annotations:
 spec:
@@ -120,10 +120,10 @@ metadata:
   name: "loki-distributed-compactor-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "compactor"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -157,10 +157,10 @@ metadata:
   name: "loki-distributed-distributor"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "distributor"
   annotations:
 spec:
@@ -191,10 +191,10 @@ metadata:
   name: "loki-distributed-distributor-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "distributor"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -228,10 +228,10 @@ metadata:
   name: loki-distributed-gateway-exporter
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: gateway
   annotations:
 spec:
@@ -253,10 +253,10 @@ metadata:
   name: loki-stack
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: gateway
     prometheus.io/service-monitor: "false"
   annotations:
@@ -279,10 +279,10 @@ metadata:
   name: "loki-distributed-index-gateway"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "index-gateway"
   annotations:
 spec:
@@ -313,10 +313,10 @@ metadata:
   name: "loki-distributed-index-gateway-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "index-gateway"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -350,10 +350,10 @@ metadata:
   name: "loki-distributed-ingester"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "ingester"
   annotations:
 spec:
@@ -384,10 +384,10 @@ metadata:
   name: "loki-distributed-ingester-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "ingester"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -421,10 +421,10 @@ metadata:
   name: "loki-distributed-querier"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "querier"
   annotations:
 spec:
@@ -455,10 +455,10 @@ metadata:
   name: "loki-distributed-querier-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "querier"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -492,10 +492,10 @@ metadata:
   name: "loki-distributed-query-frontend"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "query-frontend"
   annotations:
 spec:
@@ -526,10 +526,10 @@ metadata:
   name: "loki-distributed-query-frontend-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "query-frontend"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -563,10 +563,10 @@ metadata:
   name: "loki-distributed-query-scheduler"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "query-scheduler"
   annotations:
 spec:
@@ -597,10 +597,10 @@ metadata:
   name: "loki-distributed-query-scheduler-headless"
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: "query-scheduler"
     prometheus.io/service-monitor: "false"
     variant: headless
@@ -634,10 +634,10 @@ metadata:
   name: loki-distributed-memberlist
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
   annotations:
 spec:
   type: ClusterIP
@@ -659,10 +659,10 @@ metadata:
   name: "loki-distributed-distributor"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: distributor
 spec:
   strategy:
@@ -681,10 +681,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "distributor"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: distributor
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -722,7 +722,7 @@ spec:
           emptyDir: {}
       containers:
         - name: distributor
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -801,10 +801,10 @@ metadata:
   name: loki-distributed-gateway
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: gateway
 spec:
   strategy:
@@ -872,7 +872,7 @@ spec:
               cpu: 100m
               memory: 128Mi
         - name: exporter
-          image: registry.sighup.io/fury/jkroepke/access-log-exporter:0.4.0
+          image: registry.sighup.io/fury/jkroepke/access-log-exporter:0.4.13
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4040
@@ -944,10 +944,10 @@ metadata:
   name: "loki-distributed-querier"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: querier
 spec:
   strategy:
@@ -967,10 +967,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "querier"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: querier
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -1017,7 +1017,7 @@ spec:
           emptyDir: {}
       containers:
         - name: querier
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1096,10 +1096,10 @@ metadata:
   name: "loki-distributed-query-frontend"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: query-frontend
 spec:
   strategy:
@@ -1119,10 +1119,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "query-frontend"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: query-frontend
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -1160,7 +1160,7 @@ spec:
           emptyDir: {}
       containers:
         - name: query-frontend
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1239,10 +1239,10 @@ metadata:
   name: "loki-distributed-query-scheduler"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: query-scheduler
 spec:
   replicas: 1
@@ -1263,10 +1263,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "query-scheduler"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: query-scheduler
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -1304,7 +1304,7 @@ spec:
           emptyDir: {}
       containers:
         - name: query-scheduler
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1374,10 +1374,10 @@ metadata:
   name: loki-distributed-distributor
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: distributor
 spec:
   scaleTargetRef:
@@ -1401,10 +1401,10 @@ metadata:
   name: loki-distributed-gateway
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: gateway
 spec:
   scaleTargetRef:
@@ -1428,10 +1428,10 @@ metadata:
   name: loki-distributed-ingester
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: ingester
 spec:
   scaleTargetRef:
@@ -1455,10 +1455,10 @@ metadata:
   name: loki-distributed-querier
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: querier
 spec:
   scaleTargetRef:
@@ -1482,10 +1482,10 @@ metadata:
   name: loki-distributed-query-frontend
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: query-frontend
 spec:
   scaleTargetRef:
@@ -1509,10 +1509,10 @@ metadata:
   name: "loki-distributed-compactor"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: compactor
 spec:
   replicas: 1
@@ -1533,10 +1533,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "compactor"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: compactor
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -1572,7 +1572,7 @@ spec:
             name: loki-distributed-runtime
       containers:
         - name: compactor
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1653,10 +1653,10 @@ metadata:
   name: "loki-distributed-index-gateway"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: index-gateway
 spec:
   replicas: 1
@@ -1675,10 +1675,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "index-gateway"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: index-gateway
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -1716,7 +1716,7 @@ spec:
           emptyDir: {}
       containers:
         - name: index-gateway
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1786,10 +1786,10 @@ metadata:
   name: "loki-distributed-ingester"
   namespace: "logging"
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
     app.kubernetes.io/component: ingester
 spec:
   podManagementPolicy: Parallel
@@ -1808,10 +1808,10 @@ spec:
         checksum/config: abadb566f40bf0911ed91ceddf864469ee438f2ae8855eeb1f43c4aa840d7398
         kubectl.kubernetes.io/default-container: "ingester"
       labels:
-        helm.sh/chart: loki-17.4.7
+        helm.sh/chart: loki-18.12.1
         app.kubernetes.io/name: loki-distributed
         app.kubernetes.io/instance: loki-distributed
-        app.kubernetes.io/version: "3.7.2"
+        app.kubernetes.io/version: "3.7.7"
         app.kubernetes.io/component: ingester
         app.kubernetes.io/part-of: memberlist
     spec:
@@ -1858,7 +1858,7 @@ spec:
           emptyDir: {}
       containers:
         - name: ingester
-          image: registry.sighup.io/fury/grafana/loki:3.7.2
+          image: registry.sighup.io/fury/grafana/loki:3.7.7
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
@@ -1931,6 +1931,96 @@ spec:
               cpu: 100m
               memory: 128Mi
 ---
+# Source: loki/templates/monitoring/rules/loki_rules.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: loki-distributed-loki-rules
+  namespace: logging
+  labels:
+    helm.sh/chart: loki-18.12.1
+    app.kubernetes.io/name: loki-distributed
+    app.kubernetes.io/instance: loki-distributed
+    app.kubernetes.io/version: "3.7.7"
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+    - name: loki_rules
+      rules:
+        - expr: histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job))
+          record: cluster_job:loki_request_duration_seconds:99quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.50, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job))
+          record: cluster_job:loki_request_duration_seconds:50quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job) / sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job)
+          record: cluster_job:loki_request_duration_seconds:avg
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job)
+          record: cluster_job:loki_request_duration_seconds_bucket:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job)
+          record: cluster_job:loki_request_duration_seconds_sum:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job)
+          record: cluster_job:loki_request_duration_seconds_count:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job, route))
+          record: cluster_job_route:loki_request_duration_seconds:99quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.50, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job, route))
+          record: cluster_job_route:loki_request_duration_seconds:50quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job, route) / sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds:avg
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds_bucket:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds_sum:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, job, route)
+          record: cluster_job_route:loki_request_duration_seconds_count:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.99, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, namespace, job, route))
+          record: cluster_namespace_job_route:loki_request_duration_seconds:99quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: histogram_quantile(0.50, sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, namespace, job, route))
+          record: cluster_namespace_job_route:loki_request_duration_seconds:50quantile
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, namespace, job, route) / sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds:avg
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds_bucket:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_sum[1m])) by (app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds_sum:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+        - expr: sum(rate(loki_request_duration_seconds_count[1m])) by (app_instance, namespace, job, route)
+          record: cluster_namespace_job_route:loki_request_duration_seconds_count:sum_rate
+          labels:
+            app_instance: "loki-distributed"
+---
 # Source: loki/templates/monitoring/servicemonitor.yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -1938,10 +2028,10 @@ metadata:
   name: loki-distributed
   namespace: logging
   labels:
-    helm.sh/chart: loki-17.4.7
+    helm.sh/chart: loki-18.12.1
     app.kubernetes.io/name: loki-distributed
     app.kubernetes.io/instance: loki-distributed
-    app.kubernetes.io/version: "3.7.2"
+    app.kubernetes.io/version: "3.7.7"
 spec:
   selector:
     matchLabels:
@@ -1958,10 +2048,10 @@ spec:
       interval: 15s
       relabelings:
         - sourceLabels: [job]
-          action: replace
+          action: "replace"
           replacement: "logging/$1"
-          targetLabel: job
-        - action: replace
+          targetLabel: "job"
+        - action: "replace"
           replacement: "loki-distributed"
-          targetLabel: cluster
+          targetLabel: "app_instance"
       scheme: http

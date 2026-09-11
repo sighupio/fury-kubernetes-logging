@@ -27,17 +27,15 @@ for key in $(yq 'select(.kind == "ConfigMap" and .metadata.name == "loki-distrib
 done
 echo "Extracted config files to configs/"
 
+yq 'select(.kind == "ConfigMap" and .metadata.name == "loki-distributed-dashboards-loki-operational")' deploy.yaml > dashboard-loki-operational.yaml
+yq -i 'del(. | select(.kind == "ConfigMap" and .metadata.name == "loki-distributed-dashboards-loki-operational"))' deploy.yaml
+echo "Extracted dashboard ConfigMap to dashboard-loki-operational.yaml"
+
 yq -i 'del(. | select((.kind == "ConfigMap" or .kind == "Secret") and (.metadata.name == "loki-distributed" or .metadata.name == "loki-distributed-gateway")))' deploy.yaml
 echo "Removed loki Secret and gateway ConfigMap from deploy.yaml"
 
 yq -i '(. | select(.kind == "Service" and .metadata.name == "loki-distributed-gateway").metadata.name) = "loki-stack"' deploy.yaml
 echo "Renamed gateway Service to loki-stack"
-
-LOKI_APP_VERSION=$(helm show chart grafana-community/loki --version ${usage_chart_version} | yq '.appVersion')
-echo "Found app version ${LOKI_APP_VERSION}"
-
-mise run //katalog/loki-distributed/dashboards:download_mixins "v${LOKI_APP_VERSION}"
-echo "Downloaded Loki mixins dashboard"
 
 mise run //:add-license
 '''

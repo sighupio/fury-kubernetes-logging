@@ -8,7 +8,7 @@ namespace: logging
 resources:
   - datasource
   - deploy.yaml
-  - dashboards
+  - dashboard-loki-operational.yaml
 generatorOptions:
   disableNameSuffixHash: true
 secretGenerator:

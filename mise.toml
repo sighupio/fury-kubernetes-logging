@@ -20,7 +20,6 @@ config_roots = [
     "katalog/logging-operator",
     "katalog/logging-operated",
     "katalog/loki-distributed",
-    "katalog/loki-distributed/dashboards",
     "katalog/minio-ha",
     "katalog/opensearch-dashboards",
     "katalog/opensearch-single"

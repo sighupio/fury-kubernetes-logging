@@ -380,5 +380,40 @@ singleBinary:
    replicas: 0
 
 monitoring:
+  rules:
+    enabled: true
+    labels:
+      prometheus: k8s
+      role: alert-rules
+  dashboards:
+    enabled: true
+    labels:
+      grafana-sighup-dashboard: default
+    annotations:
+      grafana-folder: "Logging"
+    loki-bloom-build:
+      enabled: false
+    loki-bloom-gateway:
+      enabled: false
+    loki-chunks:
+      enabled: false
+    loki-deletion:
+      enabled: false
+    loki-logs:
+      enabled: false
+    loki-mixin-recording-rules:
+      enabled: false
+    loki-reads:
+      enabled: false
+    loki-reads-resources:
+      enabled: false
+    loki-retention:
+      enabled: false
+    loki-thanos-object-storage:
+      enabled: false
+    loki-writes:
+      enabled: false
+    loki-writes-resources:
+      enabled: false
   serviceMonitor:
     enabled: true
