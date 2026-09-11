@@ -9,6 +9,3 @@ resources:
   - ns.yml
   - deploy.yaml
   - crds
-images:
-  - name: ghcr.io/kube-logging/logging-operator
-    newName: registry.sighup.io/fury/banzaicloud/logging-operator
